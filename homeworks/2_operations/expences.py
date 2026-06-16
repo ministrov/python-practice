@@ -10,7 +10,7 @@ transport = float(input("Транспорт: "))
 entertainment = float(input("Развлечения: "))
 
 overall_sum = food + transport + entertainment
-average = overall_sum // MAX_VALUE
+average = overall_sum / MAX_VALUE
 
-print(overall_sum)
-print(average)
+print(f"Общая сумма: {overall_sum:.2f} руб")
+print(f"Среднее значение: {average:.2f} руб")
