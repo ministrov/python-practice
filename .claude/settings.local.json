@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python \"01_junior\\\\2.1_fundamentals\\\\12_loops_tasks.py\")"
+    ]
+  }
+}
