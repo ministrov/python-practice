@@ -93,6 +93,13 @@ When adding or modifying learning materials:
    - Include a clear final score calculation
    - Minimum passing score is explicitly stated (usually ≥80%)
 
+## Code Style & Standards
+
+- **PEP 8 Compliance:** All code must follow [PEP8_STYLE_GUIDE.md](PEP8_STYLE_GUIDE.md) for consistent, readable Python
+- Key rules: 4-space indents, `snake_case` for variables, `PascalCase` for classes, max 79 chars/line
+- Always add docstrings to functions and classes
+- Use `isinstance()` for type checks, `is None` for None comparisons
+
 ## Common Commands
 
 ### Running a learning file
