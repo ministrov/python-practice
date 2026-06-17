@@ -90,6 +90,8 @@ def grade_letter(score: int) -> None:
     # YOUR CODE HERE:
     match score:
         case x if x >= 90 and x <= 100:
+            print("A")
+        case x if x >= 80 and x <= 89:
             print("B")
         case x if x >= 70 and x <= 79:
             print("C")
@@ -172,7 +174,7 @@ def find_quadrant(x: int, y: int) -> None:
             print("Вторая четверть (II)")
         case _ if x < 0 and y < 0:
             print("Третья четверть (III)")
-        case _ if x > 0 and x < 0:
+        case _ if x > 0 and y < 0:
             print("Четвёртая четверть (IV)")
         case _:
             print("На оси координат")
@@ -203,16 +205,16 @@ print("=" * 55)
 
 def get_file_type(filename: str) -> None:
     # YOUR CODE HERE:
-    match filename.lower():
-        case ".txt" | ".md":
+    match filename.lower().split(".")[-1]:
+        case "txt" | "md":
             print("Текстовый файл")
-        case ".jpg" | ".png" | ".gif":
+        case "jpg" | "png" | "gif":
             print("Изображение")
-        case ".py" | ".js" | ".java":
+        case "py" | "js" | "java":
             print("Исходный код")
-        case ".mp4" | ".mkv" | ".avi":
+        case "mp4" | "mkv" | "avi":
             print("Видео")
-        case ".zip" | ".rar" | ".7z":
+        case "zip" | "rar" | "7z":
             print("Архив")
         case _:
             print("Неизвестный тип")
@@ -357,7 +359,7 @@ def describe_weather(temp: int, is_raining: bool):
     # YOUR CODE HERE:
     match (temp, is_raining):
         case (t, _) if t <= -10:
-            print("Очень холодно")
+            return "Очень холодно"
         case (t, False) if t <= 0:
             return "Холодно и ясно"
         case (t, True) if t <= 0:
