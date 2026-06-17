@@ -15,7 +15,7 @@ meal = user_input
 meal_price = 0
 
 if meal == "напиток":
-    user_input = input("чай, кофе, сок")
+    user_input = input("Выберите напиток (чай, кофе, сок): ")
     match user_input:
         case "чай":
             meal_price = 120
@@ -26,9 +26,11 @@ if meal == "напиток":
         case "сок":
             meal_price = 234
             print(f"Цена выбранного блюда: {meal_price}")
+        case _:
+            print("Такого напитка нет")
 
 if meal == "суп":
-    user_input = input("борщ, щи, суп-пюре")
+    user_input = input("Выберите суп (борщ, щи, суп-пюре): ")
     match user_input:
         case "борщ":
             meal_price = 220
@@ -39,9 +41,11 @@ if meal == "суп":
         case "суп-пюре":
             meal_price = 250
             print(f"Цена выбранного блюда: {meal_price}")
+        case _:
+            print("Такого супа нет")
 
 if meal == "десерт":
-    user_input = input("торт, мороженое, фрукты")
+    user_input = input("Выберите десерт (торт, мороженое, фрукты): ")
     match user_input:
         case "торт":
             meal_price = 250
@@ -52,6 +56,5 @@ if meal == "десерт":
         case "фрукты":
             meal_price = 350
             print(f"Цена выбранного блюда: {meal_price}")
-
-
-print(f"Цена выбранного блюда: {meal}")
+        case _:
+            print("Такого десерта нет")
