@@ -10,13 +10,13 @@
     Программа с помощью match case выводит цену выбранного блюда.
 """
 
-user_input = input("Введите блюдо: ")
-meal = user_input
+category = input("Введите категорию: ")
+meal = category
 meal_price = 0
 
 if meal == "напиток":
-    user_input = input("Выберите напиток (чай, кофе, сок): ")
-    match user_input:
+    dish = input("Выберите напиток (чай, кофе, сок): ")
+    match dish:
         case "чай":
             meal_price = 120
             print(f"Цена выбранного блюда: {meal_price}")
@@ -29,9 +29,9 @@ if meal == "напиток":
         case _:
             print("Такого напитка нет")
 
-if meal == "суп":
-    user_input = input("Выберите суп (борщ, щи, суп-пюре): ")
-    match user_input:
+elif meal == "суп":
+    dish = input("Выберите суп (борщ, щи, суп-пюре): ")
+    match dish:
         case "борщ":
             meal_price = 220
             print(f"Цена выбранного блюда: {meal_price}")
@@ -44,9 +44,9 @@ if meal == "суп":
         case _:
             print("Такого супа нет")
 
-if meal == "десерт":
-    user_input = input("Выберите десерт (торт, мороженое, фрукты): ")
-    match user_input:
+elif meal == "десерт":
+    dish = input("Выберите десерт (торт, мороженое, фрукты): ")
+    match dish:
         case "торт":
             meal_price = 250
             print(f"Цена выбранного блюда: {meal_price}")
