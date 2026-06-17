@@ -91,7 +91,7 @@ username = None
 if username is None:
     print("Пользователь не установлен")
 else:
-    print(f"Привет, {username}!") 
+    print(f"Привет, {username}!")
 
 
 # ============ ЗАДАНИЕ 7: Тернарное выражение ============
@@ -151,6 +151,11 @@ print("\n=== Задание 10: Проверка диапазона ===")
 number = 50
 # YOUR CODE HERE:
 
+if number >= 10 and number <= 100:
+    print("Число в диапазоне")
+else:
+    print("Число вне диапазона")
+
 
 # ============ ЗАДАНИЕ 11: Четность числа ============
 print("\n=== Задание 11: Четность числа ===")
@@ -161,6 +166,10 @@ print("\n=== Задание 11: Четность числа ===")
 
 num = 17
 # YOUR CODE HERE:
+if num % 2 == 0:
+    print("Число четное")
+else:
+    print("Число нечетное")
 
 
 # ============ ЗАДАНИЕ 12: Выбор размера ============
@@ -177,6 +186,16 @@ print("\n=== Задание 12: Выбор размера одежды ===")
 height = 175
 # YOUR CODE HERE:
 
+if height < 160:
+    print("XS")
+elif height < 170:
+    print("S")
+elif height < 180:
+    print("M")
+elif height < 190:
+    print("L")
+else:
+    print("XL")
 
 # ============ ЗАДАНИЕ 13: Проверка пустой строки ============
 print("\n=== Задание 13: Проверка пустой строки ===")
@@ -188,6 +207,10 @@ print("\n=== Задание 13: Проверка пустой строки ===")
 
 password = "secure123"
 # YOUR CODE HERE:
+if len(password) > 0:
+    print("Пароль установлен")
+else:
+    print("Пароль пуст")
 
 
 # ============ ЗАДАНИЕ 14: Проверка типа с isinstance ============
@@ -200,7 +223,10 @@ print("\n=== Задание 14: Проверка типа ===")
 
 value = 42
 # YOUR CODE HERE:
-
+if isinstance(value, int):
+    print("Это целое число")
+else:
+    print("Это не целое число")
 
 # ============ ЗАДАНИЕ 15: Вложенные условия ============
 print("\n=== Задание 15: Проверка возраста и статуса ===")
@@ -216,6 +242,14 @@ age = 25
 is_employed = True
 # YOUR CODE HERE:
 
+if age >= 18:
+    if is_employed:
+        print("Можно оформить кредит")
+    else:
+        print("Нужна работа для кредита")
+else:
+    print("Слишком молодой для кредита")
+
 
 # ============ ЗАДАНИЕ 16: Комплексная система скидок ============
 print("\n=== Задание 16: Система скидок ============")
@@ -229,7 +263,14 @@ print("\n=== Задание 16: Система скидок ============")
 
 amount = 150
 is_member = True
+discount = 0
 # YOUR CODE HERE:
+if is_member:
+    discount += 10
+if amount >= 100:
+    discount += 5
+
+print(f"Скидка: {discount}")
 
 
 # ============ ЗАДАНИЕ 17: Проверка множественных условий ============
@@ -247,3 +288,8 @@ email = "user@example.com"
 age = 30
 has_phone = True
 # YOUR CODE HERE:
+
+if email and age >= 18 and has_phone:
+    print("Данные валидны")
+else:
+    print("Данные невалидны")
