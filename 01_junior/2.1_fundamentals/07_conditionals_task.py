@@ -270,7 +270,7 @@ if is_member:
 if amount >= 100:
     discount += 5
 
-print(f"Скидка: {discount}")
+print(f"Скидка: {discount} %")
 
 
 # ============ ЗАДАНИЕ 17: Проверка множественных условий ============
@@ -289,7 +289,7 @@ age = 30
 has_phone = True
 # YOUR CODE HERE:
 
-if email and age >= 18 and has_phone:
+if "@" in email and age >= 18 and has_phone:
     print("Данные валидны")
 else:
     print("Данные невалидны")
