@@ -19,6 +19,7 @@ print("=" * 55)
 #
 # Подсказка: используй case ... | ... | ... для нескольких значений в одном case
 
+
 def get_season(month: int) -> str:
     match month:
         case 12 | 1 | 2:
@@ -50,6 +51,7 @@ print("=" * 55)
 #
 # Подсказка: используй guard (case x if условие)
 
+
 def describe_number(n: int) -> str:
     match n:
         case x if x < 0:
@@ -58,8 +60,9 @@ def describe_number(n: int) -> str:
             return "Ноль"
         case x if x % 2 == 0:
             return f"Положительное чётное: {x}"
-        case _: 
+        case _:
             return f"Положительное нечётное: {x}"
+
 
 print(describe_number(-5))   # Отрицательное
 print(describe_number(0))    # Ноль
@@ -82,9 +85,20 @@ print("=" * 55)
 #
 # Подсказка: используй диапазон вида case x if 90 <= x <= 100
 
-def grade_letter(score: int) -> str:
+
+def grade_letter(score: int) -> None:
     # YOUR CODE HERE:
-    pass
+    match score:
+        case x if x >= 90 and x <= 100:
+            print("B")
+        case x if x >= 70 and x <= 79:
+            print("C")
+        case x if x >= 60 and x <= 69:
+            print("D")
+        case x if x >= 0 and x <= 59:
+            print("F")
+        case _:
+            print("Неверная оценка")
 
 
 print(grade_letter(95))      # A
@@ -110,9 +124,22 @@ print("=" * 55)
 #
 # Подсказка: используй pipe для нескольких синонимов
 
-def execute_command(cmd: str) -> str:
+
+def execute_command(cmd: str) -> None:
     # YOUR CODE HERE:
-    pass
+    match cmd:
+        case "ls" | "dir":
+            print("Список файлов")
+        case "cd":
+            print("Смена директории")
+        case "pwd":
+            print("Текущая директория")
+        case "rm" | "del":
+            print("Удаление файла")
+        case "cat" | "type":
+            print("Чтение файла")
+        case _:
+            print("Неизвестная команда")
 
 
 print(execute_command("ls"))     # Список файлов
@@ -135,9 +162,20 @@ print("=" * 55)
 #
 # Подсказка: используй кортеж (x, y) в match и распаковку в case
 
-def find_quadrant(x: int, y: int) -> str:
+
+def find_quadrant(x: int, y: int) -> None:
     # YOUR CODE HERE:
-    pass
+    match (x, y):
+        case _ if x > 0 and y > 0:
+            print("Первая четверть (I)")
+        case _ if x < 0 and y > 0:
+            print("Вторая четверть (II)")
+        case _ if x < 0 and y < 0:
+            print("Третья четверть (III)")
+        case _ if x > 0 and x < 0:
+            print("Четвёртая четверть (IV)")
+        case _:
+            print("На оси координат")
 
 
 print(find_quadrant(3, 4))       # Первая четверть (I)
@@ -162,9 +200,22 @@ print("=" * 55)
 #
 # Подсказка: используй .lower() для регистронезависимости
 
-def get_file_type(filename: str) -> str:
+
+def get_file_type(filename: str) -> None:
     # YOUR CODE HERE:
-    pass
+    match filename.lower():
+        case ".txt" | ".md":
+            print("Текстовый файл")
+        case ".jpg" | ".png" | ".gif":
+            print("Изображение")
+        case ".py" | ".js" | ".java":
+            print("Исходный код")
+        case ".mp4" | ".mkv" | ".avi":
+            print("Видео")
+        case ".zip" | ".rar" | ".7z":
+            print("Архив")
+        case _:
+            print("Неизвестный тип")
 
 
 print(get_file_type("document.txt"))     # Текстовый файл
@@ -190,9 +241,22 @@ print("=" * 55)
 #
 # Подсказка: используй guard (if) для комбинирования условий
 
-def analyze_game_result(score: int, time: int) -> str:
+
+def analyze_game_result(score: int, time: int) -> None:
     # YOUR CODE HERE:
-    pass
+    match score, time:
+        case _ if score >= 100 and time < 60:
+            print("Отличный результат!")
+        case _ if score >= 100 and time >= 60:
+            print("Хороший результат")
+        case _ if score >= 50:
+            print("Средний результат")
+        case _ if score > 0:
+            print("Слабый результат")
+        case _ if score == 0:
+            print("Ты проиграл")
+        case _ if score < 0:
+            print("Ошибка: отрицательный счёт")
 
 
 print(analyze_game_result(150, 45))      # Отличный результат!
@@ -216,9 +280,18 @@ print("=" * 55)
 #
 # Подсказка: используй pipe для группировки ролей
 
-def get_access_level(role: str) -> str:
+
+def get_access_level(role: str) -> None:
     # YOUR CODE HERE:
-    pass
+    match role:
+        case "admin" | "root":
+            print("Полный доступ")
+        case "moderator" | "editor":
+            print("Ограниченный доступ")
+        case "user" | "guest":
+            print("Базовый доступ")
+        case _:
+            print("Доступ запрещён")
 
 
 print(get_access_level("admin"))         # Полный доступ
@@ -241,9 +314,20 @@ print("=" * 55)
 #
 # Подсказка: используй pattern (age, is_student) с guards
 
-def calculate_ticket_price(age: int, is_student: bool) -> int:
+
+def calculate_ticket_price(age: int, is_student: bool):
     # YOUR CODE HERE:
-    pass
+    match age, is_student:
+        case _ if age < 3:
+            return 0
+        case _ if age >= 3 and age <= 12:
+            return 100
+        case _ if (age >= 12 and age <= 65) and is_student:
+            return 150
+        case _ if (age >= 12 and age <= 65):
+            return 250
+        case _ if age >= 65:
+            return 200
 
 
 print(calculate_ticket_price(2, False))      # 0
@@ -268,9 +352,22 @@ print("=" * 55)
 #
 # Подсказка: используй кортеж (temp, is_raining) и guards
 
-def describe_weather(temp: int, is_raining: bool) -> str:
+
+def describe_weather(temp: int, is_raining: bool):
     # YOUR CODE HERE:
-    pass
+    match (temp, is_raining):
+        case (t, _) if t <= -10:
+            print("Очень холодно")
+        case (t, False) if t <= 0:
+            return "Холодно и ясно"
+        case (t, True) if t <= 0:
+            return "Холодно и идёт дождь"
+        case (t, _) if t <= 15:
+            return "Прохладно"
+        case (t, _) if t <= 25:
+            return "Комфортно"
+        case _:
+            return "Жарко"
 
 
 print(describe_weather(-15, False))      # Очень холодно
