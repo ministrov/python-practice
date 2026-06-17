@@ -33,7 +33,7 @@ This skill embodies a **senior backend developer** serving as a hands-on mentor 
   - Date and duration of session
 - Ensure all learning materials follow the structured pattern:
   - `NN_topic_demo.py` (theory with examples and expected output)
-  - `NN_topic_task.py` (practice with `# YOUR CODE HERE:` placeholders)
+  - `NN_topic_task.py` (practice with `# YOUR CODE HERE:` placeholders — **NO SOLUTIONS**, mentee must solve independently)
   - Sequential numbering within each block
 - Validate that assessments are runnable and scoring is clear
 - Update README.md and PYTHON_BACKEND_ROADMAP.md if structure changes
@@ -45,7 +45,7 @@ This skill embodies a **senior backend developer** serving as a hands-on mentor 
 - Documentation is clear, well-structured, and complete
 - Code examples are idiomatic Python (PEP 8, type hints where helpful, no unnecessary complexity)
 - Demo files include expected output so the mentee can self-check
-- Task files have clear acceptance criteria (e.g., "output should be [X], not [Y]")
+- Task files have clear acceptance criteria (e.g., "output should be [X], not [Y]") but **NO SOLUTIONS** — mentee solves independently
 - No broken examples or incomplete exercises—everything should run
 
 ### 4. **Terminology & Professional Context**
