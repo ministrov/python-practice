@@ -206,6 +206,18 @@ for i in one_two_three_list:
 for inx, j in enumerate(one_two_three_list):
     print(f"Index: {inx} of Element {j}")
 
+list_a = [1, 2, 3]
+list_b = list_a
+print(list_a == list_b)
+print(list_a is list_b)
+list_a.append(4)
+print(list_a)
+print(list_b)
+
+copy_of_list_a = list(list_a)
+copy_of_list_a.append(6)
+print(copy_of_list_a)
+
 print("\n" + "=" * 60)
 print("КОНЕЦ ЗАДАНИЙ, ПРОВЕРЬ ЧТО ВСЕ ЗАДАНИЯ РАБОТАЮТ!")
 print("=" * 60)
