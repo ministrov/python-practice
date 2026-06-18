@@ -22,6 +22,13 @@ print("""
 
 # ТВ ТВОЙ КОД ЗДЕСЬ:
 
+fruits = ["apple", "banana", "cherry", "pomegranate", "orange"]
+print(fruits[0])
+print(fruits[-1])
+
+numbers = [10, 20, 30, 40, 50]
+print(numbers[1])
+
 
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 2: Срезы (slicing)")
@@ -38,7 +45,11 @@ print("""
 """)
 
 # ТВ ТВОЙ КОД ЗДЕСЬ:
-
+integers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+sliced_int = integers[2:5]
+first_three_elements = integers[:3]
+last_two_elements = integers[2:]
+reversed_int = integers[::-1]
 
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 3: Методы append(), insert(), remove()")
@@ -55,6 +66,13 @@ print("""
 """)
 
 # ТВ ТВОЙ КОД ЗДЕСЬ:
+
+colors = ["red", "green"]
+colors.append("blue")
+colors.insert(1, "yellow")
+colors.remove("green")
+
+print(colors)
 
 
 print("\n" + "=" * 60)
