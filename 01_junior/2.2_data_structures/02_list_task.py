@@ -93,7 +93,20 @@ print("""
 """)
 
 # ТВ ТВОЙ КОД ЗДЕСЬ:
+letters = ["A", "B", "C", "D"]
+last_element = letters.pop()
+print(last_element)
+print(letters)
 
+list1 = [1, 2, 3]
+list2 = [4, 5, 6]
+list1.extend(list2)
+print(list1)
+
+list_example = [3, 4, 5, 6, 7]
+list_example.clear()
+
+print(list_example)
 
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 5: len(), count(), index()")
@@ -109,6 +122,13 @@ print("""
 """)
 
 # ТВ ТВОЙ КОД ЗДЕСЬ:
+
+list_of_numbers = [10, 20, 30, 40]
+print(len(list_of_numbers))
+list_of_numbers_2 = [1, 2, 2, 3, 2, 4, 2]
+count_two = list_of_numbers_2.count(2)
+print(count_two)
+print(list_of_numbers_2.index(2))
 
 
 print("\n" + "=" * 60)
@@ -127,7 +147,13 @@ print("""
 """)
 
 # ТВ ТВОЙ КОД ЗДЕСЬ:
-
+int_numbers = [5, 2, 9, 1, 7]
+sorted_list = int_numbers.sort()
+print(sorted_list)
+reversed_list = int_numbers.sort(reverse=True)
+print(reversed_int)
+new_int_nubers = sorted(int_numbers)
+print(new_int_nubers)
 
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 7: Проверка принадлежности (in)")
@@ -141,7 +167,11 @@ print("""
 """)
 
 # ТВ ТВОЙ КОД ЗДЕСЬ:
-
+names = ["Alice", "Bob", "Charlie"]
+has_alice = "Alice" in names
+print(has_alice)
+has_dima = "Dima" in names
+print(has_dima)
 
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 8: Итерация и изменяемость")
@@ -169,7 +199,24 @@ print("""
 """)
 
 # ТВ ТВОЙ КОД ЗДЕСЬ:
+one_two_three_list = [1, 2, 3]
+for i in one_two_three_list:
+    print(f"Elements: {i}")
 
+for inx, j in enumerate(one_two_three_list):
+    print(f"Index: {inx} of Element {j}")
+
+list_a = [1, 2, 3]
+list_b = list_a
+print(list_a == list_b)
+print(list_a is list_b)
+list_a.append(4)
+print(list_a)
+print(list_b)
+
+copy_of_list_a = list(list_a)
+copy_of_list_a.append(6)
+print(copy_of_list_a)
 
 print("\n" + "=" * 60)
 print("КОНЕЦ ЗАДАНИЙ, ПРОВЕРЬ ЧТО ВСЕ ЗАДАНИЯ РАБОТАЮТ!")
