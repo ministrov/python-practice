@@ -9,6 +9,7 @@
 """
 
 # ===== СОЗДАНИЕ КОРТЕЖЕЙ =====
+from collections import namedtuple
 print("=== СОЗДАНИЕ КОРТЕЖЕЙ ===\n")
 
 # Пустой кортеж
@@ -29,7 +30,8 @@ print(f"Кортеж из одного элемента: {single}")  # (42,)
 
 # БЕЗ запятой это просто скобки, не кортеж
 not_tuple = (42)
-print(f"Без запятой (это просто число): {not_tuple}, тип: {type(not_tuple)}")  # 42, <class 'int'>
+# 42, <class 'int'>
+print(f"Без запятой (это просто число): {not_tuple}, тип: {type(not_tuple)}")
 
 # Кортеж можно создать без скобок
 implicit = 1, 2, 3
@@ -86,14 +88,14 @@ print(f"Исходный кортеж: {my_tuple}")
 
 # НЕЛЬЗЯ изменять элементы кортежа
 try:
-    my_tuple[0] = 10
+    my_tuple[0] = 10  # type: ignore
 except TypeError as e:
     print(f"Ошибка при попытке изменить: {e}")
     # 'tuple' object does not support item assignment
 
 # НЕЛЬЗЯ добавлять элементы
 try:
-    my_tuple.append(4)
+    my_tuple.append(4)  # type: ignore
 except AttributeError as e:
     print(f"Ошибка при попытке добавить: {e}")
     # 'tuple' object has no attribute 'append'
@@ -181,14 +183,14 @@ print(f"Кортеж (4, 5, 6) в список: {tuple_to_list}")  # [4, 5, 6]
 
 # Строка в кортеж (каждый символ отдельно)
 string_to_tuple = tuple("hello")
-print(f"Строка 'hello' в кортеж: {string_to_tuple}")  # ('h', 'e', 'l', 'l', 'o')
+# ('h', 'e', 'l', 'l', 'o')
+print(f"Строка 'hello' в кортеж: {string_to_tuple}")
 
 print()
 
 # ===== NAMED TUPLES (ИМЕНОВАННЫЕ КОРТЕЖИ) =====
 print("=== NAMED TUPLES (ИМЕНОВАННЫЕ КОРТЕЖИ) ===\n")
 
-from collections import namedtuple
 
 # Создаем именованный кортеж
 Point = namedtuple('Point', ['x', 'y'])
