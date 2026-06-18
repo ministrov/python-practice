@@ -156,12 +156,12 @@ print("""
 # ТВ ТВОЙ КОД ЗДЕСЬ:
 tuple4 = (1, 2, 3)
 try:
-    tuple4[0] = 10
+    tuple4[0] = 10  # type: ignore
 except TypeError as e:
     print(f"Ошибка при попытке изменить: {e}")
 
 try:
-    tuple4.append(5)
+    tuple4.append(5)  # type: ignore
 except AttributeError as e:
     print(f"Ошибка при попытке добавить: {e}")
 
@@ -200,7 +200,7 @@ print(coordinates[(10, 20)])
 
 try:
     lista = [1, 2]
-    d = {lista: "value"}
+    d = {: "value"}  # type: ignore
 except TypeError as e:
     print(f"Ошибка при использовании списка как ключ: {e}")
     print("Списки изменяемы (mutable) и не могут быть ключами словаря.")
