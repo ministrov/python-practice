@@ -147,7 +147,13 @@ print("""
 """)
 
 # ТВ ТВОЙ КОД ЗДЕСЬ:
-
+int_numbers = [5, 2, 9, 1, 7]
+sorted_list = int_numbers.sort()
+print(sorted_list)
+reversed_list = int_numbers.sort(reverse=True)
+print(reversed_int)
+new_int_nubers = sorted(int_numbers)
+print(new_int_nubers)
 
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 7: Проверка принадлежности (in)")
@@ -161,7 +167,11 @@ print("""
 """)
 
 # ТВ ТВОЙ КОД ЗДЕСЬ:
-
+names = ["Alice", "Bob", "Charlie"]
+has_alice = "Alice" in names
+print(has_alice)
+has_dima = "Dima" in names
+print(has_dima)
 
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 8: Итерация и изменяемость")
@@ -189,7 +199,12 @@ print("""
 """)
 
 # ТВ ТВОЙ КОД ЗДЕСЬ:
+one_two_three_list = [1, 2, 3]
+for i in one_two_three_list:
+    print(f"Elements: {i}")
 
+for inx, j in enumerate(one_two_three_list):
+    print(f"Index: {inx} of Element {j}")
 
 print("\n" + "=" * 60)
 print("КОНЕЦ ЗАДАНИЙ, ПРОВЕРЬ ЧТО ВСЕ ЗАДАНИЯ РАБОТАЮТ!")
