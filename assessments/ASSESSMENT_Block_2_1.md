@@ -206,8 +206,6 @@ match day:
 
 ```python
 # YOUR CODE HERE
-user_name = input("Введите имя студента: ")
-user_grades = int(input("Введите 5 оценок (числа от 1 до 5): "))
 
 
 
