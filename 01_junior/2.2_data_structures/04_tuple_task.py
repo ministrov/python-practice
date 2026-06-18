@@ -23,6 +23,14 @@ print("""
 """)
 
 # ТВ ТВОЙ КОД ЗДЕСЬ:
+animals_tuple = ("лось", "медведь", "заяц", "волк", "олень")
+print(animals_tuple[0])
+print(animals_tuple[-1])
+empty_tuple = ()
+print(empty_tuple)
+one_element_tuple = (3,)
+print(one_element_tuple)
+print(type(one_element_tuple))
 
 
 print("\n" + "=" * 60)
@@ -42,7 +50,13 @@ print("""
 """)
 
 # ТВ ТВОЙ КОД ЗДЕСЬ:
-
+tuple_of_num = (0, 1, 2, 3, 4, 5, 6, 7, 8, 9)
+sliced_of_num_tuple = tuple_of_num[2:4]
+print(sliced_of_num_tuple)
+print(tuple_of_num[:4])
+print(tuple_of_num[::-3])
+print(tuple_of_num[::2])
+print(tuple_of_num[::-1])
 
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 3: len(), count(), index()")
@@ -58,6 +72,11 @@ print("""
 """)
 
 # ТВ ТВОЙ КОД ЗДЕСЬ:
+another_tuple = (10, 20, 30, 40, 50)
+print(len(another_tuple))
+duplicates_tuple = (1, 2, 2, 3, 2, 4, 2, 5)
+print(duplicates_tuple.count(2))
+print(duplicates_tuple.index(3))
 
 
 print("\n" + "=" * 60)
@@ -78,6 +97,14 @@ print("""
 """)
 
 # ТВ ТВОЙ КОД ЗДЕСЬ:
+fruits_tuple = ("apple", "banana", "cherry")
+print("orange" in fruits_tuple)
+print("banana" in fruits_tuple)
+
+tuple1 = (1, 2, 3)
+tuple2 = (4, 5)
+print(tuple1 + tuple2)
+print((10, 20) * 3)
 
 
 print("\n" + "=" * 60)
