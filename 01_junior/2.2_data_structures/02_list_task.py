@@ -93,7 +93,20 @@ print("""
 """)
 
 # ТВ ТВОЙ КОД ЗДЕСЬ:
+letters = ["A", "B", "C", "D"]
+last_element = letters.pop()
+print(last_element)
+print(letters)
 
+list1 = [1, 2, 3]
+list2 = [4, 5, 6]
+list1.extend(list2)
+print(list1)
+
+list_example = [3, 4, 5, 6, 7]
+list_example.clear()
+
+print(list_example)
 
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 5: len(), count(), index()")
@@ -109,6 +122,13 @@ print("""
 """)
 
 # ТВ ТВОЙ КОД ЗДЕСЬ:
+
+list_of_numbers = [10, 20, 30, 40]
+print(len(list_of_numbers))
+list_of_numbers_2 = [1, 2, 2, 3, 2, 4, 2]
+count_two = list_of_numbers_2.count(2)
+print(count_two)
+print(list_of_numbers_2.index(2))
 
 
 print("\n" + "=" * 60)
