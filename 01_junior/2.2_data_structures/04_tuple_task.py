@@ -125,7 +125,19 @@ print("""
 """)
 
 # ТВ ТВОЙ КОД ЗДЕСЬ:
+values_tuple = (100, 200)
+x, y = values_tuple
+print(f"unpacking values of {x}, {y} of the {values_tuple}")
 
+tuple3 = (1, 2, 3, 4, 5)
+first, *rest_values = tuple3
+print(first, *rest_values)
+
+a = 10
+b = 20
+a, b = b, a
+print(a)
+print(b)
 
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 6: Неизменяемость кортежа")
@@ -142,7 +154,16 @@ print("""
 """)
 
 # ТВ ТВОЙ КОД ЗДЕСЬ:
+tuple4 = (1, 2, 3)
+try:
+    tuple4[0] = 10
+except TypeError as e:
+    print(f"Ошибка при попытке изменить: {e}")
 
+try:
+    tuple4.append(5)
+except AttributeError as e:
+    print(f"Ошибка при попытке добавить: {e}")
 
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 7: Использование кортежа как ключ словаря")
@@ -168,7 +189,21 @@ print("""
 """)
 
 # ТВ ТВОЙ КОД ЗДЕСЬ:
+coordinates = {
+    (0, 0): "origin",
+    (1, 1): "diagonal",
+    (10, 20): "point A"
+}
 
+print(coordinates[(0, 0)])
+print(coordinates[(10, 20)])
+
+try:
+    lista = [1, 2]
+    d = {lista: "value"}
+except TypeError as e:
+    print(f"Ошибка при использовании списка как ключ: {e}")
+    print("Списки изменяемы (mutable) и не могут быть ключами словаря.")
 
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 8: Итерация и преобразование")
@@ -187,7 +222,20 @@ print("""
 """)
 
 # ТВ ТВОЙ КОД ЗДЕСЬ:
+tuple5 = (1, 2, 3)
+for i in tuple5:
+    print(f"element: {i}")
 
+for inx, el in enumerate(tuple5):
+    print(f"index of an element: {inx}, element: {el}")
+
+list_to_tuple = tuple([10, 20, 30])
+print(list_to_tuple)
+print(type(list_to_tuple))
+
+tuple_to_list = list((4, 5, 6))
+print(tuple_to_list)
+print(type(tuple_to_list))
 
 print("\n" + "=" * 60)
 print("КОНЕЦ ЗАДАНИЙ, ПРОВЕРЬ ЧТО ВСЕ ЗАДАНИЯ РАБОТАЮТ!")
