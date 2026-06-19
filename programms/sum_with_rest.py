@@ -4,5 +4,7 @@
         Вывести результаты в виде кортежа (сумма крайних элементов, сумма всех остальных).
 """
 
-result = sum([1, 2, 3, 4])
+numbers = [1, 2, 3, 4, 5, 6, 7]
+first, *middle, last = numbers
+result = (first + last, sum(middle))
 print(result)
