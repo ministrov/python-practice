@@ -23,6 +23,16 @@ print("""
 """)
 
 # ТВ ТВОЙ КОД ЗДЕСЬ:
+film_info = {
+    "name": "Agent 007",
+    "year": 1967,
+    "rating": 4.7
+}
+
+print(film_info["name"])
+print(film_info["rating"])
+print(film_info["year"])
+print(film_info.get("director"))
 
 
 print("\n" + "=" * 60)
@@ -41,6 +51,12 @@ print("""
 """)
 
 # ТВ ТВОЙ КОД ЗДЕСЬ:
+car_info = {"brand": "Toyota", "model": "Camry", "year": 2020}
+car_info["year"] = 2023
+car_info["color"] = "blue"
+print(car_info)
+car_info.update({"engine": "V6", "fuel": "gasoline"})
+print(car_info)
 
 
 print("\n" + "=" * 60)
@@ -59,7 +75,15 @@ print("""
 """)
 
 # ТВ ТВОЙ КОД ЗДЕСЬ:
+letter_dict = {"a": 1, "b": 2, "c": 3, "d": 4}
+del letter_dict["b"]
+print(letter_dict)
+deleted_c_value = letter_dict.pop("c")
+print(deleted_c_value)
+print(letter_dict)
 
+print(letter_dict.pop("z", "default value"))
+print(letter_dict)
 
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 4: Проверка и итерация")
@@ -77,7 +101,17 @@ print("""
 """)
 
 # ТВ ТВОЙ КОД ЗДЕСЬ:
+coordinate = {"x": 10, "y": 20, "z": 30}
+print("x" in coordinate)
+print("w" in coordinate)
+for key in coordinate:
+    print(f"Key: {key}")
 
+for value in coordinate.values():
+    print(f"Value: {value}")
+
+for key, value in coordinate.items():
+    print(f"Key: {key}, Value: {value}")
 
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 5: Итерация по словарю")
@@ -93,6 +127,13 @@ print("""
 """)
 
 # ТВ ТВОЙ КОД ЗДЕСЬ:
+grades: dict[str, float] = {"Alice": 95, "Bob": 87, "Charlie": 92}
+for key, value in grades.items():
+    print(f"KEY: {key}, VALUE: {value}")
+
+for key in grades:
+    grades[key] *= 1.1
+    print(grades[key])
 
 
 print("\n" + "=" * 60)
