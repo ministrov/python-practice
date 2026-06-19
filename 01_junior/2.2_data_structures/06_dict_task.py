@@ -135,6 +135,13 @@ for key in grades:
     grades[key] *= 1.1
     print(grades[key])
 
+grades_values = grades.values()
+for i in grades_values:
+    sum = 0
+    sum += i
+    average = sum / len(grades_values)
+    print(average)
+print(grades_values)
 
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 6: Вложенные словари")
