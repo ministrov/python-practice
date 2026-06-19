@@ -136,11 +136,12 @@ for key in grades:
     print(grades[key])
 
 grades_values = grades.values()
+sum_grades = 0
 for i in grades_values:
-    sum = 0
-    sum += i
-    average = sum / len(grades_values)
-    print(average)
+    sum_grades += i
+
+average = sum_grades / len(grades_values)
+print(average)
 print(grades_values)
 
 print("\n" + "=" * 60)
@@ -163,6 +164,17 @@ print("""
 """)
 
 # ТВ ТВОЙ КОД ЗДЕСЬ:
+students_info = {
+    "alice": {"age": 20, "grade": "A"},
+    "bob": {"age": 21, "grade": "B"}
+}
+
+print(students_info["alice"]["age"])
+print(students_info["bob"]["grade"])
+students_info["charlie"] = {"age": 19, "grade": "A+"}
+print(students_info)
+students_info["bob"]["grade"] = "A"
+print(students_info)
 
 
 print("\n" + "=" * 60)
@@ -183,7 +195,17 @@ print("""
 """)
 
 # ТВ ТВОЙ КОД ЗДЕСЬ:
-
+some_dict = {"a": 1, "b": 2}
+new_some_dict = some_dict.copy()
+print(some_dict)
+print(new_some_dict)
+new_some_dict["c"] = 3
+print(some_dict)
+print(new_some_dict)
+some_dict.setdefault("a", 10)
+some_dict.setdefault("d", 4)
+print(some_dict)
+print(len(some_dict))
 
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 8: Dictionary Comprehension")
@@ -195,13 +217,19 @@ print("""
 8.2 Создай словарь с comprehension, где только четные числа:
     {2: 4, 4: 16}
 
-8.3 Инвертируй словарь (ключи ↔ значения) через comprehension:
+8.3 Инвертируй словарь (ключи <-> значения) через comprehension:
     Исходный: {"a": 1, "b": 2, "c": 3}
     Результат: {1: "a", 2: "b", 3: "c"}
 """)
 
 # ТВ ТВОЙ КОД ЗДЕСЬ:
-
+some_squares = {x: x**2 for x in range(1, 6)}
+print(some_squares)
+even_squares = {x: x**2 for x in range(1, 5) if x % 2 == 0}
+print(even_squares)
+main_squares = {"a": 1, "b": 2, "c": 3}
+result_squares = {v: k for k, v in main_squares.items()}
+print(result_squares)
 
 print("\n" + "=" * 60)
 print("КОНЕЦ ЗАДАНИЙ, ПРОВЕРЬ ЧТО ВСЕ ЗАДАНИЯ РАБОТАЮТ!")
