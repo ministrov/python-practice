@@ -2,6 +2,8 @@
 ## От Junior до Senior Backend Developer
 
 > **Старт:** 2026-06-06
+> **Последний чекпойнт:** 2026-06-18 (сеанс 7)
+> **Прогресс:** Junior Level, Блок 2.2 (List ✅, Tuple ✅, Dict — в процессе)
 > **Длительность:** 18–24 месяца при 10–15 часах в неделю
 > **Формат:** комбинированный — уровни (Junior → Middle → Senior) × темы × сроки
 > **Стек-ориентир:** Python 3.12+, FastAPI/Django, PostgreSQL, SQLAlchemy, Redis, Docker, Kubernetes
