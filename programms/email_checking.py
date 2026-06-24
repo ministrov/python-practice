@@ -15,3 +15,15 @@
         Использование команды exit() для завершения программы.
 
 """
+
+email = input("Введите email для проверки: ")
+
+if email.count("@") != 1:
+    print("Нет")
+    exit()
+
+local, domain = email.split("@")
+
+print(local, domain)
+
+print("a" in "abc")
