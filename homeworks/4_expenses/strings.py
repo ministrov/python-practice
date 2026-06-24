@@ -8,3 +8,8 @@
         Некорректный формат суммы
 
 """
+
+user_input = input("Введите строку формата (<руб> руб <коп> коп): ")
+formatted = user_input.strip().lower().split()
+
+print(formatted)
