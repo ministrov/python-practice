@@ -19,7 +19,7 @@ numbers = [1, 2, 3, 4, 5]
 print(f"Числа: {numbers}")  # [1, 2, 3, 4, 5]
 
 # Список с разными типами
-mixed = [1, "hello", 3.14, True, None]
+mixed: list[object] = [1, "hello", 3.14, True, None]
 print(f"Смешанные типы: {mixed}")  # [1, 'hello', 3.14, True, None]
 
 # Список из другого списка (копия поверхностная)
