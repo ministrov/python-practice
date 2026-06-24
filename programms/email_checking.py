@@ -24,6 +24,20 @@ if email.count("@") != 1:
 
 local, domain = email.split("@")
 
-print(local, domain)
+if not local:
+    print("Нет")
+    exit()
 
-print("a" in "abc")
+if "." not in domain:
+    print("Нет")
+    exit()
+
+if len(domain.split(".")[-1]) < 2:
+    print("Нет")
+    exit()
+
+if len(domain.split(".")[0]) == 0:
+    print("Нет")
+    exit()
+
+print("Да")
