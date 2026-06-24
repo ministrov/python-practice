@@ -22,3 +22,13 @@ if 'руб' in formatted:
 else:
     print("Некорректный формат суммы")
     exit()
+
+if 'коп' in formatted:
+    index_cop = formatted.index("коп")
+    try:
+        cop = int(formatted[index_cop - 1])
+    except:
+        print("Некорректный формат суммы")
+        exit()
+else:
+    cop = 0
