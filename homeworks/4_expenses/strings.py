@@ -12,4 +12,13 @@
 user_input = input("Введите строку формата (<руб> руб <коп> коп): ")
 formatted = user_input.strip().lower().split()
 
-print(formatted)
+if 'руб' in formatted:
+    index_rub = formatted.index("руб")
+    try:
+        rubles = int(formatted[index_rub - 1])
+    except:
+        print("Некорректный формат суммы")
+        exit()
+else:
+    print("Некорректный формат суммы")
+    exit()
