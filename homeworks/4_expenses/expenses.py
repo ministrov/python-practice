@@ -15,3 +15,11 @@ going_out = 560
 
 expenses: list[int] = [flat_rent, mobile_expense,
                        food, clothes, fitness, console_game, going_out]
+
+sum_of_expenses = sum(expenses)
+min_of_expenses = min(expenses)
+max_of_expenses = max(expenses)
+
+print(sum_of_expenses)
+print(max_of_expenses)
+print(min_of_expenses)
