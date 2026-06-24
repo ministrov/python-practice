@@ -32,3 +32,9 @@ if 'коп' in formatted:
         exit()
 else:
     cop = 0
+
+if 'руб' in formatted and 'коп' in formatted:
+    index_rub = formatted.index("руб")
+    index_cop = formatted.index("коп")
+    overall = int(formatted[index_rub - 1]) + int(formatted[index_cop - 1])
+    print(f"Общий результат: {overall:.2f}")
