@@ -9,13 +9,28 @@
         Умножение строк: Можно повторить строку несколько раз: "—" * 30.
 """
 
-name, total = "Anton", 3444.8
+from datetime import datetime
+
+date = datetime.now().strftime("%d.%m.%Y")
+invoice_number = 12334
+
+name = input("Введите имя: ")
+total = float(input("Введите сумму: "))
+
+separator = "-" * 30
+currency = "P"
+
 
 letter = f"""
-    Здравствуйте, {name}!
-    Ваш счет к оплате: {total:.2f} P
+{separator.center(40)}
+Счет №{invoice_number}
+Дата: {date}
+{separator}
 
-    {"-" * 30}
+    Здравствуйте, {name}!
+    Ваш счет к оплате: {total:.2f} {currency}
+
+    {separator}
 
     Прошу оплатить сегодня
 """
