@@ -16,16 +16,29 @@
 
 import random
 
-numbers: list[int] = [1, 2, 3, 4, 5, 6, 7, 8, 9]
-random_num = random.choice(numbers)
+CHOISES = ("камень", "ножницы", "бумага")
+round = int(input("Сколько раундов будем играть? "))
+user_score = 0
+computer_score = 0
 
-evens: list[int] = []
+for round in range(1, round + 1):
+    print(f"\nРаунд {round}")
+    user_select = input("Выбери (камень/ножницы/бумага): ")
+    if user_select not in CHOISES:
+        print("Некорректный выбор!!!")
+        exit()
 
-for num in numbers:
-    if num % 2 == 0:
-        evens.append(num)
-    else:
-        evens = []
+print(random)
+# numbers: list[int] = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+# random_num = random.choice(numbers)
 
-print(random_num)
-print(evens)
+# evens: list[int] = []
+
+# for num in numbers:
+#     if num % 2 == 0:
+#         evens.append(num)
+#     else:
+#         evens = []
+
+# print(random_num)
+# print(evens)
