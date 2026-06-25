@@ -15,7 +15,7 @@
 """
 
 user_name = input("Введите имя студента: ")
-grades = []
+grades: list[int] = []
 
 for i in range(5):
     grade = int(input(f"Введите оценку {i + 1}: "))
