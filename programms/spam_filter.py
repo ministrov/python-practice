@@ -18,10 +18,10 @@ messages = [
 ]
 
 for word in messages:
-    if "спам" in messages:
+    if "спам" in word.lower():
         print("Найден spam")
         break
-    if len(word) >= WORD_LENGTH:
+    if len(word) > WORD_LENGTH:
         continue
 else:
     print("Проверка завершена, spam не найден")
