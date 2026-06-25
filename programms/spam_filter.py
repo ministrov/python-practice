@@ -6,6 +6,7 @@
         # Вывести в результате был ли спам
 """
 
+WORD_LENGTH = 20
 messages = [
     "Как дела?",
     "Что нового?",
@@ -17,4 +18,10 @@ messages = [
 ]
 
 for word in messages:
-    print(f"Word: {word.upper()}")
+    if "спам" in messages:
+        print("Найден spam")
+        break
+    if len(word) >= WORD_LENGTH:
+        continue
+else:
+    print("Проверка завершена, spam не найден")
