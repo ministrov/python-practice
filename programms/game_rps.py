@@ -13,3 +13,19 @@
         Вывод итогов игры:
         Подводим итоги после всех раундов: выводим общий счет и объявляем победителя или ничью.
 """
+
+import random
+
+numbers: list[int] = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+random_num = random.choice(numbers)
+
+evens: list[int] = []
+
+for num in numbers:
+    if num % 2 == 0:
+        evens.append(num)
+    else:
+        evens = []
+
+print(random_num)
+print(evens)
