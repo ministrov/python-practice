@@ -7,29 +7,31 @@
 ИЗМЕНЯЕМАЯ коллекция пар ключ-значение.
 Доступ по ключу (не по индексу).
 """
+from typing import Any
 
 # ===== СОЗДАНИЕ СЛОВАРЕЙ =====
 print("=== СОЗДАНИЕ СЛОВАРЕЙ ===\n")
 
 # Пустой словарь
-empty = {}
+empty: dict[str, Any] = {}
 print(f"Пустой словарь: {empty}")  # {}
 
 # Словарь с элементами
-person = {"name": "Alice", "age": 30, "city": "London"}
+person: dict[str, str | int] = {"name": "Alice", "age": 30, "city": "London"}
 print(f"Словарь: {person}")
 # {'name': 'Alice', 'age': 30, 'city': 'London'}
 
 # Словарь с разными типами значений
-mixed = {"string": "hello", "number": 42, "float": 3.14, "list": [1, 2, 3]}
+mixed: dict[str, str | int | float | list[int]] = {
+    "string": "hello", "number": 42, "float": 3.14, "list": [1, 2, 3]}
 print(f"Смешанные значения: {mixed}")
 
 # Создание словаря через dict()
-from_dict = dict(a=1, b=2, c=3)
+from_dict: dict[str, int] = dict(a=1, b=2, c=3)
 print(f"Через dict(): {from_dict}")  # {'a': 1, 'b': 2, 'c': 3}
 
 # Создание из списка кортежей
-from_list = dict([("x", 10), ("y", 20)])
+from_list: dict[str, int] = dict([("x", 10), ("y", 20)])
 print(f"Из списка кортежей: {from_list}")  # {'x': 10, 'y': 20}
 
 print()
@@ -37,7 +39,7 @@ print()
 # ===== ДОСТУП К ЭЛЕМЕНТАМ =====
 print("=== ДОСТУП К ЭЛЕМЕНТАМ ===\n")
 
-student = {"name": "Bob", "age": 25, "grade": "A"}
+student: dict[str, str | int] = {"name": "Bob", "age": 25, "grade": "A"}
 
 # Доступ по ключу
 print(f"student['name'] = {student['name']}")  # Bob
@@ -46,7 +48,8 @@ print(f"student['age'] = {student['age']}")  # 25
 # get() — безопасный доступ (не вызывает ошибку если ключа нет)
 print(f"student.get('name') = {student.get('name')}")  # Bob
 print(f"student.get('email') = {student.get('email')}")  # None
-print(f"student.get('email', 'no email') = {student.get('email', 'no email')}")  # no email
+# no email
+print(f"student.get('email', 'no email') = {student.get('email', 'no email')}")
 
 # KeyError при обращении к несуществующему ключу
 try:
@@ -59,7 +62,7 @@ print()
 # ===== ИЗМЕНЕНИЕ И ДОБАВЛЕНИЕ =====
 print("=== ИЗМЕНЕНИЕ И ДОБАВЛЕНИЕ ===\n")
 
-book = {"title": "Python 101", "pages": 300}
+book: dict[str, str | int] = {"title": "Python 101", "pages": 300}
 print(f"Исходный словарь: {book}")
 
 # Изменить значение
@@ -79,7 +82,8 @@ print()
 # ===== УДАЛЕНИЕ ЭЛЕМЕНТОВ =====
 print("=== УДАЛЕНИЕ ЭЛЕМЕНТОВ ===\n")
 
-colors = {"red": "#FF0000", "green": "#00FF00", "blue": "#0000FF"}
+colors: dict[str, str] = {"red": "#FF0000",
+                          "green": "#00FF00", "blue": "#0000FF"}
 print(f"Исходный: {colors}")
 
 # del — удалить по ключу
@@ -87,15 +91,15 @@ del colors["green"]
 print(f"После del colors['green']: {colors}")
 
 # pop() — удалить и вернуть значение
-value = colors.pop("red")
-print(f"pop('red') вернул: {value}, осталось: {colors}")
+popped_color: str = colors.pop("red")
+print(f"pop('red') вернул: {popped_color}, осталось: {colors}")
 
 # pop() с значением по умолчанию
-missing = colors.pop("yellow", "not found")
+missing: str = colors.pop("yellow", "not found")
 print(f"pop('yellow', 'not found') вернул: {missing}")
 
 # clear() — удалить все элементы
-temp = {"a": 1, "b": 2}
+temp: dict[str, int] = {"a": 1, "b": 2}
 temp.clear()
 print(f"После clear(): {temp}")
 
@@ -104,11 +108,13 @@ print()
 # ===== ПРОВЕРКА КЛЮЧЕЙ =====
 print("=== ПРОВЕРКА КЛЮЧЕЙ ===\n")
 
-country = {"name": "France", "capital": "Paris", "population": 67000000}
+country: dict[str, str | int] = {
+    "name": "France", "capital": "Paris", "population": 67000000}
 
 # in — проверить наличие ключа
 print(f"'name' in {country} = {'name' in country}")  # True
-print(f"'Paris' in {country} = {'Paris' in country}")  # False (проверяет ключи, не значения)
+# False (проверяет ключи, не значения)
+print(f"'Paris' in {country} = {'Paris' in country}")
 
 # keys(), values(), items()
 print(f"\nКлючи: {country.keys()}")
@@ -125,7 +131,7 @@ print()
 # ===== ИТЕРАЦИЯ =====
 print("=== ИТЕРАЦИЯ ===\n")
 
-scores = {"Alice": 95, "Bob": 87, "Charlie": 92}
+scores: dict[str, int] = {"Alice": 95, "Bob": 87, "Charlie": 92}
 
 # Итерация по ключам (по умолчанию)
 print("Итерация по ключам:")
@@ -147,36 +153,39 @@ print()
 # ===== ВЛОЖЕННЫЕ СЛОВАРИ =====
 print("=== ВЛОЖЕННЫЕ СЛОВАРИ ===\n")
 
-company = {
+employees_dict: dict[str, dict[str, str | int]] = {
+    "alice": {"position": "Manager", "salary": 50000},
+    "bob": {"position": "Developer", "salary": 40000}
+}
+company: dict[str, str | dict[str, dict[str, str | int]]] = {
     "name": "TechCorp",
-    "employees": {
-        "alice": {"position": "Manager", "salary": 50000},
-        "bob": {"position": "Developer", "salary": 40000}
-    }
+    "employees": employees_dict
 }
 
 print(f"Компания: {company['name']}")
-print(f"Должность Alice: {company['employees']['alice']['position']}")
-print(f"Зарплата Bob: {company['employees']['bob']['salary']}")
+alice_info: dict[str, str | int] = employees_dict["alice"]
+bob_info: dict[str, str | int] = employees_dict["bob"]
+print(f"Должность Alice: {alice_info['position']}")
+print(f"Зарплата Bob: {bob_info['salary']}")
 
 print()
 
 # ===== МЕТОДЫ СЛОВАРЯ =====
 print("=== МЕТОДЫ СЛОВАРЯ ===\n")
 
-data = {"a": 1, "b": 2, "c": 3}
+data: dict[str, int] = {"a": 1, "b": 2, "c": 3}
 
 # len() — количество элементов
 print(f"len({data}) = {len(data)}")  # 3
 
 # copy() — поверхностная копия
-copy_data = data.copy()
+copy_data: dict[str, int] = data.copy()
 copy_data["d"] = 4
 print(f"Исходный: {data}")
 print(f"Копия после изменения: {copy_data}")
 
 # setdefault() — получить значение или установить по умолчанию
-result = data.setdefault("a", 10)
+result: int = data.setdefault("a", 10)
 print(f"setdefault('a', 10) = {result}")  # 1 (уже существует)
 
 result = data.setdefault("d", 10)
@@ -188,11 +197,13 @@ print()
 # ===== СЛОВАРИ КАК ПАРАМЕТРЫ =====
 print("=== СЛОВАРИ КАК ПАРАМЕТРЫ ===\n")
 
-def print_person(person_dict):
+
+def print_person(person_dict: dict[str, str | int]) -> None:
     for key, value in person_dict.items():
         print(f"  {key}: {value}")
 
-info = {"name": "David", "age": 28, "job": "Engineer"}
+
+info: dict[str, str | int] = {"name": "David", "age": 28, "job": "Engineer"}
 print("Информация о человеке:")
 print_person(info)
 
@@ -202,14 +213,14 @@ print()
 print("=== COMPREHENSION СЛОВАРЕЙ ===\n")
 
 # Создать словарь из списка чисел
-squares = {x: x**2 for x in range(1, 6)}
+squares: dict[int, int] = {x: x**2 for x in range(1, 6)}
 print(f"Квадраты: {squares}")  # {1: 1, 2: 4, 3: 9, 4: 16, 5: 25}
 
 # С условием
-even_squares = {x: x**2 for x in range(1, 6) if x % 2 == 0}
+even_squares: dict[int, int] = {x: x**2 for x in range(1, 6) if x % 2 == 0}
 print(f"Квадраты четных: {even_squares}")  # {2: 4, 4: 16}
 
 # Инвертировать ключи и значения
-original = {"a": 1, "b": 2, "c": 3}
-inverted = {v: k for k, v in original.items()}
+original: dict[str, int] = {"a": 1, "b": 2, "c": 3}
+inverted: dict[int, str] = {v: k for k, v in original.items()}
 print(f"Инвертированный: {inverted}")  # {1: 'a', 2: 'b', 3: 'c'}

@@ -21,6 +21,11 @@ print("""
 
 # ТВ ТВОЙ КОД ЗДЕСЬ:
 
+list_to_set = set([1, 2, 2, 3, 3, 3, 4])
+print(list_to_set)
+
+hello_set = set("hello")
+print(len(hello_set))
 
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 2: Добавление и удаление элементов")
@@ -38,7 +43,15 @@ print("""
 """)
 
 # ТВ ТВОЙ КОД ЗДЕСЬ:
+fruits = {"apple", "banana", "cherry"}
+fruits.add("orange")
+print(fruits)
 
+fruits.remove("banana")
+print(fruits)
+
+fruits.discard("pineapple")
+print(fruits)
 
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 3: Проверка принадлежности и размер")
@@ -54,7 +67,17 @@ print("""
 """)
 
 # ТВ ТВОЙ КОД ЗДЕСЬ:
+languages = {"Python", "JavaScript", "Go"}
+has_python = "Python" in languages
+has_rust = "Rust" in languages
+print(has_python)
+print(has_rust)
+print(len(languages))
 
+max_lang = max(languages)
+min_lang = min(languages)
+
+print(max_lang, min_lang)
 
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 4: Операции с множествами (объединение, пересечение)")
@@ -74,7 +97,16 @@ print("""
 """)
 
 # ТВ ТВОЙ КОД ЗДЕСЬ:
+A = {1, 2, 3, 4}
+B = {3, 4, 5, 6}
+union = A.union(B)
+print(union)
 
+C = A.intersection(B)
+print(C)
+
+D = A.difference(B)
+print(D)
 
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 5: Симметричная разность и сравнение")
@@ -92,7 +124,17 @@ print("""
 """)
 
 # ТВ ТВОЙ КОД ЗДЕСЬ:
+A_2 = {1, 2, 3, 4}
+B_2 = {3, 4, 5, 6}
 
+sym_diff = A_2.symmetric_difference(B_2)
+print(sym_diff)
+
+result_is_subset = A_2.issubset(B_2)
+print(result_is_subset)
+
+is_disjoint = {1, 2}.isdisjoint({3, 4})
+print(is_disjoint)
 
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 6: Итерация и копирование")
@@ -109,7 +151,17 @@ print("""
 """)
 
 # ТВ ТВОЙ КОД ЗДЕСЬ:
+letters = {"a", "b", "c", "d"}
+for letter in letters:
+    print(letter)
 
+letters_copy = letters.copy()
+letters_copy.add("e")
+
+print(letters)
+print(letters_copy)
+
+print(sum({1, 2, 3, 4, 5}))
 
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 7: Set Comprehension")
@@ -127,7 +179,15 @@ print("""
 """)
 
 # ТВ ТВОЙ КОД ЗДЕСЬ:
+evens = {x for x in range(1, 11) if x % 2 == 0}
+print(evens)
 
+squares = {x**3 for x in range(1, 6)}
+print(squares)
+
+words = ["hello", "world", "python", "code"]
+lengths = {len(w) for w in words}
+print(lengths)
 
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 8: Практическое применение")
@@ -147,7 +207,23 @@ print("""
 """)
 
 # ТВ ТВОЙ КОД ЗДЕСЬ:
+list_a = ["яблоко", "банан", "апельсин", "яблоко", "банан"]
+list_b = ["банан", "груша", "апельсин", "груша", "груша"]
 
+list_to_set_a = set(list_a)
+list_to_set_b = set(list_b)
+
+both_product = list_to_set_a.intersection(list_to_set_b)
+only_one_list = list_to_set_a.difference(list_to_set_b)
+unique_list = list_to_set_a.union(list_to_set_b)
+
+print(both_product)
+print(only_one_list)
+print(unique_list)
+
+text = "the quick brown fox jumps over the lazy dog"
+letters = set(text) - {" "}
+print(len(letters))
 
 print("\n" + "=" * 60)
 print("КОНЕЦ ЗАДАНИЙ, ПРОВЕРЬ ЧТО ВСЕ ЗАДАНИЯ РАБОТАЮТ!")

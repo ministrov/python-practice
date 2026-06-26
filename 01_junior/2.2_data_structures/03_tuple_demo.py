@@ -9,36 +9,36 @@
 """
 
 # ===== СОЗДАНИЕ КОРТЕЖЕЙ =====
-from collections import namedtuple
+from typing import Any, NamedTuple
 print("=== СОЗДАНИЕ КОРТЕЖЕЙ ===\n")
 
 # Пустой кортеж
-empty = ()
+empty: tuple[Any, ...] = ()
 print(f"Пустой кортеж: {empty}")  # ()
 
 # Кортеж с элементами
-numbers = (1, 2, 3, 4, 5)
+numbers: tuple[int, int, int, int, int] = (1, 2, 3, 4, 5)
 print(f"Числа: {numbers}")  # (1, 2, 3, 4, 5)
 
 # Кортеж с разными типами
-mixed = (1, "hello", 3.14, True, None)
+mixed: tuple[int, str, float, bool, None] = (1, "hello", 3.14, True, None)
 print(f"Смешанные типы: {mixed}")  # (1, 'hello', 3.14, True, None)
 
 # Кортеж из одного элемента (важна запятая!)
-single = (42,)
+single: tuple[int] = (42,)
 print(f"Кортеж из одного элемента: {single}")  # (42,)
 
 # БЕЗ запятой это просто скобки, не кортеж
-not_tuple = (42)
+not_tuple: int = (42)
 # 42, <class 'int'>
 print(f"Без запятой (это просто число): {not_tuple}, тип: {type(not_tuple)}")
 
 # Кортеж можно создать без скобок
-implicit = 1, 2, 3
+implicit: tuple[int, int, int] = 1, 2, 3
 print(f"Кортеж без скобок: {implicit}")  # (1, 2, 3)
 
 # Кортеж из списка
-from_list = tuple([10, 20, 30])
+from_list: tuple[int, ...] = tuple([10, 20, 30])
 print(f"Кортеж из списка: {from_list}")  # (10, 20, 30)
 
 print()
@@ -46,7 +46,7 @@ print()
 # ===== ИНДЕКСИРОВАНИЕ И СРЕЗЫ =====
 print("=== ИНДЕКСИРОВАНИЕ И СРЕЗЫ ===\n")
 
-students = ("Alice", "Bob", "Charlie", "Diana", "Eve")
+students: tuple[str, str, str, str, str] = ("Alice", "Bob", "Charlie", "Diana", "Eve")
 print(f"Список студентов: {students}")
 
 # Индекс начинается с 0
@@ -67,23 +67,23 @@ print("=== ОСНОВНЫЕ ОПЕРАЦИИ ===\n")
 print(f"len((1, 2, 3)) = {len((1, 2, 3))}")  # 3
 
 # count() — подсчитать вхождения элемента
-numbers_dup = (1, 2, 2, 3, 2, 4)
+numbers_dup: tuple[int, int, int, int, int, int] = (1, 2, 2, 3, 2, 4)
 print(f"(1, 2, 2, 3, 2, 4).count(2) = {numbers_dup.count(2)}")  # 3
 
 # index() — найти индекс первого вхождения
 print(f"(1, 2, 2, 3, 2, 4).index(2) = {numbers_dup.index(2)}")  # 1
 
 # in — проверка принадлежности
-colors = ("red", "green", "blue")
-print(f"'red' in {colors} = {'red' in colors}")  # True
-print(f"'yellow' in {colors} = {'yellow' in colors}")  # False
+colors: tuple[str, str, str] = ("red", "green", "blue")
+for query in ["red", "yellow"]:  # query выводится как str
+    print(f"'{query}' in {colors} = {query in colors}")  # True, затем False
 
 print()
 
 # ===== НЕИЗМЕНЯЕМОСТЬ (IMMUTABLE) =====
 print("=== НЕИЗМЕНЯЕМОСТЬ (IMMUTABLE) ===\n")
 
-my_tuple = (1, 2, 3)
+my_tuple: tuple[int, int, int] = (1, 2, 3)
 print(f"Исходный кортеж: {my_tuple}")
 
 # НЕЛЬЗЯ изменять элементы кортежа
@@ -107,15 +107,15 @@ print()
 # ===== КОНКАТЕНАЦИЯ И ПОВТОРЕНИЕ =====
 print("=== КОНКАТЕНАЦИЯ И ПОВТОРЕНИЕ ===\n")
 
-tuple1 = (1, 2, 3)
-tuple2 = (4, 5)
+tuple1: tuple[int, int, int] = (1, 2, 3)
+tuple2: tuple[int, int] = (4, 5)
 
 # Конкатенация
-combined = tuple1 + tuple2
+combined: tuple[int, int, int, int, int] = tuple1 + tuple2
 print(f"{tuple1} + {tuple2} = {combined}")  # (1, 2, 3, 4, 5)
 
 # Повторение
-repeated = (1, 2) * 3
+repeated: tuple[int, ...] = (1, 2) * 3
 print(f"(1, 2) * 3 = {repeated}")  # (1, 2, 1, 2, 1, 2)
 
 print()
@@ -124,12 +124,12 @@ print()
 print("=== РАСПАКОВКА (UNPACKING) ===\n")
 
 # Распаковка кортежа в переменные
-coordinates = (10, 20)
+coordinates: tuple[int, int] = (10, 20)
 x, y = coordinates
 print(f"Координаты: x={x}, y={y}")  # x=10, y=20
 
 # Распаковка с несколькими элементами
-data = (1, 2, 3, 4, 5)
+data: tuple[int, int, int, int, int] = (1, 2, 3, 4, 5)
 first, *middle, last = data
 print(f"Первый: {first}, середина: {middle}, последний: {last}")
 # Первый: 1, середина: [2, 3, 4], последний: 5
@@ -159,7 +159,7 @@ print()
 # ===== ИТЕРАЦИЯ =====
 print("=== ИТЕРАЦИЯ ===\n")
 
-fruits = ("apple", "banana", "cherry")
+fruits: tuple[str, str, str] = ("apple", "banana", "cherry")
 for fruit in fruits:
     print(f"  {fruit}")
 
@@ -174,15 +174,15 @@ print()
 print("=== ПРЕОБРАЗОВАНИЕ ===\n")
 
 # Список в кортеж
-list_to_tuple = tuple([1, 2, 3])
+list_to_tuple: tuple[int, ...] = tuple([1, 2, 3])
 print(f"Список [1, 2, 3] в кортеж: {list_to_tuple}")  # (1, 2, 3)
 
 # Кортеж в список
-tuple_to_list = list((4, 5, 6))
+tuple_to_list: list[int] = list((4, 5, 6))
 print(f"Кортеж (4, 5, 6) в список: {tuple_to_list}")  # [4, 5, 6]
 
 # Строка в кортеж (каждый символ отдельно)
-string_to_tuple = tuple("hello")
+string_to_tuple: tuple[str, ...] = tuple("hello")
 # ('h', 'e', 'l', 'l', 'o')
 print(f"Строка 'hello' в кортеж: {string_to_tuple}")
 
@@ -193,12 +193,17 @@ print("=== NAMED TUPLES (ИМЕНОВАННЫЕ КОРТЕЖИ) ===\n")
 
 
 # Создаем именованный кортеж
-Point = namedtuple('Point', ['x', 'y'])
+class Point(NamedTuple):
+    x: int
+    y: int
+
+
 p = Point(3, 4)
 
 print(f"Point: {p}")
 print(f"x={p.x}, y={p.y}")  # Доступ по имени вместо индекса
 
-# Это все еще кортеж
-print(f"Это кортеж: {isinstance(p, tuple)}")  # True
+# Это все еще кортеж: работает индексация, сравнение и len()
+print(f"p[0]={p[0]}, p[1]={p[1]}")  # доступ по индексу как у обычного кортежа
+print(f"p == (3, 4): {p == (3, 4)}")  # True — равен обычному кортежу
 print(f"Длина: {len(p)}")  # 2

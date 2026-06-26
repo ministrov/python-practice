@@ -11,11 +11,11 @@
 print("=== СОЗДАНИЕ СПИСКОВ ===\n")
 
 # Пустой список
-empty = []
+empty: list[int] = []
 print(f"Пустой список: {empty}")  # []
 
 # Список с элементами
-numbers = [1, 2, 3, 4, 5]
+numbers: list[int] = [1, 2, 3, 4, 5]
 print(f"Числа: {numbers}")  # [1, 2, 3, 4, 5]
 
 # Список с разными типами
@@ -23,7 +23,7 @@ mixed: list[object] = [1, "hello", 3.14, True, None]
 print(f"Смешанные типы: {mixed}")  # [1, 'hello', 3.14, True, None]
 
 # Список из другого списка (копия поверхностная)
-copy_list = list(numbers)
+copy_list: list[int] = list(numbers)
 print(f"Копия списка: {copy_list}")  # [1, 2, 3, 4, 5]
 
 print()
@@ -31,7 +31,7 @@ print()
 # ===== ИНДЕКСИРОВАНИЕ (доступ по индексу) =====
 print("=== ИНДЕКСИРОВАНИЕ (доступ по индексу) ===\n")
 
-students = ["Alice", "Bob", "Charlie", "Diana", "Eve"]
+students: list[str] = ["Alice", "Bob", "Charlie", "Diana", "Eve"]
 print(f"Список студентов: {students}")
 
 # Индекс начинается с 0
@@ -45,7 +45,7 @@ print()
 # ===== СРЕЗЫ (SLICING) =====
 print("=== СРЕЗЫ (list[start:stop:step]) ===\n")
 
-numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+numbers: list[int] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 print(f"Исходный список: {numbers}")
 
 # list[start:stop] — от start до stop-1 (stop исключительно)
@@ -61,7 +61,7 @@ print()
 print("=== ОСНОВНЫЕ МЕТОДЫ СПИСКА ===\n")
 
 # append() — добавить элемент в конец
-fruits = ["apple", "banana"]
+fruits: list[str] = ["apple", "banana"]
 fruits.append("cherry")
 print(f"После append('cherry'): {fruits}")  # ['apple', 'banana', 'cherry']
 
@@ -74,7 +74,7 @@ fruits.remove("orange")
 print(f"После remove('orange'): {fruits}")  # ['apple', 'banana', 'cherry']
 
 # pop(index) — удалить элемент по индексу и вернуть его
-last = fruits.pop()  # удалит последний
+last: str = fruits.pop()  # удалит последний
 print(f"pop() удалил: {last}, остаток: {fruits}")  # cherry, ['apple', 'banana']
 
 # pop(1) — удалить элемент по индексу
@@ -82,7 +82,7 @@ fruits.pop(0)  # удалит первый
 print(f"pop(0) удалил первый, остаток: {fruits}")  # ['banana']
 
 # extend() — добавить все элементы из другого списка
-nums = [1, 2, 3]
+nums: list[int] = [1, 2, 3]
 nums.extend([4, 5])
 print(f"После extend([4, 5]): {nums}")  # [1, 2, 3, 4, 5]
 
@@ -90,7 +90,7 @@ print(f"После extend([4, 5]): {nums}")  # [1, 2, 3, 4, 5]
 print(f"len([1, 2, 3]) = {len([1, 2, 3])}")  # 3
 
 # count() — подсчитать вхождения элемента
-duplicates = [1, 2, 2, 3, 2, 4]
+duplicates: list[int] = [1, 2, 2, 3, 2, 4]
 print(f"duplicates.count(2) = {duplicates.count(2)}")  # 3
 
 # index() — найти индекс первого вхождения
@@ -107,7 +107,7 @@ print()
 print("=== СОРТИРОВКА ===\n")
 
 # sort() — сортирует список на месте
-numbers = [3, 1, 4, 1, 5, 9, 2, 6]
+numbers: list[int] = [3, 1, 4, 1, 5, 9, 2, 6]
 numbers.sort()
 print(f"После sort(): {numbers}")  # [1, 1, 2, 3, 4, 5, 6, 9]
 
@@ -116,8 +116,8 @@ numbers.sort(reverse=True)
 print(f"После sort(reverse=True): {numbers}")  # [9, 6, 5, 4, 3, 2, 1, 1]
 
 # sorted() — функция, возвращает новый отсортированный список
-original = [3, 1, 4, 1, 5]
-sorted_list = sorted(original)
+original: list[int] = [3, 1, 4, 1, 5]
+sorted_list: list[int] = sorted(original)
 print(f"sorted({original}) = {sorted_list}")  # [1, 1, 3, 4, 5]
 print(f"Исходный не изменился: {original}")  # [3, 1, 4, 1, 5]
 
@@ -126,7 +126,7 @@ print()
 # ===== ПРОВЕРКА ПРИНАДЛЕЖНОСТИ (in) =====
 print("=== ПРОВЕРКА ПРИНАДЛЕЖНОСТИ (in) ===\n")
 
-colors = ["red", "green", "blue"]
+colors: list[str] = ["red", "green", "blue"]
 print(f"'red' in {colors} = {'red' in colors}")  # True
 print(f"'yellow' in {colors} = {'yellow' in colors}")  # False
 
@@ -135,7 +135,7 @@ print()
 # ===== ИТЕРАЦИЯ (цикл) =====
 print("=== ИТЕРАЦИЯ (цикл for) ===\n")
 
-fruits = ["apple", "banana", "cherry"]
+fruits: list[str] = ["apple", "banana", "cherry"]
 for fruit in fruits:
     print(f"  {fruit}")
 
@@ -149,8 +149,8 @@ print()
 # ===== ИЗМЕНЯЕМОСТЬ (MUTABLE) =====
 print("=== ИЗМЕНЯЕМОСТЬ ===\n")
 
-list1 = [1, 2, 3]
-list2 = list1  # Ссылка на тот же список, не копия!
+list1: list[int] = [1, 2, 3]
+list2: list[int] = list1  # Ссылка на тот же список, не копия!
 
 list1.append(4)
 print(f"Добавили 4 в list1")
@@ -158,8 +158,8 @@ print(f"list1 = {list1}")  # [1, 2, 3, 4]
 print(f"list2 = {list2}")  # [1, 2, 3, 4] — изменилась тоже!
 
 print("\nЕсли нужна копия, используй list() или [:]:")
-list3 = [1, 2, 3]
-list4 = list(list3)  # или list4 = list3[:] — настоящая копия
+list3: list[int] = [1, 2, 3]
+list4: list[int] = list(list3)  # или list4 = list3[:] — настоящая копия
 list3.append(4)
 print(f"list3 = {list3}")  # [1, 2, 3, 4]
 print(f"list4 = {list4}")  # [1, 2, 3] — не изменилась

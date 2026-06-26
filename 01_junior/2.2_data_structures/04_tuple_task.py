@@ -23,12 +23,13 @@ print("""
 """)
 
 # ТВ ТВОЙ КОД ЗДЕСЬ:
-animals_tuple = ("лось", "медведь", "заяц", "волк", "олень")
+from typing import Any
+animals_tuple: tuple[str, str, str, str, str] = ("лось", "медведь", "заяц", "волк", "олень")
 print(animals_tuple[0])
 print(animals_tuple[-1])
-empty_tuple = ()
+empty_tuple: tuple[Any, ...] = ()
 print(empty_tuple)
-one_element_tuple = (3,)
+one_element_tuple: tuple[int] = (3,)
 print(one_element_tuple)
 print(type(one_element_tuple))
 
@@ -50,8 +51,8 @@ print("""
 """)
 
 # ТВ ТВОЙ КОД ЗДЕСЬ:
-tuple_of_num = (0, 1, 2, 3, 4, 5, 6, 7, 8, 9)
-sliced_of_num_tuple = tuple_of_num[2:4]
+tuple_of_num: tuple[int, int, int, int, int, int, int, int, int, int] = (0, 1, 2, 3, 4, 5, 6, 7, 8, 9)
+sliced_of_num_tuple: tuple[int, ...] = tuple_of_num[2:4]
 print(sliced_of_num_tuple)
 print(tuple_of_num[:4])
 print(tuple_of_num[::-3])
@@ -72,9 +73,9 @@ print("""
 """)
 
 # ТВ ТВОЙ КОД ЗДЕСЬ:
-another_tuple = (10, 20, 30, 40, 50)
+another_tuple: tuple[int, int, int, int, int] = (10, 20, 30, 40, 50)
 print(len(another_tuple))
-duplicates_tuple = (1, 2, 2, 3, 2, 4, 2, 5)
+duplicates_tuple: tuple[int, int, int, int, int, int, int, int] = (1, 2, 2, 3, 2, 4, 2, 5)
 print(duplicates_tuple.count(2))
 print(duplicates_tuple.index(3))
 
@@ -97,12 +98,12 @@ print("""
 """)
 
 # ТВ ТВОЙ КОД ЗДЕСЬ:
-fruits_tuple = ("apple", "banana", "cherry")
-print("orange" in fruits_tuple)
-print("banana" in fruits_tuple)
+fruits_tuple: tuple[str, str, str] = ("apple", "banana", "cherry")
+for query in ["orange", "banana"]:  # query выводится как str
+    print(query in fruits_tuple)  # False, затем True
 
-tuple1 = (1, 2, 3)
-tuple2 = (4, 5)
+tuple1: tuple[int, int, int] = (1, 2, 3)
+tuple2: tuple[int, int] = (4, 5)
 print(tuple1 + tuple2)
 print((10, 20) * 3)
 
@@ -125,16 +126,16 @@ print("""
 """)
 
 # ТВ ТВОЙ КОД ЗДЕСЬ:
-values_tuple = (100, 200)
+values_tuple: tuple[int, int] = (100, 200)
 x, y = values_tuple
 print(f"unpacking values of {x}, {y} of the {values_tuple}")
 
-tuple3 = (1, 2, 3, 4, 5)
+tuple3: tuple[int, int, int, int, int] = (1, 2, 3, 4, 5)
 first, *rest_values = tuple3
 print(first, *rest_values)
 
-a = 10
-b = 20
+a: int = 10
+b: int = 20
 a, b = b, a
 print(a)
 print(b)
@@ -154,7 +155,7 @@ print("""
 """)
 
 # ТВ ТВОЙ КОД ЗДЕСЬ:
-tuple4 = (1, 2, 3)
+tuple4: tuple[int, int, int] = (1, 2, 3)
 try:
     tuple4[0] = 10  # type: ignore
 except TypeError as e:
@@ -189,7 +190,7 @@ print("""
 """)
 
 # ТВ ТВОЙ КОД ЗДЕСЬ:
-coordinates = {
+coordinates: dict[tuple[int, int], str] = {
     (0, 0): "origin",
     (1, 1): "diagonal",
     (10, 20): "point A"
@@ -199,7 +200,7 @@ print(coordinates[(0, 0)])
 print(coordinates[(10, 20)])
 
 try:
-    lista = [1, 2]
+    lista: list[int] = [1, 2]
     d = {: "value"}  # type: ignore
 except TypeError as e:
     print(f"Ошибка при использовании списка как ключ: {e}")
@@ -222,18 +223,18 @@ print("""
 """)
 
 # ТВ ТВОЙ КОД ЗДЕСЬ:
-tuple5 = (1, 2, 3)
+tuple5: tuple[int, int, int] = (1, 2, 3)
 for i in tuple5:
     print(f"element: {i}")
 
 for inx, el in enumerate(tuple5):
     print(f"index of an element: {inx}, element: {el}")
 
-list_to_tuple = tuple([10, 20, 30])
+list_to_tuple: tuple[int, ...] = tuple([10, 20, 30])
 print(list_to_tuple)
 print(type(list_to_tuple))
 
-tuple_to_list = list((4, 5, 6))
+tuple_to_list: list[int] = list((4, 5, 6))
 print(tuple_to_list)
 print(type(tuple_to_list))
 
