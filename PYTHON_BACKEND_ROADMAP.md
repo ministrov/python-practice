@@ -86,8 +86,8 @@
 - [x] **`dict`**: методы, dict comprehensions, `.get`/`.setdefault`, порядок вставки (3.7+) ✅ (завершено 2026-06-19)
   - Файлы: `05_dict_demo.py`, `06_dict_task.py` (8/8 заданий)
   - Микро-тест: 7/8 = 87.5% ✓ PASS
-- [🔄] **`set` / `frozenset`**: операции над множествами, дедупликация (в процессе 2026-06-19)
-  - Файлы: `07_set_demo.py` ✅ готова, `08_set_task.py` на решение завтра (8 заданий)
+- [x] **`set` / `frozenset`**: операции над множествами, дедупликация ✅ (завершено 2026-06-26)
+  - Файлы: `07_set_demo.py` ✅, `08_set_task.py` ✅ (8/8 заданий)
 - [ ] List/Dict/Set comprehensions — углубленно
   - Файлы: `09_list_comprehensions_demo.py`, `10_list_comprehensions_task.py`
 - [ ] Выбор структуры под задачу
