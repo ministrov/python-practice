@@ -130,18 +130,22 @@ scores: dict[str, int] = {"Alice": 95, "Bob": 87, "Charlie": 92}
 
 # Итерация по ключам (по умолчанию)
 print("Итерация по ключам:")
-for key in scores:  # type: str
-    print(f"  {key}")
+for key in scores:
+    key_str: str = key
+    print(f"  {key_str}")
 
 # Итерация по значениям
 print("\nИтерация по значениям:")
-for value in scores.values():  # type: int
-    print(f"  {value}")
+for value in scores.values():
+    value_int: int = value
+    print(f"  {value_int}")
 
 # Итерация по парам ключ-значение
 print("\nИтерация по парам:")
-for key, value in scores.items():  # type: (str, int)
-    print(f"  {key}: {value}")
+for key, value in scores.items():
+    key_str = key
+    value_int = value
+    print(f"  {key_str}: {value_int}")
 
 print()
 
