@@ -26,13 +26,13 @@ def select_variant():
     return user_select
 
 
-def compute_game_result(user_select: str, computer_select: str):
-    if user_select == computer_select:
+def compute_game_result(user_choice: str, computer_choice: str):
+    if user_choice == computer_choice:
         print("Ничья")
         return (0, 0)
-    elif (user_select == "камень" and computer_select == "ножницы") or \
-        (user_select == "ножницы" and computer_select == "бумага") or \
-            (user_select == "бумага" and computer_select == "камень"):
+    elif (user_choice == "камень" and computer_choice == "ножницы") or \
+        (user_choice == "ножницы" and computer_choice == "бумага") or \
+            (user_choice == "бумага" and computer_choice == "камень"):
         print("Ты победил")
         return (1, 0)
     else:
@@ -40,14 +40,14 @@ def compute_game_result(user_select: str, computer_select: str):
         return (0, 1)
 
 
-def print_result(user_score: int, computer_score: int):
+def print_result(user_res: int, computer_res: int):
     print("======= Итог Игры ========")
-    print(f"Твой счет: {user_score}")
-    print(f"Счет компьютера: {computer_score}")
+    print(f"Твой счет: {user_res}")
+    print(f"Счет компьютера: {computer_res}")
 
-    if user_score > computer_score:
+    if user_res > computer_res:
         print("Ты победил в игре")
-    elif user_score < computer_score:
+    elif user_res < computer_res:
         print("Компьютер победил в игре")
     else:
         print("Ничья")
