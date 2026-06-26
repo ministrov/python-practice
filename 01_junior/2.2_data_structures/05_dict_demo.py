@@ -143,8 +143,8 @@ for value in scores.values():
 # Итерация по парам ключ-значение
 print("\nИтерация по парам:")
 for key, value in scores.items():
-    key_str = key
-    value_int = value
+    key_str: str = key
+    value_int: int = value
     print(f"  {key_str}: {value_int}")
 
 print()
