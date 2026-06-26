@@ -170,7 +170,11 @@ When session work completes:
    - Any revised understanding
    - Next recommended topic
 
-2. **Recent commits** — Use clear commit messages:
+2. **README.md** — Update every 3 days (check `git log --oneline README.md` to see last update date).
+   README must reflect the current state: completed blocks, in-progress block, file structure.
+   Do this proactively — user should NOT need to ask for it.
+
+3. **Recent commits** — Use clear commit messages:
    ```
    feat: implement expense tracker with average calculation
    homework: complete <block>_<topic> exercises
