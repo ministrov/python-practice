@@ -178,7 +178,7 @@ lengths_text_str = [len(word) for word in splitted_text]
 print(lengths_text_str)
 
 trim_words = ["  hello  ", "  world  ", "  python  "]
-trimmed_words = [word.strip().lower() for word in splitted_text]
+trimmed_words = [word.strip().lower() for word in trim_words]
 print(trimmed_words)
 
 print("\n" + "=" * 60)
