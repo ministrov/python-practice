@@ -135,12 +135,13 @@ for key in scores:
 
 # Итерация по значениям
 print("\nИтерация по значениям:")
-for value in scores.values():
+for value: int in scores.values():
     print(f"  {value}")
 
 # Итерация по парам ключ-значение
 print("\nИтерация по парам:")
-for key, value in scores.items():
+for key: str in scores:
+    value: int = scores[key]
     print(f"  {key}: {value}")
 
 print()
@@ -157,8 +158,9 @@ company: dict[str, str | dict[str, dict[str, str | int]]] = {
 }
 
 print(f"Компания: {company['name']}")
-print(f"Должность Alice: {company['employees']['alice']['position']}")
-print(f"Зарплата Bob: {company['employees']['bob']['salary']}")
+employees: dict[str, dict[str, str | int]] = company["employees"]  # type: ignore
+print(f"Должность Alice: {employees['alice']['position']}")
+print(f"Зарплата Bob: {employees['bob']['salary']}")
 
 print()
 
