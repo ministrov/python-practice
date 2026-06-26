@@ -16,6 +16,16 @@
 
 import random
 
+
+def select_variant():
+    user_select = None
+    while user_select not in CHOISES:
+        user_select = input("Выбери (камень/ножницы/бумага): ")
+        if user_select not in CHOISES:
+            print("Некорректный выбор!!!")
+    return user_select
+
+
 CHOISES = ("камень", "ножницы", "бумага")
 round_count = int(input("Сколько раундов будем играть? "))
 user_score = 0
@@ -23,11 +33,7 @@ computer_score = 0
 
 for r in range(1, round_count + 1):
     print(f"\nРаунд {r}")
-    user_select = ""
-    while user_select not in CHOISES:
-        user_select = input("Выбери (камень/ножницы/бумага): ")
-        if user_select not in CHOISES:
-            print("Некорректный выбор!!!")
+    user_select = select_variant()
     computer_select = random.choice(CHOISES)
     print(f"Компьютер выбрал: {computer_select}")
 
