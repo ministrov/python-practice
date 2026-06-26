@@ -91,8 +91,8 @@ del colors["green"]
 print(f"После del colors['green']: {colors}")
 
 # pop() — удалить и вернуть значение
-value: str = colors.pop("red")
-print(f"pop('red') вернул: {value}, осталось: {colors}")
+popped_color: str = colors.pop("red")
+print(f"pop('red') вернул: {popped_color}, осталось: {colors}")
 
 # pop() с значением по умолчанию
 missing: str = colors.pop("yellow", "not found")
@@ -136,24 +136,17 @@ scores: dict[str, int] = {"Alice": 95, "Bob": 87, "Charlie": 92}
 # Итерация по ключам (по умолчанию)
 print("Итерация по ключам:")
 for key in scores:
-    key_str: str = key
-    print(f"  {key_str}")
+    print(f"  {key}")
 
 # Итерация по значениям
 print("\nИтерация по значениям:")
-value_int: int
 for value in scores.values():
-    value_int = value
-    print(f"  {value_int}")
+    print(f"  {value}")
 
 # Итерация по парам ключ-значение
 print("\nИтерация по парам:")
-key_str: str
-value_int: int
 for key, value in scores.items():
-    key_str = key
-    value_int = value
-    print(f"  {key_str}: {value_int}")
+    print(f"  {key}: {value}")
 
 print()
 
