@@ -23,12 +23,9 @@ print("""
 
 list_to_set = set([1, 2, 2, 3, 3, 3, 4])
 print(list_to_set)
-hello_set = set("hello")
-print(hello_set)
 
-for char in hello_set:
-    if char not in hello_set:
-        print(char)
+hello_set = set("hello")
+print(len(hello_set))
 
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 2: Добавление и удаление элементов")
@@ -71,12 +68,16 @@ print("""
 
 # ТВ ТВОЙ КОД ЗДЕСЬ:
 languages = {"Python", "JavaScript", "Go"}
-has_python_and_rust = "Python" and "Rust" in languages
-print(has_python_and_rust)
+has_python = "Python" in languages
+has_rust = "Rust" in languages
+print(has_python)
+print(has_rust)
 print(len(languages))
 
-# min_lang = min(len(languages["Python"]))
-# 3.3 Найди максимальный и минимальный элемент (в алфавитном порядке) Не понял что нужно? Как можно найти мин и мах у строки?
+max_lang = max(languages)
+min_lang = min(languages)
+
+print(max_lang, min_lang)
 
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 4: Операции с множествами (объединение, пересечение)")
@@ -132,7 +133,7 @@ print(sym_diff)
 result_is_subset = A_2.issubset(B_2)
 print(result_is_subset)
 
-is_disjoint = A.isdisjoint(B_2)
+is_disjoint = not A.isdisjoint(B_2)
 print(is_disjoint)
 
 print("\n" + "=" * 60)
@@ -184,6 +185,10 @@ print(evens)
 squares = {x**3 for x in range(1, 6)}
 print(squares)
 
+words = ["hello", "world", "python", "code"]
+lengths = {len(w) for w in words}
+print(lengths)
+
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 8: Практическое применение")
 print("=" * 60)
@@ -212,8 +217,12 @@ both_product = list_to_set_a.intersection(list_to_set_b)
 only_one_list = list_to_set_a.difference(list_to_set_b)
 unique_list = list_to_set_a.union(list_to_set_b)
 
+print(both_product)
+print(only_one_list)
+print(unique_list)
+
 text = "the quick brown fox jumps over the lazy dog"
-letters = set(text) - {""}
+letters = set(text) - {" "}
 print(len(letters))
 
 print("\n" + "=" * 60)
