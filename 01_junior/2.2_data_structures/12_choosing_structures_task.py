@@ -179,7 +179,7 @@ chat_history.append("Как дела?")
 chat_history.append("Привет!")  # повтор допустим
 print(chat_history)
 
-settings_2 = {
+settings_2: dict[str, str | int] = {
     "theme": "dark",
     "language": "ru",
     "font_size": 14,
