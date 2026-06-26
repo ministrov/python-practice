@@ -90,8 +90,9 @@
   - Файлы: `07_set_demo.py` ✅, `08_set_task.py` ✅ (8/8 заданий)
 - [x] List/Dict/Set comprehensions — углубленно ✅ (завершено 2026-06-26)
   - Файлы: `09_list_comprehensions_demo.py` ✅, `10_list_comprehensions_task.py` ✅ (8/8 заданий)
-- [x] Выбор структуры под задачу ✅ (материалы готовы 2026-06-26)
-  - Файлы: `11_choosing_structures_demo.py` ✅, `12_choosing_structures_task.py` ✅ (готово к решению)
+- [x] Выбор структуры под задачу ✅ (завершено 2026-06-26)
+  - Файлы: `11_choosing_structures_demo.py` ✅, `12_choosing_structures_task.py` ✅ (8/8 заданий)
+- [ ] **Финальная оценка блока 2.2** — запланирована на 2026-06-27
 - [ ] `collections`: `defaultdict`, `Counter`, `deque`, `OrderedDict` (дополнительно, если потребуется)
 - [ ] Генераторные выражения vs списки — память и ленивость (дополнительно, если потребуется)
 
