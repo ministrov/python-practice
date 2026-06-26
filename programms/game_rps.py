@@ -26,6 +26,33 @@ def select_variant():
     return user_select
 
 
+def compute_game_result(user_select: str, computer_select: str):
+    if user_select == computer_select:
+        print("Ничья")
+        return (0, 0)
+    elif (user_select == "камень" and computer_select == "ножницы") or \
+        (user_select == "ножницы" and computer_select == "бумага") or \
+            (user_select == "бумага" and computer_select == "камень"):
+        print("Ты победил")
+        return (1, 0)
+    else:
+        print("Ты проиграл")
+        return (0, 1)
+
+
+def print_result(user_score: int, computer_score: int):
+    print("======= Итог Игры ========")
+    print(f"Твой счет: {user_score}")
+    print(f"Счет компьютера: {computer_score}")
+
+    if user_score > computer_score:
+        print("Ты победил в игре")
+    elif user_score < computer_score:
+        print("Компьютер победил в игре")
+    else:
+        print("Ничья")
+
+
 CHOISES = ("камень", "ножницы", "бумага")
 round_count = int(input("Сколько раундов будем играть? "))
 user_score = 0
@@ -36,25 +63,8 @@ for r in range(1, round_count + 1):
     user_select = select_variant()
     computer_select = random.choice(CHOISES)
     print(f"Компьютер выбрал: {computer_select}")
+    [user_mode, comp_mode] = compute_game_result(user_select, computer_select)
+    user_score += user_mode
+    computer_score += comp_mode
 
-    if user_select == computer_select:
-        print("Ничья")
-    elif (user_select == "камень" and computer_select == "ножницы") or \
-        (user_select == "ножницы" and computer_select == "бумага") or \
-            (user_select == "бумага" and computer_select == "камень"):
-        print("Ты победил")
-        user_score += 1
-    else:
-        print("Ты проиграл")
-        computer_score += 1
-
-print("======= Итог Игры ========")
-print(f"Твой счет: {user_score}")
-print(f"Счет компьютера: {computer_score}")
-
-if user_score > computer_score:
-    print("Ты победил в игре")
-elif user_score < computer_score:
-    print("Компьютер победил в игре")
-else:
-    print("Ничья")
+print_result(user_score, computer_score)
