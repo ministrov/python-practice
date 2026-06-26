@@ -99,8 +99,8 @@ print("""
 
 # ТВ ТВОЙ КОД ЗДЕСЬ:
 fruits_tuple: tuple[str, str, str] = ("apple", "banana", "cherry")
-print("orange" in fruits_tuple)
-print("banana" in fruits_tuple)
+for query in ["orange", "banana"]:  # query выводится как str
+    print(query in fruits_tuple)  # False, затем True
 
 tuple1: tuple[int, int, int] = (1, 2, 3)
 tuple2: tuple[int, int] = (4, 5)
@@ -127,14 +127,10 @@ print("""
 
 # ТВ ТВОЙ КОД ЗДЕСЬ:
 values_tuple: tuple[int, int] = (100, 200)
-x: int
-y: int
 x, y = values_tuple
 print(f"unpacking values of {x}, {y} of the {values_tuple}")
 
 tuple3: tuple[int, int, int, int, int] = (1, 2, 3, 4, 5)
-first: int
-rest_values: list[int]
 first, *rest_values = tuple3
 print(first, *rest_values)
 

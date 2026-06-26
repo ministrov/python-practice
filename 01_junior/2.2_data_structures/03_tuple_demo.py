@@ -9,8 +9,7 @@
 """
 
 # ===== СОЗДАНИЕ КОРТЕЖЕЙ =====
-from collections import namedtuple
-from typing import Any
+from typing import Any, NamedTuple
 print("=== СОЗДАНИЕ КОРТЕЖЕЙ ===\n")
 
 # Пустой кортеж
@@ -39,7 +38,7 @@ implicit: tuple[int, int, int] = 1, 2, 3
 print(f"Кортеж без скобок: {implicit}")  # (1, 2, 3)
 
 # Кортеж из списка
-from_list: tuple[int, int, int] = tuple([10, 20, 30])
+from_list: tuple[int, ...] = tuple([10, 20, 30])
 print(f"Кортеж из списка: {from_list}")  # (10, 20, 30)
 
 print()
@@ -76,8 +75,8 @@ print(f"(1, 2, 2, 3, 2, 4).index(2) = {numbers_dup.index(2)}")  # 1
 
 # in — проверка принадлежности
 colors: tuple[str, str, str] = ("red", "green", "blue")
-print(f"'red' in {colors} = {'red' in colors}")  # True
-print(f"'yellow' in {colors} = {'yellow' in colors}")  # False
+for query in ["red", "yellow"]:  # query выводится как str
+    print(f"'{query}' in {colors} = {query in colors}")  # True, затем False
 
 print()
 
@@ -116,7 +115,7 @@ combined: tuple[int, int, int, int, int] = tuple1 + tuple2
 print(f"{tuple1} + {tuple2} = {combined}")  # (1, 2, 3, 4, 5)
 
 # Повторение
-repeated: tuple[int, int, int, int, int, int] = (1, 2) * 3
+repeated: tuple[int, ...] = (1, 2) * 3
 print(f"(1, 2) * 3 = {repeated}")  # (1, 2, 1, 2, 1, 2)
 
 print()
@@ -126,23 +125,16 @@ print("=== РАСПАКОВКА (UNPACKING) ===\n")
 
 # Распаковка кортежа в переменные
 coordinates: tuple[int, int] = (10, 20)
-x: int
-y: int
 x, y = coordinates
 print(f"Координаты: x={x}, y={y}")  # x=10, y=20
 
 # Распаковка с несколькими элементами
 data: tuple[int, int, int, int, int] = (1, 2, 3, 4, 5)
-first: int
-middle: list[int]
-last: int
 first, *middle, last = data
 print(f"Первый: {first}, середина: {middle}, последний: {last}")
 # Первый: 1, середина: [2, 3, 4], последний: 5
 
 # Обмен переменных через распаковку
-a: int
-b: int
 a, b = 5, 10
 a, b = b, a
 print(f"После обмена: a={a}, b={b}")  # a=10, b=5
@@ -201,12 +193,17 @@ print("=== NAMED TUPLES (ИМЕНОВАННЫЕ КОРТЕЖИ) ===\n")
 
 
 # Создаем именованный кортеж
-Point: type[Any] = namedtuple('Point', ['x', 'y'])
-p: Any = Point(3, 4)
+class Point(NamedTuple):
+    x: int
+    y: int
+
+
+p = Point(3, 4)
 
 print(f"Point: {p}")
 print(f"x={p.x}, y={p.y}")  # Доступ по имени вместо индекса
 
-# Это все еще кортеж
-print(f"Это кортеж: {isinstance(p, tuple)}")  # True
+# Это все еще кортеж: работает индексация, сравнение и len()
+print(f"p[0]={p[0]}, p[1]={p[1]}")  # доступ по индексу как у обычного кортежа
+print(f"p == (3, 4): {p == (3, 4)}")  # True — равен обычному кортежу
 print(f"Длина: {len(p)}")  # 2
