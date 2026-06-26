@@ -198,7 +198,15 @@ print("""
 """)
 
 # ТВОЙ КОД ЗДЕСЬ:
+pairs = [(x, y) for x in [1, 2, 3] for y in [10, 20]]
+print(pairs)
 
+flat = [item for sublist in [[1, 2], [3, 4], [5, 6]] for item in sublist]
+print(flat)
+
+matrix = [[-1, 2, -3], [4, -5, 6], [-7, 8, 9]]
+positives = [num for row in matrix for num in row if num > 0]
+print(positives)
 
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 8: Практическое применение")
@@ -222,7 +230,17 @@ print("""
 """)
 
 # ТВОЙ КОД ЗДЕСЬ:
+celsius = [0, 20, 37, 100, -10, 15]
+fahrenheit = [round(c * 9/5 + 32, 1) for c in celsius]
+print(fahrenheit)
 
+words = ["banana", "apple", "cherry", "date", "elderberry"]
+result = {w: sum(1 for ch in w if ch in "aeiou") for w in words if len(w) > 4}
+print(result)
+
+text = "the quick brown fox"
+repeated = {ch for ch in text if ch != " " and text.count(ch) > 1}
+print(repeated)
 
 print("\n" + "=" * 60)
 print("КОНЕЦ ЗАДАНИЙ, ПРОВЕРЬ ЧТО ВСЕ ЗАДАНИЯ РАБОТАЮТ!")
