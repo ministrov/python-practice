@@ -19,7 +19,12 @@ print("""
 """)
 
 # ТВОЙ КОД ЗДЕСЬ:
-
+unique_emails = set(
+    ["a@mail.ru", "b@mail.ru", "a@mail.ru", "c@mail.ru", "b@mail.ru"])
+for address in unique_emails:
+    print(address)
+print(len(unique_emails))
+print("d@mail.ru" in unique_emails)
 
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 2: Подсчёт частоты")
