@@ -22,7 +22,8 @@ print(f"Словарь: {person}")
 # {'name': 'Alice', 'age': 30, 'city': 'London'}
 
 # Словарь с разными типами значений
-mixed: dict[str, str | int | float | list[int]] = {"string": "hello", "number": 42, "float": 3.14, "list": [1, 2, 3]}
+mixed: dict[str, str | int | float | list[int]] = {
+    "string": "hello", "number": 42, "float": 3.14, "list": [1, 2, 3]}
 print(f"Смешанные значения: {mixed}")
 
 # Создание словаря через dict()
@@ -47,7 +48,8 @@ print(f"student['age'] = {student['age']}")  # 25
 # get() — безопасный доступ (не вызывает ошибку если ключа нет)
 print(f"student.get('name') = {student.get('name')}")  # Bob
 print(f"student.get('email') = {student.get('email')}")  # None
-print(f"student.get('email', 'no email') = {student.get('email', 'no email')}")  # no email
+# no email
+print(f"student.get('email', 'no email') = {student.get('email', 'no email')}")
 
 # KeyError при обращении к несуществующему ключу
 try:
@@ -80,7 +82,8 @@ print()
 # ===== УДАЛЕНИЕ ЭЛЕМЕНТОВ =====
 print("=== УДАЛЕНИЕ ЭЛЕМЕНТОВ ===\n")
 
-colors: dict[str, str] = {"red": "#FF0000", "green": "#00FF00", "blue": "#0000FF"}
+colors: dict[str, str] = {"red": "#FF0000",
+                          "green": "#00FF00", "blue": "#0000FF"}
 print(f"Исходный: {colors}")
 
 # del — удалить по ключу
@@ -105,11 +108,13 @@ print()
 # ===== ПРОВЕРКА КЛЮЧЕЙ =====
 print("=== ПРОВЕРКА КЛЮЧЕЙ ===\n")
 
-country: dict[str, str | int] = {"name": "France", "capital": "Paris", "population": 67000000}
+country: dict[str, str | int] = {
+    "name": "France", "capital": "Paris", "population": 67000000}
 
 # in — проверить наличие ключа
 print(f"'name' in {country} = {'name' in country}")  # True
-print(f"'Paris' in {country} = {'Paris' in country}")  # False (проверяет ключи, не значения)
+# False (проверяет ключи, не значения)
+print(f"'Paris' in {country} = {'Paris' in country}")
 
 # keys(), values(), items()
 print(f"\nКлючи: {country.keys()}")
@@ -136,15 +141,18 @@ for key in scores:
 
 # Итерация по значениям
 print("\nИтерация по значениям:")
+value_int: int
 for value in scores.values():
-    value_int: int = value
+    value_int = value
     print(f"  {value_int}")
 
 # Итерация по парам ключ-значение
 print("\nИтерация по парам:")
+key_str: str
+value_int = 0
 for key, value in scores.items():
-    key_str: str = key
-    value_int: int = value
+    key_str = key
+    value_int = value
     print(f"  {key_str}: {value_int}")
 
 print()
@@ -196,9 +204,11 @@ print()
 # ===== СЛОВАРИ КАК ПАРАМЕТРЫ =====
 print("=== СЛОВАРИ КАК ПАРАМЕТРЫ ===\n")
 
+
 def print_person(person_dict: dict[str, str | int]) -> None:
     for key, value in person_dict.items():
         print(f"  {key}: {value}")
+
 
 info: dict[str, str | int] = {"name": "David", "age": 28, "job": "Engineer"}
 print("Информация о человеке:")
