@@ -7,6 +7,7 @@
 
 Совет: Если застрял — посмотри 05_dict_demo.py, но старайся решить сам.
 """
+from collections.abc import ValuesView
 
 print("=" * 60)
 print("ЗАДАНИЕ 1: Создание словарей и доступ к элементам")
@@ -23,7 +24,7 @@ print("""
 """)
 
 # ТВ ТВОЙ КОД ЗДЕСЬ:
-film_info = {
+film_info: dict[str, str | int | float] = {
     "name": "Agent 007",
     "year": 1967,
     "rating": 4.7
@@ -51,7 +52,7 @@ print("""
 """)
 
 # ТВ ТВОЙ КОД ЗДЕСЬ:
-car_info = {"brand": "Toyota", "model": "Camry", "year": 2020}
+car_info: dict[str, str | int] = {"brand": "Toyota", "model": "Camry", "year": 2020}
 car_info["year"] = 2023
 car_info["color"] = "blue"
 print(car_info)
@@ -75,7 +76,7 @@ print("""
 """)
 
 # ТВ ТВОЙ КОД ЗДЕСЬ:
-letter_dict = {"a": 1, "b": 2, "c": 3, "d": 4}
+letter_dict: dict[str, int] = {"a": 1, "b": 2, "c": 3, "d": 4}
 del letter_dict["b"]
 print(letter_dict)
 deleted_c_value = letter_dict.pop("c")
@@ -101,7 +102,7 @@ print("""
 """)
 
 # ТВ ТВОЙ КОД ЗДЕСЬ:
-coordinate = {"x": 10, "y": 20, "z": 30}
+coordinate: dict[str, int] = {"x": 10, "y": 20, "z": 30}
 print("x" in coordinate)
 print("w" in coordinate)
 for key in coordinate:
@@ -135,8 +136,8 @@ for key in grades:
     grades[key] *= 1.1
     print(grades[key])
 
-grades_values = grades.values()
-sum_grades = 0
+grades_values: ValuesView[float] = grades.values()
+sum_grades: float = 0
 for i in grades_values:
     sum_grades += i
 
@@ -164,7 +165,7 @@ print("""
 """)
 
 # ТВ ТВОЙ КОД ЗДЕСЬ:
-students_info = {
+students_info: dict[str, dict[str, int | str]] = {
     "alice": {"age": 20, "grade": "A"},
     "bob": {"age": 21, "grade": "B"}
 }
@@ -195,7 +196,7 @@ print("""
 """)
 
 # ТВ ТВОЙ КОД ЗДЕСЬ:
-some_dict = {"a": 1, "b": 2}
+some_dict: dict[str, int] = {"a": 1, "b": 2}
 new_some_dict = some_dict.copy()
 print(some_dict)
 print(new_some_dict)
@@ -223,11 +224,11 @@ print("""
 """)
 
 # ТВ ТВОЙ КОД ЗДЕСЬ:
-some_squares = {x: x**2 for x in range(1, 6)}
+some_squares: dict[int, int] = {x: x**2 for x in range(1, 6)}
 print(some_squares)
-even_squares = {x: x**2 for x in range(1, 5) if x % 2 == 0}
+even_squares: dict[int, int] = {x: x**2 for x in range(1, 5) if x % 2 == 0}
 print(even_squares)
-main_squares = {"a": 1, "b": 2, "c": 3}
+main_squares: dict[str, int] = {"a": 1, "b": 2, "c": 3}
 result_squares = {v: k for k, v in main_squares.items()}
 print(result_squares)
 
