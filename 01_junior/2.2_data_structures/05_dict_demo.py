@@ -130,18 +130,17 @@ scores: dict[str, int] = {"Alice": 95, "Bob": 87, "Charlie": 92}
 
 # Итерация по ключам (по умолчанию)
 print("Итерация по ключам:")
-for key in scores:
+for key in scores:  # type: str
     print(f"  {key}")
 
 # Итерация по значениям
 print("\nИтерация по значениям:")
-for value: int in scores.values():
+for value in scores.values():  # type: int
     print(f"  {value}")
 
 # Итерация по парам ключ-значение
 print("\nИтерация по парам:")
-for key: str in scores:
-    value: int = scores[key]
+for key, value in scores.items():  # type: (str, int)
     print(f"  {key}: {value}")
 
 print()
@@ -149,18 +148,20 @@ print()
 # ===== ВЛОЖЕННЫЕ СЛОВАРИ =====
 print("=== ВЛОЖЕННЫЕ СЛОВАРИ ===\n")
 
+employees_dict: dict[str, dict[str, str | int]] = {
+    "alice": {"position": "Manager", "salary": 50000},
+    "bob": {"position": "Developer", "salary": 40000}
+}
 company: dict[str, str | dict[str, dict[str, str | int]]] = {
     "name": "TechCorp",
-    "employees": {
-        "alice": {"position": "Manager", "salary": 50000},
-        "bob": {"position": "Developer", "salary": 40000}
-    }
+    "employees": employees_dict
 }
 
 print(f"Компания: {company['name']}")
-employees: dict[str, dict[str, str | int]] = company["employees"]  # type: ignore
-print(f"Должность Alice: {employees['alice']['position']}")
-print(f"Зарплата Bob: {employees['bob']['salary']}")
+alice_info: dict[str, str | int] = employees_dict["alice"]
+bob_info: dict[str, str | int] = employees_dict["bob"]
+print(f"Должность Alice: {alice_info['position']}")
+print(f"Зарплата Bob: {bob_info['salary']}")
 
 print()
 
