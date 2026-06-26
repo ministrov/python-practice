@@ -22,11 +22,11 @@ print("""
 
 # ТВ ТВОЙ КОД ЗДЕСЬ:
 
-fruits = ["apple", "banana", "cherry", "pomegranate", "orange"]
+fruits: list[str] = ["apple", "banana", "cherry", "pomegranate", "orange"]
 print(fruits[0])
 print(fruits[-1])
 
-numbers = [10, 20, 30, 40, 50]
+numbers: list[int] = [10, 20, 30, 40, 50]
 print(numbers[1])
 
 
@@ -45,11 +45,11 @@ print("""
 """)
 
 # ТВ ТВОЙ КОД ЗДЕСЬ:
-integers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-sliced_int = integers[2:5]
-first_three_elements = integers[:3]
-last_two_elements = integers[2:]
-reversed_int = integers[::-1]
+integers: list[int] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+sliced_int: list[int] = integers[2:5]
+first_three_elements: list[int] = integers[:3]
+last_two_elements: list[int] = integers[2:]
+reversed_int: list[int] = integers[::-1]
 
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 3: Методы append(), insert(), remove()")
@@ -67,7 +67,7 @@ print("""
 
 # ТВ ТВОЙ КОД ЗДЕСЬ:
 
-colors = ["red", "green"]
+colors: list[str] = ["red", "green"]
 colors.append("blue")
 colors.insert(1, "yellow")
 colors.remove("green")
@@ -93,17 +93,17 @@ print("""
 """)
 
 # ТВ ТВОЙ КОД ЗДЕСЬ:
-letters = ["A", "B", "C", "D"]
-last_element = letters.pop()
+letters: list[str] = ["A", "B", "C", "D"]
+last_element: str = letters.pop()
 print(last_element)
 print(letters)
 
-list1 = [1, 2, 3]
-list2 = [4, 5, 6]
+list1: list[int] = [1, 2, 3]
+list2: list[int] = [4, 5, 6]
 list1.extend(list2)
 print(list1)
 
-list_example = [3, 4, 5, 6, 7]
+list_example: list[int] = [3, 4, 5, 6, 7]
 list_example.clear()
 
 print(list_example)
@@ -123,10 +123,10 @@ print("""
 
 # ТВ ТВОЙ КОД ЗДЕСЬ:
 
-list_of_numbers = [10, 20, 30, 40]
+list_of_numbers: list[int] = [10, 20, 30, 40]
 print(len(list_of_numbers))
-list_of_numbers_2 = [1, 2, 2, 3, 2, 4, 2]
-count_two = list_of_numbers_2.count(2)
+list_of_numbers_2: list[int] = [1, 2, 2, 3, 2, 4, 2]
+count_two: int = list_of_numbers_2.count(2)
 print(count_two)
 print(list_of_numbers_2.index(2))
 
@@ -147,12 +147,12 @@ print("""
 """)
 
 # ТВ ТВОЙ КОД ЗДЕСЬ:
-int_numbers = [5, 2, 9, 1, 7]
-sorted_list = int_numbers.sort()
+int_numbers: list[int] = [5, 2, 9, 1, 7]
+sorted_list: None = int_numbers.sort()
 print(sorted_list)
-reversed_list = int_numbers.sort(reverse=True)
+reversed_list: None = int_numbers.sort(reverse=True)
 print(reversed_int)
-new_int_nubers = sorted(int_numbers)
+new_int_nubers: list[int] = sorted(int_numbers)
 print(new_int_nubers)
 
 print("\n" + "=" * 60)
@@ -167,10 +167,10 @@ print("""
 """)
 
 # ТВ ТВОЙ КОД ЗДЕСЬ:
-names = ["Alice", "Bob", "Charlie"]
-has_alice = "Alice" in names
+names: list[str] = ["Alice", "Bob", "Charlie"]
+has_alice: bool = "Alice" in names
 print(has_alice)
-has_dima = "Dima" in names
+has_dima: bool = "Dima" in names
 print(has_dima)
 
 print("\n" + "=" * 60)
@@ -199,22 +199,22 @@ print("""
 """)
 
 # ТВ ТВОЙ КОД ЗДЕСЬ:
-one_two_three_list = [1, 2, 3]
+one_two_three_list: list[int] = [1, 2, 3]
 for i in one_two_three_list:
     print(f"Elements: {i}")
 
 for inx, j in enumerate(one_two_three_list):
     print(f"Index: {inx} of Element {j}")
 
-list_a = [1, 2, 3]
-list_b = list_a
+list_a: list[int] = [1, 2, 3]
+list_b: list[int] = list_a
 print(list_a == list_b)
 print(list_a is list_b)
 list_a.append(4)
 print(list_a)
 print(list_b)
 
-copy_of_list_a = list(list_a)
+copy_of_list_a: list[int] = list(list_a)
 copy_of_list_a.append(6)
 print(copy_of_list_a)
 
