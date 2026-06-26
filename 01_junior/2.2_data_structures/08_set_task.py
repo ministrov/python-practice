@@ -133,7 +133,7 @@ print(sym_diff)
 result_is_subset = A_2.issubset(B_2)
 print(result_is_subset)
 
-is_disjoint = not A.isdisjoint(B_2)
+is_disjoint = {1, 2}.isdisjoint({3, 4})
 print(is_disjoint)
 
 print("\n" + "=" * 60)
