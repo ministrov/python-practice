@@ -40,7 +40,14 @@ print("""
 """)
 
 # ТВОЙ КОД ЗДЕСЬ:
+grades = [5, 3, 4, 5, 3, 5, 4, 2, 3, 5]
+counts = {}
+for grade in grades:  # type: ignore
+    counts[grade] = counts.get(grade, 0) + 1  # type: ignore
+print(counts)  # type: ignore
 
+most_common = max(counts, key=counts.get)  # type: ignore
+print(most_common)  # type: ignore
 
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 3: Фиксированная запись")
@@ -55,7 +62,19 @@ print("""
 """)
 
 # ТВОЙ КОД ЗДЕСЬ:
+server = ("localhost", 8080, "http")
+host, port, protocol = server
+print(host)
+print(port)
 
+servers = [
+    ("localhost", 8080, "http"),
+    ("example.com", 443, "https"),
+    ("10.0.0.1", 22, "ssh"),
+]
+
+for host, port, protocol in servers:
+    print(port)
 
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 4: Пересечение множеств")
@@ -71,7 +90,17 @@ print("""
 """)
 
 # ТВОЙ КОД ЗДЕСЬ:
+class_a = {"Alice", "Bob", "Charlie", "Diana"}
+class_b = {"Bob", "Eve", "Charlie", "Frank"}
 
+both = class_a & class_b
+print(both)
+
+only_a = class_a - class_b
+print(only_a)
+
+everyone = class_a | class_b
+print(everyone)
 
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 5: Словарь как база данных")
@@ -87,7 +116,17 @@ print("""
 """)
 
 # ТВОЙ КОД ЗДЕСЬ:
+products = {"яблоко": 50, "банан": 30, "апельсин": 80}
+print(products)
 
+expensive = {name: price for name, price in products.items() if price > 40}
+# {"яблоко": 50, "апельсин": 80}
+print(expensive)
+
+products["груша"] = 60
+print(products)
+# {"яблоко": 50, "банан": 30, "апельсин": 80, "груша": 60}
+print(products)
 
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 6: Список для упорядоченных данных")
@@ -104,7 +143,18 @@ print("""
 """)
 
 # ТВОЙ КОД ЗДЕСЬ:
+tasks = ["купить хлеб", "помыть посуду",
+         "написать код", "позвонить маме", "сделать зарядку"]
+tasks.append("прочитать книгу")
+print(tasks[0])   # первая — купить хлеб
+print(tasks[-1])  # последняя — прочитать книгу
 
+sorted_tasks = sorted(tasks)
+print(sorted_tasks)
+print(tasks)  # остался в исходном порядке
+
+long_tasks = [t for t in tasks if len(t) > 5]
+print(long_tasks)
 
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 7: Правильный выбор структуры")
@@ -123,7 +173,21 @@ print("""
 """)
 
 # ТВОЙ КОД ЗДЕСЬ:
+chat_history: list[str] = []
+chat_history.append("Привет!")
+chat_history.append("Как дела?")
+chat_history.append("Привет!")  # повтор допустим
+print(chat_history)
 
+settings_2 = {
+    "theme": "dark",
+    "language": "ru",
+    "font_size": 14,
+}
+print(settings_2)
+
+blocked = {"bob", "eve", "mallory"}
+print("alice" in blocked)  # False
 
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 8: Комплексная задача")
@@ -141,7 +205,22 @@ print("""
 """)
 
 # ТВОЙ КОД ЗДЕСЬ:
+shopping = ["молоко", "хлеб", "молоко",
+            "яйца", "хлеб", "масло", "яйца", "яйца"]
 
+counts: dict[str, int] = {}
+for item in shopping:
+    counts[item] = counts.get(item, 0) + 1
+# {"молоко": 2, "хлеб": 2, "яйца": 3, "масло": 1}
+print(counts)
+
+more_than_one = {item: n for item, n in counts.items() if n > 1}
+# {"молоко": 2, "хлеб": 2, "яйца": 3}
+print(more_than_one)
+
+unique_sorted = sorted(set(shopping))
+# ["масло", "молоко", "хлеб", "яйца"]
+print(unique_sorted)
 
 print("\n" + "=" * 60)
 print("КОНЕЦ ЗАДАНИЙ, ПРОВЕРЬ ЧТО ВСЕ ЗАДАНИЯ РАБОТАЮТ!")
