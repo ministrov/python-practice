@@ -24,7 +24,16 @@ print("""
 """)
 
 # ТВОЙ КОД ЗДЕСЬ:
+cubed = [x ** 3 for x in range(1, 6)]
+print(cubed)
 
+words = ["python", "java", "go", "rust"]
+upper_case_words = [word.upper() for word in words]
+
+print(upper_case_words)
+
+lengths = [len(word) for word in words]
+print(lengths)
 
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 2: Comprehension с фильтрацией (if)")
@@ -44,7 +53,17 @@ print("""
 """)
 
 # ТВОЙ КОД ЗДЕСЬ:
+numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+odds = [num for num in numbers if num % 2 == 1]
+print(odds)
 
+animals = ["cat", "dog", "elephant", "ox", "bear"]
+words_more_than_three = [word for word in animals if len(word) > 3]
+print(words_more_than_three)
+
+numbers_2 = [-5, -3, 0, 2, -1, 8, 4]
+negative_numbers = [num for num in numbers_2 if num < 0]
+print(negative_numbers)
 
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 3: Выражение + условие")
@@ -64,7 +83,16 @@ print("""
 """)
 
 # ТВОЙ КОД ЗДЕСЬ:
+squares = [x ** 2 for x in range(1, 11) if x % 2 == 0]
+print(squares)
 
+words = ["hello", "world", "hi", "python", "ok"]
+upper_words = [word.upper() for word in words if len(word) > 3]
+print(upper_words)
+
+numbers_3 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+evens_and_odds = [num * 2 if num % 2 == 0 else num * 3 for num in numbers_3]
+print(evens_and_odds)
 
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 4: Dict comprehension")
@@ -82,7 +110,18 @@ print("""
 """)
 
 # ТВОЙ КОД ЗДЕСЬ:
+dict_squares = {x: x ** 2 for x in range(1, 6)}
+print(dict_squares)
 
+some_dict: dict[str, int] = {"Alice": 55,
+                             "Bob": 80, "Charlie": 45, "Diana": 90}
+new_dict: dict[str, int] = {name: score for name,
+                            score in some_dict.items() if score >= 60}
+print(new_dict)
+
+any_words = ["cat", "dog", "python"]
+new_words = {w: len(w) for w in any_words}
+print(new_words)
 
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 5: Set comprehension")
@@ -101,7 +140,16 @@ print("""
 """)
 
 # ТВОЙ КОД ЗДЕСЬ:
+set_of_squares = {x ** 2 for x in range(1, 6)}
+print(set_of_squares)
 
+any_words_2 = ["Hello", "WORLD", "Python", "hello", "world"]
+new_any_words = {word.lower() for word in any_words_2}
+print(new_any_words)
+
+numbers_4 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+set_of_numbers_4 = {num % 3 for num in numbers_4}
+print(set_of_numbers_4)
 
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 6: Работа со строками")
@@ -121,7 +169,17 @@ print("""
 """)
 
 # ТВОЙ КОД ЗДЕСЬ:
+text_str = "Hello World Python"
+splitted_text = text_str.split()
+new_words_2 = [word.lower() for word in splitted_text]
+print(new_words_2)
 
+lengths_text_str = [len(word) for word in splitted_text]
+print(lengths_text_str)
+
+trim_words = ["  hello  ", "  world  ", "  python  "]
+trimmed_words = [word.strip().lower() for word in splitted_text]
+print(trimmed_words)
 
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 7: Вложенный comprehension")
