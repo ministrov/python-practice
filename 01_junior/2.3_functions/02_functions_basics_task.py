@@ -24,6 +24,30 @@ print("""
 # ТВОЙ КОД ЗДЕСЬ:
 
 
+def square(n: int) -> int:
+    return n ** 2
+
+
+print(square(4))
+print(square(7))
+print(square(10))
+
+
+def is_even(n: int) -> bool:
+    return n % 2 == 0
+
+
+print(is_even(4))
+print(is_even(7))
+
+
+def greet(name: str) -> None:
+    print(f"Hello, {name}!")
+
+
+print(greet("Anton"))
+
+
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 2: Позиционные и именованные аргументы")
 print("=" * 60)
@@ -39,6 +63,22 @@ print("""
 """)
 
 # ТВОЙ КОД ЗДЕСЬ:
+
+
+def make_email(username: str, domain: str) -> str:
+    return f"{username}@{domain}"
+
+
+print(make_email("alice", "gmail.com"))
+print(make_email(domain="yandex.ru", username="bob"))
+
+
+def rectangle_area(width: int, height: int) -> int:
+    return width * height
+
+
+print(rectangle_area(12, 34))
+print(rectangle_area(width=23, height=23))
 
 
 print("\n" + "=" * 60)
@@ -58,6 +98,22 @@ print("""
 # ТВОЙ КОД ЗДЕСЬ:
 
 
+def repeat(text: str, times: int = 3) -> str:
+    return " ".join([text] * times)
+
+
+print(repeat("dfdf"))
+print(repeat("mey", 4))
+
+
+def introduce(name: str, role: str = "студент", lang: str = "Python") -> str:
+    return f"Я {name}, {role}, изучаю {lang}"
+
+
+print(introduce("Anton", "Professor", "Go"))
+print(introduce("Gilbert"))
+print(introduce(name="Dave", role="Student", lang="JavaScript"))
+
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 4: Ловушка mutable default")
 print("=" * 60)
@@ -74,6 +130,17 @@ print("""
 
 # ТВОЙ КОД ЗДЕСЬ:
 
+
+def append_to(item: int, target: list[int] | None = None) -> list[int]:
+    if target is None:
+        target = []
+    target.append(item)
+    return target
+
+
+print(append_to(1))
+print(append_to(2))
+print(append_to(3, [10, 30]))
 
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 5: Возврат нескольких значений")
@@ -92,6 +159,19 @@ print("""
 # ТВОЙ КОД ЗДЕСЬ:
 
 
+def stats(numbers: list[int]) -> tuple[int, int, float]:
+    average: float = round(sum(numbers) / len(numbers), 2)
+    return (min(numbers), max(numbers), average)
+
+
+print(stats([1, 2, 3, 4, 5]))
+print(stats([10, 20, 30]))
+
+result = stats([1, 2, 3, 5])
+min_value, max_value, average_value = result
+
+print(min_value, max_value, average_value)
+
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 6: Ранний return (guard clause)")
 print("=" * 60)
@@ -109,6 +189,27 @@ print("""
 """)
 
 # ТВОЙ КОД ЗДЕСЬ:
+
+
+def safe_divide(a: int, b: int) -> float | None:
+    if b == 0:
+        print("Ошибка: деление на ноль")
+        return None
+    return a / b
+
+
+print(safe_divide(10, 2))
+print(safe_divide(5, 0))
+
+
+def get_first(items: list[int]) -> int | None:
+    if not items:
+        return None
+    return items[0]
+
+
+print(get_first([21, 3, 45]))
+print(get_first([]))
 
 
 print("\n" + "=" * 60)
@@ -131,6 +232,28 @@ print("""
 
 # ТВОЙ КОД ЗДЕСЬ:
 
+
+def celsius_to_fahrenheit(c: float) -> float:
+    """Функция переводит Цельсий → Фаренгейт"""
+
+    return c * 9/5 + 32
+
+
+print(celsius_to_fahrenheit(0))
+print(celsius_to_fahrenheit(100))
+
+
+def count_vowels(text: str) -> int:
+    count = 0
+    vowels = ("a", "e", "i", "o", "u")
+    for char in text:
+        if char.lower() in vowels:
+            count += 1
+    return count
+
+
+print(count_vowels("Hello"))
+print(count_vowels("Python"))
 
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 8: Комплексное задание")
@@ -157,6 +280,19 @@ print("""
 
 # ТВОЙ КОД ЗДЕСЬ:
 
+
+def summarize_grades(grades: dict[str, int], passing: int = 60) -> dict[str, int | float | str]:
+    return {
+        "total": len(grades),
+        "passed": len([value for value in grades.values() if value >= passing]),
+        "failed": len([value for value in grades.values() if value < passing]),
+        "average": round(sum(grades.values()) / len(grades), 1),
+        "best": max(grades, key=lambda name: grades[name])
+    }
+
+
+print(summarize_grades({"Alice": 85, "Bob": 42,
+      "Charlie": 91, "Diana": 67, "Eve": 55}))
 
 print("\n" + "=" * 60)
 print("КОНЕЦ ЗАДАНИЙ, ПРОВЕРЬ ЧТО ВСЕ ЗАДАНИЯ РАБОТАЮТ!")
