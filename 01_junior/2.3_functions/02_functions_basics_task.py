@@ -131,6 +131,17 @@ print("""
 # ТВОЙ КОД ЗДЕСЬ:
 
 
+def append_to(item: int, target: list[int] | None = None) -> list[int]:
+    if target is None:
+        target = []
+    target.append(item)
+    return target
+
+
+print(append_to(1))
+print(append_to(2))
+print(append_to(3, [10, 30]))
+
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 5: Возврат нескольких значений")
 print("=" * 60)
