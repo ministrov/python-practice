@@ -98,6 +98,22 @@ print("""
 # ТВОЙ КОД ЗДЕСЬ:
 
 
+def repeat(text: str, times: int = 3) -> str:
+    return " ".join([text] * times)
+
+
+print(repeat("dfdf"))
+print(repeat("mey", 4))
+
+
+def introduce(name: str, role: str = "студент", lang: str = "Python") -> str:
+    return f"Я {name}, {role}, изучаю {lang}"
+
+
+print(introduce("Anton", "Professor", "Go"))
+print(introduce("Gilbert"))
+print(introduce(name="Dave", role="Student", lang="JavaScript"))
+
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 4: Ловушка mutable default")
 print("=" * 60)
