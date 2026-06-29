@@ -24,6 +24,30 @@ print("""
 # ТВОЙ КОД ЗДЕСЬ:
 
 
+def square(n: int) -> int:
+    return n ** 2
+
+
+print(square(4))
+print(square(7))
+print(square(10))
+
+
+def is_even(n: int) -> bool:
+    return n % 2 == 0
+
+
+print(is_even(4))
+print(is_even(7))
+
+
+def greet(name: str) -> None:
+    print(f"Hello, {name}!")
+
+
+print(greet("Anton"))
+
+
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 2: Позиционные и именованные аргументы")
 print("=" * 60)
