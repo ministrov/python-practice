@@ -281,6 +281,19 @@ print("""
 # ТВОЙ КОД ЗДЕСЬ:
 
 
+def summarize_grades(grades: dict[str, int], passing: int = 60) -> dict[str, int | float | str]:
+    return {
+        "total": len(grades),
+        "passed": len([value for value in grades.values() if value >= passing]),
+        "failed": len([value for value in grades.values() if value < passing]),
+        "average": round(sum(grades.values()) / len(grades), 1),
+        "best": max(grades, key=lambda name: grades[name])
+    }
+
+
+print(summarize_grades({"Alice": 85, "Bob": 42,
+      "Charlie": 91, "Diana": 67, "Eve": 55}))
+
 print("\n" + "=" * 60)
 print("КОНЕЦ ЗАДАНИЙ, ПРОВЕРЬ ЧТО ВСЕ ЗАДАНИЯ РАБОТАЮТ!")
 print("=" * 60)
