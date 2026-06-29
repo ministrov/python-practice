@@ -191,6 +191,27 @@ print("""
 # ТВОЙ КОД ЗДЕСЬ:
 
 
+def safe_divide(a: int, b: int) -> float | None:
+    if b == 0:
+        print("Ошибка: деление на ноль")
+        return None
+    return a / b
+
+
+print(safe_divide(10, 2))
+print(safe_divide(5, 0))
+
+
+def get_first(items: list[int]) -> int | None:
+    if len(items) == 0:
+        return None
+    return items[0]
+
+
+print(get_first([21, 3, 45]))
+print(get_first([]))
+
+
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 7: Аннотации типов и docstring")
 print("=" * 60)
