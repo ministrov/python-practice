@@ -159,6 +159,19 @@ print("""
 # ТВОЙ КОД ЗДЕСЬ:
 
 
+def stats(numbers: list[int]) -> tuple[int, int, float]:
+    average: float = round(sum(numbers) / len(numbers), 2)
+    return (min(numbers), max(numbers), average)
+
+
+print(stats([1, 2, 3, 4, 5]))
+print(stats([10, 20, 30]))
+
+result = stats([1, 2, 3, 5])
+min_value, max_value, average_value = result
+
+print(min_value, max_value, average_value)
+
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 6: Ранний return (guard clause)")
 print("=" * 60)
