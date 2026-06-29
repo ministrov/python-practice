@@ -65,6 +65,22 @@ print("""
 # ТВОЙ КОД ЗДЕСЬ:
 
 
+def make_email(username: str, domain: str) -> str:
+    return f"{username}@{domain}"
+
+
+print(make_email("alice", "gmail.com"))
+print(make_email(domain="yandex.ru", username="bob"))
+
+
+def rectangle_area(width: int, height: int) -> int:
+    return width * height
+
+
+print(rectangle_area(12, 34))
+print(rectangle_area(width=23, height=23))
+
+
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 3: Значения по умолчанию")
 print("=" * 60)
