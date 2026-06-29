@@ -203,7 +203,7 @@ print(safe_divide(5, 0))
 
 
 def get_first(items: list[int]) -> int | None:
-    if len(items) == 0:
+    if not items:
         return None
     return items[0]
 
@@ -232,6 +232,28 @@ print("""
 
 # ТВОЙ КОД ЗДЕСЬ:
 
+
+def celsius_to_fahrenheit(c: float) -> float:
+    """Функция переводит Цельсий → Фаренгейт"""
+
+    return c * 9/5 + 32
+
+
+print(celsius_to_fahrenheit(0))
+print(celsius_to_fahrenheit(100))
+
+
+def count_vowels(text: str) -> int:
+    count = 0
+    vowels = ("a", "e", "i", "o", "u")
+    for char in text:
+        if char.lower() in vowels:
+            count += 1
+    return count
+
+
+print(count_vowels("Hello"))
+print(count_vowels("Python"))
 
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 8: Комплексное задание")
