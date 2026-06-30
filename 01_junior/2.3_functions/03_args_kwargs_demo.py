@@ -9,6 +9,7 @@
   4. Распаковка при вызове: f(*list), f(**dict)
   5. Практические паттерны
 """
+from typing import Callable
 
 # ════════════════════════════════════════════════════════════════════════
 # 1. *args — переменное число позиционных аргументов
@@ -116,10 +117,10 @@ print(add(**params))   # распаковываем словарь → add(a=10,
 # *args/**kwargs позволяют «пробросить» аргументы в другую функцию,
 # не зная заранее их состав. Это основа декораторов (изучим в теме 5).
 
-def debug_call(func: object, *args: object, **kwargs: object) -> object:
+def debug_call(func: Callable[..., object], *args: object, **kwargs: object) -> object:
     """Вызывает func, печатая аргументы до и результат после."""
     print(f"Вызов: {getattr(func, '__name__', func)}({args}, {kwargs})")
-    result = func(*args, **kwargs)  # type: ignore[operator]
+    result = func(*args, **kwargs)
     print(f"Результат: {result}")
     return result
 
