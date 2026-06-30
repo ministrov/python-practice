@@ -10,6 +10,11 @@
 
 expenses = []
 
+
+def add_expences(expenses: list[int], value: int) -> None:
+    pass
+
+
 while True:
     print("\n ====== Меню =======")
     print("1. Добавить расход")
