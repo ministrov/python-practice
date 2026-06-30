@@ -23,6 +23,14 @@ def delete_expenses(expenses: list[float], index: int) -> None:
         print("Вы удалили расход")
 
 
+def get_total(expenses: list[float]) -> None:
+    pass
+
+
+def get_average(expenses: list[float]) -> None:
+    pass
+
+
 while True:
     print("\n ====== Меню =======")
     print("1. Добавить расход")
