@@ -27,6 +27,27 @@ print("""
 # ТВОЙ КОД ЗДЕСЬ:
 
 
+def multiply(*args: int) -> int:
+    result = 1
+    if len(args) == 0:
+        return 1
+    for item in args:
+        result *= item
+    return result
+
+
+print(multiply(1, 3, 5, 6))
+print(multiply(6))
+print(multiply())
+
+
+def first_and_last(*args: int) -> tuple[int, int]:
+    if len(args) == 1:
+        return (args[0], args[0])
+
+    return (args[0], args[-1])
+
+
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 2: **kwargs — именованные аргументы")
 print("=" * 60)
