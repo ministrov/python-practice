@@ -11,8 +11,8 @@
 expenses = []
 
 
-def add_expences(expenses: list[int], value: int) -> None:
-    pass
+def add_expenses(expenses: list[float], value: str) -> None:
+    expenses.append(float(value))
 
 
 while True:
@@ -24,6 +24,11 @@ while True:
     print("5. Выход")
 
     choice = input("Выберите пункт: ")
+
+    if choice == "1":
+        sum_value = input("Введите сумму: ")
+        add_expenses(expenses, sum_value)
+        print("Расход добавлен!")
 
     if choice == "5":
         print("До свидания!")
