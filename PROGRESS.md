@@ -458,3 +458,52 @@
 ### 🎯 СЛЕДУЮЩАЯ СЕССИЯ:
 1. Тема 2: `*args` и `**kwargs` — прочитать `03_args_kwargs_demo.py`, решить `04_args_kwargs_task.py` (8 заданий)
 2. Тема 3: Области видимости LEGB — демо + практика
+
+---
+
+## 🔥 СЕАНС 8: 2026-06-30 — БЛОК 2.3 ТЕМА 2: *args/**kwargs + ДОМАШКА
+
+### ✅ ЗАВЕРШЕНО на этой сессии:
+
+#### **Фикс демо-файла `03_args_kwargs_demo.py`**
+- ✅ Исправлена ошибка: `func: object` → `func: Callable[..., object]`
+- ✅ Удалён `# type: ignore[operator]` — больше не нужен
+- ✅ Pyright strict: 0 errors
+
+#### **Тема 2: *args / **kwargs — `04_args_kwargs_task.py`**
+- ✅ Задание 1: `multiply` (нейтральный элемент = 1), `first_and_last` (guard clause + индексы)
+- ✅ Задание 2: `build_query` (join key=value), `has_key` (key in kwargs)
+- 🔄 Задания 3-8 — отложены на следующую сессию
+
+#### **Ключевые паттерны усвоены:**
+- `**kwargs: str` — аннотируется тип ЗНАЧЕНИЯ, не всего словаря
+- `Callable[..., object]` — для функций с неизвестной сигнатурой
+- Guard clause должен стоять ДО кода который он защищает
+- Нейтральный элемент умножения = 1 (не 0)
+
+#### **Практика: `programms/generate_password.py`**
+- ✅ Реализован генератор паролей: letters + digits + symbols, random.choice
+- ✅ `raise ValueError` вместо `return ""` для length < 3 — явная ошибка лучше тихого провала
+
+#### **Домашка: `homeworks/4_expenses/menu.py`** ✅ ЗАВЕРШЕНА
+- ✅ `add_expenses(expenses, value)` — принимает str, конвертирует в float
+- ✅ `delete_expenses(expenses, index)` — проверка границ, 1-based → 0-based конвертация
+- ✅ `get_total(expenses)` — sum()
+- ✅ `get_average(expenses)` — guard для пустого списка
+- ✅ `print_report(expenses)` — enumerate(start=1) для нумерованного списка
+- ✅ Все функции подключены к меню (пункты 1-5)
+
+### 📋 ТЕКУЩИЙ СТАТУС БЛОКА 2.3:
+
+| Тема | Статус | Готовность |
+|------|--------|-----------|
+| 1. Основы функций | ✅ Завершена | 100% (8/8 заданий, 2026-06-29) |
+| 2. *args / **kwargs | 🔄 В процессе | 2/8 заданий (2026-06-30) |
+| 3. Области видимости (LEGB) | ⏳ | — |
+| 4. Функции как объекты | ⏳ | — |
+| 5. Декораторы | ⏳ | — |
+| **Финальная оценка** | ⏳ | — |
+
+### 🎯 СЛЕДУЮЩАЯ СЕССИЯ:
+1. Задание 3: `tagged`, `report` — смешанные аргументы
+2. Задания 4-8: распаковка, clamp, create_user, format_call, statistics
