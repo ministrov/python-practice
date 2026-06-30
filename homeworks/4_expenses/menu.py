@@ -8,7 +8,7 @@
         Пока сделать только выход
 """
 
-expenses = []
+expenses: list[float] = []
 
 
 def add_expenses(expenses: list[float], value: str) -> None:
