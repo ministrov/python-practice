@@ -15,6 +15,14 @@ def add_expenses(expenses: list[float], value: str) -> None:
     expenses.append(float(value))
 
 
+def delete_expenses(expenses: list[float], index: int) -> None:
+    if index >= len(expenses) or index < 0:
+        print("Неверный номер")
+    else:
+        expenses.pop(index)
+        print("Вы удалили расход")
+
+
 while True:
     print("\n ====== Меню =======")
     print("1. Добавить расход")
@@ -29,6 +37,10 @@ while True:
         sum_value = input("Введите сумму: ")
         add_expenses(expenses, sum_value)
         print("Расход добавлен!")
+
+    if choice == "4":
+        index_value = input("Введите индекс: ")
+        delete_expenses(expenses, int(index_value) - 1)
 
     if choice == "5":
         print("До свидания!")
