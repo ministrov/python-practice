@@ -28,9 +28,13 @@ def get_total(expenses: list[float]) -> float:
 
 
 def get_average(expenses: list[float]) -> float:
-    if len(expenses) == 0.0:
+    if not expenses:
         return 0.0
     return sum(expenses) / len(expenses)
+
+
+def print_report():
+    print(f"")
 
 
 while True:
