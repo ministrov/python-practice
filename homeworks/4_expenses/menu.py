@@ -23,12 +23,14 @@ def delete_expenses(expenses: list[float], index: int) -> None:
         print("Вы удалили расход")
 
 
-def get_total(expenses: list[float]) -> None:
-    pass
+def get_total(expenses: list[float]) -> float:
+    return sum(expenses)
 
 
-def get_average(expenses: list[float]) -> None:
-    pass
+def get_average(expenses: list[float]) -> float:
+    if len(expenses) == 0.0:
+        return 0.0
+    return sum(expenses) / len(expenses)
 
 
 while True:
@@ -45,6 +47,16 @@ while True:
         sum_value = input("Введите сумму: ")
         add_expenses(expenses, sum_value)
         print("Расход добавлен!")
+
+    if choice == "3":
+        info = {
+            "total": get_total(expenses),
+            "average": get_average(expenses)
+        }
+        print(f"""
+                Итого: {info["total"]}
+                Среднее: {info["average"]}        
+            """)
 
     if choice == "4":
         index_value = input("Введите индекс: ")
