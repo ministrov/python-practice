@@ -33,8 +33,11 @@ def get_average(expenses: list[float]) -> float:
     return sum(expenses) / len(expenses)
 
 
-def print_report():
-    print(f"")
+def print_report(expenses: list[float]) -> None:
+    print("=== Список расходов ===")
+    for i, expense in enumerate(expenses, start=1):
+        print(f"{i}. {expense}")
+    print("======================")
 
 
 while True:
@@ -52,15 +55,12 @@ while True:
         add_expenses(expenses, sum_value)
         print("Расход добавлен!")
 
+    if choice == "2":
+        print_report(expenses)
+
     if choice == "3":
-        info = {
-            "total": get_total(expenses),
-            "average": get_average(expenses)
-        }
-        print(f"""
-                Итого: {info["total"]}
-                Среднее: {info["average"]}        
-            """)
+        print(f"Итого: {get_total(expenses)}")
+        print(f"Среднее: {get_average(expenses)}")
 
     if choice == "4":
         index_value = input("Введите индекс: ")
