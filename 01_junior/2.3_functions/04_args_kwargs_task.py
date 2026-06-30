@@ -66,6 +66,20 @@ print("""
 # ТВОЙ КОД ЗДЕСЬ:
 
 
+def build_query(**kwargs: str) -> str:
+    return "&".join(f"{key}={value}" for key, value in kwargs.items())
+
+
+print(build_query(name="Alice", age="20"))
+
+
+def has_key(key: str, **kwargs: str) -> bool:
+    return True if key in kwargs else False
+
+
+print(has_key("name", name="Bob", age="25"))
+print(has_key("city", name="Bob"))
+
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 3: Смешанные аргументы")
 print("=" * 60)
