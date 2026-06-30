@@ -6,7 +6,7 @@ import random
 
 def generate_password(length: int = 8, use_symbols: bool = True):
     if length < 3:
-        return ""
+        raise ValueError(f"length must be >= 3, got {length}")
     letters = string.ascii_letters
     digits = string.digits
     symbols = "!@#$%&*"
@@ -21,5 +21,4 @@ def generate_password(length: int = 8, use_symbols: bool = True):
     return "".join(password_chars)
 
 
-print(generate_password())
-print(generate_password(10, False))
+print(generate_password(10))
