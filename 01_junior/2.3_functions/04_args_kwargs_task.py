@@ -27,6 +27,27 @@ print("""
 # ТВОЙ КОД ЗДЕСЬ:
 
 
+def multiply(*args: int) -> int:
+    result = 1
+    if len(args) == 0:
+        return 1
+    for item in args:
+        result *= item
+    return result
+
+
+print(multiply(1, 3, 5, 6))
+print(multiply(6))
+print(multiply())
+
+
+def first_and_last(*args: int) -> tuple[int, int]:
+    if len(args) == 1:
+        return (args[0], args[0])
+
+    return (args[0], args[-1])
+
+
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 2: **kwargs — именованные аргументы")
 print("=" * 60)
@@ -44,6 +65,20 @@ print("""
 
 # ТВОЙ КОД ЗДЕСЬ:
 
+
+def build_query(**kwargs: str) -> str:
+    return "&".join(f"{key}={value}" for key, value in kwargs.items())
+
+
+print(build_query(name="Alice", age="20"))
+
+
+def has_key(key: str, **kwargs: str) -> bool:
+    return True if key in kwargs else False
+
+
+print(has_key("name", name="Bob", age="25"))
+print(has_key("city", name="Bob"))
 
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 3: Смешанные аргументы")
