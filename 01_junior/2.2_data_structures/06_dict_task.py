@@ -52,7 +52,8 @@ print("""
 """)
 
 # ТВ ТВОЙ КОД ЗДЕСЬ:
-car_info: dict[str, str | int] = {"brand": "Toyota", "model": "Camry", "year": 2020}
+car_info: dict[str, str | int] = {
+    "brand": "Toyota", "model": "Camry", "year": 2020}
 car_info["year"] = 2023
 car_info["color"] = "blue"
 print(car_info)
@@ -249,6 +250,38 @@ print("""
 """)
 
 # ТВОЙ КОД ЗДЕСЬ:
+text = "hello world"
+count_chars = {}
+
+for char in text:
+    if char in count_chars:
+        count_chars[char] += 1
+    else:
+        count_chars[char] = 1
+
+print(count_chars)
+
+text_2 = "the cat sat on the mat the cat"
+count_sub_text = {}
+words_from_text_2 = text_2.split()
+
+for word in words_from_text_2:
+    if word in count_sub_text:
+        count_sub_text[word] += 1
+    else:
+        count_sub_text[word] = 1
+
+print(count_sub_text)
+
+most_common_word = None
+max_count = 0
+
+for word_2 in count_sub_text:
+    if count_sub_text[word_2] > max_count:
+        max_count = count_sub_text[word_2]
+        most_common_word = word_2
+
+print(most_common_word, max_count)
 
 
 print("\n" + "=" * 60)
