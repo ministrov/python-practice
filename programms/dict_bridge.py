@@ -94,7 +94,10 @@ values = ["Ivan", 25, "Moscow"]
 result_key_values = {}
 
 # ТВОЙ КОД:
+for i in range(len(keys)):
+    result_key_values[keys[i]] = values[i]
 
+print(result_key_values)
 # ─────────────────────────────────────────
 # УПРАЖНЕНИЕ 5: Вложенный словарь — прочитай и измени
 # ─────────────────────────────────────────
