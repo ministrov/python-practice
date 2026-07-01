@@ -18,9 +18,13 @@ dict_bridge.py — мост между базой и задачами 9-16
 # Подсказка: начни с пустого словаря {}, потом в цикле добавляй ключи
 
 fruits = ["apple", "banana", "cherry"]
+count_fruits = {}
 
 # ТВОЙ КОД:
+for fruit in fruits:
+    count_fruits[fruit] = 0
 
+print(count_fruits)
 
 # ─────────────────────────────────────────
 # УПРАЖНЕНИЕ 2: Посчитай сколько раз элемент встречается
@@ -37,9 +41,16 @@ fruits = ["apple", "banana", "cherry"]
 #   - используй конструкцию: if color in counter: ... else: ...
 
 colors = ["red", "blue", "red", "green", "blue", "red"]
+count_colors = {}
 
 # ТВОЙ КОД:
+for color in colors:
+    if color in count_colors:
+        count_colors[color] += 1
+    else:
+        count_colors[color] = 1
 
+print(count_colors)
 
 # ─────────────────────────────────────────
 # УПРАЖНЕНИЕ 3: Накопи сумму по ключу
@@ -53,7 +64,8 @@ colors = ["red", "blue", "red", "green", "blue", "red"]
 #
 # Подсказка: та же идея что в упр.2, но вместо +1 прибавляй сумму
 
-sales = [("Alice", 100), ("Bob", 200), ("Alice", 50), ("Bob", 75), ("Alice", 25)]
+sales = [("Alice", 100), ("Bob", 200),
+         ("Alice", 50), ("Bob", 75), ("Alice", 25)]
 
 # ТВОЙ КОД:
 
@@ -71,7 +83,7 @@ sales = [("Alice", 100), ("Bob", 200), ("Alice", 50), ("Bob", 75), ("Alice", 25)
 #
 # Подсказка: используй range(len(keys)) чтобы идти по индексам обоих списков
 
-keys   = ["name", "age", "city"]
+keys = ["name", "age", "city"]
 values = ["Ivan", 25, "Moscow"]
 
 # ТВОЙ КОД:
