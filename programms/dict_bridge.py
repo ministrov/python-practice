@@ -151,5 +151,10 @@ print(person)
 #   - если цена > 50 — добавляй в expensive
 
 prices = {"apple": 30, "banana": 80, "cherry": 120, "grape": 45, "mango": 200}
-
+expensive = {}
 # ТВОЙ КОД:
+for price, value in prices.items():
+    if value > 50:
+        expensive[price] = value
+
+print(expensive)
