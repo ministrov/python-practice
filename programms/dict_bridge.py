@@ -66,10 +66,16 @@ print(count_colors)
 
 sales = [("Alice", 100), ("Bob", 200),
          ("Alice", 50), ("Bob", 75), ("Alice", 25)]
+sum_values = {}
 
 # ТВОЙ КОД:
+for name, amount in sales:
+    if name in sum_values:
+        sum_values[name] += amount
+    else:
+        sum_values[name] = amount
 
-
+print(sum_values)
 # ─────────────────────────────────────────
 # УПРАЖНЕНИЕ 4: Собери словарь из двух списков
 # ─────────────────────────────────────────
