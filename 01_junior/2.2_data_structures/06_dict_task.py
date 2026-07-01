@@ -52,7 +52,8 @@ print("""
 """)
 
 # ТВ ТВОЙ КОД ЗДЕСЬ:
-car_info: dict[str, str | int] = {"brand": "Toyota", "model": "Camry", "year": 2020}
+car_info: dict[str, str | int] = {
+    "brand": "Toyota", "model": "Camry", "year": 2020}
 car_info["year"] = 2023
 car_info["color"] = "blue"
 print(car_info)
@@ -231,6 +232,215 @@ print(even_squares)
 main_squares: dict[str, int] = {"a": 1, "b": 2, "c": 3}
 result_squares = {v: k for k, v in main_squares.items()}
 print(result_squares)
+
+print("\n" + "=" * 60)
+print("ЗАДАНИЕ 9: Подсчёт частот")
+print("=" * 60)
+print("""
+9.1 Подсчитай, сколько раз каждая буква встречается в строке:
+    text = "hello world"
+    Ожидаемый результат: {"h": 1, "e": 1, "l": 3, ...}
+    (пробел тоже считается)
+
+9.2 Подсчитай, сколько раз каждое слово встречается в тексте:
+    text = "the cat sat on the mat the cat"
+    Ожидаемый результат: {"the": 3, "cat": 2, ...}
+
+9.3 Найди самое частое слово из 9.2
+""")
+
+# ТВОЙ КОД ЗДЕСЬ:
+text = "hello world"
+count_chars = {}
+
+for char in text:
+    if char in count_chars:
+        count_chars[char] += 1
+    else:
+        count_chars[char] = 1
+
+print(count_chars)
+
+text_2 = "the cat sat on the mat the cat"
+count_sub_text = {}
+words_from_text_2 = text_2.split()
+
+for word in words_from_text_2:
+    if word in count_sub_text:
+        count_sub_text[word] += 1
+    else:
+        count_sub_text[word] = 1
+
+print(count_sub_text)
+
+most_common_word = None
+max_count = 0
+
+for word_2 in count_sub_text:
+    if count_sub_text[word_2] > max_count:
+        max_count = count_sub_text[word_2]
+        most_common_word = word_2
+
+print(most_common_word, max_count)
+
+
+print("\n" + "=" * 60)
+print("ЗАДАНИЕ 10: Слияние словарей")
+print("=" * 60)
+print("""
+10.1 Объедини два словаря через распаковку **:
+    dict1 = {"a": 1, "b": 2}
+    dict2 = {"c": 3, "d": 4}
+    Ожидаемый результат: {"a": 1, "b": 2, "c": 3, "d": 4}
+
+10.2 Объедини словари так, чтобы значения из dict2 перезаписали dict1:
+    dict1 = {"a": 1, "b": 2, "x": 99}
+    dict2 = {"b": 20, "c": 3}
+    Ожидаемый результат: {"a": 1, "b": 20, "x": 99, "c": 3}
+
+10.3 Используй оператор | (Python 3.9+) для слияния dict1 и dict2 из 10.2
+    Напечатай результат
+""")
+
+# ТВОЙ КОД ЗДЕСЬ:
+
+
+print("\n" + "=" * 60)
+print("ЗАДАНИЕ 11: Сортировка словаря")
+print("=" * 60)
+print("""
+11.1 Отсортируй словарь по КЛЮЧАМ (по алфавиту):
+    scores = {"charlie": 85, "alice": 92, "bob": 78}
+    Ожидаемый результат: {"alice": 92, "bob": 78, "charlie": 85}
+
+11.2 Отсортируй тот же словарь по ЗНАЧЕНИЯМ (по возрастанию):
+    Ожидаемый результат: {"bob": 78, "charlie": 85, "alice": 92}
+
+11.3 Отсортируй по значениям в УБЫВАЮЩЕМ порядке (reverse=True):
+    Ожидаемый результат: {"alice": 92, "charlie": 85, "bob": 78}
+""")
+
+# ТВОЙ КОД ЗДЕСЬ:
+
+
+print("\n" + "=" * 60)
+print("ЗАДАНИЕ 12: Создание словаря из двух списков")
+print("=" * 60)
+print("""
+12.1 Создай словарь из двух списков через zip():
+    keys = ["name", "age", "city"]
+    values = ["Anna", 25, "Moscow"]
+    Ожидаемый результат: {"name": "Anna", "age": 25, "city": "Moscow"}
+
+12.2 Создай словарь через dict comprehension + zip():
+    products = ["apple", "banana", "cherry"]
+    prices = [1.5, 0.75, 2.0]
+    Ожидаемый результат: {"apple": 1.5, "banana": 0.75, "cherry": 2.0}
+
+12.3 Что будет если списки разной длины? Проверь с zip() и напечатай результат:
+    keys2 = ["a", "b", "c", "d"]
+    values2 = [1, 2]
+""")
+
+# ТВОЙ КОД ЗДЕСЬ:
+
+
+print("\n" + "=" * 60)
+print("ЗАДАНИЕ 13: Группировка данных")
+print("=" * 60)
+print("""
+13.1 Сгруппируй список студентов по их оценке:
+    students = [
+        {"name": "Alice", "grade": "A"},
+        {"name": "Bob", "grade": "B"},
+        {"name": "Charlie", "grade": "A"},
+        {"name": "Diana", "grade": "B"},
+        {"name": "Eve", "grade": "C"},
+    ]
+    Ожидаемый результат:
+    {"A": ["Alice", "Charlie"], "B": ["Bob", "Diana"], "C": ["Eve"]}
+
+    Подсказка: используй setdefault() или проверяй наличие ключа
+""")
+
+# ТВОЙ КОД ЗДЕСЬ:
+
+
+print("\n" + "=" * 60)
+print("ЗАДАНИЕ 14: Фильтрация словаря")
+print("=" * 60)
+print("""
+14.1 Оставь только пары, где значение > 50 (через comprehension):
+    data = {"a": 30, "b": 70, "c": 10, "d": 90, "e": 50}
+    Ожидаемый результат: {"b": 70, "d": 90}
+
+14.2 Оставь только пары, где ключ начинается на гласную (a, e, i, o, u):
+    words = {"apple": 1, "banana": 2, "orange": 3, "grape": 4, "ice": 5}
+    Ожидаемый результат: {"apple": 1, "orange": 3, "ice": 5}
+
+14.3 Создай новый словарь, где все значения умножены на 2,
+    но только для ключей с нечётными значениями:
+    nums = {"a": 1, "b": 2, "c": 3, "d": 4, "e": 5}
+    Ожидаемый результат: {"a": 2, "c": 6, "e": 10}
+""")
+
+# ТВОЙ КОД ЗДЕСЬ:
+
+
+print("\n" + "=" * 60)
+print("ЗАДАНИЕ 15: Глубокие вложенные структуры")
+print("=" * 60)
+print("""
+15.1 Работа с вложенным словарём компании:
+    company = {
+        "name": "TechCorp",
+        "departments": {
+            "engineering": {
+                "head": "Alice",
+                "employees": ["Bob", "Charlie", "Diana"],
+                "budget": 500000
+            },
+            "marketing": {
+                "head": "Eve",
+                "employees": ["Frank"],
+                "budget": 200000
+            }
+        }
+    }
+
+    a) Напечатай имя главы engineering
+    b) Напечатай список сотрудников marketing
+    c) Добавь "Grace" в список сотрудников engineering
+    d) Увеличь бюджет marketing на 50000
+    e) Напечатай суммарный бюджет всех отделов
+""")
+
+# ТВОЙ КОД ЗДЕСЬ:
+
+
+print("\n" + "=" * 60)
+print("ЗАДАНИЕ 16: Паттерн накопления и подсчёта")
+print("=" * 60)
+print("""
+16.1 Дан список транзакций. Посчитай баланс каждого пользователя:
+    transactions = [
+        ("Alice", 100),
+        ("Bob", 200),
+        ("Alice", -50),
+        ("Charlie", 300),
+        ("Bob", -75),
+        ("Alice", 25),
+    ]
+    Ожидаемый результат: {"Alice": 75, "Bob": 125, "Charlie": 300}
+
+16.2 Найди пользователя с наибольшим балансом из 16.1
+
+16.3 Найди пользователей с отрицательным балансом (если есть).
+    Если нет — напечатай "Все балансы положительные"
+""")
+
+# ТВОЙ КОД ЗДЕСЬ:
+
 
 print("\n" + "=" * 60)
 print("КОНЕЦ ЗАДАНИЙ, ПРОВЕРЬ ЧТО ВСЕ ЗАДАНИЯ РАБОТАЮТ!")
