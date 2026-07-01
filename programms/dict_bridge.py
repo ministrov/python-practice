@@ -129,7 +129,11 @@ person = {
 }
 
 # ТВОЙ КОД:
-
+print(person["address"]["city"])
+print(person["address"]["street"])
+person["address"]["street"] = "Tverskaya"
+person["address"]["country"] = "Russia"
+print(person)
 
 # ─────────────────────────────────────────
 # УПРАЖНЕНИЕ 6: Отфильтруй словарь через if в цикле
