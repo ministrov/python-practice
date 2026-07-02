@@ -14,14 +14,17 @@ passwords: dict[str, str] = {}
 
 
 def get_password():
-    password = input("Введите пароль (пустой для генерации):")
+    password = input("Введите пароль (пустой для генерации): ")
     if password == "":
         password = generate_password()
     return password
 
 
 def show_passwords():
-    print(passwords)
+    print("Key".ljust(20), "Value")
+    print("-" * 20)
+    for key, value in passwords.items():
+        print(key.ljust(20), " | ", value)
 
 
 def add_password():
