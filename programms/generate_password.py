@@ -1,4 +1,11 @@
-""" Сделать функцию генератора паролей """
+""" Сделать функцию генератора паролей
+    Создание меню: Приложение должно при запуске показывать меню с опциями для пользователя:
+    Показать пароли.
+    Добавить пароль.
+    Удалить пароль.
+    Обновить пароль.
+    Выход.
+ """
 
 import string
 import random
@@ -21,4 +28,5 @@ def generate_password(length: int = 8, use_symbols: bool = True):
     return "".join(password_chars)
 
 
-print(generate_password(10))
+def show_menu():
+    pass
