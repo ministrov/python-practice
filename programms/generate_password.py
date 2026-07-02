@@ -10,7 +10,7 @@
 import string
 import random
 
-passwords = {}
+passwords: dict[str, str] = {}
 
 
 def get_password():
