@@ -35,9 +35,7 @@ def delete_password():
     if domain not in passwords:
         print("Такого пароля нет")
         return
-
-    result = passwords.pop(domain)
-
+    passwords.pop(domain)
     print("Пароль удален")
 
 
