@@ -22,7 +22,7 @@ def get_password():
 
 def show_passwords():
     print("Key".ljust(20), "Value")
-    print("-" * 20)
+    print("-" * 40)
     for key, value in passwords.items():
         print(key.ljust(20), " | ", value)
 
