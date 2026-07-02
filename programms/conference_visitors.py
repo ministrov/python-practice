@@ -18,3 +18,6 @@
 """
 visitors_day_one = [101, 102, 103, 101, 104, 102, 105, 101]
 visitors_day_two = [101, 108, 100, 101, 105, 107]
+
+unique_visitors_one = set(visitors_day_one)
+print(unique_visitors_one)
