@@ -44,8 +44,10 @@ def show_menu():
             print("Удалить пароль")
         case 4:
             print("Обновить пароль")
-        case _:
+        case 5:
             exit()
+        case _:
+            print("Неверный выбор, попробуй снова")
 
 
 while True:
