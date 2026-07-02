@@ -29,4 +29,24 @@ def generate_password(length: int = 8, use_symbols: bool = True):
 
 
 def show_menu():
-    pass
+    print("1. Показать пароли: ")
+    print("2. Добавить пароли: ")
+    print("3. Удалить пароли: ")
+    print("4. Обновить пароль: ")
+    print("5. Выход: ")
+    user_select = int(input("Ваш выбор: (1, 2, 3, 4, 5)"))
+    match user_select:
+        case 1:
+            print("Показать пароли")
+        case 2:
+            print("Добавить пароль")
+        case 3:
+            print("Удалить пароль")
+        case 4:
+            print("Обновить пароль")
+        case _:
+            exit()
+
+
+while True:
+    show_menu()
