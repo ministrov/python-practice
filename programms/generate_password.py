@@ -13,35 +13,42 @@ import random
 passwords = {}
 
 
+def get_password():
+    password = input("Введите пароль (пустой для генерации):")
+    if password == "":
+        password = generate_password()
+    return password
+
+
 def show_passwords():
     print(passwords)
 
 
 def add_password():
     domain = input("Введите домен: ")
-    password = input("Введите пароль (пустой для генерации): ")
-
-    if password == "":
-        password = generate_password()
+    password = get_password()
     passwords[domain] = password
 
 
 def delete_password():
     domain = input("Введите домен: ")
-    result = passwords.pop(domain)
-    if result is None:
+    if domain not in passwords:
         print("Такого пароля нет")
         return
+
+    result = passwords.pop(domain)
+
     print("Пароль удален")
 
 
 def update_password():
     domain = input("Введите домен: ")
-    new_password = input("Введите новый пароль: ")
+    password = get_password()
+
     if domain not in passwords:
         print("Такого пароля нет")
         return
-    passwords[domain] = new_password
+    passwords[domain] = password
     print("Пароль обновлен")
 
 
