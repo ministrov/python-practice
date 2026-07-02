@@ -20,4 +20,7 @@ visitors_day_one = [101, 102, 103, 101, 104, 102, 105, 101]
 visitors_day_two = [101, 108, 100, 101, 105, 107]
 
 unique_visitors_one = set(visitors_day_one)
+unique_visitors_two = set(visitors_day_two)
+
+print(f"Входов день 1")
 print(unique_visitors_one)
