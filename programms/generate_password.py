@@ -10,6 +10,40 @@
 import string
 import random
 
+passwords = {}
+
+
+def show_passwords():
+    print(passwords)
+
+
+def add_password():
+    domain = input("Введите домен: ")
+    password = input("Введите пароль (пустой для генерации): ")
+
+    if password == "":
+        password = generate_password()
+    passwords[domain] = password
+
+
+def delete_password():
+    domain = input("Введите домен: ")
+    result = passwords.pop(domain)
+    if result is None:
+        print("Такого пароля нет")
+        return
+    print("Пароль удален")
+
+
+def update_password():
+    domain = input("Введите домен: ")
+    new_password = input("Введите новый пароль: ")
+    if domain not in passwords:
+        print("Такого пароля нет")
+        return
+    passwords[domain] = new_password
+    print("Пароль обновлен")
+
 
 def generate_password(length: int = 8, use_symbols: bool = True):
     if length < 3:
@@ -37,13 +71,13 @@ def show_menu():
     user_select = int(input("Ваш выбор: (1, 2, 3, 4, 5)"))
     match user_select:
         case 1:
-            print("Показать пароли")
+            show_passwords()
         case 2:
-            print("Добавить пароль")
+            add_password()
         case 3:
-            print("Удалить пароль")
+            delete_password()
         case 4:
-            print("Обновить пароль")
+            update_password()
         case 5:
             exit()
         case _:
