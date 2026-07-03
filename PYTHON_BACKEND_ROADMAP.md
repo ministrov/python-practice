@@ -2,8 +2,8 @@
 ## От Junior до Senior Backend Developer
 
 > **Старт:** 2026-06-06
-> **Последний чекпойнт:** 2026-06-29 (сеанс 7)
-> **Прогресс:** Junior Level, Блок 2.3 (Функции — тема 1 завершена)
+> **Последний чекпойнт:** 2026-07-03 (сеанс 9)
+> **Прогресс:** Junior Level, Блок 2.3 (Функции — темы 1-2 завершены)
 > **Длительность:** 18–24 месяца при 10–15 часах в неделю
 > **Формат:** комбинированный — уровни (Junior → Middle → Senior) × темы × сроки
 > **Стек-ориентир:** Python 3.12+, FastAPI/Django, PostgreSQL, SQLAlchemy, Redis, Docker, Kubernetes
@@ -100,7 +100,8 @@
 
 - [x] Объявление, позиционные и именованные аргументы, значения по умолчанию (ловушка mutable default!) ✅ (2026-06-29)
   - Файлы: `01_functions_basics_demo.py`, `02_functions_basics_task.py` (8/8 заданий)
-- [ ] `*args`, `**kwargs`, positional-only `/` и keyword-only `*` параметры
+- [x] `*args`, `**kwargs`, positional-only `/` и keyword-only `*` параметры ✅ (2026-07-03)
+  - Файлы: `03_args_kwargs_demo.py`, `04_args_kwargs_task.py` (8/8 заданий)
 - [ ] Области видимости: LEGB, `global`, `nonlocal`, замыкания
 - [ ] Функции как объекты первого класса, передача функций как значений
 - [ ] Lambda, `map`/`filter`/`sorted` с ключами (но предпочитать comprehensions)

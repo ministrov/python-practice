@@ -102,6 +102,32 @@ print("""
 # ТВОЙ КОД ЗДЕСЬ:
 
 
+def tagged(tag: str, *words: str) -> list[str]:
+    tags: list[str] = []
+    for word in words:
+        tags.append(f"<{tag}>{word}</{tag}>")
+    return tags
+
+
+print(tagged("b", "hello", "world"))
+
+
+def report(title: str, *items: str, sep: str = "- ") -> str:
+    lines = [title] + [f"{sep}{item}" for item in items]
+    return "\n".join(lines)
+
+
+print(report("Languages", "Python", "Go", "Rust"))
+# Languages
+# - Python
+# - Go
+# - Rust
+
+print(report("Steps", "open", "read", sep="* "))
+# Steps
+# * open
+# * read
+
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 4: Распаковка при вызове")
 print("=" * 60)
@@ -118,6 +144,22 @@ print("""
 """)
 
 # ТВОЙ КОД ЗДЕСЬ:
+coordinates = [10, 20, 30]
+config = {"host": "localhost", "port": "5432", "db": "mydb"}
+
+
+def move(x: int, y: int, z: int) -> str:
+    return f"Moving to x={x}, y={y}, z={z}"
+
+
+print(move(*coordinates))
+
+
+def connect(host: str, port: str, db: str) -> str:
+    return f"Connecting to {host}:{port}/{db}"
+
+
+print(connect(**config))
 
 
 print("\n" + "=" * 60)
@@ -141,6 +183,30 @@ print("""
 # ТВОЙ КОД ЗДЕСЬ:
 
 
+def clamp(value: int, *bounds: int) -> int:
+    if not bounds:
+        return value
+    lo, hi = bounds
+    if value < lo:
+        return lo
+    if value > hi:
+        return hi
+    return value
+
+
+print(clamp(5, 0, 10))    # 5
+print(clamp(-3, 0, 10))   # 0
+print(clamp(15, 0, 10))   # 10
+print(clamp(7))
+
+
+def join_strings(*strings: str, separator: str = " "):
+    return separator.join(strings)
+
+
+print(join_strings("Hello", "World"))              # Hello World
+print(join_strings("a", "b", "c", separator="-"))
+
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 6: **kwargs с обычными параметрами")
 print("=" * 60)
@@ -163,6 +229,24 @@ print("""
 # ТВОЙ КОД ЗДЕСЬ:
 
 
+def create_user(
+    name: str, age: int, **extra: str | int
+) -> dict[str, str | int]:
+    return {"name": name, "age": age, **extra}
+
+
+print(create_user("Alice", 30, city="Moscow", role="admin"))
+print(create_user("Bob", 25))
+
+
+def override(
+    defaults: dict[str, str | int], **overrides: str | int
+) -> dict[str, str | int]:
+    return {**defaults, **overrides}
+
+
+print(override({"color": "red", "size": 10}, color="blue", weight=5))
+
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 7: *args и **kwargs вместе")
 print("=" * 60)
@@ -180,6 +264,23 @@ print("""
 
 # ТВОЙ КОД ЗДЕСЬ:
 
+
+def format_call(func_name: str, *args: object, **kwargs: object) -> str:
+    def fmt(value: object) -> str:
+        if isinstance(value, str):
+            return f'"{value}"'
+        return str(value)
+
+    parts = [fmt(arg) for arg in args]
+    parts += [f"{key}={fmt(value)}" for key, value in kwargs.items()]
+
+    return f"{func_name}({', '.join(parts)})"
+
+
+print(format_call("print", 1, 2, sep=", ", end="!"))
+# print(1, 2, sep=", ", end="!")
+
+print(format_call("len", "hello"))
 
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 8: Комплексное задание")
@@ -211,6 +312,26 @@ print("""
 
 # ТВОЙ КОД ЗДЕСЬ:
 
+
+def statistics(
+    *numbers: int, precision: int = 2
+) -> dict[str, int | float] | None:
+    if not numbers:
+        return None
+
+    return {
+        "count": len(numbers),
+        "sum": sum(numbers),
+        "min": min(numbers),
+        "max": max(numbers),
+        "mean": round(sum(numbers) / len(numbers), precision),
+        "range": max(numbers) - min(numbers)
+    }
+
+
+print(statistics(4, 7, 2, 9, 1))
+print(statistics(10, 20, 30, precision=1))
+print(statistics())
 
 print("\n" + "=" * 60)
 print("КОНЕЦ ЗАДАНИЙ, ПРОВЕРЬ ЧТО ВСЕ ЗАДАНИЯ РАБОТАЮТ!")
