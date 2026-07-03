@@ -22,5 +22,12 @@ visitors_day_two = [101, 108, 100, 101, 105, 107]
 unique_visitors_one = set(visitors_day_one)
 unique_visitors_two = set(visitors_day_two)
 
-print(f"Входов день 1")
-print(unique_visitors_one)
+print(
+    f"Входов день 1: {len(visitors_day_one)}, уникальных {len(unique_visitors_one)}")
+print(
+    f"Входов день 2: {len(visitors_day_two)}, уникальных {len(unique_visitors_two)}")
+
+print("Были оба дня: ", unique_visitors_one & unique_visitors_two)
+print("Были в первый день : ", unique_visitors_one - unique_visitors_two)
+print("Были во второй день : ", unique_visitors_two - unique_visitors_one)
+print("Были в один из дней : ", unique_visitors_two ^ unique_visitors_one)
