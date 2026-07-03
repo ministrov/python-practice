@@ -102,6 +102,15 @@ print("""
 # ТВОЙ КОД ЗДЕСЬ:
 
 
+def tagged(tag: str, *words: str) -> list[str]:
+    tags: list[str] = []
+    for word in words:
+        tags.append(f"<{tag}>{word}</{tag}>")
+    return tags
+
+
+print(tagged("b", "hello", "world"))
+
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 4: Распаковка при вызове")
 print("=" * 60)
