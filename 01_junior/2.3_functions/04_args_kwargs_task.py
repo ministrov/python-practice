@@ -313,6 +313,26 @@ print("""
 # ТВОЙ КОД ЗДЕСЬ:
 
 
+def statistics(
+    *numbers: int, precision: int = 2
+) -> dict[str, int | float] | None:
+    if not numbers:
+        return None
+
+    return {
+        "count": len(numbers),
+        "sum": sum(numbers),
+        "min": min(numbers),
+        "max": max(numbers),
+        "mean": round(sum(numbers) / len(numbers), precision),
+        "range": max(numbers) - min(numbers)
+    }
+
+
+print(statistics(4, 7, 2, 9, 1))
+print(statistics(10, 20, 30, precision=1))
+print(statistics())
+
 print("\n" + "=" * 60)
 print("КОНЕЦ ЗАДАНИЙ, ПРОВЕРЬ ЧТО ВСЕ ЗАДАНИЯ РАБОТАЮТ!")
 print("=" * 60)
