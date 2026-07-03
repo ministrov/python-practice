@@ -85,6 +85,8 @@ except UnboundLocalError as error:
     print(f"Ошибка: {error}")
 
 # Исправление — объявить global ДО использования:
+
+
 def fixed() -> None:
     global total
     print(total)   # теперь работает: 100
