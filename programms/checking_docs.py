@@ -13,3 +13,7 @@
 
 required_docs = frozenset({"паспорт", "ИНН", "СНИЛС"})
 userdocs = {"паспорт", "ИНН", "СНИЛС", "диплом"}
+
+print(f"Обязательные: {required_docs.issubset(userdocs)}")
+print(f"Равны ли: {required_docs == frozenset(userdocs)}")
+print(f"Лишние: {userdocs - required_docs}")
