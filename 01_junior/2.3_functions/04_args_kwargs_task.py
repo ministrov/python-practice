@@ -112,7 +112,7 @@ def tagged(tag: str, *words: str) -> list[str]:
 print(tagged("b", "hello", "world"))
 
 
-def report(title: str, *items: str, sep="- ") -> str:
+def report(title: str, *items: str, sep: str = "- ") -> str:
     lines = [title] + [f"{sep}{item}" for item in items]
     return "\n".join(lines)
 
