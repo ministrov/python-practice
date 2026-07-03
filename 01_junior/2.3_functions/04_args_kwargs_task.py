@@ -229,6 +229,24 @@ print("""
 # ТВОЙ КОД ЗДЕСЬ:
 
 
+def create_user(
+    name: str, age: int, **extra: str | int
+) -> dict[str, str | int]:
+    return {"name": name, "age": age, **extra}
+
+
+print(create_user("Alice", 30, city="Moscow", role="admin"))
+print(create_user("Bob", 25))
+
+
+def override(
+    defaults: dict[str, str | int], **overrides: str | int
+) -> dict[str, str | int]:
+    return {**defaults, **overrides}
+
+
+print(override({"color": "red", "size": 10}, color="blue", weight=5))
+
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 7: *args и **kwargs вместе")
 print("=" * 60)
