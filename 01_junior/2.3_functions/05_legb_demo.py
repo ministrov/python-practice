@@ -75,7 +75,7 @@ total = 100
 
 
 def broken() -> None:
-    print(total)   # UnboundLocalError: total ещё не связана со значением
+    print(total)  # type: ignore[reportUnboundVariable]  # намеренно: демонстрация UnboundLocalError
     total = 1       # именно эта строка делает total локальной для ВСЕЙ функции
 
 
