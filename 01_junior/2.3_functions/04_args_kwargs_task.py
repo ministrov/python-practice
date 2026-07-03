@@ -183,6 +183,30 @@ print("""
 # ТВОЙ КОД ЗДЕСЬ:
 
 
+def clamp(value: int, *bounds: int) -> int:
+    if not bounds:
+        return value
+    lo, hi = bounds
+    if value < lo:
+        return lo
+    if value > hi:
+        return hi
+    return value
+
+
+print(clamp(5, 0, 10))    # 5
+print(clamp(-3, 0, 10))   # 0
+print(clamp(15, 0, 10))   # 10
+print(clamp(7))
+
+
+def join_strings(*strings: str, separator: str = " "):
+    return separator.join(strings)
+
+
+print(join_strings("Hello", "World"))              # Hello World
+print(join_strings("a", "b", "c", separator="-"))
+
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 6: **kwargs с обычными параметрами")
 print("=" * 60)
