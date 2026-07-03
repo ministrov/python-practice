@@ -265,6 +265,23 @@ print("""
 # ТВОЙ КОД ЗДЕСЬ:
 
 
+def format_call(func_name: str, *args: object, **kwargs: object) -> str:
+    def fmt(value: object) -> str:
+        if isinstance(value, str):
+            return f'"{value}"'
+        return str(value)
+
+    parts = [fmt(arg) for arg in args]
+    parts += [f"{key}={fmt(value)}" for key, value in kwargs.items()]
+
+    return f"{func_name}({', '.join(parts)})"
+
+
+print(format_call("print", 1, 2, sep=", ", end="!"))
+# print(1, 2, sep=", ", end="!")
+
+print(format_call("len", "hello"))
+
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 8: Комплексное задание")
 print("=" * 60)
