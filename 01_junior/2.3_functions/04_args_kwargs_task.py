@@ -111,6 +111,23 @@ def tagged(tag: str, *words: str) -> list[str]:
 
 print(tagged("b", "hello", "world"))
 
+
+def report(title: str, *items: str, sep="- ") -> str:
+    lines = [title] + [f"{sep}{item}" for item in items]
+    return "\n".join(lines)
+
+
+print(report("Languages", "Python", "Go", "Rust"))
+# Languages
+# - Python
+# - Go
+# - Rust
+
+print(report("Steps", "open", "read", sep="* "))
+# Steps
+# * open
+# * read
+
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 4: Распаковка при вызове")
 print("=" * 60)
