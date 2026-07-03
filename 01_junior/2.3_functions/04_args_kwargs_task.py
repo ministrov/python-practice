@@ -144,6 +144,22 @@ print("""
 """)
 
 # ТВОЙ КОД ЗДЕСЬ:
+coordinates = [10, 20, 30]
+config = {"host": "localhost", "port": "5432", "db": "mydb"}
+
+
+def move(x: int, y: int, z: int) -> str:
+    return f"Moving to x={x}, y={y}, z={z}"
+
+
+print(move(*coordinates))
+
+
+def connect(host: str, port: str, db: str) -> str:
+    return f"Connecting to {host}:{port}/{db}"
+
+
+print(connect(**config))
 
 
 print("\n" + "=" * 60)
