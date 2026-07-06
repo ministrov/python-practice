@@ -24,6 +24,25 @@ counter = 0
 # ТВОЙ КОД ЗДЕСЬ:
 
 
+def show_counter():
+    print(f"{counter}")
+
+
+def increment_counter():
+    global counter
+    counter += 1
+    return counter
+
+
+counter_a = increment_counter()
+counter_b = increment_counter()
+counter_c = increment_counter()
+
+show_counter()
+print(counter_a)
+print(counter_b)
+print(counter_c)
+
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 2: Замыкания (closures) и nonlocal")
 print("=" * 60)
