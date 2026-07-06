@@ -288,7 +288,7 @@ tpl = (1, 2, 3)
 print(f"  tpl = (1, 2, 3)")
 print(f"  id до: {id(tpl)}")
 try:
-    tpl[0] = 99  # Попытка изменить
+    tpl[0] = 99  # type: ignore[reportIndexIssue]  # намеренно: демонстрация TypeError
 except TypeError as e:
     print(f"  Попытка tpl[0] = 99 → ошибка: {e}")
 print(f"  id после: {id(tpl)}  ← ID НЕ ИЗМЕНИЛСЯ (объект не менялся)\n")

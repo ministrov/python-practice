@@ -259,6 +259,8 @@ def analyze_game_result(score: int, time: int) -> None:
             print("Ты проиграл")
         case _ if score < 0:
             print("Ошибка: отрицательный счёт")
+        case _:
+            pass  # недостижимо: guard-условия выше покрывают весь диапазон int
 
 
 print(analyze_game_result(150, 45))      # Отличный результат!
@@ -330,6 +332,8 @@ def calculate_ticket_price(age: int, is_student: bool):
             return 250
         case _ if age >= 65:
             return 200
+        case _:
+            raise ValueError(f"Некорректный возраст: {age}")
 
 
 print(calculate_ticket_price(2, False))      # 0

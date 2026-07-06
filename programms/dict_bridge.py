@@ -5,6 +5,8 @@ dict_bridge.py — мост между базой и задачами 9-16
 Только for + if + dict. Никакого comprehension пока.
 """
 
+from typing import cast
+
 # ─────────────────────────────────────────
 # УПРАЖНЕНИЕ 1: Построй словарь из списка
 # ─────────────────────────────────────────
@@ -18,7 +20,7 @@ dict_bridge.py — мост между базой и задачами 9-16
 # Подсказка: начни с пустого словаря {}, потом в цикле добавляй ключи
 
 fruits = ["apple", "banana", "cherry"]
-count_fruits = {}
+count_fruits: dict[str, int] = {}
 
 # ТВОЙ КОД:
 for fruit in fruits:
@@ -41,7 +43,7 @@ print(count_fruits)
 #   - используй конструкцию: if color in counter: ... else: ...
 
 colors = ["red", "blue", "red", "green", "blue", "red"]
-count_colors = {}
+count_colors: dict[str, int] = {}
 
 # ТВОЙ КОД:
 for color in colors:
@@ -66,7 +68,7 @@ print(count_colors)
 
 sales = [("Alice", 100), ("Bob", 200),
          ("Alice", 50), ("Bob", 75), ("Alice", 25)]
-sum_values = {}
+sum_values: dict[str, int] = {}
 
 # ТВОЙ КОД:
 for name, amount in sales:
@@ -91,7 +93,7 @@ print(sum_values)
 
 keys = ["name", "age", "city"]
 values = ["Ivan", 25, "Moscow"]
-result_key_values = {}
+result_key_values: dict[str, str | int] = {}
 
 # ТВОЙ КОД:
 for i in range(len(keys)):
@@ -129,10 +131,14 @@ person = {
 }
 
 # ТВОЙ КОД:
-print(person["address"]["city"])
-print(person["address"]["street"])
-person["address"]["street"] = "Tverskaya"
-person["address"]["country"] = "Russia"
+# person["address"] статически имеет тип str | dict[str, str] (т.к. "name" — str,
+# а "address" — dict), поэтому Pyright не разрешает индексировать его строкой
+# без явного cast — мы точно знаем, что это словарь, но Pyright сам не выведет
+address = cast(dict[str, str], person["address"])
+print(address["city"])
+print(address["street"])
+address["street"] = "Tverskaya"  # меняет тот же объект, на который ссылается person["address"]
+address["country"] = "Russia"
 print(person)
 
 # ─────────────────────────────────────────
@@ -151,7 +157,7 @@ print(person)
 #   - если цена > 50 — добавляй в expensive
 
 prices = {"apple": 30, "banana": 80, "cherry": 120, "grape": 45, "mango": 200}
-expensive = {}
+expensive: dict[str, int] = {}
 # ТВОЙ КОД:
 for price, value in prices.items():
     if value > 50:
