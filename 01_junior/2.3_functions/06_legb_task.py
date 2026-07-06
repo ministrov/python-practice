@@ -168,6 +168,36 @@ print("""
 # ТВОЙ КОД ЗДЕСЬ:
 
 
+def make_accumulator():
+    total = 0
+
+    def add(value: int):
+        nonlocal total
+        total += value
+        return total
+    return add
+
+
+acc = make_accumulator()
+
+print(acc(4))
+print(acc(6))
+print(acc(7))
+
+
+def make_greeter(greeting: str):
+    def greet(name: str):
+        return f"{greeting}, {name}!"
+    return greet
+
+
+hello = make_greeter("Привет")
+hi = make_greeter("Hi")
+
+print(hello("Аня"))  # Привет, Аня!
+print(hi("Anna"))
+
+
 print("\n" + "=" * 60)
 print("КОНЕЦ ЗАДАНИЙ, ПРОВЕРЬ ЧТО ВСЕ ЗАДАНИЯ РАБОТАЮТ!")
 print("=" * 60)
