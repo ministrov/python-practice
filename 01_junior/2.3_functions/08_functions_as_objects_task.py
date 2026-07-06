@@ -206,6 +206,14 @@ print("""
 # ТВОЙ КОД ЗДЕСЬ:
 
 
+def run_calculator(operations_list: list[tuple[str, int, int]]):
+    for op, a, b in operations_list:
+        result = calculate(op, a, b)
+        print(f"{a} {op} {b} = {result}")
+
+
+run_calculator([("+", 2, 3), ("*", 4, 5), ("-", 10, 4)])
+
 print("\n" + "=" * 60)
 print("КОНЕЦ ЗАДАНИЙ, ПРОВЕРЬ ЧТО ВСЕ ЗАДАНИЯ РАБОТАЮТ!")
 print("=" * 60)
