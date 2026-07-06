@@ -155,7 +155,12 @@ print("""
 """)
 
 # ТВОЙ КОД ЗДЕСЬ:
-
+students: list[tuple[str, int]] = [("Anna", 82), ("Boris", 91), ("Vera", 76)]
+words = ["a", "bbb", "cc", "dddd"]
+by_grade = sorted(students, key=lambda student: student[1], reverse=True)
+by_words_len = sorted(words, key=lambda word: len(word))
+print(by_grade)
+print(by_words_len)
 
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 6: map и filter")
