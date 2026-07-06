@@ -118,6 +118,35 @@ total = 100
 # ТВОЙ КОД ЗДЕСЬ:
 
 
+def local_shadow():
+    name = "Local"
+    print(name)
+
+
+local_shadow()
+print(name)
+
+
+def broken_counter():
+    total += 1  # type: ignore[reportUnboundVariable]  # намеренно: демонстрация UnboundLocalError
+
+
+try:
+    broken_counter()
+except UnboundLocalError as e:
+    print(f"UnboundLocalError: {e}")
+
+
+def fixed_counter():
+    global total
+    total += 1
+    return total
+
+
+print(fixed_counter())
+print(fixed_counter())
+
+
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 4: Практическое применение замыканий")
 print("=" * 60)
