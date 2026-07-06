@@ -81,6 +81,30 @@ print("""
 # ТВОЙ КОД ЗДЕСЬ:
 
 
+def subtract(a: int, b: int):
+    return a - b
+
+
+operations: dict[str, Callable[[int, int], int]] = {
+    "+": add, "-": subtract, "*": multiply}
+
+
+def calculate(op: str, a: int, b: int):
+    if op not in operations:
+        raise ValueError("Такой операции нет")
+    func = operations[op]
+    return func(a, b)
+
+
+print(calculate("+", 2, 12))
+print(calculate("-", 2, 12))
+print(calculate("*", 2, 12))
+try:
+    print(calculate("ываыва", 2, 12))
+except ValueError as e:
+    print(f"Ошибка: {e}")
+
+
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 4: Функция возвращает функцию (без замыкания)")
 print("=" * 60)
