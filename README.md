@@ -1,7 +1,7 @@
 # Python Backend Developer Journey
 
 > Практический курс: от нуля до Python backend разработчика
-> Старт: 2026-06-06 | Уровень: Junior | Текущий блок: 2.3 — Функции
+> Старт: 2026-06-06 | Уровень: Junior | Текущий блок: 2.3 — Функции (тема 3: LEGB завершена)
 
 ## Цель проекта
 
@@ -46,9 +46,11 @@
 │   ├── 09_list_comprehensions_demo.py + 10_list_comprehensions_task.py
 │   └── 11_choosing_structures_demo.py + 12_choosing_structures_task.py
 │
-├── 2.3_functions/              # В процессе
+├── 2.3_functions/              # В процессе (темы 1-3 завершены)
 │   ├── 01_functions_basics_demo.py + 02_functions_basics_task.py
-│   └── (далее: *args/**kwargs, LEGB, lambda, decorators)
+│   ├── 03_args_kwargs_demo.py + 04_args_kwargs_task.py
+│   ├── 05_legb_demo.py + 06_legb_task.py
+│   └── (далее: функции как объекты, decorators)
 │
 ├── 2.4_oop/                    # Запланировано
 ├── 2.5_typing/                 # Запланировано
@@ -101,5 +103,5 @@ python 01_junior/2.3_functions/02_functions_basics_task.py
 
 ---
 
-**Последнее обновление:** 2026-06-26
+**Последнее обновление:** 2026-07-06
 **Python:** 3.12+
