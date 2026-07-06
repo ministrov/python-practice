@@ -19,6 +19,15 @@ print("""
 # ТВОЙ КОД ЗДЕСЬ:
 
 
+def cube(x: int):
+    return x ** 3
+
+
+my_cube = cube
+print(my_cube(3))
+
+print(my_cube is cube)
+
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 2: Функция высшего порядка")
 print("=" * 60)
