@@ -65,6 +65,35 @@ print("""
 # ТВОЙ КОД ЗДЕСЬ:
 
 
+def make_counter():
+    count = 0
+
+    def increment():
+        nonlocal count
+        count += 1
+        return count
+    return increment
+
+
+counter_1 = make_counter()
+
+print(counter_1())
+print(counter_1())
+print(counter_1())
+
+
+def make_multiplier(factor: int):
+    def multiply(value: int):
+        return value * factor
+    return multiply
+
+
+double = make_multiplier(2)
+triple = make_multiplier(3)
+
+print(double(5))
+print(triple(5))
+
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 3: LEGB и затенение (shadowing)")
 print("=" * 60)
