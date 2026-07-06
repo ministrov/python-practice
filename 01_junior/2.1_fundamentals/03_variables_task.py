@@ -373,7 +373,7 @@ print(len(text))
 numbers = [10, 20, 30, 40, 50]
 print(len(numbers))
 
-empty_list = []
+empty_list: list[int] = []
 print(len(empty_list))
 
 greeting = "Hello"
@@ -403,13 +403,13 @@ nothing = None
 print(nothing)
 print(type(nothing))
 
-result = None
-message = "pending"
+result: str | None = None
+message: str | None = "pending"
 
 if result is None:
   print("No result yet")
 
-if message is None:
+if message is None:  # type: ignore[reportUnnecessaryComparison]  # намеренно: message заведомо не None
   print("No message")
 
 print("\n" + "=" * 70)

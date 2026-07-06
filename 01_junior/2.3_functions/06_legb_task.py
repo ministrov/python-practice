@@ -24,6 +24,25 @@ counter = 0
 # ТВОЙ КОД ЗДЕСЬ:
 
 
+def show_counter():
+    print(f"{counter}")
+
+
+def increment_counter():
+    global counter
+    counter += 1
+    return counter
+
+
+counter_a = increment_counter()
+counter_b = increment_counter()
+counter_c = increment_counter()
+
+show_counter()
+print(counter_a)
+print(counter_b)
+print(counter_c)
+
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 2: Замыкания (closures) и nonlocal")
 print("=" * 60)
@@ -45,6 +64,35 @@ print("""
 
 # ТВОЙ КОД ЗДЕСЬ:
 
+
+def make_counter():
+    count = 0
+
+    def increment():
+        nonlocal count
+        count += 1
+        return count
+    return increment
+
+
+counter_1 = make_counter()
+
+print(counter_1())
+print(counter_1())
+print(counter_1())
+
+
+def make_multiplier(factor: int):
+    def multiply(value: int):
+        return value * factor
+    return multiply
+
+
+double = make_multiplier(2)
+triple = make_multiplier(3)
+
+print(double(5))
+print(triple(5))
 
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 3: LEGB и затенение (shadowing)")
@@ -70,6 +118,35 @@ total = 100
 # ТВОЙ КОД ЗДЕСЬ:
 
 
+def local_shadow():
+    name = "Local"
+    print(name)
+
+
+local_shadow()
+print(name)
+
+
+def broken_counter():
+    total += 1  # type: ignore[reportUnboundVariable]  # намеренно: демонстрация UnboundLocalError
+
+
+try:
+    broken_counter()
+except UnboundLocalError as e:
+    print(f"UnboundLocalError: {e}")
+
+
+def fixed_counter():
+    global total
+    total += 1
+    return total
+
+
+print(fixed_counter())
+print(fixed_counter())
+
+
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 4: Практическое применение замыканий")
 print("=" * 60)
@@ -89,6 +166,36 @@ print("""
 """)
 
 # ТВОЙ КОД ЗДЕСЬ:
+
+
+def make_accumulator():
+    total = 0
+
+    def add(value: int):
+        nonlocal total
+        total += value
+        return total
+    return add
+
+
+acc = make_accumulator()
+
+print(acc(4))
+print(acc(6))
+print(acc(7))
+
+
+def make_greeter(greeting: str):
+    def greet(name: str):
+        return f"{greeting}, {name}!"
+    return greet
+
+
+hello = make_greeter("Привет")
+hi = make_greeter("Hi")
+
+print(hello("Аня"))  # Привет, Аня!
+print(hi("Anna"))
 
 
 print("\n" + "=" * 60)

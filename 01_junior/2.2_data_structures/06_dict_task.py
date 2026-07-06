@@ -251,7 +251,7 @@ print("""
 
 # ТВОЙ КОД ЗДЕСЬ:
 text = "hello world"
-count_chars = {}
+count_chars: dict[str, int] = {}
 
 for char in text:
     if char in count_chars:
@@ -262,7 +262,7 @@ for char in text:
 print(count_chars)
 
 text_2 = "the cat sat on the mat the cat"
-count_sub_text = {}
+count_sub_text: dict[str, int] = {}
 words_from_text_2 = text_2.split()
 
 for word in words_from_text_2:
@@ -273,7 +273,7 @@ for word in words_from_text_2:
 
 print(count_sub_text)
 
-most_common_word = None
+most_common_word: str | None = None
 max_count = 0
 
 for word_2 in count_sub_text:

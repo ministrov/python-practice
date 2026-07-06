@@ -164,9 +164,9 @@ print("\n=== Задание 11: Четность числа ===")
 # 2. Если num четное (остаток от деления на 2 равен 0) → "Число четное"
 # 3. Иначе → "Число нечетное"
 
-num = 17
+num: int = 17
 # YOUR CODE HERE:
-if num % 2 == 0:
+if num % 2 == 0:  # type: ignore[reportUnnecessaryComparison]  # намеренно: демо-литерал, Pyright сужает num до Literal[17]
     print("Число четное")
 else:
     print("Число нечетное")
@@ -221,9 +221,9 @@ print("\n=== Задание 14: Проверка типа ===")
 #    - если int → выведи "Это целое число"
 #    - иначе → выведи "Это не целое число"
 
-value = 42
+value: int = 42
 # YOUR CODE HERE:
-if isinstance(value, int):
+if isinstance(value, int):  # type: ignore[reportUnnecessaryIsInstance]  # намеренно: демо-литерал, Pyright сужает value до Literal[42]
     print("Это целое число")
 else:
     print("Это не целое число")
