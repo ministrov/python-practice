@@ -6,6 +6,9 @@
 Совет: посмотри 07_functions_as_objects_demo.py если застрял.
 """
 
+from collections.abc import Callable
+
+
 print("=" * 60)
 print("ЗАДАНИЕ 1: Функция как объект")
 print("=" * 60)
@@ -41,6 +44,24 @@ print("""
 
 # ТВОЙ КОД ЗДЕСЬ:
 
+
+def apply_operation(func: Callable[[int, int], int], a: int, b: int):
+    return func(a, b)
+
+
+def add(a: int, b: int):
+    return a + b
+
+
+def multiply(a: int, b: int):
+    return a * b
+
+
+add_sum = apply_operation(add, 3, 8)
+multiplier = apply_operation(multiply, 3, 4)
+
+print(add_sum)
+print(multiplier)
 
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 3: Dispatch table (таблица диспетчеризации)")
