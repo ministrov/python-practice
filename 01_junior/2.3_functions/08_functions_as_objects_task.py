@@ -120,6 +120,28 @@ print("""
 # ТВОЙ КОД ЗДЕСЬ:
 
 
+def is_even(x: int):
+    return x % 2 == 0
+
+
+def is_positive(x: int):
+    return x > 0
+
+
+def pick_checker(kind: str):
+    match kind:
+        case "even":
+            return is_even
+        case "positive":
+            return is_positive
+        case _:
+            raise ValueError("Такой операции несуществует, выберите другую")
+
+
+checker = pick_checker("even")
+print(checker(4))
+print(checker(7))
+
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 5: lambda и sorted с ключом")
 print("=" * 60)
