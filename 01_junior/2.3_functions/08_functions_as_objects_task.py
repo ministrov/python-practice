@@ -187,7 +187,10 @@ print("""
 """)
 
 # ТВОЙ КОД ЗДЕСЬ:
+funcs = [cube, add, multiply]
 
+for fun in funcs:
+    print(f"Имя функции {fun.__name__}")
 
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 8: Комплексное — калькулятор на dispatch table")
