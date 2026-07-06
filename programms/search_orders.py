@@ -27,3 +27,7 @@ orders: list[Order] = [
 
 filtered_users = list(filter(
     lambda order: order["status"] == "paid" and order["amount"] > 100, orders))
+
+print(filtered_users)
+print(len(orders))
+print(len(filtered_users))
