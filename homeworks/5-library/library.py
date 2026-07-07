@@ -60,6 +60,8 @@ if len(sys.argv) < 3:
 action = sys.argv[1]
 argument = sys.argv[2]
 
+titles = [t.strip() for t in argument.split(",")]
+
 
 def format_entry(title: str, author: str) -> str:
     return f"{title} — {author}"
@@ -68,3 +70,4 @@ def format_entry(title: str, author: str) -> str:
 print(format_entry("Анна Каренина", books["Анна Каренина"]))
 print(action)
 print(argument)
+print(titles)
