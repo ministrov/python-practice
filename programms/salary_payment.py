@@ -35,5 +35,5 @@ employees = [
 ]
 
 active_employees = list(filter(lambda item: item["active"], employees))
-
-print(active_employees)
+sorted_employees = sorted(
+    active_employees, key=lambda item: item["salary"])
