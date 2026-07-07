@@ -10,6 +10,8 @@
         - список всех уникальных авторов
 """
 
+import sys
+
 books: dict[str, str] = {
     "Обломов": "Иван Гончаров",
     "Мастер и Маргарита": "Михаил Булгаков",
@@ -51,12 +53,14 @@ books: dict[str, str] = {
     "Машенька": "Владимир Набоков",
 }
 
-print("Список всех книг:")
-for book in books.keys():
-    print(f" - {book}")
+print(sys.argv[0])
 
-print()
+# print("Список всех книг:")
+# for book in books.keys():
+#     print(f" - {book}")
 
-unique_authors = set(books.values())
+# print()
 
-print(unique_authors)
+# unique_authors = set(books.values())
+
+# print(unique_authors)
