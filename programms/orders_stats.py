@@ -21,12 +21,14 @@ orders = [
 
 def aggregate(acc: dict[str, Any], order: dict[str, Any]) -> dict[str, Any]:
     order_sum = sum(item["price"] for item in order["items"])
+    order_count = len(order["items"])
     print(order_sum)
-    acc["total_price"] = acc.get("total_price", 0) + order_sum
-    return acc
+    print(order_count)
+    return {
+        "total_price": acc["total_price"] + order_sum,
+        "total_items": acc["total_items"] + order_count
+    }
 
 
-aggregate({}, orders[0])
-
-result = reduce(aggregate, orders, {})
+result = reduce(aggregate, orders, {"total_price": 0, "total_items": 0})
 print(result)
