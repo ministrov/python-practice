@@ -53,14 +53,9 @@ books: dict[str, str] = {
     "Машенька": "Владимир Набоков",
 }
 
-print(sys.argv[0])
+if len(sys.argv) < 3:
+    print("Использование: python library.py <filter|sort> <параметр>")
+    sys.exit(1)
 
-# print("Список всех книг:")
-# for book in books.keys():
-#     print(f" - {book}")
-
-# print()
-
-# unique_authors = set(books.values())
-
-# print(unique_authors)
+action = sys.argv[1]
+argument = sys.argv[2]
