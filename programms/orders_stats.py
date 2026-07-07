@@ -1,5 +1,6 @@
 """ Цель задачи — вычислить общее количество проданных товаров и общую сумму заказов за день, используя данные, хранящиеся в словарях.
 """
+from functools import reduce
 from typing import Any
 
 
@@ -21,7 +22,11 @@ orders = [
 def aggregate(acc: dict[str, Any], order: dict[str, Any]) -> dict[str, Any]:
     order_sum = sum(item["price"] for item in order["items"])
     print(order_sum)
+    acc["total_price"] = acc.get("total_price", 0) + order_sum
     return acc
 
 
 aggregate({}, orders[0])
+
+result = reduce(aggregate, orders, {})
+print(result)
