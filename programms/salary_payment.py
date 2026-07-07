@@ -54,9 +54,10 @@ name_and_salary: list[NameSalary] = list(
     map(lambda item: {"name": item["name"], "salary": item["salary"]}, employees))
 active_employees = list(filter(lambda item: item["active"], employees))
 sorted_employees = sorted(
-    active_employees, key=lambda item: item["salary"])
-sum_of_all_salary = reduce(
+    active_employees, key=lambda item: -item["salary"])
+total_salary = reduce(
     lambda acc, item: acc + item["salary"], sorted_employees, 0)
 
-print(sum_of_all_salary)
+print(total_salary)
 print(name_and_salary)
+print(sorted_employees)
