@@ -145,6 +145,13 @@ people = [("Anna", 25), ("Boris", 19), ("Vera", 32)]
 by_age = sorted(people, key=lambda person: person[1])
 print(by_age)  # [('Boris', 19), ('Anna', 25), ('Vera', 32)]
 
+# map(func, iterable1, iterable2) — func получает по одному элементу из
+# каждого списка одновременно; результат обрывается по самому короткому
+prices = [100, 200, 300]
+quantities = [2, 1, 5]
+totals = list(map(lambda price, qty: price * qty, prices, quantities))
+print(totals)  # [200, 200, 1500]
+
 # На практике list/dict/set comprehensions (тема 2.2) чаще предпочтительнее
 # map/filter — они читаются линейнее. Но map/filter/sorted(key=...) —
 # стандартный инструмент, который встретится в чужом коде повсеместно.
