@@ -19,7 +19,18 @@
     Этот последовательный подход помогает лучше понимать каждый этап обработки данных. Выполнив упражнение, мы выделили активных сотрудников, убрали лишние поля, отсортировали по зарплате и вычислили общую сумму выплат. Это удобнее делать поэтапно для лучшей читабельности кода.
 """
 
-employees = [
+from functools import reduce
+from typing import TypedDict
+
+
+class Employee(TypedDict):
+    name: str
+    department: str
+    salary: int
+    active: bool
+
+
+employees: list[Employee] = [
     {"name": "Иван Петров", "department": "IT", "salary": 85000, "active": True},
     {"name": "Мария Сидорова", "department": "HR", "salary": 65000, "active": True},
     {"name": "Алексей Смирнов", "department": "Sales",
@@ -37,3 +48,7 @@ employees = [
 active_employees = list(filter(lambda item: item["active"], employees))
 sorted_employees = sorted(
     active_employees, key=lambda item: item["salary"])
+sum_of_all_salary = reduce(
+    lambda acc, item: acc + item["salary"], sorted_employees, 0)
+
+print(sum_of_all_salary)
