@@ -9,10 +9,12 @@
   4. Хранение функций в структурах данных (dispatch table)
   5. Атрибуты функции: __name__, __doc__
   6. lambda — анонимные функции
-  7. Встроенные функции высшего порядка: map(), filter(), sorted(key=...)
+  7. Встроенные функции высшего порядка: map(), filter(), sorted(key=...),
+     reduce()
 """
 
 from collections.abc import Callable
+from functools import reduce
 
 # ════════════════════════════════════════════════════════════════════════
 # 1. Функция — обычный объект
@@ -119,7 +121,7 @@ print(add(2, 3))  # 5
 
 
 # ════════════════════════════════════════════════════════════════════════
-# 7. Встроенные функции высшего порядка: map, filter, sorted
+# 7. Встроенные функции высшего порядка: map, filter, sorted, reduce
 # ════════════════════════════════════════════════════════════════════════
 
 numbers = [1, 2, 3, 4, 5, 6]
@@ -146,3 +148,27 @@ print(by_age)  # [('Boris', 19), ('Anna', 25), ('Vera', 32)]
 # На практике list/dict/set comprehensions (тема 2.2) чаще предпочтительнее
 # map/filter — они читаются линейнее. Но map/filter/sorted(key=...) —
 # стандартный инструмент, который встретится в чужом коде повсеместно.
+
+# reduce(func, iterable, initial) — сворачивает итерируемое в одно
+# значение: последовательно применяет func(accumulator, item), передавая
+# результат каждого шага в следующий. initial задаёт стартовое значение
+# accumulator (и то, что вернётся, если iterable пуст).
+total = reduce(lambda acc, x: acc + x, numbers, 0)
+print(total)  # 21 — (((((0+1)+2)+3)+4)+5)+6
+
+product = reduce(lambda acc, x: acc * x, numbers, 1)
+print(product)  # 720 — 1*2*3*4*5*6
+
+maximum = reduce(lambda acc, x: acc if acc > x else x, numbers)
+print(maximum)  # 6 — initial не задан, стартует с numbers[0]
+
+joined = reduce(lambda acc, w: acc + "-" + w, words)
+print(joined)  # banana-kiwi-apple-fig
+
+# Без initial reduce падает с TypeError на пустом iterable — initial
+# делает функцию безопасной для этого случая.
+empty: list[int] = []
+print(reduce(lambda acc, x: acc + x, empty, 0))  # 0
+
+# sum()/max()/min() — частные случаи reduce для чисел; используйте их
+# вместо reduce, когда задача укладывается в готовую встроенную функцию.
