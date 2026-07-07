@@ -58,6 +58,9 @@ sorted_employees = sorted(
 total_salary = reduce(
     lambda acc, item: acc + item["salary"], sorted_employees, 0)
 
-print(total_salary)
-print(name_and_salary)
-print(sorted_employees)
+words = ["solar", "wind", "hydro", "nuclear", "geothermal"]
+
+# Ваш код здесь
+result_string = reduce(lambda a, b: a + "-" + b, words)
+
+print(result_string)
