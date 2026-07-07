@@ -61,6 +61,7 @@ action = sys.argv[1]
 argument = sys.argv[2]
 
 titles = [t.strip() for t in argument.split(",")]
+filtered = filter(lambda pair: pair[0] in titles, books.items())
 
 
 def format_entry(title: str, author: str) -> str:
@@ -71,3 +72,5 @@ print(format_entry("Анна Каренина", books["Анна Каренина
 print(action)
 print(argument)
 print(titles)
+print(books.items())
+# print(filtered)
