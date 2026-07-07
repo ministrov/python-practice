@@ -33,3 +33,7 @@ employees = [
         "salary": 68000, "active": True},
     {"name": "Анна Лебедева", "department": "HR", "salary": 63000, "active": True},
 ]
+
+active_employees = list(filter(lambda item: item["active"], employees))
+
+print(active_employees)
