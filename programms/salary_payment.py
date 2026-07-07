@@ -30,6 +30,11 @@ class Employee(TypedDict):
     active: bool
 
 
+class NameSalary(TypedDict):
+    name: str
+    salary: int
+
+
 employees: list[Employee] = [
     {"name": "Иван Петров", "department": "IT", "salary": 85000, "active": True},
     {"name": "Мария Сидорова", "department": "HR", "salary": 65000, "active": True},
@@ -45,6 +50,8 @@ employees: list[Employee] = [
     {"name": "Анна Лебедева", "department": "HR", "salary": 63000, "active": True},
 ]
 
+name_and_salary: list[NameSalary] = list(
+    map(lambda item: {"name": item["name"], "salary": item["salary"]}, employees))
 active_employees = list(filter(lambda item: item["active"], employees))
 sorted_employees = sorted(
     active_employees, key=lambda item: item["salary"])
@@ -52,3 +59,4 @@ sum_of_all_salary = reduce(
     lambda acc, item: acc + item["salary"], sorted_employees, 0)
 
 print(sum_of_all_salary)
+print(name_and_salary)
