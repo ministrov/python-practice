@@ -59,3 +59,6 @@ if len(sys.argv) < 3:
 
 action = sys.argv[1]
 argument = sys.argv[2]
+
+print(action)
+print(argument)
