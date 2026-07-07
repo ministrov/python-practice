@@ -60,5 +60,11 @@ if len(sys.argv) < 3:
 action = sys.argv[1]
 argument = sys.argv[2]
 
+
+def format_entry(title: str, author: str) -> str:
+    return f"{title} — {author}"
+
+
+print(format_entry("Анна Каренина", books["Анна Каренина"]))
 print(action)
 print(argument)
