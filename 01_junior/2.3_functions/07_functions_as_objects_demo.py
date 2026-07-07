@@ -131,6 +131,21 @@ numbers = [1, 2, 3, 4, 5, 6]
 squared = list(map(lambda x: x * x, numbers))
 print(squared)  # [1, 4, 9, 16, 25, 36]
 
+# map(func, iterable1, iterable2) — func получает по одному элементу из
+# каждого списка одновременно; результат обрывается по самому короткому
+prices = [100, 200, 300]
+quantities = [2, 1, 5]
+totals = list(map(lambda price, qty: price * qty, prices, quantities))
+print(totals)  # [200, 200, 1500]
+
+# Реализуйте программу, которая использует `map` с двумя списками и lambda-функцией для поэлементного вычисления максимума из пар соответствующих элементов.
+temps_day = [22, 15, 30, 8, 27]
+temps_night = [18, 20, 25, 13, 19]
+
+temps_result = list(
+    map(lambda a, b: a if a >= b else b, temps_day, temps_night))
+print(temps_result)
+
 # filter(func, iterable) — оставляет только элементы, где func(x) истинно
 evens = list(filter(lambda x: x % 2 == 0, numbers))
 print(evens)  # [2, 4, 6]
@@ -144,13 +159,6 @@ print(by_length)  # ['fig', 'kiwi', 'apple', 'banana']
 people = [("Anna", 25), ("Boris", 19), ("Vera", 32)]
 by_age = sorted(people, key=lambda person: person[1])
 print(by_age)  # [('Boris', 19), ('Anna', 25), ('Vera', 32)]
-
-# map(func, iterable1, iterable2) — func получает по одному элементу из
-# каждого списка одновременно; результат обрывается по самому короткому
-prices = [100, 200, 300]
-quantities = [2, 1, 5]
-totals = list(map(lambda price, qty: price * qty, prices, quantities))
-print(totals)  # [200, 200, 1500]
 
 # На практике list/dict/set comprehensions (тема 2.2) чаще предпочтительнее
 # map/filter — они читаются линейнее. Но map/filter/sorted(key=...) —
