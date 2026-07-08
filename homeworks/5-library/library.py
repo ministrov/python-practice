@@ -68,6 +68,9 @@ def format_entry(title: str, author: str) -> str:
     return f"{title} — {author}"
 
 
+pair_strings: list[str] = list(
+    map(lambda pair: format_entry(*pair), books.items()))
+
 result = list(map(lambda pair: format_entry(*pair), filtered))
 
 if not result:
@@ -76,3 +79,5 @@ if not result:
 
 for line in result:
     print(line)
+
+print(pair_strings)
