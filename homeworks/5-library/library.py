@@ -1,6 +1,6 @@
 """ Домашнее задание по теме словари
 
-    Задача: Создать словарь books, где ключ — название книги,
+    1. Задача: Создать словарь books, где ключ — название книги,
         значение — автор.
         Добавить несколько записей. При этом у одного автора
         может быть несколько книг.
@@ -8,7 +8,11 @@
     Вывести:
         - список всех книг
         - список всех уникальных авторов
+
+    2. Задача: программа работает с каталогом `books` (название → автор) и в зависимости от `action` (`sys.argv[1]`) либо фильтрует книги, либо сортирует список.
 """
+
+import sys
 
 books: dict[str, str] = {
     "Обломов": "Иван Гончаров",
@@ -51,12 +55,47 @@ books: dict[str, str] = {
     "Машенька": "Владимир Набоков",
 }
 
-print("Список всех книг:")
-for book in books.keys():
-    print(f" - {book}")
+if len(sys.argv) < 3:
+    print("Использование: python library.py <filter|sort> <параметр>")
+    sys.exit(1)
 
-print()
+action = sys.argv[1]
+argument = sys.argv[2]
 
-unique_authors = set(books.values())
 
-print(unique_authors)
+def format_entry(title: str, author: str) -> str:
+    return f"{title} — {author}"
+
+
+if action == "filter":
+    titles = [t.strip() for t in argument.split(",")]
+    filtered = filter(lambda pair: pair[0] in titles, books.items())
+
+    result = list(map(lambda pair: format_entry(*pair), filtered))
+
+    if not result:
+        print("Такого названия книги нет, выберите другое название")
+        sys.exit(1)
+
+    for line in result:
+        print(line)
+elif action == "sort":
+    pair_strings: list[str] = list(
+        map(lambda pair: format_entry(*pair), books.items()))
+
+    if argument == "book":
+        sort_key_index = 0
+    elif argument == "author":
+        sort_key_index = 1
+    else:
+        print("Неизвестный параметр сортировки, используйте 'book' или 'author'")
+        sys.exit(1)
+
+    sorted_strings = sorted(
+        pair_strings, key=lambda s: s.split(" — ")[sort_key_index])
+
+    for line in sorted_strings:
+        print(line)
+else:
+    print(f"Неизвестное действие: {action}. Используйте 'filter' или 'sort'")
+    sys.exit(1)
