@@ -68,9 +68,7 @@ def format_entry(title: str, author: str) -> str:
     return f"{title} — {author}"
 
 
-print(format_entry("Анна Каренина", books["Анна Каренина"]))
-print(action)
-print(argument)
-print(titles)
-print(books.items())
-# print(filtered)
+result = list(map(lambda pair: format_entry(*pair), filtered))
+
+for line in result:
+    print(line)
