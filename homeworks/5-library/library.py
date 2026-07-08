@@ -70,5 +70,9 @@ def format_entry(title: str, author: str) -> str:
 
 result = list(map(lambda pair: format_entry(*pair), filtered))
 
+if not result:
+    print("Такого названия книги нет, выберите другое название")
+    sys.exit(1)
+
 for line in result:
     print(line)
