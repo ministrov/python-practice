@@ -52,8 +52,8 @@ result_a: list[int] = list(map(triple, nums))
 print("result_a =", result_a)
 
 # type: ignore # упадёт с ошибкой
-result_b: list[int] = list(map(triple(nums[0]), nums))
-print("result_b =", result_b)
+# result_b: list[int] = list(map(triple(nums[0]), nums))
+# print("result_b =", result_b)
 
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 2: filter() с кортежами — распаковка внутри lambda")
@@ -75,9 +75,28 @@ items = [(1, -5), (2, 3), (3, -1), (4, 8)]
 и почему это не то же самое, что map(func, list1, list2).
 """)
 
+items: list[tuple[int, int]] = [(1, -5), (2, 3), (3, -1), (4, 8)]
+
 # ТВОЙ ПРОГНОЗ 2.1:
+# lambda получает pair целиком — один кортеж (id, balance).
+# pair[1] > 0 проверяет баланс.
+# -> [(2, 3), (4, 8)]
+ok_a = list(filter(lambda pair: pair[1] > 0, items))
+print("ok_a =", ok_a)
 # ТВОЙ ПРОГНОЗ 2.2:
-# ТВОЁ ОБЪЯСНЕНИЕ (если 2.2 упал):
+# filter() на каждой итерации передаёт lambda РОВНО ОДИН аргумент —
+# сам элемент списка (весь кортеж целиком), а не распакованные id и balance.
+# lambda с сигнатурой (item_id, balance) ждёт ДВА аргумента —
+# получит один -> TypeError: missing 1 required positional argument
+# ok_b = list(filter(lambda item_id, balance: balance > 0, items))
+# print("ok_b =", ok_b)
+# ТВОЁ ОБЪЯСНЕНИЕ (если 2.2 упал): filter() вызывает lambda один раз
+# на каждый элемент items, передавая ОДИН аргумент — сам элемент
+# (кортеж целиком). lambda(item_id, balance) ждёт два отдельных
+# аргумента, а не один кортеж -> TypeError: missing 1 required
+# positional argument: 'balance'. Это не то же самое, что
+# map(func, list1, list2) — там на каждый шаг реально даются два
+# ОТДЕЛЬНЫХ значения из двух разных итерируемых, а не один кортеж.
 
 # ТВОЙ КОД ЗДЕСЬ:
 
