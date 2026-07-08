@@ -42,17 +42,13 @@
 2. [x] Примени `filter()` к `books.items()`: лямбда проверяет, что `title`
    (первый элемент пары) входит в список нужных названий из шага 1
    (сделано: `filtered = filter(lambda pair: pair[0] in titles, books.items())`).
-3. [ ] **← продолжить отсюда завтра.** Результат `filter` — пары
-   `(title, author)`. Примени `map()` с `format_entry`, распаковывая
-   пару:
-   ```python
-   result = list(map(lambda pair: format_entry(*pair), filtered))
-   print(result)
-   ```
-4. [ ] Выведи результат построчно (можно вместо/вместе с `print(result)`
-   сделать `for line in result: print(line)`).
-5. [ ] Крайний случай: если после `filter` список пуст — выведи отдельное
-   сообщение, а не пустой список.
+3. [x] Результат `filter` — пары `(title, author)`. Примени `map()` с
+   `format_entry`, распаковывая пару (сделано:
+   `result = list(map(lambda pair: format_entry(*pair), filtered))`).
+4. [x] Выведи результат построчно (сделано:
+   `for line in result: print(line)`).
+5. [ ] **← продолжить отсюда.** Крайний случай: если после `filter`
+   список пуст — выведи отдельное сообщение, а не пустой список.
 
 ## Шаг 4. Ветка `action == "sort"`
 
