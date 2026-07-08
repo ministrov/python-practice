@@ -80,4 +80,16 @@ if not result:
 for line in result:
     print(line)
 
-print(pair_strings)
+if argument == "book":
+    sort_key_index = 0
+elif argument == "author":
+    sort_key_index = 1
+else:
+    print("Неизвестный параметр сортировки, используйте 'book' или 'author'")
+    sys.exit(1)
+
+sorted_strings = sorted(
+    pair_strings, key=lambda s: s.split(" — ")[sort_key_index])
+
+for line in sorted_strings:
+    print(line)
