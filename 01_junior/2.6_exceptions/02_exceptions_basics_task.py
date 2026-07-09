@@ -105,6 +105,23 @@ print("""
 # ТВОЙ КОД ЗДЕСЬ:
 
 
+def convert_to_positive(n: float):
+    try:
+        if n < 0:
+            raise ValueError("число отрицательное")
+    except ValueError as e:
+        print(f"Ошибка {e}")
+        return None
+    else:
+        print("Ok")
+        return n
+    finally:
+        print("Проверка завершена")
+
+
+print(convert_to_positive(5))
+print(convert_to_positive(-3))
+
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 5: raise вручную")
 print("=" * 60)
