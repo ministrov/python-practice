@@ -120,11 +120,33 @@ words = ["kiwi", "fig", "banana", "date"]
 угадал ли тип.
 """)
 
+words = ["kiwi", "fig", "banana", "date"]
+
 # ТВОЙ ПРОГНОЗ 3.1:
+# key=len — это ФУНКЦИЯ len, ссылка на неё, без вызова.
+# sorted вызовет len(x) сама для каждого элемента.
+# Длины: kiwi=4, fig=3, banana=6, date=4
+# Сортировка стабильна, значит при равных длинах (kiwi и date, обе 4)
+# порядок между ними сохранится как в исходном списке (kiwi раньше date).
+# Ожидаю: ['fig', 'kiwi', 'date', 'banana']
+
+by_len_a: list[str] = sorted(words, key=len)
+print("3.1 by_len_a =", by_len_a)
 # ТВОЙ ПРОГНОЗ 3.2 (тип ошибки):
-
+# len(words[0]) — это ВЫЗОВ len прямо сейчас, до всякой сортировки.
+# words[0] = "kiwi", len("kiwi") = 4 (обычное целое число int).
+# То есть key получит не функцию, а число 4.
+# sorted попытается сделать key(element), то есть 4(element) —
+# а int не является вызываемым объектом.
+# Ожидаемая ошибка: TypeError ("'int' object is not callable")
 # ТВОЙ КОД ЗДЕСЬ:
-
+try:
+    # намеренно: key=len(words[0]) — это int, а не функция; строка
+    # существует, чтобы показать TypeError на строке 3.2, не баг типов
+    by_len_b: list[str] = sorted(words, key=len(words[0]))  # type: ignore
+    print("3.2 by_len_b =", by_len_b)  # type: ignore
+except Exception as e:
+    print(f"3.2 Ошибка: {type(e).__name__}: {e}")
 
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 4: map() с ДВУМЯ итерируемыми — когда lambda с двумя "
