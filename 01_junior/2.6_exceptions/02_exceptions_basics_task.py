@@ -78,6 +78,18 @@ print("""
 # ТВОЙ КОД ЗДЕСЬ:
 
 
+def get_item(items: list[int], index: int | str) -> int | None:
+    try:
+        return items[index]  # type: ignore
+    except (IndexError, TypeError) as e:
+        print(f"Не удалось получить элемент: {type(e).__name__}: {e}")
+        return None
+
+
+print(get_item([1, 2, 3], 1))
+print(get_item([1, 2, 3], 99))
+print(get_item([1, 2, 3], "x"))
+
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 4: else и finally")
 print("=" * 60)
