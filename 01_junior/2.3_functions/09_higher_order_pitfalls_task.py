@@ -202,10 +202,37 @@ prices = [100, 200, 300]
     с фиксированным rate=0.2 к каждой цене из prices.
 """)
 
+
+def add_tax(price: float, rate: float) -> float:
+    return price * (1 + rate)
+
+
+prices = [100, 200, 300]
+
 # ТВОЙ ПРОГНОЗ 5.1:
+# # add_tax(0.2) — это ВЫЗОВ функции add_tax ПРЯМО СЕЙЧАС, при построении
+# аргумента для map(). Python должен сначала вычислить всё, что стоит
+# внутри скобок map(...), и только потом передать результат в map.
+# add_tax(0.2) означает: price=0.2, а rate не передан.
+# У rate нет значения по умолчанию — значит ошибка произойдёт
+# ДО старта map, ДО какого-либо перебора prices, прямо на этапе
+# вычисления аргумента.
+# Тип ошибки: TypeError
+# Сообщение (примерно): add_tax() missing 1 required positional
+# argument: 'rate'
 
-# ТВОЙ КОД ЗДЕСЬ:
+# ТВОЙ ПРОГНОЗ 5.2:
+try:
+    # намеренно: add_tax(0.2) вызывается сразу и падает ДО map/prices —
+    # строка существует, чтобы показать TypeError, не баг типов
+    result: list[float] = list(map(add_tax(0.2), prices))  # type: ignore
+    print("5.2 result =", result)  # type: ignore
+except Exception as e:
+    print(f"5.2 Ошибка: {type(e).__name__}: {e}")
 
+# ТВОЙ ПРОГНОЗ 5.3:
+result_ok = list(map(lambda price: add_tax(price, 0.2), prices))
+print("5.3 result_ok =", result_ok)
 
 print("\n" + "=" * 60)
 print("КОНЕЦ. Правило на будущее: каждый прогноз — ДО запуска, "
