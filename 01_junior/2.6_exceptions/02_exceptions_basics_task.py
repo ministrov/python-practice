@@ -137,6 +137,18 @@ print("""
 # ТВОЙ КОД ЗДЕСЬ:
 
 
+def validate_age(age: int) -> int:
+    if age < 0 or age > 150:
+        raise ValueError(f"Ошибка возраста: {age}")
+    else:
+        return age
+
+
+try:
+    validate_age(200)
+except ValueError as e:
+    print(f"Текст ошибки: {e}")
+
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 6: Иерархия исключений")
 print("=" * 60)
