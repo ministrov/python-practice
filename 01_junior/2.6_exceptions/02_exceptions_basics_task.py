@@ -201,6 +201,25 @@ print("""
 # ТВОЙ КОД ЗДЕСЬ:
 
 
+class NegativeBalanceError(Exception):
+    def __init__(self, amount: float) -> None:
+        self.amount = amount
+        message: str = f"Баланс не может стать отрицательным: {amount}"
+        super().__init__(message)
+
+
+def withdraw(balance: float, amount: float) -> float:
+    if amount > balance:
+        raise NegativeBalanceError(amount - balance)
+    else:
+        return balance - amount
+
+
+try:
+    withdraw(100, 150)
+except NegativeBalanceError as e:
+    print(f"Ошибка: {e}")
+
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 8: Комплексное — обработка списка операций")
 print("=" * 60)
