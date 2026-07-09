@@ -6,6 +6,8 @@
 Совет: посмотри 01_exceptions_basics_demo.py если застрял.
 """
 
+from typing import Any
+
 print("=" * 60)
 print("ЗАДАНИЕ 1: Базовый try/except")
 print("=" * 60)
@@ -43,6 +45,22 @@ print("""
 
 # ТВОЙ КОД ЗДЕСЬ:
 
+
+def parse_int(value: Any) -> int | None:
+    try:
+        return int(value)
+    except ValueError:
+        print(f"Ошибка: '{value}' — это не число (ValueError)")
+        return None
+    except TypeError:
+        print(
+            f"Ошибка: передан не подходящий тип {type(value).__name__} вместо строки/числа (TypeError)")
+        return None
+
+
+print(parse_int("42"))
+print(parse_int("abc"))
+print(parse_int(None))
 
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 3: Один except на несколько типов + as e")
