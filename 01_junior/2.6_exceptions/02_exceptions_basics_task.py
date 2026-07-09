@@ -20,6 +20,16 @@ print("""
 # ТВОЙ КОД ЗДЕСЬ:
 
 
+def safe_divide(a: int, b: int) -> float | None:
+    try:
+        return a / b
+    except ZeroDivisionError:
+        print("Делить на ноль запрещено")
+
+
+print(safe_divide(10, 2))
+print(safe_divide(10, 0))
+
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 2: Несколько except подряд")
 print("=" * 60)
