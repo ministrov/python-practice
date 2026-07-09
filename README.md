@@ -1,7 +1,7 @@
 # Python Backend Developer Journey
 
 > Практический курс: от нуля до Python backend разработчика
-> Старт: 2026-06-06 | Уровень: Junior | Текущий блок: 2.3 — Функции (темы 1-4 завершены + закрепление темы 4 — 2026-07-09)
+> Старт: 2026-06-06 | Уровень: Junior | Текущий блок: 2.3 — Функции (все темы завершены + закрепление — 2026-07-09, ждёт финальную оценку)
 
 ## Цель проекта
 
@@ -17,7 +17,7 @@
 |------|------|--------|
 | 2.1 | Фундамент языка | ЗАВЕРШЕН |
 | 2.2 | Структуры данных | Задания завершены, оценка 2026-06-27 |
-| 2.3 | Функции | В процессе |
+| 2.3 | Функции | Темы завершены, ждёт финальную оценку |
 | 2.4–2.9 | ООП, типизация, БД, FastAPI, Git | Запланировано |
 
 ---
@@ -46,13 +46,12 @@
 │   ├── 09_list_comprehensions_demo.py + 10_list_comprehensions_task.py
 │   └── 11_choosing_structures_demo.py + 12_choosing_structures_task.py
 │
-├── 2.3_functions/              # В процессе (темы 1-4 завершены)
+├── 2.3_functions/              # Темы завершены, ждёт финальную оценку
 │   ├── 01_functions_basics_demo.py + 02_functions_basics_task.py
 │   ├── 03_args_kwargs_demo.py + 04_args_kwargs_task.py
 │   ├── 05_legb_demo.py + 06_legb_task.py
 │   ├── 07_functions_as_objects_demo.py + 08_functions_as_objects_task.py
-│   ├── 09_higher_order_pitfalls_task.py    # закрепление темы 4, мини-тест 5/5
-│   └── (далее: основы обработки ошибок — try/except/raise)
+│   └── 09_higher_order_pitfalls_task.py    # закрепление темы 4, мини-тест 5/5
 │
 ├── 2.4_oop/                    # Запланировано
 ├── 2.5_typing/                 # Запланировано
