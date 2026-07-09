@@ -1,0 +1,43 @@
+""" В этой лекции мы начинаем разработку финального проекта - консольного менеджера задач на Python. Вот основные моменты:
+
+    Создание консольного приложения для управления задачами.
+    Возможности: добавление, удаление, изменение задач, получение списка текущих задач, работа с тегами.
+    Задачи будут храниться в специальном хранилище, что позволит использовать проект как полноценный таск трекер.
+"""
+
+
+def main():
+    print("Task менеджер. help - для справки")
+
+    while True:
+        try:
+            raw = input("> ").strip()
+            parts = raw.split()
+            cmd, args = parts[0], parts[1:]
+
+            print(args)
+
+            match cmd.lower():
+                case "help":
+                    pass
+                case "add":
+                    pass
+                case "remove":
+                    pass
+                case "edit":
+                    pass
+                case "tags":
+                    pass
+                case "exit":
+                    break
+                case _:
+                    print("Неизвестная команда")
+
+        except KeyboardInterrupt:
+            print("\n Завершение приложения...")
+            break
+        except Exception as e:
+            print(f"[ERROR]: {e}")
+
+
+main()
