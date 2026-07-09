@@ -235,10 +235,22 @@ print("""
 8.3 В конце (после всех операций, через finally или просто после цикла)
     напечатай "Обработка завершена".
 """)
+operations = [(10, 2), (5, 0), (9, 3), ("x", 2)]
 
 # ТВОЙ КОД ЗДЕСЬ:
 
 
+def process_operations(operations: list[tuple[Any, Any]]):
+    for a, b in operations:
+        try:
+            result = a / b
+            print(f"{a} / {b} = {result}")
+        except (ZeroDivisionError, TypeError) as e:
+            print(f"{a} / {b} -> ошибка: {type(e).__name__}")
+    print("Обработка завершена")
+
+
+process_operations(operations)
 print("\n" + "=" * 60)
 print("КОНЕЦ ЗАДАНИЙ, ПРОВЕРЬ ЧТО ВСЕ ЗАДАНИЯ РАБОТАЮТ!")
 print("=" * 60)
