@@ -7,4 +7,30 @@
 
 
 def main():
-    pass
+    print("Task менеджер. help - для справки")
+
+    while True:
+        raw = input("> ").strip()
+        parts = raw.split()
+        cmd, args = parts[0], parts[1:]
+
+        print(args)
+
+        match cmd.lower():
+            case "help":
+                pass
+            case "add":
+                pass
+            case "remove":
+                pass
+            case "edit":
+                pass
+            case "tags":
+                pass
+            case "exit":
+                break
+            case _:
+                print("Неизвестная команда")
+
+
+main()
