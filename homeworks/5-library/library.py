@@ -61,6 +61,23 @@ books: dict[str, str] = {
     "Машенька": "Владимир Набоков",
 }
 
+
+class LibraryError(Exception):
+    """ Базовый класс ошибки библиотеки """
+
+
+class NoFilterTextError(LibraryError):
+    """ Класс ошибки отсутствия текста в фильтре """
+
+
+class WrongCommandError(LibraryError):
+    """ Класс ошибки кривой команды """
+
+
+class WrongSortingParamError(LibraryError):
+    """ Класс ошибки кривого параметра сортировки"""
+
+
 if len(sys.argv) < 3:
     print("Использование: python library.py <filter|sort> <параметр>")
     sys.exit(1)
