@@ -66,8 +66,8 @@ class LibraryError(Exception):
     """ Базовый класс ошибки библиотеки """
 
 
-class NoFilterTextError(LibraryError):
-    """ Класс ошибки отсутствия текста в фильтре """
+class BookNotFoundError(LibraryError):
+    """ Класс ошибки книга не найдена """
 
 
 class WrongCommandError(LibraryError):
@@ -78,47 +78,50 @@ class WrongSortingParamError(LibraryError):
     """ Класс ошибки кривого параметра сортировки"""
 
 
-if len(sys.argv) < 3:
-    print("Использование: python library.py <filter|sort> <параметр>")
-    sys.exit(1)
-
-action = sys.argv[1]
-argument = sys.argv[2]
-
-
 def format_entry(title: str, author: str) -> str:
     return f"{title} — {author}"
 
 
-if action == "filter":
-    titles = [t.strip() for t in argument.split(",")]
-    filtered = filter(lambda pair: pair[0] in titles, books.items())
+try:
+    if len(sys.argv) < 3:
+        raise LibraryError(
+            "Использование: python library.py <filter|sort> <параметр>")
 
-    result = list(map(lambda pair: format_entry(*pair), filtered))
+    action = sys.argv[1]
+    argument = sys.argv[2]
 
-    if not result:
-        print("Такого названия книги нет, выберите другое название")
-        sys.exit(1)
+    if action == "filter":
+        titles = [t.strip() for t in argument.split(",")]
+        filtered = filter(lambda pair: pair[0] in titles, books.items())
 
-    for line in result:
-        print(line)
-elif action == "sort":
-    pair_strings: list[str] = list(
-        map(lambda pair: format_entry(*pair), books.items()))
+        result = list(map(lambda pair: format_entry(*pair), filtered))
 
-    if argument == "book":
-        sort_key_index = 0
-    elif argument == "author":
-        sort_key_index = 1
+        if not result:
+            raise BookNotFoundError(
+                "Такого названия книги нет, выберите другое название")
+
+        for line in result:
+            print(line)
+    elif action == "sort":
+        pair_strings: list[str] = list(
+            map(lambda pair: format_entry(*pair), books.items()))
+
+        if argument == "book":
+            sort_key_index = 0
+        elif argument == "author":
+            sort_key_index = 1
+        else:
+            raise WrongSortingParamError(
+                "Неизвестный параметр сортировки, используйте 'book' или 'author'")
+
+        sorted_strings = sorted(
+            pair_strings, key=lambda s: s.split(" — ")[sort_key_index])
+
+        for line in sorted_strings:
+            print(line)
     else:
-        print("Неизвестный параметр сортировки, используйте 'book' или 'author'")
-        sys.exit(1)
-
-    sorted_strings = sorted(
-        pair_strings, key=lambda s: s.split(" — ")[sort_key_index])
-
-    for line in sorted_strings:
-        print(line)
-else:
-    print(f"Неизвестное действие: {action}. Используйте 'filter' или 'sort'")
+        raise WrongCommandError(
+            f"Неизвестное действие: {action}. Используйте 'filter' или 'sort'")
+except LibraryError as e:
+    print(e)
     sys.exit(1)
