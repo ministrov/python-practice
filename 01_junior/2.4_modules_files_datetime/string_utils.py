@@ -1,5 +1,7 @@
 """ Функции, которые возвращает строку задом наперед и считает гласные в строке"""
 
+print("string_utils загружается")
+
 
 def reverse_string(text: str) -> str:
     return text[::-1]

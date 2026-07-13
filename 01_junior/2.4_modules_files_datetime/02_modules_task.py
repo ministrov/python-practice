@@ -9,6 +9,8 @@
 застрял с форматом.
 """
 
+from importlib import import_module
+
 import string_utils as su
 from string_utils import reverse_string
 import string_utils
@@ -89,9 +91,11 @@ print("""
     где он уже был импортирован) и объясни в комментарии — почему
     строка "string_utils загружается" не напечаталась второй раз.
 """)
-
 # ТВОЙ КОД И ОТВЕТ ЗДЕСЬ:
-
+import_module("string_utils")
+# строка "string_utils загружается"
+# не напечаталась второй раз потому
+# что string_utils уже находится в объекте sys.modules
 
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 6: Свой пакет")
