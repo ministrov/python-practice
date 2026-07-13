@@ -9,6 +9,7 @@
 застрял с форматом.
 """
 
+from text_pkg import shout
 from importlib import import_module
 
 import string_utils as su
@@ -112,6 +113,7 @@ print("""
 
 # ТВОЙ КОД ЗДЕСЬ:
 
+print(shout("My"))
 
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 7: sys.path")
