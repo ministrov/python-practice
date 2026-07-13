@@ -9,6 +9,8 @@
 застрял с форматом.
 """
 
+import string_utils
+
 print("=" * 60)
 print("ЗАДАНИЕ 1: Свой первый модуль")
 print("=" * 60)
@@ -23,7 +25,8 @@ print("""
 """)
 
 # ТВОЙ КОД ЗДЕСЬ:
-
+print(string_utils.reverse_string("Привет, мир"))
+print(string_utils.count_vowels("Привет, мир"))
 
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 2: from ... import")
