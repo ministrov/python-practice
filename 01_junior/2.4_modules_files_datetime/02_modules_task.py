@@ -11,6 +11,7 @@
 
 from text_pkg import shout
 from importlib import import_module
+import sys
 
 import string_utils as su
 from string_utils import reverse_string
@@ -126,7 +127,10 @@ print("""
 """)
 
 # ТВОЙ КОД И ОТВЕТ ЗДЕСЬ:
-
+print(sys.path[0])
+# `import string_utils` в этом файле сработал
+# без какой-либо дополнительной настройки,
+# потому что string_utils.py лежит с ним на одном уровне
 
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 8: Комплексное — модуль, использующий другой модуль")
