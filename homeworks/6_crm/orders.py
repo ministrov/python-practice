@@ -1,1 +1,38 @@
 """ Модуль заказов """
+
+from typing import Literal, TypedDict
+
+
+OrderStatus = Literal["new", "in_progress", "done", "cancelled"]
+
+
+class Order(TypedDict):
+    id: int
+    title: str
+    amount: float
+    email: str
+    status: OrderStatus
+    tags: set[str]
+    created_at: str
+    due: str | None
+    closed_at: str | None
+
+
+def create_order(orders: list[Order], order: Order):
+    """ Добавить новый заказ в список заказов """
+    pass
+
+
+def list_orders(orders: list[Order]):
+    """ Вернуть список заказов """
+    pass
+
+
+def edit_order(orders: list[Order], order_id: int, updates: dict[str, object]):
+    """ Изменить поля заказа по id """
+    pass
+
+
+def remove_order(orders: list[Order], order_id: int):
+    """ Удалить заказ по id """
+    pass
