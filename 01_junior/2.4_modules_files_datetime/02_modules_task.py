@@ -1,0 +1,154 @@
+# -*- coding: utf-8 -*-
+"""
+Блок 2.4.1: Практика — модули
+════════════════════════════════════════════════════════════════════════
+8 ЗАДАНИЙ для самостоятельного решения.
+Часть заданий требует СОЗДАТЬ СВОИ .py-файлы рядом с этим файлом — это
+нормально для темы "модули": сама тема про работу с несколькими файлами.
+Совет: посмотри 01_modules_demo.py и geometry.py/shapes_pkg рядом, если
+застрял с форматом.
+"""
+
+import text_report as rp
+from text_pkg import shout
+from importlib import import_module
+import sys
+
+import string_utils as su
+from string_utils import reverse_string
+import string_utils
+
+print("=" * 60)
+print("ЗАДАНИЕ 1: Свой первый модуль")
+print("=" * 60)
+print("""
+1.1 Создай рядом с этим файлом новый файл string_utils.py.
+1.2 В нём определи функцию reverse_string(text: str) -> str,
+    которая возвращает текст задом наперёд.
+1.3 В нём же определи функцию count_vowels(text: str) -> int,
+    которая считает гласные (а, е, ё, и, о, у, ы, э, ю, я) в тексте.
+1.4 Здесь, в этом файле, сделай `import string_utils` и вызови обе
+    функции на любом тексте — например, "Привет, мир".
+""")
+
+# ТВОЙ КОД ЗДЕСЬ:
+print(string_utils.reverse_string("Привет, мир"))
+print(string_utils.count_vowels("Привет, мир"))
+
+print("\n" + "=" * 60)
+print("ЗАДАНИЕ 2: from ... import")
+print("=" * 60)
+print("""
+2.1 Сделай `from string_utils import reverse_string` — и вызови
+    reverse_string БЕЗ префикса string_utils., на другом тексте.
+""")
+
+# ТВОЙ КОД ЗДЕСЬ:
+print(reverse_string("Heoo"))
+
+print("\n" + "=" * 60)
+print("ЗАДАНИЕ 3: import ... as")
+print("=" * 60)
+print("""
+3.1 Импортируй string_utils с псевдонимом su:
+    import string_utils as su
+3.2 Проверь, что su.reverse_string(...) работает, и что
+    `su is string_utils` -> True.
+""")
+
+
+# ТВОЙ КОД ЗДЕСЬ:
+print(su.reverse_string("Hello, world"))
+print(su is string_utils)
+
+print("\n" + "=" * 60)
+print('ЗАДАНИЕ 4: __name__ и if __name__ == "__main__"')
+print("=" * 60)
+print("""
+4.1 Добавь в string_utils.py внизу блок:
+    if __name__ == "__main__":
+        print(...)   # что угодно, например тестовый вызов функций
+4.2 Запусти string_utils.py НАПРЯМУЮ из терминала (в папке этого
+    блока: python string_utils.py) — убедись, что видишь вывод
+    из этого блока.
+4.3 Запусти ЭТОТ файл (02_modules_task.py) — убедись, что вывод из
+    if __name__ == "__main__" внутри string_utils.py НЕ появляется
+    (string_utils импортирован, а не запущен напрямую).
+4.4 Своими словами объясни в комментарии — почему так?
+""")
+
+# ТВОЙ ОТВЕТ 4.4:
+# Внутри string_utils.py __name__ == "__main__" при прямом запуске
+# (python string_utils.py) и __name__ == "string_utils" при импорте
+# из другого файла — поэтому if __name__ == "__main__" срабатывает
+# только в первом случае.
+
+print("\n" + "=" * 60)
+print("ЗАДАНИЕ 5: Кэширование при повторном импорте")
+print("=" * 60)
+print("""
+5.1 Добавь в string_utils.py, ПЕРЕД def reverse_string, строку
+    print("string_utils загружается") — на самом верхнем уровне
+    модуля (без отступа).
+5.2 Импортируй string_utils ЕЩЁ РАЗ здесь (уже после заданий 1-3,
+    где он уже был импортирован) и объясни в комментарии — почему
+    строка "string_utils загружается" не напечаталась второй раз.
+""")
+# ТВОЙ КОД И ОТВЕТ ЗДЕСЬ:
+import_module("string_utils")
+# строка "string_utils загружается"
+# не напечаталась второй раз потому
+# что string_utils уже находится в объекте sys.modules
+
+print("\n" + "=" * 60)
+print("ЗАДАНИЕ 6: Свой пакет")
+print("=" * 60)
+print("""
+6.1 Создай папку text_pkg рядом с этим файлом.
+6.2 Внутри создай text_pkg/__init__.py.
+6.3 Внутри создай text_pkg/shout.py с функцией
+    shout(text: str) -> str, которая возвращает text.upper() + "!!!".
+6.4 В text_pkg/__init__.py сделай `from .shout import shout`, чтобы
+    её можно было импортировать прямо из пакета.
+6.5 Здесь сделай `from text_pkg import shout` и вызови её.
+""")
+
+# ТВОЙ КОД ЗДЕСЬ:
+
+print(shout("My"))
+
+print("\n" + "=" * 60)
+print("ЗАДАНИЕ 7: sys.path")
+print("=" * 60)
+print("""
+7.1 Импортируй sys.
+7.2 Напечатай sys.path[0].
+7.3 В комментарии объясни: почему `import string_utils` в этом файле
+    сработал без какой-либо дополнительной настройки?
+""")
+
+# ТВОЙ КОД И ОТВЕТ ЗДЕСЬ:
+print(sys.path[0])
+# `import string_utils` в этом файле сработал
+# без какой-либо дополнительной настройки,
+# потому что string_utils.py лежит с ним на одном уровне
+
+print("\n" + "=" * 60)
+print("ЗАДАНИЕ 8: Комплексное — модуль, использующий другой модуль")
+print("=" * 60)
+print("""
+8.1 Создай файл text_report.py рядом с этим файлом.
+8.2 В text_report.py импортируй string_utils (import string_utils)
+    и определи функцию report(text: str) -> str, которая возвращает
+    строку вида:
+    f"Текст: {text} | Наоборот: {string_utils.reverse_string(text)} | "
+    f"Гласных: {string_utils.count_vowels(text)}"
+8.3 Здесь импортируй text_report и вызови report(...) на любом
+    тексте, напечатай результат.
+""")
+# ТВОЙ КОД ЗДЕСЬ:
+print(rp.report("Мой финальный отчет"))
+
+print("\n" + "=" * 60)
+print("КОНЕЦ ЗАДАНИЙ, ПРОВЕРЬ ЧТО ВСЕ ЗАДАНИЯ РАБОТАЮТ!")
+print("=" * 60)

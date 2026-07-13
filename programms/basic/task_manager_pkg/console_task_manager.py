@@ -4,6 +4,8 @@
     Возможности: добавление, удаление, изменение задач, получение списка текущих задач, работа с тегами.
     Задачи будут храниться в специальном хранилище, что позволит использовать проект как полноценный таск трекер.
 """
+from task_manager_pkg.commands.help import help_command
+from task_manager_pkg.commands.tasks import create_task
 
 
 def main():
@@ -19,7 +21,7 @@ def main():
 
             match cmd.lower():
                 case "help":
-                    pass
+                    help_command()
                 case "add":
                     pass
                 case "remove":
@@ -40,4 +42,7 @@ def main():
             print(f"[ERROR]: {e}")
 
 
-main()
+if __name__ == "__main__":
+    task = create_task(1, "Test", "low")
+    print(task)
+    main()
