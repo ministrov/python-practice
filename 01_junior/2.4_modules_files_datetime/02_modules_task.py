@@ -9,6 +9,7 @@
 застрял с форматом.
 """
 
+import text_report as rp
 from text_pkg import shout
 from importlib import import_module
 import sys
@@ -145,9 +146,8 @@ print("""
 8.3 Здесь импортируй text_report и вызови report(...) на любом
     тексте, напечатай результат.
 """)
-
 # ТВОЙ КОД ЗДЕСЬ:
-
+print(rp.report("Мой финальный отчет"))
 
 print("\n" + "=" * 60)
 print("КОНЕЦ ЗАДАНИЙ, ПРОВЕРЬ ЧТО ВСЕ ЗАДАНИЯ РАБОТАЮТ!")
