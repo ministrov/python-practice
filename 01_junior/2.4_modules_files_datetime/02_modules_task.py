@@ -9,6 +9,7 @@
 застрял с форматом.
 """
 
+from string_utils import reverse_string
 import string_utils
 
 print("=" * 60)
@@ -37,7 +38,7 @@ print("""
 """)
 
 # ТВОЙ КОД ЗДЕСЬ:
-
+print(reverse_string("Heoo"))
 
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 3: import ... as")
