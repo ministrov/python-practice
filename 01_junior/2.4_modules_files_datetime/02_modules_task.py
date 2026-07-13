@@ -9,6 +9,7 @@
 застрял с форматом.
 """
 
+import string_utils as su
 from string_utils import reverse_string
 import string_utils
 
@@ -50,8 +51,10 @@ print("""
     `su is string_utils` -> True.
 """)
 
-# ТВОЙ КОД ЗДЕСЬ:
 
+# ТВОЙ КОД ЗДЕСЬ:
+print(su.reverse_string("Hello, world"))
+print(su is string_utils)
 
 print("\n" + "=" * 60)
 print('ЗАДАНИЕ 4: __name__ и if __name__ == "__main__"')
