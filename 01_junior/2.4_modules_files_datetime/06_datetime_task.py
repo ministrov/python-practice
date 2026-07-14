@@ -163,6 +163,13 @@ print("""
 # ТВОЙ КОД ЗДЕСЬ:
 
 
+def format_deadline(start: datetime.date, days_left: int) -> str:
+    deadline = start + datetime.timedelta(days=days_left)
+    return f"Дедлайн: {deadline.strftime('%d.%m.%Y')} ({deadline.strftime('%A')})"
+
+
+print(format_deadline(datetime.date.today(), 30))
+
 print("\n" + "=" * 60)
 print("КОНЕЦ ЗАДАНИЙ, ПРОВЕРЬ ЧТО ВСЕ ЗАДАНИЯ РАБОТАЮТ!")
 print("=" * 60)
