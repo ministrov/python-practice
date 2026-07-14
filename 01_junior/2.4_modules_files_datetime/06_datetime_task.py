@@ -116,7 +116,17 @@ print("""
 """)
 
 # ТВОЙ КОД ЗДЕСЬ:
+# 6.1
+dt = datetime.datetime(2026, 11, 5, 9, 15, 30)
+iso = dt.isoformat()
+print(iso)
 
+# 6.2
+dt2 = datetime.datetime.fromisoformat(iso)
+print(dt2)
+
+# 6.3
+print(dt == dt2)
 
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 7: Возраст в днях")
