@@ -4,6 +4,7 @@
     Возможности: добавление, удаление, изменение задач, получение списка текущих задач, работа с тегами.
     Задачи будут храниться в специальном хранилище, что позволит использовать проект как полноценный таск трекер.
 """
+from shlex import split
 from task_manager_pkg.commands.help import help_command
 from task_manager_pkg.commands.tasks import create_task
 from task_manager_pkg.helpers.args import parse_add
@@ -15,10 +16,12 @@ def main():
     while True:
         try:
             raw = input("> ").strip()
-            parts = raw.split()
+            parts = split(raw)
             cmd, args = parts[0], parts[1:]
 
-            print(args)
+            # print(parts)
+
+            # print(args)
 
             match cmd.lower():
                 case "help":
