@@ -56,7 +56,12 @@ print("""
 """)
 
 # ТВОЙ КОД ЗДЕСЬ:
-
+start = datetime.date(2020, 2, 4)
+end = datetime.date(2020, 3, 5)
+gap = end - start
+print(gap)
+print(gap.days)
+print(start + datetime.timedelta(days=100))
 
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 4: strftime — форматирование")
