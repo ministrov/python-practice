@@ -5,6 +5,7 @@
 8 ЗАДАНИЙ для самостоятельного решения.
 Совет: посмотри 05_datetime_demo.py, если застрял с форматом.
 """
+import datetime
 
 print("=" * 60)
 print("ЗАДАНИЕ 1: date — базовые атрибуты")
@@ -19,7 +20,14 @@ print("""
 """)
 
 # ТВОЙ КОД ЗДЕСЬ:
-
+birthday = datetime.date(1984, 12, 25)
+print(birthday.year)
+print(birthday.month)
+print(birthday.day)
+print(birthday.weekday())
+print(birthday.isoweekday())
+# weekday() считает от 0 (пн), isoweekday() — от 1 (пн);
+# 0 в isoweekday() не встречается никогда.
 
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 2: datetime.combine")
@@ -32,7 +40,10 @@ print("""
 """)
 
 # ТВОЙ КОД ЗДЕСЬ:
-
+d = datetime.date(2020, 2, 2)
+t = datetime.time(19, 2, 2)
+dt = datetime.datetime.combine(d, t)
+print(dt)
 
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 3: timedelta — разница и прибавление")
@@ -45,7 +56,12 @@ print("""
 """)
 
 # ТВОЙ КОД ЗДЕСЬ:
-
+start = datetime.date(2020, 2, 4)
+end = datetime.date(2020, 3, 5)
+gap = end - start
+print(gap)
+print(gap.days)
+print(start + datetime.timedelta(days=100))
 
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 4: strftime — форматирование")
@@ -59,7 +75,10 @@ print("""
 """)
 
 # ТВОЙ КОД ЗДЕСЬ:
-
+now = datetime.datetime.now()
+print(now.strftime("%d.%m.%Y"))
+print(now.strftime("%Y-%m-%d %H:%M"))
+print(now.strftime("%A, %B"))
 
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 5: strptime — парсинг строк")
@@ -73,6 +92,18 @@ print("""
 
 # ТВОЙ КОД ЗДЕСЬ:
 
+s = "2026-11-05 09:15"
+
+# 5.1
+dt = datetime.datetime.strptime(s, "%Y-%m-%d %H:%M")
+print(dt)
+print(dt.year, dt.month)
+
+# 5.2
+try:
+    datetime.datetime.strptime(s, "%d/%m/%Y")
+except ValueError as e:
+    print("Ошибка:", e)
 
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 6: ISO-формат")
@@ -85,7 +116,17 @@ print("""
 """)
 
 # ТВОЙ КОД ЗДЕСЬ:
+# 6.1
+dt = datetime.datetime(2026, 11, 5, 9, 15, 30)
+iso = dt.isoformat()
+print(iso)
 
+# 6.2
+dt2 = datetime.datetime.fromisoformat(iso)
+print(dt2)
+
+# 6.3
+print(dt == dt2)
 
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 7: Возраст в днях")
@@ -101,6 +142,12 @@ print("""
 # ТВОЙ КОД ЗДЕСЬ:
 
 
+def days_since(d: datetime.date) -> int:
+    return (datetime.date.today() - d).days
+
+
+print(days_since(datetime.date(2000, 1, 1)))
+
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 8: Комплексное — дедлайн")
 print("=" * 60)
@@ -115,6 +162,13 @@ print("""
 
 # ТВОЙ КОД ЗДЕСЬ:
 
+
+def format_deadline(start: datetime.date, days_left: int) -> str:
+    deadline = start + datetime.timedelta(days=days_left)
+    return f"Дедлайн: {deadline.strftime('%d.%m.%Y')} ({deadline.strftime('%A')})"
+
+
+print(format_deadline(datetime.date.today(), 30))
 
 print("\n" + "=" * 60)
 print("КОНЕЦ ЗАДАНИЙ, ПРОВЕРЬ ЧТО ВСЕ ЗАДАНИЯ РАБОТАЮТ!")

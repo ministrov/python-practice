@@ -8,7 +8,7 @@ This is a structured Python learning repository tracking progression from Junior
 
 **Duration estimate:** 18-24 months at 10-15 hours/week
 **Current progress:** Junior Level, Block 2.1 mostly complete (fundamentals), Block 2.2 (data structures) ready
-**Target stack:** Python 3.8+, FastAPI, PostgreSQL, SQLAlchemy, Docker, Kubernetes
+**Target stack:** Python 3.12+, FastAPI, PostgreSQL, SQLAlchemy, Docker, Kubernetes
 
 ## Directory Structure & Patterns
 
@@ -182,7 +182,7 @@ When session work completes:
 
 ## Key Context for Future Sessions
 
-- User is learning Python 3.8+ systematically following a structured curriculum
+- User is learning Python 3.12+ systematically following a structured curriculum
 - The goal is backend developer proficiency (Python + SQL + web frameworks)
 - Each session typically covers 1 topic (demo + practice + micro-assessment)
 - Progress is deliberately paced: 4-6 months for Junior level, not rushed
