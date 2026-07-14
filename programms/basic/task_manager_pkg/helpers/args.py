@@ -7,19 +7,23 @@ def parse_add(args: list[str]):
     if not args:
         raise ValueError(
             "Использование: add <title> [prio=low|med|high] [[due=YYYY-MM-DD] [tags=a,b,c]")
-    # title = args[0]
-    # prio, due, tags = "med", None, None
+    title = args[0]
+    prio, due, tags = "med", None, None
 
     for arg in args[1:]:
         if arg.startswith("prio="):
-            pass
-            # prio = arg.split("=", 1)[1]
+            prio = arg.split("=", 1)[1]
         elif arg.startswith("due="):
-            pass
-            # due_string = args.split("=", 1)[1]
-            # due = parse_date(due_string)
+            due_string = arg.split("=", 1)[1]
+            try:
+                due = parse_date(due_string)
+            except ValueError:
+                raise ValueError(
+                    f"Неверный формат даты: {due_string}. Ожидаем YYYY-MM-DD")
         elif arg.startswith("tags="):
-            pass
+            tags_string = arg.split("=", 1)[1]
+            tags = tags_string.split(",")
+    return title, prio, due, tags
 
 
 def parse_date(date_str: str) -> date:
