@@ -40,7 +40,10 @@ print("""
 """)
 
 # ТВОЙ КОД ЗДЕСЬ:
-
+d = datetime.date(2020, 2, 2)
+t = datetime.time(19, 2, 2)
+dt = datetime.datetime.combine(d, t)
+print(dt)
 
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 3: timedelta — разница и прибавление")
