@@ -75,7 +75,10 @@ print("""
 """)
 
 # ТВОЙ КОД ЗДЕСЬ:
-
+now = datetime.datetime.now()
+print(now.strftime("%d.%m.%Y"))
+print(now.strftime("%Y-%m-%d %H:%M"))
+print(now.strftime("%A, %B"))
 
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 5: strptime — парсинг строк")
