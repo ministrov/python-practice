@@ -23,9 +23,9 @@ def create_order(orders: list[Order], order: Order) -> None:
     orders.append(order)
 
 
-def list_orders(orders: list[Order]):
+def list_orders(orders: list[Order]) -> list[Order]:
     """ Вернуть список заказов """
-    pass
+    return orders
 
 
 def edit_order(orders: list[Order], order_id: int, updates: dict[str, object]):
