@@ -142,6 +142,12 @@ print("""
 # ТВОЙ КОД ЗДЕСЬ:
 
 
+def days_since(d: datetime.date) -> int:
+    return (datetime.date.today() - d).days
+
+
+print(days_since(datetime.date(2000, 1, 1)))
+
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 8: Комплексное — дедлайн")
 print("=" * 60)
