@@ -92,6 +92,18 @@ print("""
 
 # ТВОЙ КОД ЗДЕСЬ:
 
+s = "2026-11-05 09:15"
+
+# 5.1
+dt = datetime.datetime.strptime(s, "%Y-%m-%d %H:%M")
+print(dt)
+print(dt.year, dt.month)
+
+# 5.2
+try:
+    datetime.datetime.strptime(s, "%d/%m/%Y")
+except ValueError as e:
+    print("Ошибка:", e)
 
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 6: ISO-формат")
