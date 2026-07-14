@@ -6,6 +6,7 @@
 """
 from task_manager_pkg.commands.help import help_command
 from task_manager_pkg.commands.tasks import create_task
+from task_manager_pkg.helpers.args import parse_add
 
 
 def main():
@@ -23,7 +24,8 @@ def main():
                 case "help":
                     help_command()
                 case "add":
-                    pass
+                    title, prio, due, tags = parse_add(args)
+                    print(create_task(1, title, due, prio, tags))
                 case "remove":
                     pass
                 case "edit":
