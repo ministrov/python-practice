@@ -43,6 +43,6 @@ def main():
 
 
 if __name__ == "__main__":
-    task = create_task(1, "Test", "low")
+    task = create_task(1, "Test", priority="low")
     print(task)
     main()
