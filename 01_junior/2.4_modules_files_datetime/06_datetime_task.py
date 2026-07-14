@@ -5,6 +5,7 @@
 8 ЗАДАНИЙ для самостоятельного решения.
 Совет: посмотри 05_datetime_demo.py, если застрял с форматом.
 """
+import datetime
 
 print("=" * 60)
 print("ЗАДАНИЕ 1: date — базовые атрибуты")
@@ -19,7 +20,14 @@ print("""
 """)
 
 # ТВОЙ КОД ЗДЕСЬ:
-
+birthday = datetime.date(1984, 12, 25)
+print(birthday.year)
+print(birthday.month)
+print(birthday.day)
+print(birthday.weekday())
+print(birthday.isoweekday())
+# weekday() считает от 0 (пн), isoweekday() — от 1 (пн);
+# 0 в isoweekday() не встречается никогда.
 
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 2: datetime.combine")
