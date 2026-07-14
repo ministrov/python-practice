@@ -55,6 +55,8 @@ def edit_order(
     return order
 
 
-def remove_order(orders: list[Order], order_id: int):
+def remove_order(orders: list[Order], order_id: int) -> Order:
     """ Удалить заказ по id """
-    pass
+    order = _find_order(orders, order_id)
+    orders.remove(order)
+    return order
