@@ -18,9 +18,9 @@ class Order(TypedDict):
     closed_at: str | None
 
 
-def create_order(orders: list[Order], order: Order):
+def create_order(orders: list[Order], order: Order) -> None:
     """ Добавить новый заказ в список заказов """
-    pass
+    orders.append(order)
 
 
 def list_orders(orders: list[Order]):
