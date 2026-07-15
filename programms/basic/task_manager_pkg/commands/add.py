@@ -1,6 +1,6 @@
 """ Модуль для добавления команды """
-from tasks.tasks import create_task, Task
-from helpers.args import parse_add
+from task_manager_pkg.tasks.tasks import create_task, Task
+from task_manager_pkg.helpers.args import parse_add
 
 
 def add_command(tasks: list[Task], args: list[str], next_id: int) -> int:
