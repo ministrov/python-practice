@@ -43,7 +43,7 @@ def load_tasks(path: str) -> tuple[list[Task], int]:
                 "id": int(item["id"]),
                 "title": item["title"],
                 "priority": item["priority"],
-                "tags": list(item.get("tags", [])),
+                "tags": list(item.get("tags") or []),
                 "status": item["status"],
                 "due": parse_date(item["due"]) if item["due"] else None
             }

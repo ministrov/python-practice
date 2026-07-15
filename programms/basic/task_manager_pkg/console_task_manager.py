@@ -7,14 +7,12 @@
 from shlex import split
 from task_manager_pkg.commands.help import help_command
 from task_manager_pkg.commands.add import add_command
-from task_manager_pkg.tasks.tasks import Task
-from task_manager_pkg.storage.file import save_task
+from task_manager_pkg.storage.file import save_task, load_tasks
 
 
 def main():
-    tasks: list[Task] = []
-    next_id = 1
     file_path = "task.json"
+    tasks, next_id = load_tasks(file_path)
     print("Task менеджер. help - для справки")
 
     while True:
@@ -22,12 +20,6 @@ def main():
             raw = input("> ").strip()
             parts = split(raw)
             cmd, args = parts[0], parts[1:]
-
-            print(args)
-
-            # print(parts)
-
-            # print(args)
 
             match cmd.lower():
                 case "help":
