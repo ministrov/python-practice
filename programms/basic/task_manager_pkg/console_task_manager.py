@@ -6,8 +6,11 @@
 """
 from shlex import split
 from task_manager_pkg.commands.help import help_command
-from task_manager_pkg.commands.tasks import create_task
-from task_manager_pkg.helpers.args import parse_add
+from task_manager_pkg.tasks.tasks import create_task, Task
+# from task_manager_pkg.helpers.args import parse_add
+
+tasks: list[Task] = []
+next_id = 1
 
 
 def main():
@@ -19,6 +22,8 @@ def main():
             parts = split(raw)
             cmd, args = parts[0], parts[1:]
 
+            print(args)
+
             # print(parts)
 
             # print(args)
@@ -27,8 +32,7 @@ def main():
                 case "help":
                     help_command()
                 case "add":
-                    title, prio, due, tags = parse_add(args)
-                    print(create_task(1, title, due, prio, tags))
+                    pass
                 case "remove":
                     pass
                 case "edit":
