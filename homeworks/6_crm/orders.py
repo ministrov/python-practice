@@ -1,6 +1,6 @@
 """ Модуль заказов """
 
-from typing import Literal, TypedDict
+from typing import Literal, TypedDict, cast
 
 
 OrderStatus = Literal["new", "in_progress", "done", "cancelled"]
@@ -18,21 +18,45 @@ class Order(TypedDict):
     closed_at: str | None
 
 
-def create_order(orders: list[Order], order: Order):
+def create_order(orders: list[Order], order: Order) -> None:
     """ Добавить новый заказ в список заказов """
-    pass
+    orders.append(order)
 
 
-def list_orders(orders: list[Order]):
+def list_orders(orders: list[Order]) -> list[Order]:
     """ Вернуть список заказов """
-    pass
+    return orders
 
 
-def edit_order(orders: list[Order], order_id: int, updates: dict[str, object]):
+_EDITABLE_FIELDS = {
+    "title", "amount", "email", "status", "tags", "due", "closed_at",
+}
+
+
+def _find_order(orders: list[Order], order_id: int) -> Order:
+    """ Найти заказ по id, иначе бросить KeyError """
+    for order in orders:
+        if order["id"] == order_id:
+            return order
+    raise KeyError(f"Заказ с id={order_id} не найден")
+
+
+def edit_order(
+    orders: list[Order], order_id: int, updates: dict[str, object]
+) -> Order:
     """ Изменить поля заказа по id """
-    pass
+    order = _find_order(orders, order_id)
+
+    for key, value in updates.items():
+        if key not in _EDITABLE_FIELDS:
+            raise KeyError(f"Заказу нельзя менять поле: {key}")
+        cast(dict[str, object], order)[key] = value
+
+    return order
 
 
-def remove_order(orders: list[Order], order_id: int):
+def remove_order(orders: list[Order], order_id: int) -> Order:
     """ Удалить заказ по id """
-    pass
+    order = _find_order(orders, order_id)
+    orders.remove(order)
+    return order
