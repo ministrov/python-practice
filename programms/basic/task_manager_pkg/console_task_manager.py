@@ -6,14 +6,13 @@
 """
 from shlex import split
 from task_manager_pkg.commands.help import help_command
-from task_manager_pkg.tasks.tasks import create_task, Task
-# from task_manager_pkg.helpers.args import parse_add
-
-tasks: list[Task] = []
-next_id = 1
+from task_manager_pkg.commands.add import add_command
+from task_manager_pkg.tasks.tasks import Task
 
 
 def main():
+    tasks: list[Task] = []
+    next_id = 1
     print("Task менеджер. help - для справки")
 
     while True:
@@ -32,6 +31,8 @@ def main():
                 case "help":
                     help_command()
                 case "add":
+                    next_id = add_command(tasks, args, next_id)
+                case "list":
                     pass
                 case "remove":
                     pass
@@ -52,6 +53,4 @@ def main():
 
 
 if __name__ == "__main__":
-    task = create_task(1, "Test", priority="low")
-    print(task)
     main()
