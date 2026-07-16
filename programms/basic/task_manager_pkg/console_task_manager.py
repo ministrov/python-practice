@@ -5,6 +5,7 @@
     Задачи будут храниться в специальном хранилище, что позволит использовать проект как полноценный таск трекер.
 """
 from shlex import split
+from task_manager_pkg.commands.edit import edit_command
 from task_manager_pkg.commands.help import help_command
 from task_manager_pkg.commands.add import add_command
 from task_manager_pkg.commands.list import list_command
@@ -33,7 +34,7 @@ def main():
                 case "remove":
                     remove_command(tasks, args)
                 case "edit":
-                    pass
+                    edit_command(tasks, args)
                 case "tags":
                     pass
                 case "exit":

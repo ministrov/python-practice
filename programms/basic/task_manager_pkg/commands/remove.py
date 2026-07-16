@@ -1,4 +1,4 @@
-""" Модуль для удаления """
+""" Модуль для удаления задачи"""
 
 from task_manager_pkg.tasks.tasks import Task
 from task_manager_pkg.tasks.tasks import remove_task
