@@ -7,6 +7,7 @@
 from shlex import split
 from task_manager_pkg.commands.help import help_command
 from task_manager_pkg.commands.add import add_command
+from task_manager_pkg.commands.list import list_command
 from task_manager_pkg.storage.file import save_task, load_tasks
 
 
@@ -27,7 +28,7 @@ def main():
                 case "add":
                     next_id = add_command(tasks, args, next_id)
                 case "list":
-                    pass
+                    list_command(tasks, args)
                 case "remove":
                     pass
                 case "edit":
