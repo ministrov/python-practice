@@ -60,3 +60,7 @@ def update_task(task: Task, **changes: str | date | None):
         if due is not None and not isinstance(due, date):
             raise TypeError("Поле due должно быть date или None")
         task["due"] = due
+
+
+def find_task(tasks: list[Task], id_: int) -> Optional[Task]:
+    return next((t for t in tasks if t["id"] == id_), None)
