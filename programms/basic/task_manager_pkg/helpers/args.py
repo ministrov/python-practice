@@ -53,7 +53,7 @@ def parse_edit(args: list[str]) -> tuple[int, dict[str, str | date]]:
         if arg.startswith("title"):
             changes["title"] = arg.split("=", 1)[1]
         if arg.startswith("prio="):
-            changes["prio"] = arg.split("=", 1)[1]
+            changes["priority"] = arg.split("=", 1)[1]
         elif arg.startswith("due="):
             due_string = arg.split("=", 1)[1]
             try:
