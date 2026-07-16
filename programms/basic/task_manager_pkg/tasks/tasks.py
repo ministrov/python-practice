@@ -37,3 +37,19 @@ def remove_task(tasks: list[Task], task_id: int) -> bool:
     before_len = len(tasks)
     tasks[:] = list(filter(lambda t: t["id"] != task_id, tasks))
     return len(tasks) < before_len
+
+
+def update_task(task: Task, **changes: str):
+    if "title" in changes:
+        title = str(changes["title"]).strip()
+
+        if not title:
+            raise ValueError("Заголовок не может быть пустым")
+        task["title"] = title
+
+    if "priority" in changes:
+        prio = str(changes["priority"]).strip().lower()
+
+        if prio not in PRIORITIES:
+            raise ValueError("Неверный приоритет. Только low | med | high")
+        task["priority"] = prio
