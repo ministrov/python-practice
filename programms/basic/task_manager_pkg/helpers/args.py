@@ -3,6 +3,14 @@
 from datetime import date, datetime
 
 
+def parse_list(args: list[str]):
+    by = None
+    for arg in args:
+        if arg.startswith("by="):
+            by = arg.split("=", 1)[1]
+    return by
+
+
 def parse_add(args: list[str]):
     if not args:
         raise ValueError(
