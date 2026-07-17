@@ -10,6 +10,7 @@ from task_manager_pkg.commands.help import help_command
 from task_manager_pkg.commands.add import add_command
 from task_manager_pkg.commands.list import list_command
 from task_manager_pkg.commands.remove import remove_command
+from task_manager_pkg.commands.tags import tags_command
 from task_manager_pkg.storage.file import save_task, load_tasks
 
 
@@ -36,7 +37,7 @@ def main():
                 case "edit":
                     edit_command(tasks, args)
                 case "tags":
-                    pass
+                    tags_command(tasks, args)
                 case "exit":
                     save_task(file_path, tasks)
                     break
