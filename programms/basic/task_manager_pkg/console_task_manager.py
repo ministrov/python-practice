@@ -5,8 +5,13 @@
     Задачи будут храниться в специальном хранилище, что позволит использовать проект как полноценный таск трекер.
 """
 from shlex import split
+from task_manager_pkg.commands.done import done_command
+from task_manager_pkg.commands.edit import edit_command
 from task_manager_pkg.commands.help import help_command
 from task_manager_pkg.commands.add import add_command
+from task_manager_pkg.commands.list import list_command
+from task_manager_pkg.commands.remove import remove_command
+from task_manager_pkg.commands.tags import tags_command
 from task_manager_pkg.storage.file import save_task, load_tasks
 
 
@@ -27,13 +32,15 @@ def main():
                 case "add":
                     next_id = add_command(tasks, args, next_id)
                 case "list":
-                    pass
+                    list_command(tasks, args)
+                case "done":
+                    done_command(tasks, args)
                 case "remove":
-                    pass
+                    remove_command(tasks, args)
                 case "edit":
-                    pass
+                    edit_command(tasks, args)
                 case "tags":
-                    pass
+                    tags_command(tasks, args)
                 case "exit":
                     save_task(file_path, tasks)
                     break

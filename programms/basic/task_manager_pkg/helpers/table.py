@@ -17,6 +17,7 @@ def stringify_table(tasks: list[Task]) -> str:
         rows.append([
             str(task["id"]),
             task["title"],
+            task["status"],
             task["priority"],
             tags,
             format_date(task["due"]) if task["due"] else "-"
