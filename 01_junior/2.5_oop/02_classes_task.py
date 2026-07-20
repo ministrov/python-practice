@@ -114,7 +114,14 @@ print("""
 """)
 
 # ТВОЙ КОД ЗДЕСЬ:
-
+Book.library_name = "Дискотека АвариЯ"
+print(book_one.library_name)
+print(book_two.library_name)
+book_two.library_name = "Дискотека 80"
+print(book_two.library_name)
+print(book_one.library_name)
+# Потому что в первом случае мы меняем через атрибут класса,
+# во втором через атрибут экземпляра, поэтому результаты разные
 
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 6: BankAccount — несколько методов вместе")
