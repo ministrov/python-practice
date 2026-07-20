@@ -27,6 +27,9 @@ class Person:
     def introduce(self) -> str:
         return f"Меня зовут {self.name}, мне {self.age} лет"
 
+    def have_birthday(self):
+        self.age += 1
+
 
 victor = Person("Victor", 34)
 maria = Person("Maria", 23)
@@ -63,7 +66,11 @@ print("""
 """)
 
 # ТВОЙ КОД ЗДЕСЬ:
-
+victor.have_birthday()
+victor.have_birthday()
+victor.have_birthday()
+print(victor.age)
+print(maria.age)
 
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 4: атрибут класса — общий для всех экземпляров")
