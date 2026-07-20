@@ -87,6 +87,19 @@ print("""
 # ТВОЙ КОД ЗДЕСЬ:
 
 
+class Book:
+    library_name = "Городская библиотека"
+
+    def __init__(self, title: str):
+        self.title = title
+
+
+book_one = Book("Первая книга")
+book_two = Book("Вторая книга")
+
+print(book_one.library_name)
+print(book_two.library_name)
+
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 5: изменение через класс vs через экземпляр")
 print("=" * 60)
