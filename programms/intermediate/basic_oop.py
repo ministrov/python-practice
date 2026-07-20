@@ -24,17 +24,26 @@ print(task.get_info())
 
 
 class Auth:
-    isAuth = False
+    is_auth = False
 
     def login(self):
         """ Вход """
-        self.isAuth = True
+        self.is_auth = True
 
     def logout(self):
         """ Выход """
-        self.isAuth = False
+        self.is_auth = False
 
 
 auth_service = Auth()
 auth_service.login()
-print(auth_service.isAuth)
+print(auth_service.is_auth)
+
+
+class Note:
+    def __init__(self) -> None:
+        print("Создана новая заметка!")
+
+
+note = Note()
+print(note)
