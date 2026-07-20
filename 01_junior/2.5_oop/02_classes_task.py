@@ -142,6 +142,29 @@ print("""
 # ТВОЙ КОД ЗДЕСЬ:
 
 
+class BankAccount:
+    def __init__(self, owner: str, balance: float = 0.0):
+        self.owner = owner
+        self.balance = balance
+
+    def deposit(self, amount: float) -> None:
+        self.balance += amount
+
+    def withdraw(self, amount: float) -> None:
+        if amount > self.balance:
+            print("Недостаточно средств")
+        else:
+            self.balance -= amount
+
+
+my_account = BankAccount("Anton")
+my_account.deposit(100)
+print(my_account.balance)
+my_account.withdraw(500)
+print(my_account.balance)
+my_account.withdraw(50)
+print(my_account.balance)
+
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 7: ловушка изменяемого атрибута класса")
 print("=" * 60)
