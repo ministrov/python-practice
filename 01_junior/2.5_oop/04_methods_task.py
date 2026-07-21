@@ -266,3 +266,31 @@ print("""
 """)
 
 # ТВОЙ КОД ЗДЕСЬ:
+
+
+class Order:
+    def __init__(self, item: str, quantity: int, unit_price: float):
+        self.item = item
+        self.quantity = quantity
+        self.unit_price = unit_price
+
+    def total(self) -> float:
+        return self.quantity * self.unit_price
+
+    @classmethod
+    def single(cls, item: str, unit_price: float):
+        return cls(item, 1, unit_price)
+
+    @property
+    def description(self):
+        return f"{self.quantity} x {self.item} = {self.total()}"
+
+
+order1 = Order("яблоко", 3, 50.0)
+order2 = Order.single("хлеб", 80.0)
+
+print(order1.total())        # 150.0
+print(order1.description)    # 3 x яблоко = 150.0
+
+print(order2.total())        # 80.0
+print(order2.description)    # 1 x хлеб = 80.0
