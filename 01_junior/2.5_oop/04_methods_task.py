@@ -47,6 +47,24 @@ print("""
 # ТВОЙ КОД ЗДЕСЬ:
 
 
+class Validator:
+    @staticmethod
+    def is_valid_age(age: int) -> bool:
+        return 0 <= age <= 150
+
+    @staticmethod
+    def is_valid_email(email: str) -> bool:
+        if "@" not in email:
+            return False
+        local, _, domain = email.partition("@")
+        return len(local) > 0 and len(domain) > 0
+
+
+print(Validator.is_valid_age(30))
+print(Validator.is_valid_age(200))
+print(Validator.is_valid_email("a@b.com"))
+print(Validator.is_valid_email("not-an-email"))
+
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 3: @classmethod как альтернативный конструктор")
 print("=" * 60)
