@@ -189,6 +189,34 @@ print("""
 # ТВОЙ КОД ЗДЕСЬ:
 
 
+class Product:
+    def __init__(self, name: str, price: float):
+        self.name = name
+        self.price = price
+
+    @property
+    def price(self):
+        return self._price
+
+    @price.setter
+    def price(self, value: float):
+        if value < 0:
+            raise ValueError("Цена не может быть отрицательной")
+        self._price = value
+
+
+product_a = Product("Книга", 500)
+print(product_a.price)
+product_a.price = 700
+print(product_a.price)
+
+try:
+    product_a.price = -100
+except ValueError as e:
+    print(f"{e}")
+
+print(product_a.price)
+
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 7: property без setter — только для чтения")
 print("=" * 60)
