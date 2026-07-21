@@ -80,6 +80,32 @@ print("""
 # ТВОЙ КОД ЗДЕСЬ:
 
 
+class Point:
+    def __init__(self, x: float, y: float):
+        self.x = x
+        self.y = y
+
+    @classmethod
+    def origin(cls):
+        return Point(0, 0)
+
+    @classmethod
+    def from_tuple(cls, coords: tuple[float, float]):
+        coord_x, coord_y = coords
+
+        return cls(coord_x, coord_y)
+
+
+point_a = Point.origin()
+point_b = Point.from_tuple((4.5, 5.5))
+point_c = Point(1, 2)
+print(point_a.x)
+print(point_a.y)
+print(point_b.x)
+print(point_b.y)
+print(point_c.x)
+print(point_c.y)
+
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 4: @classmethod, считающий экземпляры (атрибут класса)")
 print("=" * 60)
