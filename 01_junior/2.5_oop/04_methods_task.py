@@ -155,6 +155,21 @@ print("""
 # ТВОЙ КОД ЗДЕСЬ:
 
 
+class Temperature:
+    def __init__(self, celsius: float):
+        self.celsius = celsius
+
+    @property
+    def fahrenheit(self):
+        return self.celsius * 9 / 5 + 32
+
+
+temp_a = Temperature(0)
+temp_b = Temperature(100)
+
+print(temp_a.fahrenheit)
+print(temp_b.fahrenheit)
+
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 6: @property + @x.setter с валидацией")
 print("=" * 60)
