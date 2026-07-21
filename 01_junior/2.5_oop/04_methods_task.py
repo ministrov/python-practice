@@ -21,6 +21,17 @@ print("""
 # ТВОЙ КОД ЗДЕСЬ:
 
 
+class StringUtils:
+    @staticmethod
+    def is_palindrome(text: str) -> bool:
+        reversed_text = text[::-1]
+        return text.lower() == reversed_text.lower()
+
+
+print(StringUtils.is_palindrome("topot"))
+print(StringUtils.is_palindrome("python"))
+
+
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 2: несколько @staticmethod в одном классе")
 print("=" * 60)
