@@ -122,6 +122,24 @@ print("""
 # ТВОЙ КОД ЗДЕСЬ:
 
 
+class User:
+    count = 0
+
+    def __init__(self, name: str):
+        self.name = name
+        User.count += 1
+
+    @classmethod
+    def get_count(cls):
+        return User.count
+
+
+print(User.get_count())
+user_a = User("Вася")
+user_b = User("Дима")
+user_c = User("Петя")
+print(User.get_count())
+
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 5: @property — вычисляемое значение без хранения")
 print("=" * 60)
