@@ -69,3 +69,21 @@ class Book:
 
 book = Book("Первая книга", 1998)
 print(Book.years_since(book.year))
+
+""" Пример декоратора @property """
+
+
+class Rectangle:
+    def __init__(self, width: float, height: float):
+        self.width = width
+        self.height = height
+
+    @property
+    def area(self):
+        return self.width * self.height
+
+
+rect_a = Rectangle(10, 5)
+print(rect_a.height)
+print(rect_a.width)
+print(rect_a.area)
