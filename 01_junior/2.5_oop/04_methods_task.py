@@ -232,6 +232,23 @@ print("""
 # ТВОЙ КОД ЗДЕСЬ:
 
 
+class Circle:
+    def __init__(self, radius: float):
+        self.radius = radius
+
+    @property
+    def diameter(self):
+        return self.radius * 2
+
+
+circle_a = Circle(5)
+print(circle_a.diameter)
+
+try:
+    circle_a.diameter = 20  # type: ignore[misc] # намеренно
+except AttributeError as e:
+    print(e)
+
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 8: комплексное — обычный метод + classmethod + property")
 print("=" * 60)
