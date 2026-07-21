@@ -212,3 +212,27 @@ print("""
 """)
 
 # ТВОЙ КОД ЗДЕСЬ:
+
+
+class Library:
+    def __init__(self) -> None:
+        self.books: list[Book] = []
+
+    def add_book(self, book: Book) -> None:
+        self.books.append(book)
+
+    def list_titles(self) -> list[str]:
+        return [book.title for book in self.books]
+
+
+library = Library()
+
+book_a = Book("Первая книга")
+book_b = Book("Вторая книга")
+book_c = Book("Третья книга")
+
+library.add_book(book_a)
+library.add_book(book_b)
+library.add_book(book_c)
+
+print(library.list_titles())
