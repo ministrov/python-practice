@@ -180,6 +180,22 @@ print("""
 # ТВОЙ КОД ЗДЕСЬ:
 
 
+class ShoppingCart:
+    def __init__(self) -> None:
+        self.items: list[str] = []
+
+    def add_item(self, item: str) -> None:
+        self.items.append(item)
+
+
+cart_a = ShoppingCart()
+cart_b = ShoppingCart()
+cart_a.add_item("молоко")
+cart_b.add_item("хлеб")
+print(cart_a.items)
+print(cart_b.items)
+
+
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 8: комплексное — Library из нескольких Book")
 print("=" * 60)
