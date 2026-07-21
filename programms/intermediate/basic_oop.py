@@ -1,6 +1,9 @@
 """ Демо модуль по базовому объектно-ориентированному программированию"""
 
 
+from datetime import date
+
+
 class Task:
     """ Задача """
     done: bool = False
@@ -47,3 +50,22 @@ class Note:
 
 note = Note()
 print(note)
+
+""" Пример статического метода """
+
+
+class Book:
+    """ Книга """
+
+    def __init__(self, title: str, year: int):
+        self.title = title
+        self.year = year
+
+    @staticmethod
+    def years_since(year: int):
+        """ Метод получения возраста книги """
+        return date.today().year - year
+
+
+book = Book("Первая книга", 1998)
+print(Book.years_since(book.year))
