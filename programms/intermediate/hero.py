@@ -27,6 +27,7 @@ class Hero:
         """ Восстановление здоровья """
         if not self.is_alive:
             print(f"{self.name} уже повержен")
+            return
         self.hit_point = min(self.hit_point + amount, 100)
         print(f"{self.name} восстановил {amount} HP. Текущие HP {self.hit_point}")
 
