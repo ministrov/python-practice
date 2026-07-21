@@ -1,0 +1,296 @@
+# -*- coding: utf-8 -*-
+"""
+Блок 2.5.2: Практика — методы: обычные, @classmethod, @staticmethod,
+@property
+════════════════════════════════════════════════════════════════════════
+8 ЗАДАНИЙ для самостоятельного решения.
+Совет: посмотри 03_methods_demo.py, если застрял с синтаксисом.
+"""
+
+print("=" * 60)
+print("ЗАДАНИЕ 1: @staticmethod — независимая от состояния утилита")
+print("=" * 60)
+print("""
+1.1 Создай класс StringUtils с @staticmethod is_palindrome(text: str)
+    -> bool, проверяющим, что text одинаково читается в обе стороны
+    (без учёта регистра).
+1.2 Вызови is_palindrome через ИМЯ КЛАССА для "topot" и "python",
+    напечатай оба результата.
+""")
+
+# ТВОЙ КОД ЗДЕСЬ:
+
+
+class StringUtils:
+    @staticmethod
+    def is_palindrome(text: str) -> bool:
+        reversed_text = text[::-1]
+        return text.lower() == reversed_text.lower()
+
+
+print(StringUtils.is_palindrome("topot"))
+print(StringUtils.is_palindrome("python"))
+
+
+print("\n" + "=" * 60)
+print("ЗАДАНИЕ 2: несколько @staticmethod в одном классе")
+print("=" * 60)
+print("""
+2.1 Создай класс Validator с двумя @staticmethod:
+    - is_valid_age(age: int) -> bool (True, если 0 <= age <= 150)
+    - is_valid_email(email: str) -> bool (True, если в строке есть "@"
+      и есть хотя бы один символ до и после "@")
+2.2 Проверь is_valid_age на 30 и на 200, is_valid_email на
+    "a@b.com" и на "not-an-email" — напечатай все 4 результата.
+""")
+
+# ТВОЙ КОД ЗДЕСЬ:
+
+
+class Validator:
+    @staticmethod
+    def is_valid_age(age: int) -> bool:
+        return 0 <= age <= 150
+
+    @staticmethod
+    def is_valid_email(email: str) -> bool:
+        if "@" not in email:
+            return False
+        local, _, domain = email.partition("@")
+        return len(local) > 0 and len(domain) > 0
+
+
+print(Validator.is_valid_age(30))
+print(Validator.is_valid_age(200))
+print(Validator.is_valid_email("a@b.com"))
+print(Validator.is_valid_email("not-an-email"))
+
+print("\n" + "=" * 60)
+print("ЗАДАНИЕ 3: @classmethod как альтернативный конструктор")
+print("=" * 60)
+print("""
+3.1 Создай класс Point с __init__(self, x: float, y: float).
+3.2 Добавь @classmethod origin(cls), возвращающий Point(0, 0).
+3.3 Добавь @classmethod from_tuple(cls, coords: tuple[float, float]),
+    возвращающий Point с распакованными координатами.
+3.4 Создай точку через origin(), через from_tuple((3, 4)) и напрямую
+    Point(1, 2) — напечатай x и y всех трёх.
+""")
+
+# ТВОЙ КОД ЗДЕСЬ:
+
+
+class Point:
+    def __init__(self, x: float, y: float):
+        self.x = x
+        self.y = y
+
+    @classmethod
+    def origin(cls):
+        return Point(0, 0)
+
+    @classmethod
+    def from_tuple(cls, coords: tuple[float, float]):
+        coord_x, coord_y = coords
+
+        return cls(coord_x, coord_y)
+
+
+point_a = Point.origin()
+point_b = Point.from_tuple((4.5, 5.5))
+point_c = Point(1, 2)
+print(point_a.x)
+print(point_a.y)
+print(point_b.x)
+print(point_b.y)
+print(point_c.x)
+print(point_c.y)
+
+print("\n" + "=" * 60)
+print("ЗАДАНИЕ 4: @classmethod, считающий экземпляры (атрибут класса)")
+print("=" * 60)
+print("""
+4.1 Создай класс User с атрибутом КЛАССА count = 0.
+4.2 В __init__(self, name: str) увеличивай User.count на 1 при
+    создании каждого экземпляра.
+4.3 Добавь @classmethod get_count(cls), возвращающий текущее
+    значение count.
+4.4 Создай 3 экземпляра User, напечатай get_count() до и после
+    создания всех трёх (должно быть 0, затем 3).
+""")
+
+# ТВОЙ КОД ЗДЕСЬ:
+
+
+class User:
+    count = 0
+
+    def __init__(self, name: str):
+        self.name = name
+        User.count += 1
+
+    @classmethod
+    def get_count(cls):
+        return User.count
+
+
+print(User.get_count())
+user_a = User("Вася")
+user_b = User("Дима")
+user_c = User("Петя")
+print(User.get_count())
+
+print("\n" + "=" * 60)
+print("ЗАДАНИЕ 5: @property — вычисляемое значение без хранения")
+print("=" * 60)
+print("""
+5.1 Создай класс Temperature с __init__(self, celsius: float),
+    сохраняющим celsius как атрибут экземпляра.
+5.2 Добавь @property fahrenheit, возвращающий celsius, переведённый
+    в градусы Фаренгейта: celsius * 9 / 5 + 32.
+5.3 Создай Temperature(0) и Temperature(100), напечатай fahrenheit
+    у обоих БЕЗ скобок (как атрибут).
+""")
+
+# ТВОЙ КОД ЗДЕСЬ:
+
+
+class Temperature:
+    def __init__(self, celsius: float):
+        self.celsius = celsius
+
+    @property
+    def fahrenheit(self):
+        return self.celsius * 9 / 5 + 32
+
+
+temp_a = Temperature(0)
+temp_b = Temperature(100)
+
+print(temp_a.fahrenheit)
+print(temp_b.fahrenheit)
+
+print("\n" + "=" * 60)
+print("ЗАДАНИЕ 6: @property + @x.setter с валидацией")
+print("=" * 60)
+print("""
+6.1 Создай класс Product с __init__(self, name: str, price: float),
+    сохраняющим name напрямую и price ЧЕРЕЗ property-сеттер (то есть
+    внутри __init__ напиши self.price = price, а не self._price).
+6.2 Сделай price property: геттер возвращает self._price, сеттер
+    проверяет price >= 0 и бросает ValueError("Цена не может быть
+    отрицательной"), если условие нарушено.
+6.3 Создай Product("Книга", 500), напечатай price, затем присвой
+    price = 700 и снова напечатай.
+6.4 Попробуй присвоить price = -100 в try/except ValueError,
+    напечатай текст ошибки, затем убедись что price не изменился.
+""")
+
+# ТВОЙ КОД ЗДЕСЬ:
+
+
+class Product:
+    def __init__(self, name: str, price: float):
+        self.name = name
+        self.price = price
+
+    @property
+    def price(self):
+        return self._price
+
+    @price.setter
+    def price(self, value: float):
+        if value < 0:
+            raise ValueError("Цена не может быть отрицательной")
+        self._price = value
+
+
+product_a = Product("Книга", 500)
+print(product_a.price)
+product_a.price = 700
+print(product_a.price)
+
+try:
+    product_a.price = -100
+except ValueError as e:
+    print(f"{e}")
+
+print(product_a.price)
+
+print("\n" + "=" * 60)
+print("ЗАДАНИЕ 7: property без setter — только для чтения")
+print("=" * 60)
+print("""
+7.1 Создай класс Circle с __init__(self, radius: float).
+7.2 Добавь @property diameter, возвращающий radius * 2 (setter НЕ
+    добавляй).
+7.3 Создай Circle(5), напечатай diameter.
+7.4 Попробуй присвоить circle.diameter = 20 в try/except
+    AttributeError, напечатай текст ошибки.
+""")
+
+# ТВОЙ КОД ЗДЕСЬ:
+
+
+class Circle:
+    def __init__(self, radius: float):
+        self.radius = radius
+
+    @property
+    def diameter(self):
+        return self.radius * 2
+
+
+circle_a = Circle(5)
+print(circle_a.diameter)
+
+try:
+    circle_a.diameter = 20  # type: ignore[misc] # намеренно
+except AttributeError as e:
+    print(e)
+
+print("\n" + "=" * 60)
+print("ЗАДАНИЕ 8: комплексное — обычный метод + classmethod + property")
+print("=" * 60)
+print("""
+8.1 Создай класс Order с __init__(self, item: str, quantity: int,
+    unit_price: float).
+8.2 Добавь ОБЫЧНЫЙ метод total(self) -> float, возвращающий
+    quantity * unit_price.
+8.3 Добавь @classmethod single(cls, item: str, unit_price: float),
+    возвращающий Order с quantity=1.
+8.4 Добавь @property description, возвращающий строку вида
+    "<quantity> x <item> = <total>" (используй total() внутри).
+8.5 Создай Order("яблоко", 3, 50.0) и Order.single("хлеб", 80.0),
+    напечатай total() и description у обоих.
+""")
+
+# ТВОЙ КОД ЗДЕСЬ:
+
+
+class Order:
+    def __init__(self, item: str, quantity: int, unit_price: float):
+        self.item = item
+        self.quantity = quantity
+        self.unit_price = unit_price
+
+    def total(self) -> float:
+        return self.quantity * self.unit_price
+
+    @classmethod
+    def single(cls, item: str, unit_price: float):
+        return cls(item, 1, unit_price)
+
+    @property
+    def description(self):
+        return f"{self.quantity} x {self.item} = {self.total()}"
+
+
+order1 = Order("яблоко", 3, 50.0)
+order2 = Order.single("хлеб", 80.0)
+
+print(order1.total())        # 150.0
+print(order1.description)    # 3 x яблоко = 150.0
+
+print(order2.total())        # 80.0
+print(order2.description)    # 1 x хлеб = 80.0

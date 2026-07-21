@@ -24,6 +24,12 @@ class Person:
         self.name = name
         self.age = age
 
+    def introduce(self) -> str:
+        return f"Меня зовут {self.name}, мне {self.age} лет"
+
+    def have_birthday(self):
+        self.age += 1
+
 
 victor = Person("Victor", 34)
 maria = Person("Maria", 23)
@@ -45,7 +51,8 @@ print("""
 """)
 
 # ТВОЙ КОД ЗДЕСЬ:
-
+print(victor.introduce())
+print(maria.introduce())
 
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 3: метод, изменяющий состояние экземпляра")
@@ -59,7 +66,11 @@ print("""
 """)
 
 # ТВОЙ КОД ЗДЕСЬ:
-
+victor.have_birthday()
+victor.have_birthday()
+victor.have_birthday()
+print(victor.age)
+print(maria.age)
 
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 4: атрибут класса — общий для всех экземпляров")
@@ -76,6 +87,19 @@ print("""
 # ТВОЙ КОД ЗДЕСЬ:
 
 
+class Book:
+    library_name = "Городская библиотека"
+
+    def __init__(self, title: str):
+        self.title = title
+
+
+book_one = Book("Первая книга")
+book_two = Book("Вторая книга")
+
+print(book_one.library_name)
+print(book_two.library_name)
+
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 5: изменение через класс vs через экземпляр")
 print("=" * 60)
@@ -90,7 +114,14 @@ print("""
 """)
 
 # ТВОЙ КОД ЗДЕСЬ:
-
+Book.library_name = "Дискотека АвариЯ"
+print(book_one.library_name)
+print(book_two.library_name)
+book_two.library_name = "Дискотека 80"
+print(book_two.library_name)
+print(book_one.library_name)
+# Потому что в первом случае мы меняем через атрибут класса,
+# во втором через атрибут экземпляра, поэтому результаты разные
 
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 6: BankAccount — несколько методов вместе")
@@ -111,6 +142,29 @@ print("""
 # ТВОЙ КОД ЗДЕСЬ:
 
 
+class BankAccount:
+    def __init__(self, owner: str, balance: float = 0.0):
+        self.owner = owner
+        self.balance = balance
+
+    def deposit(self, amount: float) -> None:
+        self.balance += amount
+
+    def withdraw(self, amount: float) -> None:
+        if amount > self.balance:
+            print("Недостаточно средств")
+        else:
+            self.balance -= amount
+
+
+my_account = BankAccount("Anton")
+my_account.deposit(100)
+print(my_account.balance)
+my_account.withdraw(500)
+print(my_account.balance)
+my_account.withdraw(50)
+print(my_account.balance)
+
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 7: ловушка изменяемого атрибута класса")
 print("=" * 60)
@@ -124,6 +178,22 @@ print("""
 """)
 
 # ТВОЙ КОД ЗДЕСЬ:
+
+
+class ShoppingCart:
+    def __init__(self) -> None:
+        self.items: list[str] = []
+
+    def add_item(self, item: str) -> None:
+        self.items.append(item)
+
+
+cart_a = ShoppingCart()
+cart_b = ShoppingCart()
+cart_a.add_item("молоко")
+cart_b.add_item("хлеб")
+print(cart_a.items)
+print(cart_b.items)
 
 
 print("\n" + "=" * 60)
@@ -142,3 +212,27 @@ print("""
 """)
 
 # ТВОЙ КОД ЗДЕСЬ:
+
+
+class Library:
+    def __init__(self) -> None:
+        self.books: list[Book] = []
+
+    def add_book(self, book: Book) -> None:
+        self.books.append(book)
+
+    def list_titles(self) -> list[str]:
+        return [book.title for book in self.books]
+
+
+library = Library()
+
+book_a = Book("Первая книга")
+book_b = Book("Вторая книга")
+book_c = Book("Третья книга")
+
+library.add_book(book_a)
+library.add_book(book_b)
+library.add_book(book_c)
+
+print(library.list_titles())
