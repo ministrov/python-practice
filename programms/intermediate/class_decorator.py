@@ -19,5 +19,10 @@ def log_call(func: Callable[P, T]) -> Callable[P, T]:
 class Service:
     """ Сервис (для примера декоратора класса)"""
 
+    @log_call
     def process(self, x: float):
         return x * 2
+
+
+service_a = Service()
+service_a.process(10)
