@@ -8,6 +8,8 @@
 создай её через Path.mkdir(exist_ok=True), как в демо.
 """
 
+import json
+import csv
 from pathlib import Path
 
 BASE_DIR = Path(__file__).parent
@@ -23,7 +25,11 @@ print("""
 """)
 
 # ТВОЙ КОД ЗДЕСЬ:
-
+path = Path("reports/2026/summary.txt")
+print("name:  ", path.name)     # summary.txt
+print("stem:  ", path.stem)     # summary
+print("suffix:", path.suffix)   # .txt
+print("parent:", path.parent)   # reports/2026
 
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 2: write_text / read_text")
@@ -36,7 +42,10 @@ print("""
 """)
 
 # ТВОЙ КОД ЗДЕСЬ:
-
+PLAYGROUND.mkdir(exist_ok=True)
+quote_path = PLAYGROUND / "quote.txt"
+quote_path.write_text("Простота — залог надёжности.", encoding="utf-8")
+print(quote_path.read_text(encoding="utf-8"))
 
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 3: iterdir и glob")
@@ -50,7 +59,14 @@ print("""
 """)
 
 # ТВОЙ КОД ЗДЕСЬ:
+(PLAYGROUND / "notes.txt").write_text("Заметки на будущее.", encoding="utf-8")
+(PLAYGROUND / "data.csv").write_text("", encoding="utf-8")
 
+for item in sorted(PLAYGROUND.iterdir()):
+    print(" -", item.name)   # data.csv, notes.txt, quote.txt
+
+for item in sorted(PLAYGROUND.glob("*.txt")):
+    print(" -", item.name)   # notes.txt, quote.txt
 
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 4: CSV — запись и чтение")
@@ -66,6 +82,26 @@ print("""
 
 # ТВОЙ КОД ЗДЕСЬ:
 
+employees_path = PLAYGROUND / "employees.csv"
+
+with employees_path.open("w", newline="", encoding="utf-8") as f:
+    writer = csv.writer(f)
+    writer.writerow(["name", "salary"])
+    writer.writerow(["Anna", 1200])
+    writer.writerow(["Boris", 1500])
+    writer.writerow(["Carla", 900])
+
+print("Через csv.reader:")
+with employees_path.open("r", newline="", encoding="utf-8") as f:
+    reader = csv.reader(f)
+    for row in reader:
+        print(row)
+
+print("Через csv.DictReader:")
+with employees_path.open("r", newline="", encoding="utf-8") as f:
+    dict_reader = csv.DictReader(f)
+    for row in dict_reader:
+        print(dict(row))
 
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 5: JSON — запись и чтение файла")
@@ -82,6 +118,21 @@ print("""
 
 # ТВОЙ КОД ЗДЕСЬ:
 
+profile = {
+    "name": "Ирина",
+    "age": 29,
+    "hobbies": ["чтение", "плавание", "фотография"],
+}
+
+profile_path = PLAYGROUND / "profile.json"
+with profile_path.open("w", encoding="utf-8") as f:
+    json.dump(profile, f, ensure_ascii=False, indent=2)
+
+with profile_path.open("r", encoding="utf-8") as f:
+    loaded_profile = json.load(f)
+
+print(loaded_profile)
+print("Равны исходному:", loaded_profile == profile)
 
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 6: JSON — dumps/loads без файла")
@@ -94,7 +145,12 @@ print("""
 """)
 
 # ТВОЙ КОД ЗДЕСЬ:
+profile_str = json.dumps(profile, ensure_ascii=False)
+print(profile_str)
 
+profile_from_str = json.loads(profile_str)
+print(profile_from_str)
+print("Равны исходному:", profile_from_str == profile)
 
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 7: Бинарные файлы")
@@ -107,7 +163,13 @@ print("""
 """)
 
 # ТВОЙ КОД ЗДЕСЬ:
+original_bytes = b"\x10\x20\x30"
+bin_path = PLAYGROUND / "data.bin"
+bin_path.write_bytes(original_bytes)
 
+read_bytes = bin_path.read_bytes()
+print(read_bytes)
+print("Равны исходным:", read_bytes == original_bytes)
 
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 8: Комплексное — UnicodeDecodeError")
@@ -124,7 +186,18 @@ print("""
 """)
 
 # ТВОЙ КОД ЗДЕСЬ:
+mystery_path = PLAYGROUND / "mystery.txt"
+mystery_path.write_bytes("Привет, мир".encode("cp1251"))
 
+try:
+    text = mystery_path.read_text(encoding="utf-8")
+    print(text)
+except UnicodeDecodeError as e:
+    print(f"Не удалось прочитать файл как utf-8: {e}")
+    print("Похоже, файл записан в другой кодировке (например, cp1251).")
+
+correct_text = mystery_path.read_text(encoding="cp1251")
+print("Успешно прочитано с cp1251:", correct_text)
 
 print("\n" + "=" * 60)
 print("КОНЕЦ ЗАДАНИЙ, ПРОВЕРЬ ЧТО ВСЕ ЗАДАНИЯ РАБОТАЮТ!")

@@ -60,3 +60,7 @@ Thumbs.db
 
 # Runtime data
 programms/basic/task.json
+
+# Generated demo/practice output (pathlib/csv/json exercises, Block 2.4)
+sample_data/
+playground/

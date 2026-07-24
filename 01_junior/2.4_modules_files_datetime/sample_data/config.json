@@ -1,8 +1,0 @@
-{
-  "debug": true,
-  "retries": 3,
-  "tags": [
-    "junior",
-    "python"
-  ]
-}
