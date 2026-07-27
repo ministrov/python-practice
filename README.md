@@ -67,7 +67,10 @@
 ├── 2.5_oop/                    # В процессе, темы 1-3 завершены (тема 3 — 2026-07-27)
 │   ├── 01_classes_demo.py + 02_classes_task.py (8/8)
 │   ├── 03_methods_demo.py + 04_methods_task.py (8/8)
-│   └── 05_inheritance_demo.py + 06_inheritance_task.py (8/8)
+│   ├── 05_inheritance_demo.py + 06_inheritance_task.py (8/8)
+│   ├── 07_composition_demo.py + 08_composition_task.py  # тема 4, готово
+│   └── 11_dunder_methods_demo.py + 12_dunder_methods_task.py  # тема 6
+│       (09-10 зарезервированы под тему 5 — dataclasses)
 ├── 2.6_typing/                 # Запланировано
 ├── 2.7_exceptions/             # Тема 1 завершена (8/8), темы 2-5 — долг (2026-07-24)
 │   ├── 01_exceptions_basics_demo.py + 02_exceptions_basics_task.py (8/8)
