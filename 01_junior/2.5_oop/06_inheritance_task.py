@@ -97,6 +97,24 @@ print("""
 # ТВОЙ КОД ЗДЕСЬ:
 
 
+class Person:
+    def __init__(self, name: str, age: int):
+        self.name = name
+        self.age = age
+
+
+class Student(Person):
+    def __init__(self, name: str, age: int, school: str):
+        super().__init__(name, age)
+        self.school = school
+
+    def describe(self) -> str:
+        return f"{self.name}, {self.age} лет, учится в {self.school}"
+
+
+student_anna = Student("Аня", 20, "МГУ")
+print(student_anna.describe())
+
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 5: несколько уровней наследования + super() в каждом")
 print("=" * 60)
