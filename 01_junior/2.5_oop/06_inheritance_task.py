@@ -50,6 +50,14 @@ print("""
 # ТВОЙ КОД ЗДЕСЬ:
 
 
+class Motorcycle(Vehicle):
+    def info(self) -> str:
+        return f"Мотоцикл: {self.brand}"
+
+
+harley = Motorcycle("Harley")
+print(harley.info())
+
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 3: super() — вызов версии родителя внутри переопределения")
 print("=" * 60)
