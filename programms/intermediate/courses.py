@@ -11,3 +11,16 @@
         - можно рассчмитать рассрочкку
         - можно вывести информацию опроекте
 """
+
+
+class Course:
+    def __init__(self, price: int, title: str, time_length: int):
+        self.price = price
+        self.title = title
+        self.time_length = time_length
+
+    def get_price(self) -> int:
+        return self.price
+
+    def show_info(self) -> str:
+        return f"{self.price}, {self.title}, {self.time_length}"
