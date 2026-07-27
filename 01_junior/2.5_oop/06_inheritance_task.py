@@ -133,6 +133,19 @@ print("""
 # ТВОЙ КОД ЗДЕСЬ:
 
 
+class Graduate(Student):
+    def __init__(self, name: str, age: int, school: str, degree: str):
+        super().__init__(name, age, school)
+        self.degree = degree
+
+    def describe(self) -> str:
+        base = super().describe()
+        return f"{base} ({self.degree})"
+
+
+graduate_boris = Graduate("Борис", 24, "МГТУ", "магистр")
+print(graduate_boris.describe())
+
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 6: isinstance() и issubclass() на иерархии из 3 уровней")
 print("=" * 60)
