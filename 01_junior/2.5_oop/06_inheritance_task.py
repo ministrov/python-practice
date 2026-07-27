@@ -185,6 +185,27 @@ print("""
 # ТВОЙ КОД ЗДЕСЬ:
 
 
+class Walker:
+    def move(self) -> str:
+        return "идёт пешком"
+
+
+class Swimmer:
+    def move(self) -> str:
+        return "плывёт"
+
+
+class Triathlete(Walker, Swimmer):
+    pass
+
+
+athlete_vasya = Triathlete()
+print(athlete_vasya.move())
+print([cls.__name__ for cls in Triathlete.__mro__])
+# Это происходит потому что в классе Triathlete
+# при наследовании клсасс Walker идет первым
+
+
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 8: комплексное — банковские счета с наследованием")
 print("=" * 60)
