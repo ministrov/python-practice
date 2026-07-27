@@ -72,6 +72,15 @@ print("""
 # ТВОЙ КОД ЗДЕСЬ:
 
 
+class Truck(Vehicle):
+    def info(self) -> str:
+        base = super().info()
+        return f"{base} (грузовой)"
+
+
+volvo_truck = Truck("Volvo")
+print(volvo_truck.info())
+
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 4: super().__init__() — дополнение конструктора родителя")
 print("=" * 60)
