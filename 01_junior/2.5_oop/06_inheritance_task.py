@@ -20,6 +20,22 @@ print("""
 # ТВОЙ КОД ЗДЕСЬ:
 
 
+class Vehicle:
+    def __init__(self, brand: str):
+        self.brand = brand
+
+    def info(self) -> str:
+        return f"Транспорт: {self.brand}"
+
+
+class Car(Vehicle):
+    pass
+
+
+toyota = Car("Toyota")
+print(toyota.info())
+print(isinstance(toyota, Vehicle))  # type: ignore[reportUnnecessaryIsInstance]
+
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 2: переопределение метода (override)")
 print("=" * 60)
