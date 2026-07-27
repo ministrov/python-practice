@@ -227,3 +227,35 @@ print("""
 """)
 
 # ТВОЙ КОД ЗДЕСЬ:
+
+
+class Account:
+    def __init__(self, owner: str, balance: float = 0.0):
+        self.owner = owner
+        self.balance = balance
+
+    def deposit(self, amount: float) -> None:
+        self.balance += amount
+
+    def describe(self) -> str:
+        return f"{self.owner}: {self.balance}"
+
+
+class SavingsAccount(Account):
+    def __init__(self, owner: str, balance: float, interest_rate: float,):
+        super().__init__(owner, balance)
+        self.interest_rate = interest_rate
+
+    def add_interest(self) -> None:
+        self.deposit(self.balance * self.interest_rate)
+
+    def describe(self) -> str:
+        base = super().describe()
+        return f"{base}, ставка {self.interest_rate}"
+
+
+oleg = SavingsAccount("Олег", 1000, 0.05)
+oleg.add_interest()
+
+print(oleg.balance)
+print(oleg.describe())
