@@ -7,20 +7,47 @@
     3. Делаем курс с AI и тренажерами
         - можно рассчитать рассрочку на срок курса
 
-    4. Делаем курс с проектом  с параметром названия проекта
+    4. Делаем курс с проектом с параметром названия проекта
         - можно рассчмитать рассрочкку
         - можно вывести информацию опроекте
 """
 
 
 class Course:
-    def __init__(self, price: int, title: str, time_length: int):
+    def __init__(self, title: str, price: int, course_length: int):
         self.price = price
         self.title = title
-        self.time_length = time_length
+        self.course_length = course_length
 
     def get_price(self) -> int:
         return self.price
 
     def show_info(self) -> str:
-        return f"{self.price}, {self.title}, {self.time_length}"
+        return (
+            f"курс {self.title} по цене {self.price} "
+            f"длительностью {self.course_length}"
+        )
+
+
+class AICourse(Course):
+    def calculate_credit(self):
+        return self.price / self.course_length
+
+
+class ProjectCourse(Course):
+    def __init__(
+        self, title: str, price: int, course_length: int, project_name: str
+    ):
+        super().__init__(title, price, course_length)
+        self.project_name = project_name
+
+    def calculate_credit(self):
+        return self.price / self.course_length
+
+    def get_project_info(self):
+        return f"Проект: {self.project_name}"
+
+
+course = ProjectCourse("Python", 10000, 2, "Калькулятор")
+print(course.show_info())
+print(course.get_project_info())
