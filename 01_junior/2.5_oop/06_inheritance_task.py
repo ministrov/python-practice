@@ -20,6 +20,22 @@ print("""
 # ТВОЙ КОД ЗДЕСЬ:
 
 
+class Vehicle:
+    def __init__(self, brand: str):
+        self.brand = brand
+
+    def info(self) -> str:
+        return f"Транспорт: {self.brand}"
+
+
+class Car(Vehicle):
+    pass
+
+
+toyota = Car("Toyota")
+print(toyota.info())
+print(isinstance(toyota, Vehicle))  # type: ignore[reportUnnecessaryIsInstance]
+
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 2: переопределение метода (override)")
 print("=" * 60)
@@ -34,6 +50,14 @@ print("""
 # ТВОЙ КОД ЗДЕСЬ:
 
 
+class Motorcycle(Vehicle):
+    def info(self) -> str:
+        return f"Мотоцикл: {self.brand}"
+
+
+harley = Motorcycle("Harley")
+print(harley.info())
+
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 3: super() — вызов версии родителя внутри переопределения")
 print("=" * 60)
@@ -47,6 +71,15 @@ print("""
 
 # ТВОЙ КОД ЗДЕСЬ:
 
+
+class Truck(Vehicle):
+    def info(self) -> str:
+        base = super().info()
+        return f"{base} (грузовой)"
+
+
+volvo_truck = Truck("Volvo")
+print(volvo_truck.info())
 
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 4: super().__init__() — дополнение конструктора родителя")
@@ -63,6 +96,24 @@ print("""
 
 # ТВОЙ КОД ЗДЕСЬ:
 
+
+class Person:
+    def __init__(self, name: str, age: int):
+        self.name = name
+        self.age = age
+
+
+class Student(Person):
+    def __init__(self, name: str, age: int, school: str):
+        super().__init__(name, age)
+        self.school = school
+
+    def describe(self) -> str:
+        return f"{self.name}, {self.age} лет, учится в {self.school}"
+
+
+student_anna = Student("Аня", 20, "МГУ")
+print(student_anna.describe())
 
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 5: несколько уровней наследования + super() в каждом")
@@ -82,6 +133,19 @@ print("""
 # ТВОЙ КОД ЗДЕСЬ:
 
 
+class Graduate(Student):
+    def __init__(self, name: str, age: int, school: str, degree: str):
+        super().__init__(name, age, school)
+        self.degree = degree
+
+    def describe(self) -> str:
+        base = super().describe()
+        return f"{base} ({self.degree})"
+
+
+graduate_boris = Graduate("Борис", 24, "МГТУ", "магистр")
+print(graduate_boris.describe())
+
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 6: isinstance() и issubclass() на иерархии из 3 уровней")
 print("=" * 60)
@@ -95,7 +159,12 @@ print("""
 """)
 
 # ТВОЙ КОД ЗДЕСЬ:
-
+graduate_vera = Graduate("Вера", 23, "СПбГУ", "бакалавр")
+print(isinstance(graduate_vera, Graduate))  # type: ignore[reportUnnecessaryIsInstance]
+print(isinstance(graduate_vera, Person))  # type: ignore[reportUnnecessaryIsInstance]
+print(isinstance(graduate_vera, Student))  # type: ignore[reportUnnecessaryIsInstance]
+print(issubclass(Person, Graduate))
+print(issubclass(Graduate, Person))  # type: ignore[reportUnnecessaryIsInstance]
 
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 7: MRO при множественном наследовании")
@@ -114,6 +183,27 @@ print("""
 """)
 
 # ТВОЙ КОД ЗДЕСЬ:
+
+
+class Walker:
+    def move(self) -> str:
+        return "идёт пешком"
+
+
+class Swimmer:
+    def move(self) -> str:
+        return "плывёт"
+
+
+class Triathlete(Walker, Swimmer):
+    pass
+
+
+athlete_vasya = Triathlete()
+print(athlete_vasya.move())
+print([cls.__name__ for cls in Triathlete.__mro__])
+# Это происходит потому что в классе Triathlete
+# при наследовании клсасс Walker идет первым
 
 
 print("\n" + "=" * 60)
@@ -137,3 +227,35 @@ print("""
 """)
 
 # ТВОЙ КОД ЗДЕСЬ:
+
+
+class Account:
+    def __init__(self, owner: str, balance: float = 0.0):
+        self.owner = owner
+        self.balance = balance
+
+    def deposit(self, amount: float) -> None:
+        self.balance += amount
+
+    def describe(self) -> str:
+        return f"{self.owner}: {self.balance}"
+
+
+class SavingsAccount(Account):
+    def __init__(self, owner: str, balance: float, interest_rate: float,):
+        super().__init__(owner, balance)
+        self.interest_rate = interest_rate
+
+    def add_interest(self) -> None:
+        self.deposit(self.balance * self.interest_rate)
+
+    def describe(self) -> str:
+        base = super().describe()
+        return f"{base}, ставка {self.interest_rate}"
+
+
+oleg = SavingsAccount("Олег", 1000, 0.05)
+oleg.add_interest()
+
+print(oleg.balance)
+print(oleg.describe())
