@@ -159,7 +159,12 @@ print("""
 """)
 
 # ТВОЙ КОД ЗДЕСЬ:
-
+graduate_vera = Graduate("Вера", 23, "СПбГУ", "бакалавр")
+print(isinstance(graduate_vera, Graduate))  # type: ignore[reportUnnecessaryIsInstance]
+print(isinstance(graduate_vera, Person))  # type: ignore[reportUnnecessaryIsInstance]
+print(isinstance(graduate_vera, Student))  # type: ignore[reportUnnecessaryIsInstance]
+print(issubclass(Person, Graduate))
+print(issubclass(Graduate, Person))  # type: ignore[reportUnnecessaryIsInstance]
 
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 7: MRO при множественном наследовании")
