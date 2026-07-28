@@ -21,6 +21,7 @@
 """
 
 from dataclasses import dataclass
+from typing import Protocol
 
 
 @dataclass
@@ -35,6 +36,12 @@ class Item:
         return self.price * self.qty
 
 
+class DiscountPolicy(Protocol):
+    """ Протокол политики скидок """
+
+    def discount(self, total: float) -> float: ...
+
+
 class NoDiscount:
     """ Политика без скидки """
 
@@ -42,14 +49,30 @@ class NoDiscount:
         return 0
 
 
-class PercentageDiscount:
-    pass
-
-
 @dataclass
+class PercentageDiscount:
+    """ Политика с % скидки"""
+    percent: float
+
+    def discount(self, total: float) -> float:
+        return total * (self.percent / 100)
+
+
 class Order:
     """ Заказ """
-    items: list[Item]
+
+    def __init__(self, items: list[Item], policy: DiscountPolicy):
+        self.items = items
+        self.policy = policy
+
+    def total(self) -> float:
+        return sum(i.subtotal() for i in self.items)
+
+    def total_with_discount(self) -> float:
+        return self.total() - self.policy.discount(self.total())
+
+    def set_policy(self, policy: DiscountPolicy):
+        pass
 
 
 item = Item(name="Apple", price=1.5, qty=3)
