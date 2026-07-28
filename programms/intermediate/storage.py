@@ -26,3 +26,20 @@
     Проверка корректности работы путем вывода результатов и проверки содержимого файла.
     Этот пример демонстрирует, как использовать протоколы для разделения логики хранения данных между разными реализациями.
 """
+
+from typing import Protocol
+
+
+class Storage(Protocol):
+    """ Протокол хранения """
+
+    def save(self, data: str) -> None: ...
+    def load(self) -> str: ...
+
+
+class MemoryStorage:
+    def save(self, data: str) -> None:
+        self.data = data
+
+    def load(self):
+        return getattr(self, "data", "")
