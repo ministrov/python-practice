@@ -58,12 +58,12 @@ class PercentageDiscount:
         return total * (self.percent / 100)
 
 
+@dataclass
 class Order:
     """ Заказ """
 
-    def __init__(self, items: list[Item], policy: DiscountPolicy):
-        self.items = items
-        self.policy = policy
+    items: list[Item]
+    policy: DiscountPolicy
 
     def total(self) -> float:
         return sum(i.subtotal() for i in self.items)
@@ -72,7 +72,16 @@ class Order:
         return self.total() - self.policy.discount(self.total())
 
     def set_policy(self, policy: DiscountPolicy):
-        pass
+        self.policy = policy
+
+
+basket = [Item("Бумага", 100, 5), Item("Хлеб", 200, 2)]
+order = Order(basket, NoDiscount())
+print(order.total())
+print(order.total_with_discount())
+order.set_policy(PercentageDiscount(10))
+print(order.total())
+print(order.total_with_discount())
 
 
 item = Item(name="Apple", price=1.5, qty=3)
