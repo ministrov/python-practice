@@ -35,6 +35,23 @@ class Item:
         return self.price * self.qty
 
 
+class NoDiscount:
+    """ Политика без скидки """
+
+    def discount(self, total: float) -> float:
+        return 0
+
+
+class PercentageDiscount:
+    pass
+
+
+@dataclass
+class Order:
+    """ Заказ """
+    items: list[Item]
+
+
 item = Item(name="Apple", price=1.5, qty=3)
 print(item)              # Item(name='Apple', price=1.5, qty=3)
 print(item.subtotal())   # 4.5
