@@ -6,7 +6,7 @@
 Совет: посмотри 09_dataclasses_demo.py, если застрял с синтаксисом.
 """
 
-from dataclasses import dataclass, field
+# from dataclasses import dataclass, field
 
 print("=" * 60)
 print("ЗАДАНИЕ 1: базовый dataclass — Point")
