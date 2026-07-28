@@ -25,6 +25,29 @@ print("""
 # ТВОЙ КОД ЗДЕСЬ:
 
 
+class Engine:
+    def __init__(self, horsepower: int):
+        self.horsepower = horsepower
+
+    def start(self) -> str:
+        return f"Двигатель на {self.horsepower} л.с. заведён"
+
+
+class Car:
+    def __init__(self, brand: str, engine: Engine):
+        self.brand = brand
+        self.engine = engine
+
+    def start(self) -> str:
+        return f"{self.engine.start()} ({self.brand})"
+
+
+engine_200 = Engine(200)
+bmw = Car("BMW", engine_200)
+print(engine_200.start())
+print(bmw.start())
+
+
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 2: почему это НЕ наследование — задай вопрос is-a")
 print("=" * 60)
