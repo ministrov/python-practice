@@ -248,6 +248,24 @@ print("""
 # ТВОЙ КОД ЗДЕСЬ:
 
 
+class Product:
+    def __init__(self, name: str, price: float):
+        self.name = name
+        self.price = price
+
+
+class DigitalProduct(Product):
+    def __init__(self, name: str, price: float, download_url: str):
+        super().__init__(name, price)
+        self.download_url = download_url
+
+    def purchase(self, payment: PaymentMethod) -> str:
+        return payment.pay(self.price)
+
+
+digital_product = DigitalProduct("Курс Python", 2000, "http://example.com")
+print(digital_product.purchase(CardPayment()))
+
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 8: комплексное — корзина + доставка + оплата без наследования")
 print("=" * 60)
