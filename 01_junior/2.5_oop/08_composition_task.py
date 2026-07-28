@@ -153,6 +153,34 @@ print("""
 # ТВОЙ КОД ЗДЕСЬ:
 
 
+class Customer:
+    def __init__(self, name: str, email: str):
+        self.name = name
+        self.email = email
+
+
+class LineItems:
+    def __init__(self, items: list[float]):
+        self.items = items
+
+    def total(self) -> float:
+        return sum(self.items)
+
+
+class Invoice:
+    def __init__(self, customer: Customer, items: LineItems):
+        self.customer = customer
+        self.items = items
+
+    def summary(self):
+        return f"{self.customer.name}: {self.items.total()}"
+
+
+invoice_a = Invoice(Customer("Аня", "a@mail.com"), LineItems([100,
+                                                              200, 50]))
+print(invoice_a.summary())
+
+
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 6: когда наследование ВСЁ-ТАКИ уместно — контрпример")
 print("=" * 60)
