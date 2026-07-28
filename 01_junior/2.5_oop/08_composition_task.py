@@ -129,7 +129,10 @@ print("""
 """)
 
 # ТВОЙ КОД ЗДЕСЬ:
-
+order = Order(500, CashPayment())
+print(order.checkout())
+order.payment = CardPayment()
+print(order.checkout())
 
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 5: несколько независимых частей — Invoice")
