@@ -84,6 +84,37 @@ print("""
 # ТВОЙ КОД ЗДЕСЬ:
 
 
+class PaymentMethod:
+    def pay(self, amount: float) -> str:
+        raise NotImplementedError(
+            'это "интерфейс", сам по себе не используется')
+
+
+class CardPayment(PaymentMethod):
+    def pay(self, amount: float) -> str:
+        return f"Оплата картой: {amount}"
+
+
+class CashPayment(PaymentMethod):
+    def pay(self, amount: float) -> str:
+        return f"Оплата наличными: {amount}"
+
+
+class Order:
+    def __init__(self, total: float, payment: PaymentMethod):
+        self.total = total
+        self.payment = payment
+
+    def checkout(self):
+        return self.payment.pay(self.total)
+
+
+order_a = Order(1500, CardPayment())
+order_b = Order(300, CashPayment())
+
+print(order_a.checkout())
+print(order_b.checkout())
+
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 4: подмена объекта в рантайме — сила композиции")
 print("=" * 60)
