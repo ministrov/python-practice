@@ -25,6 +25,29 @@ print("""
 # ТВОЙ КОД ЗДЕСЬ:
 
 
+class Engine:
+    def __init__(self, horsepower: int):
+        self.horsepower = horsepower
+
+    def start(self) -> str:
+        return f"Двигатель на {self.horsepower} л.с. заведён"
+
+
+class Car:
+    def __init__(self, brand: str, engine: Engine):
+        self.brand = brand
+        self.engine = engine
+
+    def start(self) -> str:
+        return f"{self.engine.start()} ({self.brand})"
+
+
+engine_200 = Engine(200)
+bmw = Car("BMW", engine_200)
+print(engine_200.start())
+print(bmw.start())
+
+
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 2: почему это НЕ наследование — задай вопрос is-a")
 print("=" * 60)
@@ -35,7 +58,9 @@ print("""
 """)
 
 # ТВОЙ КОД ЗДЕСЬ:
-
+# Тут мы используем композицию, как я понял,
+# потому что машина не является частным случаем двигателя,
+# а просто его имеет внутри себя
 
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 3: стратегия — PaymentMethod внутри Order")
@@ -59,6 +84,37 @@ print("""
 # ТВОЙ КОД ЗДЕСЬ:
 
 
+class PaymentMethod:
+    def pay(self, amount: float) -> str:
+        raise NotImplementedError(
+            'это "интерфейс", сам по себе не используется')
+
+
+class CardPayment(PaymentMethod):
+    def pay(self, amount: float) -> str:
+        return f"Оплата картой: {amount}"
+
+
+class CashPayment(PaymentMethod):
+    def pay(self, amount: float) -> str:
+        return f"Оплата наличными: {amount}"
+
+
+class Order:
+    def __init__(self, total: float, payment: PaymentMethod):
+        self.total = total
+        self.payment = payment
+
+    def checkout(self):
+        return self.payment.pay(self.total)
+
+
+order_a = Order(1500, CardPayment())
+order_b = Order(300, CashPayment())
+
+print(order_a.checkout())
+print(order_b.checkout())
+
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 4: подмена объекта в рантайме — сила композиции")
 print("=" * 60)
@@ -73,7 +129,10 @@ print("""
 """)
 
 # ТВОЙ КОД ЗДЕСЬ:
-
+order = Order(500, CashPayment())
+print(order.checkout())
+order.payment = CardPayment()
+print(order.checkout())
 
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 5: несколько независимых частей — Invoice")
@@ -94,6 +153,34 @@ print("""
 # ТВОЙ КОД ЗДЕСЬ:
 
 
+class Customer:
+    def __init__(self, name: str, email: str):
+        self.name = name
+        self.email = email
+
+
+class LineItems:
+    def __init__(self, items: list[float]):
+        self.items = items
+
+    def total(self) -> float:
+        return sum(self.items)
+
+
+class Invoice:
+    def __init__(self, customer: Customer, items: LineItems):
+        self.customer = customer
+        self.items = items
+
+    def summary(self):
+        return f"{self.customer.name}: {self.items.total()}"
+
+
+invoice_a = Invoice(Customer("Аня", "a@mail.com"), LineItems([100,
+                                                              200, 50]))
+print(invoice_a.summary())
+
+
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 6: когда наследование ВСЁ-ТАКИ уместно — контрпример")
 print("=" * 60)
@@ -111,6 +198,33 @@ print("""
 """)
 
 # ТВОЙ КОД ЗДЕСЬ:
+
+
+class Notification:
+    def __init__(self, message: str):
+        self.message = message
+
+    def send(self) -> str:
+        return f"Отправлено: {self.message}"
+
+
+class EmailNotification(Notification):
+    pass
+
+
+class SmsNotification(Notification):
+    pass
+
+# Потому что ответ на вопрос EmailNotification ЕСТЬ Notification? Да.
+# Так как EmailNotification, является частным случаем Notification
+# поэтому тут наследование, уместно
+
+
+email_notification = EmailNotification("Заказ отправлен")
+sms_notification = SmsNotification("Заказ отправлен")
+
+print(email_notification.send())
+print(sms_notification.send())
 
 
 print("\n" + "=" * 60)
@@ -134,6 +248,24 @@ print("""
 # ТВОЙ КОД ЗДЕСЬ:
 
 
+class Product:
+    def __init__(self, name: str, price: float):
+        self.name = name
+        self.price = price
+
+
+class DigitalProduct(Product):
+    def __init__(self, name: str, price: float, download_url: str):
+        super().__init__(name, price)
+        self.download_url = download_url
+
+    def purchase(self, payment: PaymentMethod) -> str:
+        return payment.pay(self.price)
+
+
+digital_product = DigitalProduct("Курс Python", 2000, "http://example.com")
+print(digital_product.purchase(CardPayment()))
+
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 8: комплексное — корзина + доставка + оплата без наследования")
 print("=" * 60)
@@ -155,3 +287,43 @@ print("""
 """)
 
 # ТВОЙ КОД ЗДЕСЬ:
+
+
+class Cart:
+    def __init__(self) -> None:
+        self.items: list[Product] = []
+
+    def add(self, product: Product) -> None:
+        self.items.append(product)
+
+    def total(self) -> float:
+        return sum(item.price for item in self.items)
+
+
+class Shipping:
+    def __init__(self, price: float):
+        self.price = price
+
+    def cost(self) -> float:
+        return self.price
+
+
+class Checkout:
+    def __init__(self, cart: Cart, shipping: Shipping, payment: PaymentMethod):
+        self.cart = cart
+        self.shipping = shipping
+        self.payment = payment
+
+    def complete(self) -> str:
+        grand_total = self.cart.total() + self.shipping.cost()
+        return self.payment.pay(grand_total)
+
+
+cart = Cart()
+cart.add(Product("Клавиатура", 2500))
+cart.add(Product("Мышь", 900))
+
+shipping = Shipping(200)
+checkout = Checkout(cart, shipping, CardPayment())
+
+print(checkout.complete())
