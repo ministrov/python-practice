@@ -19,3 +19,23 @@
 
     В результате, используя этот подход можно легко расширять систему, добавляя новые политики скидок без изменения существующего кода.
 """
+
+from dataclasses import dataclass
+
+
+@dataclass
+class Item:
+    """ Единица товара """
+    name: str
+    price: float
+    qty: int = 1
+
+    def subtotal(self) -> float:
+        """ Расчет суммы """
+        return self.price * self.qty
+
+
+item = Item(name="Apple", price=1.5, qty=3)
+print(item)              # Item(name='Apple', price=1.5, qty=3)
+print(item.subtotal())   # 4.5
+print(item == Item(name="Apple", price=1.5, qty=3))  # True
