@@ -200,6 +200,33 @@ print("""
 # ТВОЙ КОД ЗДЕСЬ:
 
 
+class Notification:
+    def __init__(self, message: str):
+        self.message = message
+
+    def send(self) -> str:
+        return f"Отправлено: {self.message}"
+
+
+class EmailNotification(Notification):
+    pass
+
+
+class SmsNotification(Notification):
+    pass
+
+# Потому что ответ на вопрос EmailNotification ЕСТЬ Notification? Да.
+# Так как EmailNotification, является частным случаем Notification
+# поэтому тут наследование, уместно
+
+
+email_notification = EmailNotification("Заказ отправлен")
+sms_notification = SmsNotification("Заказ отправлен")
+
+print(email_notification.send())
+print(sms_notification.send())
+
+
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 7: композиция ВНУТРИ иерархии наследования — миксуем оба")
 print("=" * 60)
