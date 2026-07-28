@@ -298,3 +298,32 @@ class Cart:
 
     def total(self) -> float:
         return sum(item.price for item in self.items)
+
+
+class Shipping:
+    def __init__(self, price: float):
+        self.price = price
+
+    def cost(self) -> float:
+        return self.price
+
+
+class Checkout:
+    def __init__(self, cart: Cart, shipping: Shipping, payment: PaymentMethod):
+        self.cart = cart
+        self.shipping = shipping
+        self.payment = payment
+
+    def complete(self) -> str:
+        grand_total = self.cart.total() + self.shipping.cost()
+        return self.payment.pay(grand_total)
+
+
+cart = Cart()
+cart.add(Product("Клавиатура", 2500))
+cart.add(Product("Мышь", 900))
+
+shipping = Shipping(200)
+checkout = Checkout(cart, shipping, CardPayment())
+
+print(checkout.complete())
