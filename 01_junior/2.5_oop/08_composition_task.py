@@ -287,3 +287,14 @@ print("""
 """)
 
 # ТВОЙ КОД ЗДЕСЬ:
+
+
+class Cart:
+    def __init__(self) -> None:
+        self.items: list[Product] = []
+
+    def add(self, product: Product) -> None:
+        self.items.append(product)
+
+    def total(self) -> float:
+        return sum(item.price for item in self.items)
