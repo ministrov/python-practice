@@ -65,8 +65,8 @@ def use_storage(storage: Storage, data: str):
 
 
 memory = MemoryStorage()
-file = FileStorage()
+file_storage = FileStorage()
 
 user_input = input("Введите данные: ")
 print(use_storage(memory, user_input))
-print(use_storage(file, user_input))
+print(use_storage(file_storage, user_input))
