@@ -38,8 +38,35 @@ class Storage(Protocol):
 
 
 class MemoryStorage:
+    """ Хранение в памяти """
+
     def save(self, data: str) -> None:
         self.data = data
 
     def load(self):
         return getattr(self, "data", "")
+
+
+class FileStorage:
+    """ Хранение в файле """
+
+    def save(self, data: str) -> None:
+        with open("data.txt", "w", encoding="utf-8") as f:
+            f.write(data)
+
+    def load(self):
+        with open("data.txt", "r", encoding="utf-8") as f:
+            return f.read()
+
+
+def use_storage(storage: Storage, data: str):
+    storage.save(data)
+    return storage.load()
+
+
+memory = MemoryStorage()
+file = FileStorage()
+
+user_input = input("Введите данные: ")
+print(use_storage(memory, user_input))
+print(use_storage(file, user_input))
