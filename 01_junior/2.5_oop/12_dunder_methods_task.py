@@ -71,6 +71,23 @@ print("""
 # ТВОЙ КОД ЗДЕСЬ:
 
 
+class Fraction:
+    def __init__(self, numerator: int, denominator: int) -> None:
+        self.numerator = numerator
+        self.denominator = denominator
+
+    def __eq__(self, other: object):
+        if not isinstance(other, Fraction):
+            return NotImplemented
+        return self.numerator == other.numerator and self.denominator == other.denominator
+
+
+f1 = Fraction(1, 2)
+f2 = Fraction(1, 2)
+f3 = Fraction(2, 3)
+print(f1 == f2)
+print(f1 == f3)
+
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 4: __eq__ без __hash__ — ловушка unhashable")
 print("=" * 60)
