@@ -10,7 +10,7 @@ class Student:
 
 
 @dataclass
-class StudetsPepository:
+class StudentsRepository:
     students: list[Student]
 
     def add_student(self, student: Student):
@@ -26,5 +26,5 @@ class StudentsStats:
 
 
 @dataclass
-class PrintStudetInfo:
+class PrintStudentInfo:
     pass
