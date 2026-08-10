@@ -134,6 +134,20 @@ print("""
 # ТВОЙ КОД ЗДЕСЬ:
 
 
+@dataclass(order=True)
+class Version:
+    major: int
+    minor: int
+    patch: int
+
+
+v1 = Version(1, 2, 0)
+v2 = Version(1, 10, 0)
+v3 = Version(1, 10, 2)
+print(v1 < v2)
+versions = [v1, v2, v3]
+print(sorted(versions))
+
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 6: field(repr=..., compare=...) — Account")
 print("=" * 60)
