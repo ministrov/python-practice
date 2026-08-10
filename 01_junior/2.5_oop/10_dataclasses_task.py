@@ -237,3 +237,37 @@ print("""
 """)
 
 # ТВОЙ КОД ЗДЕСЬ:
+
+
+@dataclass
+class LineItem:
+    name: str
+    price: float
+    quantity: int
+
+    def subtotal(self) -> float:
+        return self.price * self.quantity
+
+
+@dataclass
+class Customer:
+    name: str
+    email: str
+
+
+@dataclass
+class Invoice:
+    customer: Customer
+    items: list[LineItem] = field(default_factory=list[LineItem])
+
+    def total(self) -> float:
+        return sum(item.subtotal() for item in self.items)
+
+
+customer = Customer("Аня", "a@mail.com")
+invoice = Invoice(customer)
+line_item_a = LineItem("sdfdf", 10.56, 3)
+line_item_b = LineItem("sd", 4.56, 2)
+invoice.items.append(line_item_a)
+invoice.items.append(line_item_b)
+print(invoice.total())
