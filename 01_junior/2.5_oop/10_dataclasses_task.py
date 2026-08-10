@@ -197,6 +197,26 @@ print("""
 # ТВОЙ КОД ЗДЕСЬ:
 
 
+@dataclass
+class Rectangle:
+    width: float
+    height: float
+    area: float = field(init=False)
+
+    def __post_init__(self) -> None:
+        if self.width <= 0 or self.height <= 0:
+            raise ValueError("width и height должны быть положительными")
+        self.area = self.width * self.height
+
+
+rect_a = Rectangle(3, 4)
+print(rect_a)
+try:
+    reac_b = Rectangle(-1, 5)
+except ValueError as e:
+    print(f"Ошибка: {e}")
+
+
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 8: комплексное — dataclass + композиция (Invoice)")
 print("=" * 60)
