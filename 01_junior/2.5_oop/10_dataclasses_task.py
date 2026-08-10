@@ -8,6 +8,9 @@
 
 # from dataclasses import dataclass, field
 
+from dataclasses import dataclass
+
+
 print("=" * 60)
 print("ЗАДАНИЕ 1: базовый dataclass — Point")
 print("=" * 60)
@@ -22,6 +25,18 @@ print("""
 
 # ТВОЙ КОД ЗДЕСЬ:
 
+
+@dataclass
+class Point:
+    x: float
+    y: float
+
+
+p1 = Point(1, 2)
+p2 = Point(1, 2)
+print(p1)
+print(p2)
+print(p1 == p2)
 
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 2: значения по умолчанию — User")
