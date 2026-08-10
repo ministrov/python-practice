@@ -8,6 +8,9 @@
 
 # from dataclasses import dataclass, field
 
+from dataclasses import dataclass, field
+
+
 print("=" * 60)
 print("ЗАДАНИЕ 1: базовый dataclass — Point")
 print("=" * 60)
@@ -22,6 +25,18 @@ print("""
 
 # ТВОЙ КОД ЗДЕСЬ:
 
+
+@dataclass
+class Point:
+    x: float
+    y: float
+
+
+p1 = Point(1, 2)
+p2 = Point(1, 2)
+print(p1)
+print(p2)
+print(p1 == p2)
 
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 2: значения по умолчанию — User")
@@ -38,6 +53,17 @@ print("""
 # ТВОЙ КОД ЗДЕСЬ:
 
 
+@dataclass
+class User:
+    name: str
+    is_active: bool = True
+
+
+user_a = User("Игорь")
+print(user_a.is_active)
+user_b = User("Олег", False)
+print(user_b.is_active)
+
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 3: ловушка изменяемого дефолта — Cart")
 print("=" * 60)
@@ -51,6 +77,18 @@ print("""
 """)
 
 # ТВОЙ КОД ЗДЕСЬ:
+
+
+@dataclass
+class Cart:
+    items: list[str] = field(default_factory=list[str])
+
+
+cart_a = Cart()
+cart_b = Cart()
+cart_a.items.append("Книга")
+print(cart_a.items)
+print(cart_b.items)
 
 
 print("\n" + "=" * 60)
@@ -68,6 +106,19 @@ print("""
 # ТВОЙ КОД ЗДЕСЬ:
 
 
+@dataclass(frozen=True)
+class Coordinates:
+    lat: float
+    lon: float
+
+
+coords = Coordinates(55.75, 37.62)
+print(coords)
+try:
+    coords.lat = 0  # type: ignore[misc] # намеренно
+except Exception as e:
+    print(f"Ошибка: {type(e).__name__}")
+
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 5: order=True — сравнение и сортировка версий")
 print("=" * 60)
@@ -82,6 +133,20 @@ print("""
 
 # ТВОЙ КОД ЗДЕСЬ:
 
+
+@dataclass(order=True)
+class Version:
+    major: int
+    minor: int
+    patch: int
+
+
+v1 = Version(1, 2, 0)
+v2 = Version(1, 10, 0)
+v3 = Version(1, 10, 2)
+print(v1 < v2)
+versions = [v1, v2, v3]
+print(sorted(versions))
 
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 6: field(repr=..., compare=...) — Account")
@@ -100,6 +165,20 @@ print("""
 # ТВОЙ КОД ЗДЕСЬ:
 
 
+@dataclass
+class Account:
+    username: str
+    password: str = field(repr=False)
+    login_count: int = field(default=0, compare=False)
+
+
+acc1 = Account("admin", "secret123")
+acc2 = Account(
+    "admin", "secret123", login_count=5)
+print(acc1)
+print(acc1 == acc2)
+
+
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 7: __post_init__ — валидация и вычисляемое поле")
 print("=" * 60)
@@ -116,6 +195,26 @@ print("""
 """)
 
 # ТВОЙ КОД ЗДЕСЬ:
+
+
+@dataclass
+class Rectangle:
+    width: float
+    height: float
+    area: float = field(init=False)
+
+    def __post_init__(self) -> None:
+        if self.width <= 0 or self.height <= 0:
+            raise ValueError("width и height должны быть положительными")
+        self.area = self.width * self.height
+
+
+rect_a = Rectangle(3, 4)
+print(rect_a)
+try:
+    reac_b = Rectangle(-1, 5)
+except ValueError as e:
+    print(f"Ошибка: {e}")
 
 
 print("\n" + "=" * 60)
@@ -138,3 +237,37 @@ print("""
 """)
 
 # ТВОЙ КОД ЗДЕСЬ:
+
+
+@dataclass
+class LineItem:
+    name: str
+    price: float
+    quantity: int
+
+    def subtotal(self) -> float:
+        return self.price * self.quantity
+
+
+@dataclass
+class Customer:
+    name: str
+    email: str
+
+
+@dataclass
+class Invoice:
+    customer: Customer
+    items: list[LineItem] = field(default_factory=list[LineItem])
+
+    def total(self) -> float:
+        return sum(item.subtotal() for item in self.items)
+
+
+customer = Customer("Аня", "a@mail.com")
+invoice = Invoice(customer)
+line_item_a = LineItem("sdfdf", 10.56, 3)
+line_item_b = LineItem("sd", 4.56, 2)
+invoice.items.append(line_item_a)
+invoice.items.append(line_item_b)
+print(invoice.total())

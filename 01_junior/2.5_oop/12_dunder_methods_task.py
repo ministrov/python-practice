@@ -21,6 +21,25 @@ print("""
 # ТВОЙ КОД ЗДЕСЬ:
 
 
+class Book:
+    def __init__(self, title: str, author: str) -> None:
+        self.title = title
+        self.author = author
+
+    def __repr__(self) -> str:
+        return f"Book(title={self.title!r}, author={self.author!r})"
+
+    def __str__(self) -> str:
+        return f"{self.title} автора {self.author}"
+
+
+book_a = Book("1984", "Orwell")
+dune = Book("Dune", "Herbert")
+print(book_a)
+print(repr(book_a))
+print(dune)
+print(repr(dune))
+
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 2: __str__ отдельно от __repr__")
 print("=" * 60)
@@ -51,6 +70,23 @@ print("""
 
 # ТВОЙ КОД ЗДЕСЬ:
 
+
+class Fraction:
+    def __init__(self, numerator: int, denominator: int) -> None:
+        self.numerator = numerator
+        self.denominator = denominator
+
+    def __eq__(self, other: object):
+        if not isinstance(other, Fraction):
+            return NotImplemented
+        return self.numerator == other.numerator and self.denominator == other.denominator
+
+
+f1 = Fraction(1, 2)
+f2 = Fraction(1, 2)
+f3 = Fraction(2, 3)
+print(f1 == f2)
+print(f1 == f3)
 
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 4: __eq__ без __hash__ — ловушка unhashable")
