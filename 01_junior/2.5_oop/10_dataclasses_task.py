@@ -8,7 +8,7 @@
 
 # from dataclasses import dataclass, field
 
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 
 
 print("=" * 60)
@@ -77,6 +77,18 @@ print("""
 """)
 
 # ТВОЙ КОД ЗДЕСЬ:
+
+
+@dataclass
+class Cart:
+    items: list[str] = field(default_factory=list[str])
+
+
+cart_a = Cart()
+cart_b = Cart()
+cart_a.items.append("Книга")
+print(cart_a.items)
+print(cart_b.items)
 
 
 print("\n" + "=" * 60)
