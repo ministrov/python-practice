@@ -53,6 +53,17 @@ print("""
 # ТВОЙ КОД ЗДЕСЬ:
 
 
+@dataclass
+class User:
+    name: str
+    is_active: bool = True
+
+
+user_a = User("Игорь")
+print(user_a.is_active)
+user_b = User("Олег", False)
+print(user_b.is_active)
+
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 3: ловушка изменяемого дефолта — Cart")
 print("=" * 60)
