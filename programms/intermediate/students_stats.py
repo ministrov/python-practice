@@ -48,3 +48,12 @@ class ReportStudentInfo:
         print(f"Средний балл: {self.stats_service.get_average_score()}")
         best = self.stats_service.get_best_student()
         print(f"Лучший студент: {best.name}")
+
+
+repo = StudentRepository(students=[Student("Вася", 50)])
+stats_service = StatisticsRepository(repo)
+reporter = ReportStudentInfo(repo, stats_service)
+repo.add(Student("Аня", 89))
+repo.add(Student("Катя", 80))
+
+reporter.print_report()
