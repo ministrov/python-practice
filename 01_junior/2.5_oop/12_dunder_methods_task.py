@@ -21,6 +21,19 @@ print("""
 # ТВОЙ КОД ЗДЕСЬ:
 
 
+class Book:
+    def __init__(self, title: str, author: str) -> None:
+        self.title = title
+        self.author = author
+
+    def __repr__(self) -> str:
+        return f"Book(title={self.title!r}, author={self.author!r})"
+
+
+book_a = Book("1984", "Orwell")
+print(book_a)
+print(repr(book_a))
+
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 2: __str__ отдельно от __repr__")
 print("=" * 60)
