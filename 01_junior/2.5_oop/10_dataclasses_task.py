@@ -165,6 +165,20 @@ print("""
 # ТВОЙ КОД ЗДЕСЬ:
 
 
+@dataclass
+class Account:
+    username: str
+    password: str = field(repr=False)
+    login_count: int = field(default=0, compare=False)
+
+
+acc1 = Account("admin", "secret123")
+acc2 = Account(
+    "admin", "secret123", login_count=5)
+print(acc1)
+print(acc1 == acc2)
+
+
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 7: __post_init__ — валидация и вычисляемое поле")
 print("=" * 60)
