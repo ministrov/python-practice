@@ -29,10 +29,16 @@ class Book:
     def __repr__(self) -> str:
         return f"Book(title={self.title!r}, author={self.author!r})"
 
+    def __str__(self) -> str:
+        return f"{self.title} автора {self.author}"
+
 
 book_a = Book("1984", "Orwell")
+dune = Book("Dune", "Herbert")
 print(book_a)
 print(repr(book_a))
+print(dune)
+print(repr(dune))
 
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 2: __str__ отдельно от __repr__")
