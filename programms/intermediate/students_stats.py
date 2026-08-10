@@ -21,7 +21,7 @@ class StudentRepository:
 
 
 @dataclass
-class StatisticsRepository:
+class StatisticsService:
     repository: StudentRepository
 
     def get_average_score(self) -> float:
@@ -39,7 +39,7 @@ class StatisticsRepository:
 @dataclass
 class ReportStudentInfo:
     repository: StudentRepository
-    stats_service: StatisticsRepository
+    stats_service: StatisticsService
 
     def print_report(self):
         print("Отчет по студентам")
@@ -51,7 +51,7 @@ class ReportStudentInfo:
 
 
 repo = StudentRepository(students=[Student("Вася", 50)])
-stats_service = StatisticsRepository(repo)
+stats_service = StatisticsService(repo)
 reporter = ReportStudentInfo(repo, stats_service)
 repo.add(Student("Аня", 89))
 repo.add(Student("Катя", 80))
