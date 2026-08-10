@@ -106,6 +106,19 @@ print("""
 # ТВОЙ КОД ЗДЕСЬ:
 
 
+@dataclass(frozen=True)
+class Coordinates:
+    lat: float
+    lon: float
+
+
+coords = Coordinates(55.75, 37.62)
+print(coords)
+try:
+    coords.lat = 0  # type: ignore[misc] # намеренно
+except Exception as e:
+    print(f"Ошибка: {type(e).__name__}")
+
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 5: order=True — сравнение и сортировка версий")
 print("=" * 60)
