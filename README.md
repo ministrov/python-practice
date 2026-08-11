@@ -70,8 +70,9 @@
 │   ├── 05_inheritance_demo.py + 06_inheritance_task.py (8/8)
 │   ├── 07_composition_demo.py + 08_composition_task.py (8/8)
 │   ├── 09_dataclasses_demo.py + 10_dataclasses_task.py (8/8)
-│   └── 11_dunder_methods_demo.py + 12_dunder_methods_task.py (8/8)
-│       # темы 7-9 (abc.ABC, Enum, 4 столпа ООП) — материалы не созданы
+│   ├── 11_dunder_methods_demo.py + 12_dunder_methods_task.py (8/8)
+│   └── 13_abstraction_demo.py + 14_abstraction_task.py  # тема 7, готова
+│       # темы 8-9 (Enum, 4 столпа ООП) — материалы не созданы
 ├── 2.6_typing/                 # Запланировано
 ├── 2.7_exceptions/             # Тема 1 завершена (8/8), темы 2-5 — долг (2026-07-24)
 │   ├── 01_exceptions_basics_demo.py + 02_exceptions_basics_task.py (8/8)
