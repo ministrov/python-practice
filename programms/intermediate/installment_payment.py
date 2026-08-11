@@ -20,5 +20,20 @@ class BonusPayment(Payment):
         return final
 
 
+@dataclass
 class Installment(Payment):
-    pass
+    part: int
+
+    def pay(self, amount: float) -> float:
+        final = amount / self.part
+        print(f"Списано: {final}")
+        return final
+
+
+def make_payment(payment: Payment, amount: float) -> float:
+    return payment.pay(amount)
+
+
+make_payment(Payment(), 1000)
+make_payment(BonusPayment(bonuses=200), 1000)
+make_payment(Installment(part=4), 1000)
