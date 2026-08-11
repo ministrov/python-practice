@@ -224,3 +224,32 @@ print("""
 """)
 
 # ТВОЙ КОД ЗДЕСЬ:
+
+
+class Card:
+    def __init__(self, rank: str, suit: str) -> None:
+        self.rank = rank
+        self.suit = suit
+
+    def __repr__(self) -> str:
+        return f"Card({self.rank!r}, {self.suit!r})"
+
+    def __str__(self) -> str:
+        return f"{self.rank} of {self.suit}"
+
+    def __eq__(self, other: object) -> bool:
+        if not isinstance(other, Card):
+            return NotImplemented
+        return self.rank == other.rank and self.suit == other.suit
+
+    def __hash__(self) -> int:
+        return hash((self.rank, self.suit))
+
+
+card_one = Card("A", "Spades")
+card_two = Card("A", "Spades")
+
+print(card_one)              # str
+print(repr(card_one))        # repr
+print(card_one == card_two)  # True
+print(len({card_one, card_two}))  # 1
