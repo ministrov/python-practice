@@ -124,6 +124,26 @@ print("""
 # ТВОЙ КОД ЗДЕСЬ:
 
 
+class HashableFraction:
+    def __init__(self, numerator: int, denominator: int) -> None:
+        self.numerator = numerator
+        self.denominator = denominator
+
+    def __eq__(self, other: object):
+        if not isinstance(other, HashableFraction):
+            return NotImplemented
+        return self.numerator == other.numerator and self.denominator == other.denominator
+
+    def __hash__(self) -> int:
+        return hash((self.numerator, self.denominator))
+
+
+hf1 = HashableFraction(1, 2)
+hf2 = HashableFraction(1, 2)
+fractions = set({hf1, hf2})
+print(len(fractions))
+
+
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 6: __len__")
 print("=" * 60)
