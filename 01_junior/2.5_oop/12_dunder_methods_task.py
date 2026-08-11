@@ -159,6 +159,21 @@ print("""
 # ТВОЙ КОД ЗДЕСЬ:
 
 
+class Basket:
+    def __init__(self, items: list[str]) -> None:
+        self.items = items
+
+    def __len__(self) -> int:
+        return len(self.items)
+
+
+basket_a = Basket(["apple", "bread", "milk"])
+empty_basket = Basket([])
+print(len(basket_a))
+print(bool(empty_basket))
+print(bool(basket_a))
+
+
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 7: __iter__")
 print("=" * 60)
