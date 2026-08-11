@@ -100,7 +100,14 @@ print("""
 """)
 
 # ТВОЙ КОД ЗДЕСЬ:
+try:
+    coords = set({f1, f2})  # type: ignore[misc] # намеренно
+except TypeError as e:
+    print(f"Ошибка: {e}")
 
+# Автоматически без явного __hash__ код упадет с ошибкой,
+# так происходит потому что нет явного магического метода __hash__
+# выставляет __hash__ = None
 
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 5: __hash__ — чинит ловушку из задания 4")
@@ -115,6 +122,26 @@ print("""
 """)
 
 # ТВОЙ КОД ЗДЕСЬ:
+
+
+class HashableFraction:
+    def __init__(self, numerator: int, denominator: int) -> None:
+        self.numerator = numerator
+        self.denominator = denominator
+
+    def __eq__(self, other: object):
+        if not isinstance(other, HashableFraction):
+            return NotImplemented
+        return self.numerator == other.numerator and self.denominator == other.denominator
+
+    def __hash__(self) -> int:
+        return hash((self.numerator, self.denominator))
+
+
+hf1 = HashableFraction(1, 2)
+hf2 = HashableFraction(1, 2)
+fractions = set({hf1, hf2})
+print(len(fractions))
 
 
 print("\n" + "=" * 60)
@@ -132,6 +159,21 @@ print("""
 # ТВОЙ КОД ЗДЕСЬ:
 
 
+class Basket:
+    def __init__(self, items: list[str]) -> None:
+        self.items = items
+
+    def __len__(self) -> int:
+        return len(self.items)
+
+
+basket_a = Basket(["apple", "bread", "milk"])
+empty_basket = Basket([])
+print(len(basket_a))
+print(bool(empty_basket))
+print(bool(basket_a))
+
+
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 7: __iter__")
 print("=" * 60)
@@ -146,6 +188,24 @@ print("""
 
 # ТВОЙ КОД ЗДЕСЬ:
 
+
+class Range2:
+    def __init__(self, start: int, stop: int) -> None:
+        self.start = start
+        self.stop = stop
+
+    def __iter__(self):
+        current = self.start
+        while current < self.stop:
+            yield current
+            current += 1
+
+
+r_1 = Range2(1, 5)
+for num in r_1:
+    print(num)
+
+print(list(Range2(1, 5)))
 
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 8: комплексное — класс Card с несколькими dunder-методами")
@@ -164,3 +224,32 @@ print("""
 """)
 
 # ТВОЙ КОД ЗДЕСЬ:
+
+
+class Card:
+    def __init__(self, rank: str, suit: str) -> None:
+        self.rank = rank
+        self.suit = suit
+
+    def __repr__(self) -> str:
+        return f"Card({self.rank!r}, {self.suit!r})"
+
+    def __str__(self) -> str:
+        return f"{self.rank} of {self.suit}"
+
+    def __eq__(self, other: object) -> bool:
+        if not isinstance(other, Card):
+            return NotImplemented
+        return self.rank == other.rank and self.suit == other.suit
+
+    def __hash__(self) -> int:
+        return hash((self.rank, self.suit))
+
+
+card_one = Card("A", "Spades")
+card_two = Card("A", "Spades")
+
+print(card_one)              # str
+print(repr(card_one))        # repr
+print(card_one == card_two)  # True
+print(len({card_one, card_two}))  # 1
