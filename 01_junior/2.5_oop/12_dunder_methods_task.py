@@ -189,6 +189,24 @@ print("""
 # ТВОЙ КОД ЗДЕСЬ:
 
 
+class Range2:
+    def __init__(self, start: int, stop: int) -> None:
+        self.start = start
+        self.stop = stop
+
+    def __iter__(self):
+        current = self.start
+        while current < self.stop:
+            yield current
+            current += 1
+
+
+r_1 = Range2(1, 5)
+for num in r_1:
+    print(num)
+
+print(list(Range2(1, 5)))
+
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 8: комплексное — класс Card с несколькими dunder-методами")
 print("=" * 60)
