@@ -67,6 +67,15 @@ print("""
 # ТВОЙ КОД ЗДЕСЬ:
 
 
+class Cat(Animal):
+    pass
+
+
+try:
+    cat = Cat()  # type: ignore  # намеренно
+except TypeError as e:
+    print(f"Ошибка: {e}")
+
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 4: абстрактный метод + обычный шаблонный метод")
 print("=" * 60)
