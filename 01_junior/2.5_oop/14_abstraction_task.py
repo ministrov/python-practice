@@ -164,6 +164,22 @@ print("""
 # ТВОЙ КОД ЗДЕСЬ:
 
 
+class Vehicle(ABC):
+    @property
+    @abstractmethod
+    def wheels(self) -> int:
+        ...
+
+
+class Motorcycle(Vehicle):
+    @property
+    def wheels(self) -> int:
+        return 2
+
+
+motorcycle = Motorcycle()
+print(motorcycle.wheels)
+
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 7: полиморфизм через список общего типа")
 print("=" * 60)
