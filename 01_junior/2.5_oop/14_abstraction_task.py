@@ -93,6 +93,24 @@ print("""
 # ТВОЙ КОД ЗДЕСЬ:
 
 
+class Notifier(ABC):
+    @abstractmethod
+    def send(self, message: str) -> None:
+        ...
+
+    def notify_all(self, messages: list[str]) -> None:
+        for message in messages:
+            self.send(message)
+
+
+class ConsoleNotifier(Notifier):
+    def send(self, message: str) -> None:
+        print(f"[Console] {message}")
+
+
+console_notifier = ConsoleNotifier()
+console_notifier.notify_all(["Привет", "Пока"])
+
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 5: несколько абстрактных методов сразу")
 print("=" * 60)
