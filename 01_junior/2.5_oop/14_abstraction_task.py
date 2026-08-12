@@ -45,6 +45,15 @@ print("""
 # ТВОЙ КОД ЗДЕСЬ:
 
 
+class Dog(Animal):
+    def sound(self) -> str:
+        return "Woof"
+
+
+dog = Dog()
+print(dog.sound())
+
+
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 3: неполный наследник тоже не создаётся")
 print("=" * 60)
