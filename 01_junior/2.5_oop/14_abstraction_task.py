@@ -127,6 +127,28 @@ print("""
 # ТВОЙ КОД ЗДЕСЬ:
 
 
+class Employee(ABC):
+    @abstractmethod
+    def monthly_salary(self) -> float:
+        ...
+
+    @abstractmethod
+    def role(self) -> str:
+        ...
+
+
+class Manager(Employee):
+    def monthly_salary(self) -> float:
+        return 5000.0
+    # role() намеренно не реализован
+
+
+try:
+    manager = Manager()  # type: ignore  # намеренно
+except TypeError as e:
+    print(f"Ошибка: {e}")
+
+
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 6: @property + @abstractmethod")
 print("=" * 60)
