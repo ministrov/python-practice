@@ -22,6 +22,17 @@ print("""
 # ТВОЙ КОД ЗДЕСЬ:
 
 
+class Animal(ABC):
+    @abstractmethod
+    def sound(self) -> str:
+        ...
+
+
+try:
+    animal = Animal()  # type: ignore
+except TypeError as e:
+    print(f"Ошибка: {e}")
+
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 2: конкретный наследник реализует контракт")
 print("=" * 60)
