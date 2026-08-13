@@ -220,3 +220,29 @@ print("""
 """)
 
 # ТВОЙ КОД ЗДЕСЬ:
+
+
+class PaymentMethod(ABC):
+    @abstractmethod
+    def pay(self, amount: float) -> None:
+        ...
+
+    def checkout(self, amount: float) -> None:
+        print(f"Оформление заказа на {amount}")
+        self.pay(amount)
+
+
+class CardPayment(PaymentMethod):
+    def pay(self, amount: float) -> None:
+        print(f"Оплата картой: {amount}")
+
+
+class CashPayment(PaymentMethod):
+    def pay(self, amount: float) -> None:
+        print(f"Оплата наличными: {amount}")
+
+
+methods: list[PaymentMethod] = [CardPayment(), CashPayment()]
+
+for method in methods:
+    method.checkout(100)
