@@ -170,3 +170,17 @@ print("""
 """)
 
 # ТВОЙ КОД ЗДЕСЬ:
+
+
+class Square(Shape):
+    def __init__(self, side: float) -> None:
+        super().__init__()
+        self.side = side
+
+    def area(self) -> float:
+        return self.side ** 2
+
+
+shapes: list[Shape] = [Circle(3), Square(2.3)]
+for shape in shapes:
+    print(shape.area())
