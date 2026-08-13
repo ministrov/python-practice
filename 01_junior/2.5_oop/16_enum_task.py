@@ -21,6 +21,17 @@ print("""
 # ТВОЙ КОД ЗДЕСЬ:
 
 
+class Color(Enum):
+    RED = "red"
+    GREEN = "green"
+    BLUE = "blue"
+
+
+print(Color.RED)
+print(Color.RED.name)
+print(Color.RED.value)
+
+
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 2: auto()")
 print("=" * 60)
