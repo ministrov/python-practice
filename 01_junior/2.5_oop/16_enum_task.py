@@ -84,7 +84,8 @@ print("""
 """)
 
 # ТВОЙ КОД ЗДЕСЬ:
-
+for weekday in Weekday:
+    print(weekday.name, "->", weekday.value)
 
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 5: IntEnum")
