@@ -70,7 +70,10 @@ print("""
 """)
 
 # ТВОЙ КОД ЗДЕСЬ:
-
+chosen = Color.GREEN
+print(chosen == Color.GREEN)
+print(chosen is Color.GREEN)
+print(chosen == Color.RED)  # type: ignore # намеренно
 
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 4: итерация по Enum")
