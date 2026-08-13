@@ -141,6 +141,23 @@ print("""
 # ТВОЙ КОД ЗДЕСЬ:
 
 
+class Person:
+    def __init__(self, name: str, age: int) -> None:
+        self.name = name
+        self.age = age
+
+
+class Student(Person):
+    def __init__(self, name: str, age: int, university: str) -> None:
+        super().__init__(name, age)
+        self.university = university
+
+
+student_anna = Student("Anna", 19, "Бауманка")
+print(student_anna.name)
+print(student_anna.age)
+print(student_anna.university)
+
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 5: полиморфизм")
 print("=" * 60)
