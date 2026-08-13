@@ -103,6 +103,15 @@ print("""
 # ТВОЙ КОД ЗДЕСЬ:
 
 
+class TaskPriority(IntEnum):
+    LOW = 1
+    MEDIUM = 2
+    HIGH = 3
+
+
+print(TaskPriority.HIGH > TaskPriority.MEDIUM)
+print(sorted([TaskPriority.LOW, TaskPriority.HIGH, TaskPriority.MEDIUM]))
+
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 6: Enum в аннотации типа функции")
 print("=" * 60)
