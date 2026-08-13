@@ -125,6 +125,18 @@ print("""
 # ТВОЙ КОД ЗДЕСЬ:
 
 
+def describe_priority(priority: TaskPriority) -> str:
+    match priority:
+        case TaskPriority.LOW:
+            return "LOW"
+        case TaskPriority.MEDIUM:
+            return "MEDIUM"
+        case TaskPriority.HIGH:
+            return "HIGH"
+
+
+print(describe_priority(TaskPriority.MEDIUM))
+
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 7: комплексное — светофор")
 print("=" * 60)
