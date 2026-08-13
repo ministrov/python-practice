@@ -108,6 +108,25 @@ print("""
 # ТВОЙ КОД ЗДЕСЬ:
 
 
+class Shape(ABC):
+    @abstractmethod
+    def area(self) -> float:
+        ...
+
+
+class Circle(Shape):
+    def __init__(self, radius: float) -> None:
+        self.radius = radius
+
+    def area(self) -> float:
+        return 3.14159 * self.radius ** 2
+
+
+try:
+    shape = Shape()  # type: ignore # намеренно
+except TypeError as e:
+    print(f"Ошибка: {e}")
+
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 4: наследование")
 print("=" * 60)
