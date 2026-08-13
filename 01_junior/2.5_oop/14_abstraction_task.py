@@ -194,6 +194,16 @@ print("""
 # ТВОЙ КОД ЗДЕСЬ:
 
 
+class Bird(Animal):
+    def sound(self) -> str:
+        return "Tweet"
+
+
+animals: list[Animal] = [Dog(), Bird()]
+for animal in animals:
+    print(animal.sound())
+
+
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 8: комплексное — платёжные стратегии")
 print("=" * 60)
