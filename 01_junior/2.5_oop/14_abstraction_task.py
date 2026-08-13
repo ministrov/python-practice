@@ -22,6 +22,17 @@ print("""
 # ТВОЙ КОД ЗДЕСЬ:
 
 
+class Animal(ABC):
+    @abstractmethod
+    def sound(self) -> str:
+        ...
+
+
+try:
+    animal = Animal()  # type: ignore
+except TypeError as e:
+    print(f"Ошибка: {e}")
+
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 2: конкретный наследник реализует контракт")
 print("=" * 60)
@@ -32,6 +43,15 @@ print("""
 """)
 
 # ТВОЙ КОД ЗДЕСЬ:
+
+
+class Dog(Animal):
+    def sound(self) -> str:
+        return "Woof"
+
+
+dog = Dog()
+print(dog.sound())
 
 
 print("\n" + "=" * 60)
@@ -46,6 +66,15 @@ print("""
 
 # ТВОЙ КОД ЗДЕСЬ:
 
+
+class Cat(Animal):
+    pass
+
+
+try:
+    cat = Cat()  # type: ignore  # намеренно
+except TypeError as e:
+    print(f"Ошибка: {e}")
 
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 4: абстрактный метод + обычный шаблонный метод")
@@ -64,6 +93,24 @@ print("""
 # ТВОЙ КОД ЗДЕСЬ:
 
 
+class Notifier(ABC):
+    @abstractmethod
+    def send(self, message: str) -> None:
+        ...
+
+    def notify_all(self, messages: list[str]) -> None:
+        for message in messages:
+            self.send(message)
+
+
+class ConsoleNotifier(Notifier):
+    def send(self, message: str) -> None:
+        print(f"[Console] {message}")
+
+
+console_notifier = ConsoleNotifier()
+console_notifier.notify_all(["Привет", "Пока"])
+
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 5: несколько абстрактных методов сразу")
 print("=" * 60)
@@ -78,6 +125,28 @@ print("""
 """)
 
 # ТВОЙ КОД ЗДЕСЬ:
+
+
+class Employee(ABC):
+    @abstractmethod
+    def monthly_salary(self) -> float:
+        ...
+
+    @abstractmethod
+    def role(self) -> str:
+        ...
+
+
+class Manager(Employee):
+    def monthly_salary(self) -> float:
+        return 5000.0
+    # role() намеренно не реализован
+
+
+try:
+    manager = Manager()  # type: ignore  # намеренно
+except TypeError as e:
+    print(f"Ошибка: {e}")
 
 
 print("\n" + "=" * 60)
@@ -95,6 +164,22 @@ print("""
 # ТВОЙ КОД ЗДЕСЬ:
 
 
+class Vehicle(ABC):
+    @property
+    @abstractmethod
+    def wheels(self) -> int:
+        ...
+
+
+class Motorcycle(Vehicle):
+    @property
+    def wheels(self) -> int:
+        return 2
+
+
+motorcycle = Motorcycle()
+print(motorcycle.wheels)
+
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 7: полиморфизм через список общего типа")
 print("=" * 60)
@@ -107,6 +192,16 @@ print("""
 """)
 
 # ТВОЙ КОД ЗДЕСЬ:
+
+
+class Bird(Animal):
+    def sound(self) -> str:
+        return "Tweet"
+
+
+animals: list[Animal] = [Dog(), Bird()]
+for animal in animals:
+    print(animal.sound())
 
 
 print("\n" + "=" * 60)
@@ -125,3 +220,29 @@ print("""
 """)
 
 # ТВОЙ КОД ЗДЕСЬ:
+
+
+class PaymentMethod(ABC):
+    @abstractmethod
+    def pay(self, amount: float) -> None:
+        ...
+
+    def checkout(self, amount: float) -> None:
+        print(f"Оформление заказа на {amount}")
+        self.pay(amount)
+
+
+class CardPayment(PaymentMethod):
+    def pay(self, amount: float) -> None:
+        print(f"Оплата картой: {amount}")
+
+
+class CashPayment(PaymentMethod):
+    def pay(self, amount: float) -> None:
+        print(f"Оплата наличными: {amount}")
+
+
+methods: list[PaymentMethod] = [CardPayment(), CashPayment()]
+
+for method in methods:
+    method.checkout(100)
