@@ -29,6 +29,8 @@ print(cart_b.items)
 print(cart_a.items is cart_b.items)
 ```
 
+**Что выведут все три `print()` и почему?**
+
 **Твой ответ:** ________________________
 
 ---
@@ -49,6 +51,8 @@ class Pizza:
 p = Pizza.margherita()
 print(p.size, p.toppings)
 ```
+
+**Что выведет `print()` и почему?**
 
 **Твой ответ:** ________________________
 
@@ -72,6 +76,8 @@ class Manager(Employee):
 m = Manager("Ann", 5000, 4)
 print(m.name, m.salary, m.team_size)
 ```
+
+**Что выведет `print()` и почему? Обрати внимание на ТИП значения `m.salary`.**
 
 **Твой ответ:** ________________________
 
@@ -98,6 +104,8 @@ print(car.start())
 print(isinstance(car, Engine))
 ```
 
+**Что выведут оба `print()` и почему?**
+
 **Твой ответ:** ________________________
 
 ---
@@ -120,6 +128,8 @@ t1.members.append("Alice")
 print(t1.members)
 print(t2.members)
 ```
+
+**Что выведут оба `print()` и почему?**
 
 **Твой ответ:** ________________________
 
