@@ -151,3 +151,26 @@ print("""
 """)
 
 # ТВОЙ КОД ЗДЕСЬ:
+
+
+class TrafficLight(Enum):
+    RED = "red"
+    YELLOW = "yellow"
+    GREEN = "green"
+
+
+def next_light(current: TrafficLight) -> TrafficLight:
+    match current:
+        case TrafficLight.RED:
+            return TrafficLight.GREEN
+        case TrafficLight.GREEN:
+            return TrafficLight.YELLOW
+        case TrafficLight.YELLOW:
+            return TrafficLight.RED
+
+
+light = TrafficLight.RED
+print(light)
+for _ in range(4):
+    light = next_light(light)
+    print(light)
