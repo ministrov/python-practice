@@ -68,6 +68,31 @@ print("""
 # ТВОЙ КОД ЗДЕСЬ:
 
 
+class Product:
+    def __init__(self, price: int) -> None:
+        self._price = price
+
+    @property
+    def price(self) -> int:
+        return self._price
+
+    @price.setter
+    def price(self, value: int) -> None:
+        if value < 0:
+            raise ValueError("Цена не может быть отрицательным числом")
+        self._price = value
+
+
+product_a = Product(10)
+
+try:
+    product_a.price = -5
+except ValueError as e:
+    print(f"Ошибка: {e}")
+
+print(product_a.price)
+
+
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 3: абстракция")
 print("=" * 60)
