@@ -31,7 +31,7 @@ print(cart_a.items is cart_b.items)
 
 **Что выведут все три `print()` и почему?**
 
-**Твой ответ:** ________________________
+**Твой ответ:** ['apple'], ['apple'], True.
 
 ---
 
@@ -54,7 +54,11 @@ print(p.size, p.toppings)
 
 **Что выведет `print()` и почему?**
 
-**Твой ответ:** ________________________
+**Твой ответ:**
+
+medium ['cheese', 'tomato']
+
+margherita — classmethod-фабрика: cls внутри неё — это сам класс Pizza, поэтому cls("medium", ["cheese", "tomato"]) эквивалентно Pizza("medium", ["cheese", "tomato"]) и создаёт обычный экземпляр с этими атрибутами.
 
 ---
 
@@ -79,9 +83,10 @@ print(m.name, m.salary, m.team_size)
 
 **Что выведет `print()` и почему? Обрати внимание на ТИП значения `m.salary`.**
 
-**Твой ответ:** ________________________
+**Твой ответ:** \***\*\*\*\*\***\_\_\_\_\***\*\*\*\*\***
+Ann 5000 4
 
----
+## super().**init**(name, salary) вызывает Employee.**init**, который присваивает self.name и self.salary — тип salary остаётся int, каким он был передан (аннотация float не приводит тип, Python её не проверяет). Затем Manager.**init** добавляет self.team_size.
 
 ### Вопрос 4: Композиция — "имеет", а не "является"
 
@@ -106,9 +111,11 @@ print(isinstance(car, Engine))
 
 **Что выведут оба `print()` и почему?**
 
-**Твой ответ:** ________________________
+**Твой ответ:** \***\*\*\*\*\***\_\_\_\_\***\*\*\*\*\***
+Engine started
+False
 
----
+## Car.start() делегирует вызов своему атрибуту self.engine (композиция — Car имеет Engine), поэтому возвращается "Engine started". Второй print — False, потому что Car не наследуется от Engine (это не отношение "является"), а просто хранит его экземпляр как поле.
 
 ### Вопрос 5: `dataclasses` — ловушка изменяемого поля по умолчанию
 
@@ -129,11 +136,12 @@ print(t1.members)
 print(t2.members)
 ```
 
-**Что выведут оба `print()` и почему?**
+**Твой ответ:** \***\*\*\*\*\***\_\_\_\_\***\*\*\*\*\***
 
-**Твой ответ:** ________________________
+['Alice']
+[]
 
----
+## default_factory=list вызывает list() заново для каждого нового экземпляра, поэтому t1.members и t2.members — разные списки, и добавление в t1 не влияет на t2. (Если бы вместо этого написали members: list[str] = [], все экземпляры делили бы один и тот же список — это и есть та самая ловушка, которую default_factory решает.)
 
 ### Вопрос 6: `__eq__` без `__hash__`
 
@@ -155,9 +163,11 @@ points = {p1}
 
 **Что произойдёт при выполнении последней строки и почему?**
 
-**Твой ответ:** ________________________
+**Твой ответ:** \***\*\*\*\*\***\_\_\_\_\***\*\*\*\*\***
 
----
+Будет TypeError: unhashable type: 'Point'.
+
+## Когда в классе определён **eq**, Python автоматически устанавливает **hash** в None (если сам **hash** не задан явно), потому что дефолтный **hash** (по id) больше не согласуется с новым **eq** — иначе два «равных» объекта могли бы иметь разный хэш, что ломает контракт хэшируемых типов. А множество (set) требует, чтобы его элементы были хэшируемыми, поэтому попытка добавить p1 в {p1} падает с ошибкой.
 
 ### Вопрос 7: Абстрактное свойство
 
@@ -181,9 +191,11 @@ t = Thermometer()
 
 **Что произойдёт при выполнении последней строки и почему?**
 
-**Твой ответ:** ________________________
+**Твой ответ:** \***\*\*\*\*\***\_\_\_\_\***\*\*\*\*\***
 
----
+Будет TypeError: Can't instantiate abstract class Thermometer with abstract method unit (в новых версиях Python формулировка может быть чуть другой, например "without an implementation for abstract method 'unit'").
+
+## Sensor наследуется от ABC, а unit помечен как @abstractmethod (обёрнутый в @property). Thermometer наследует Sensor, но не переопределяет unit, поэтому остаётся абстрактным классом — Python не позволяет создать экземпляр класса, в котором есть хотя бы один нереализованный абстрактный метод.
 
 ### Вопрос 8: `Enum` без `IntEnum`
 
@@ -201,59 +213,108 @@ print(Level.HIGH > Level.LOW)
 
 **Что произойдёт и почему? Как исправить, если сравнение нужно?**
 
-**Твой ответ:** ________________________
+**Твой ответ:** \***\*\*\*\*\***\_\_\_\_\***\*\*\*\*\***
 
----
+Будет TypeError: '>' not supported between instances of 'Level' and 'Level'.
+
+## Обычный Enum не поддерживает операторы сравнения (<, > и т.д.) — члены сравнимы только на равенство (==). Значения 1 и 2 — это просто внутренние значения, они не делают члены упорядочиваемыми. Чтобы исправить нужно воспользоваться IntEnum
 
 ## ЧАСТЬ 2: Практическая задача (комплексная)
 
 ### Задача: Библиотечная система
 
-Напиши программу, которая объединяет все темы блока 2.5 в одну систему:
+Соберёшь одну программу из нескольких классов. Каждый шаг — это то,
+что ты уже делал в темах 2-8, здесь просто нужно собрать их вместе.
+Делай строго по шагам, не забегая вперёд.
 
-1. `ItemStatus(Enum)` с членами `AVAILABLE` и `BORROWED` (значения —
-   строки на твой выбор).
-2. `LibraryItem(ABC)` — базовый класс:
-   - `__init__(self, title: str)`: сохраняет `title` через **property**
-     с валидацией (пустая строка → `raise ValueError`); `self.status`
-     инициализируется как `ItemStatus.AVAILABLE`.
-   - Абстрактный метод `borrow_period_days(self) -> int` — у каждого
-     типа предмета свой срок выдачи.
-   - Обычный (НЕ абстрактный) метод `borrow(self) -> None` —
-     переводит `status` в `ItemStatus.BORROWED` (шаблонный метод,
-     использует контракт `borrow_period_days` через наследников, но
-     сам не абстрактный).
-   - `__repr__(self) -> str`, возвращающий что-то читаемое вроде
-     `f"{type(self).__name__}({self.title!r}, {self.status})"`.
-3. `Book(LibraryItem)` и `DVD(LibraryItem)` — реализуют
-   `borrow_period_days()` по-разному (например 21 и 7 дней).
-4. `Member` — **dataclass** с полями `name: str` и
-   `borrowed_items: list[LibraryItem]` (через `field(default_factory=list)`,
-   не голый `[]`) — Member **имеет** список предметов (композиция).
-   Подсказка: голый `field(default_factory=list)` заставит pyright
-   --strict вывести `list[Unknown]` (`reportUnknownVariableType`) —
-   параметризуй: `field(default_factory=list[LibraryItem])`.
-   Добавь метод `borrow(self, item: LibraryItem) -> None`, который
-   вызывает `item.borrow()` и добавляет `item` в `borrowed_items`.
-5. Продемонстрируй:
-   - Создай `Book(...)` и `DVD(...)`, создай `Member(...)`.
-   - `member.borrow(book)`, `member.borrow(dvd)`.
-   - Пройдись циклом `for` по `member.borrowed_items` (`list[LibraryItem]`)
-     — напечатай для каждого `item` его `repr` и `item.borrow_period_days()`
-     — код цикла не должен знать заранее, `Book` перед ним или `DVD`
-     (полиморфизм).
-   - Попробуй создать `LibraryItem("x")` напрямую — поймай `TypeError`.
-   - Попробуй создать `Book("")` (пустой title) — поймай `ValueError`.
+**Шаг 1. Enum статуса**
+
+Класс `ItemStatus(Enum)` с двумя членами: `AVAILABLE` и `BORROWED`.
+Значения (то, что справа от `=`) — любые строки на твой выбор,
+например `"available"` и `"borrowed"`.
+
+**Шаг 2. Property с валидацией для `title`** (пригодится в шаге 3)
+
+- Приватное поле `self._title`.
+- Геттер `title` — просто `return self._title`.
+- Сеттер `title` — если `value` пустая строка, `raise ValueError(...)`;
+  иначе `self._title = value`.
+
+**Шаг 3. Базовый абстрактный класс `LibraryItem(ABC)`**
+
+- `__init__(self, title: str) -> None`: присваивает `self.title = title`
+  (сработает через property из шага 2 — так значение сразу
+  провалидируется) и `self.status = ItemStatus.AVAILABLE`.
+- Абстрактный метод `def borrow_period_days(self) -> int: ...` —
+  без реализации, тела нет, только `...` — у каждого типа предмета
+  свой срок выдачи, поэтому базовый класс не может решить сам.
+- Обычный метод (БЕЗ `@abstractmethod`) `def borrow(self) -> None`,
+  который делает `self.status = ItemStatus.BORROWED`. Он не
+  абстрактный, потому что "взять в аренду" работает ОДИНАКОВО для
+  любого предмета — менять статус, а не считать срок.
+- `def __repr__(self) -> str`, например:
+  `return f"{type(self).__name__}({self.title!r}, {self.status})"`.
+
+**Шаг 4. Два наследника**
+
+- `class Book(LibraryItem)` — реализует `borrow_period_days(self) -> int`,
+  возвращает, например, `21`.
+- `class DVD(LibraryItem)` — реализует `borrow_period_days(self) -> int`,
+  возвращает, например, `7`.
+
+Обрати внимание: ни `Book`, ни `DVD` НЕ пишут свой `__init__` — им
+подходит `__init__` родителя (`LibraryItem`) без изменений, наследуют
+его напрямую.
+
+**Шаг 5. `Member` — dataclass с композицией**
+
+```python
+@dataclass
+class Member:
+    name: str
+    borrowed_items: list[LibraryItem] = field(
+        default_factory=list[LibraryItem]
+    )
+```
+
+(Синтаксис `field(default_factory=list[LibraryItem])` — та самая
+ловушка mutable default из вопроса 5, только на уровне dataclass;
+голый `field(default_factory=list)` без `[LibraryItem]` заставит
+`pyright --strict` вывести `list[Unknown]`.)
+
+Добавь в `Member` метод:
+
+```python
+def borrow(self, item: LibraryItem) -> None:
+    item.borrow()
+    self.borrowed_items.append(item)
+```
+
+`Member` **имеет** список `LibraryItem` — это и есть композиция
+(в отличие от наследования в шаге 4).
+
+**Шаг 6. Демонстрация — напиши после всех классов**
+
+1. Создай `book = Book("...")`, `dvd = DVD("...")`, `member = Member("...")`.
+2. Вызови `member.borrow(book)` и `member.borrow(dvd)`.
+3. Циклом `for item in member.borrowed_items:` напечатай
+   `print(item, item.borrow_period_days())` для каждого — это и есть
+   полиморфизм: цикл не знает заранее, `Book` перед ним или `DVD`.
+4. `try: LibraryItem("x")` — поймай `TypeError` (нельзя создать
+   экземпляр абстрактного класса), напечатай ошибку.
+5. `try: Book("")` — поймай `ValueError` (пустой `title`), напечатай
+   ошибку.
 
 **Требования:**
 
 - ✅ `Enum` (`ItemStatus`)
 - ✅ Абстракция: `abc.ABC` + `@abstractmethod` (`LibraryItem.borrow_period_days`)
 - ✅ Инкапсуляция: `title` через `@property` с валидацией
-- ✅ Наследование: `Book`/`DVD` + `super().__init__()`
+- ✅ Наследование: `Book`/`DVD` наследуют `LibraryItem`, переиспользуя
+  его `__init__` без изменений
 - ✅ Композиция: `Member` содержит список `LibraryItem`
-- ✅ `dataclasses`: `Member` (с `field(default_factory=list)`, не mutable
-  default напрямую)
+- ✅ `dataclasses`: `Member` (с `field(default_factory=list[LibraryItem])`,
+  не mutable default напрямую)
 - ✅ Полиморфизм: цикл по `list[LibraryItem]`
 - ✅ Dunder-метод: `__repr__`
 - ✅ Аннотации типов, где Pylance strict их требует
@@ -262,7 +323,14 @@ print(Level.HIGH > Level.LOW)
 **Твой код:**
 
 ```python
+from enum import Enum
+
 # YOUR CODE HERE
+
+class ItemStatus(Enum):
+    AVAILABLE = "available"
+    BORROWED = "borrowed"
+
 ```
 
 ---
