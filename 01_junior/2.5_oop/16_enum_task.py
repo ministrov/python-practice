@@ -44,6 +44,20 @@ print("""
 # ТВОЙ КОД ЗДЕСЬ:
 
 
+class Weekday(Enum):
+    MONDAY = auto()
+    TUESDAY = auto()
+    WEDNESDAY = auto()
+    THURSDAY = auto()
+    FRIDAY = auto()
+    SATURDAY = auto()
+    SUNDAY = auto()
+
+
+print(Weekday.MONDAY.value)
+print(Weekday.SUNDAY.value)
+
+
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 3: сравнение членов")
 print("=" * 60)
