@@ -419,6 +419,28 @@ class Member:
     def borrow(self, item: LibraryItem) -> None:
         item.borrow()
         self.borrowed_items.append(item)
+
+book = Book("Дюна")
+dvd = DVD("Двойной удар")
+member = Member("Антон")
+
+member.borrow(book)
+member.borrow(dvd)
+
+for item in member.borrowed_items:
+    print(item, item.borrow_period_days())
+
+try:
+    lib_item = LibraryItem("x")
+except TypeError as e:
+    print(e)
+
+try:
+    empty = Book("")
+except ValueError as e:
+    print(e)
+
+
 ```
 
 ---
