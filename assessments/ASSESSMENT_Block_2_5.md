@@ -407,7 +407,7 @@ class Book(LibraryItem):
         return 21
 
 class DVD(LibraryItem):
-    def borrow_period_days(self) -> imt:
+    def borrow_period_days(self) -> int:
         return 7
 ```
 
