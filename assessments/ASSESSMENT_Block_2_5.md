@@ -369,6 +369,7 @@ def borrow(self, item: LibraryItem) -> None:
 
 ```python
 from abc import ABC, abstractmethod
+from dataclasses import dataclass, field
 from enum import Enum
 
 # YOUR CODE HERE
@@ -409,6 +410,15 @@ class Book(LibraryItem):
 class DVD(LibraryItem):
     def borrow_period_days(self) -> int:
         return 7
+
+@dataclass
+class Member:
+    name: str
+    borrowed_items: list[LibraryItem] = field(default_factory=list[LibraryItem])
+
+    def borrow(self, item: LibraryItem) -> None:
+        item.borrow()
+        self.borrowed_items.append(item)
 ```
 
 ---
