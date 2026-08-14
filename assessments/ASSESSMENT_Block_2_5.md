@@ -261,6 +261,20 @@ print(Level.HIGH > Level.LOW)
 - `__init__(self, title: str) -> None`: присваивает `self.title = title`
   (сработает через property из шага 2 — так значение сразу
   провалидируется) и `self.status = ItemStatus.AVAILABLE`.
+
+  **Зачем `__init__` в абстрактном классе, если его нельзя создать
+  напрямую?** `@abstractmethod` (см. следующий пункт) блокирует
+  создание экземпляра ТОЛЬКО у того класса, где этот метод не
+  реализован — то есть у `LibraryItem`. `Book` и `DVD` (Шаг 4)
+  реализуют `borrow_period_days`, поэтому больше не абстрактны и
+  создаются нормально: `Book("Дюна")` — это разрешено. Но у `Book`
+  своего `__init__` не будет (Шаг 4 это подчёркивает) — Python при
+  вызове `Book("Дюна")` ищет `__init__` сначала в `Book`, не находит
+  и берёт его у родителя, `LibraryItem`. То есть `__init__` из
+  `LibraryItem` сам `LibraryItem` никогда не выполнит (его нельзя
+  создать), зато `Book`/`DVD` выполнят именно его — это и есть смысл
+  писать общий `__init__` в абстрактном классе: один раз для всех
+  будущих наследников.
 - Абстрактный метод: декоратор `@abstractmethod` над
   `def borrow_period_days(self) -> int: ...` —
   без реализации, тела нет, только `...` — у каждого типа предмета
@@ -363,15 +377,29 @@ class ItemStatus(Enum):
     BORROWED = "borrowed"
 
 class LibraryItem(ABC):
+    def __init__(self, title: str) -> None:
+        self.title = title
+        self.status = ItemStatus.AVAILABLE
+
     @property
     def title(self) -> str:
         return self._title
 
     @title.setter
     def title(self, value: str) -> None:
-        if not value or value == "":
+        if not value:
             raise ValueError("Заголовок не может быть пустым")
         self._title = value
+
+    @abstractmethod
+    def borrow_period_days(self) -> int:
+        ...
+
+    def borrow(self) -> None:
+        self.status = ItemStatus.BORROWED
+
+    def __repr__(self) -> str:
+        return f"{type(self).__name__}({self.title!r}, {self.status})"
 
 ```
 
