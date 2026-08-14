@@ -275,6 +275,7 @@ print(Level.HIGH > Level.LOW)
   создать), зато `Book`/`DVD` выполнят именно его — это и есть смысл
   писать общий `__init__` в абстрактном классе: один раз для всех
   будущих наследников.
+
 - Абстрактный метод: декоратор `@abstractmethod` над
   `def borrow_period_days(self) -> int: ...` —
   без реализации, тела нет, только `...` — у каждого типа предмета
@@ -367,7 +368,7 @@ def borrow(self, item: LibraryItem) -> None:
 **Твой код:**
 
 ```python
-from abc import ABC
+from abc import ABC, abstractmethod
 from enum import Enum
 
 # YOUR CODE HERE
@@ -401,6 +402,13 @@ class LibraryItem(ABC):
     def __repr__(self) -> str:
         return f"{type(self).__name__}({self.title!r}, {self.status})"
 
+class Book(LibraryItem):
+    def borrow_period_days(self) -> int:
+        return 21
+
+class DVD(LibraryItem):
+    def borrow_period_days(self) -> imt:
+        return 7
 ```
 
 ---
