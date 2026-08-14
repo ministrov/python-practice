@@ -233,19 +233,36 @@ print(Level.HIGH > Level.LOW)
 Значения (то, что справа от `=`) — любые строки на твой выбор,
 например `"available"` и `"borrowed"`.
 
-**Шаг 2. Property с валидацией для `title`** (пригодится в шаге 3)
+**Шаг 2. Property с валидацией для `title`**
 
-- Приватное поле `self._title`.
-- Геттер `title` — просто `return self._title`.
-- Сеттер `title` — если `value` пустая строка, `raise ValueError(...)`;
+Это НЕ отдельный класс. Этот `property` — часть класса `LibraryItem`,
+который ты полностью опишешь в Шаге 3. Здесь просто спланируй код,
+а пиши его прямо в теле `LibraryItem`, вместе с `__init__` и
+остальными методами из Шага 3.
+
+Внутри класса `LibraryItem` добавь:
+
+- Геттер: декоратор `@property` над `def title(self) -> str:`, тело —
+  `return self._title`.
+- Сеттер: декоратор `@title.setter` над
+  `def title(self, value: str) -> None:` — если `value` пустая строка
+  (`if not value:` или `if value == "":`), `raise ValueError(...)`;
   иначе `self._title = value`.
+- Отдельно писать `self._title = ...` нигде не нужно — это поле
+  появится само, когда в `__init__` (Шаг 3) выполнится
+  `self.title = title`: это присваивание пройдёт через сеттер, а
+  сеттер и создаст `self._title`.
 
 **Шаг 3. Базовый абстрактный класс `LibraryItem(ABC)`**
+
+В ЭТОТ ЖЕ класс `LibraryItem` (где уже лежит `property` из Шага 2)
+добавь:
 
 - `__init__(self, title: str) -> None`: присваивает `self.title = title`
   (сработает через property из шага 2 — так значение сразу
   провалидируется) и `self.status = ItemStatus.AVAILABLE`.
-- Абстрактный метод `def borrow_period_days(self) -> int: ...` —
+- Абстрактный метод: декоратор `@abstractmethod` над
+  `def borrow_period_days(self) -> int: ...` —
   без реализации, тела нет, только `...` — у каждого типа предмета
   свой срок выдачи, поэтому базовый класс не может решить сам.
 - Обычный метод (БЕЗ `@abstractmethod`) `def borrow(self) -> None`,
@@ -255,12 +272,19 @@ print(Level.HIGH > Level.LOW)
 - `def __repr__(self) -> str`, например:
   `return f"{type(self).__name__}({self.title!r}, {self.status})"`.
 
+Итого в теле `LibraryItem` к концу Шага 3 должно быть: `title`
+(геттер + сеттер), `__init__`, `borrow_period_days` (абстрактный),
+`borrow`, `__repr__` — пять элементов в одном классе.
+
 **Шаг 4. Два наследника**
 
-- `class Book(LibraryItem)` — реализует `borrow_period_days(self) -> int`,
-  возвращает, например, `21`.
-- `class DVD(LibraryItem)` — реализует `borrow_period_days(self) -> int`,
-  возвращает, например, `7`.
+- `class Book(LibraryItem):` — в теле ТОЛЬКО один метод:
+  `def borrow_period_days(self) -> int:` (обычный `def`, БЕЗ
+  декоратора `@abstractmethod` — здесь ты даёшь реализацию, а не
+  объявляешь абстракцию заново), тело — `return 21`. Это и есть
+  переопределение абстрактного метода из Шага 3.
+- `class DVD(LibraryItem):` — аналогично, в теле только
+  `def borrow_period_days(self) -> int:`, тело — `return 7`.
 
 Обрати внимание: ни `Book`, ни `DVD` НЕ пишут свой `__init__` — им
 подходит `__init__` родителя (`LibraryItem`) без изменений, наследуют
@@ -300,10 +324,16 @@ def borrow(self, item: LibraryItem) -> None:
 3. Циклом `for item in member.borrowed_items:` напечатай
    `print(item, item.borrow_period_days())` для каждого — это и есть
    полиморфизм: цикл не знает заранее, `Book` перед ним или `DVD`.
-4. `try: LibraryItem("x")` — поймай `TypeError` (нельзя создать
-   экземпляр абстрактного класса), напечатай ошибку.
-5. `try: Book("")` — поймай `ValueError` (пустой `title`), напечатай
-   ошибку.
+4. Оберни в `try/except`:
+   `try:` на отдельной строке `LibraryItem("x")`,
+   `except TypeError as e:` на отдельной строке `print(e)`.
+   Сработает `TypeError`, потому что `LibraryItem` — абстрактный
+   класс (Шаг 3), его нельзя создать напрямую.
+5. Аналогично оберни в `try/except`:
+   `try:` на отдельной строке `Book("")`,
+   `except ValueError as e:` на отдельной строке `print(e)`.
+   Сработает `ValueError` из сеттера `title` (Шаг 2), потому что
+   передана пустая строка.
 
 **Требования:**
 
