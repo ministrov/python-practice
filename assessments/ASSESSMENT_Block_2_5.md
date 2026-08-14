@@ -353,6 +353,7 @@ def borrow(self, item: LibraryItem) -> None:
 **Твой код:**
 
 ```python
+from abc import ABC
 from enum import Enum
 
 # YOUR CODE HERE
@@ -360,6 +361,17 @@ from enum import Enum
 class ItemStatus(Enum):
     AVAILABLE = "available"
     BORROWED = "borrowed"
+
+class LibraryItem(ABC):
+    @property
+    def title(self) -> str:
+        return self._title
+
+    @title.setter
+    def title(self, value: str) -> None:
+        if not value or value == "":
+            raise ValueError("Заголовок не может быть пустым")
+        self._title = value
 
 ```
 
