@@ -1,6 +1,6 @@
 # ✅ ASSESSMENT: Block 2.5 — ООП и модель данных
 
-**Дата:** _не пройдена_
+**Дата:** 2026-08-14 — пройдена (100%)
 **Уровень:** Junior (Блок 2.5)
 **Темы:** Классы и `self`, методы (`@classmethod`/`@staticmethod`/`@property`), наследование и `super()`, композиция, `dataclasses`, dunder-методы, абстракция (`abc.ABC`), `Enum`/`IntEnum`, 4 столпа ООП
 **Критерий прохода:** ≥80% (микровопросы + практика)
@@ -233,19 +233,51 @@ print(Level.HIGH > Level.LOW)
 Значения (то, что справа от `=`) — любые строки на твой выбор,
 например `"available"` и `"borrowed"`.
 
-**Шаг 2. Property с валидацией для `title`** (пригодится в шаге 3)
+**Шаг 2. Property с валидацией для `title`**
 
-- Приватное поле `self._title`.
-- Геттер `title` — просто `return self._title`.
-- Сеттер `title` — если `value` пустая строка, `raise ValueError(...)`;
+Это НЕ отдельный класс. Этот `property` — часть класса `LibraryItem`,
+который ты полностью опишешь в Шаге 3. Здесь просто спланируй код,
+а пиши его прямо в теле `LibraryItem`, вместе с `__init__` и
+остальными методами из Шага 3.
+
+Внутри класса `LibraryItem` добавь:
+
+- Геттер: декоратор `@property` над `def title(self) -> str:`, тело —
+  `return self._title`.
+- Сеттер: декоратор `@title.setter` над
+  `def title(self, value: str) -> None:` — если `value` пустая строка
+  (`if not value:` или `if value == "":`), `raise ValueError(...)`;
   иначе `self._title = value`.
+- Отдельно писать `self._title = ...` нигде не нужно — это поле
+  появится само, когда в `__init__` (Шаг 3) выполнится
+  `self.title = title`: это присваивание пройдёт через сеттер, а
+  сеттер и создаст `self._title`.
 
 **Шаг 3. Базовый абстрактный класс `LibraryItem(ABC)`**
+
+В ЭТОТ ЖЕ класс `LibraryItem` (где уже лежит `property` из Шага 2)
+добавь:
 
 - `__init__(self, title: str) -> None`: присваивает `self.title = title`
   (сработает через property из шага 2 — так значение сразу
   провалидируется) и `self.status = ItemStatus.AVAILABLE`.
-- Абстрактный метод `def borrow_period_days(self) -> int: ...` —
+
+  **Зачем `__init__` в абстрактном классе, если его нельзя создать
+  напрямую?** `@abstractmethod` (см. следующий пункт) блокирует
+  создание экземпляра ТОЛЬКО у того класса, где этот метод не
+  реализован — то есть у `LibraryItem`. `Book` и `DVD` (Шаг 4)
+  реализуют `borrow_period_days`, поэтому больше не абстрактны и
+  создаются нормально: `Book("Дюна")` — это разрешено. Но у `Book`
+  своего `__init__` не будет (Шаг 4 это подчёркивает) — Python при
+  вызове `Book("Дюна")` ищет `__init__` сначала в `Book`, не находит
+  и берёт его у родителя, `LibraryItem`. То есть `__init__` из
+  `LibraryItem` сам `LibraryItem` никогда не выполнит (его нельзя
+  создать), зато `Book`/`DVD` выполнят именно его — это и есть смысл
+  писать общий `__init__` в абстрактном классе: один раз для всех
+  будущих наследников.
+
+- Абстрактный метод: декоратор `@abstractmethod` над
+  `def borrow_period_days(self) -> int: ...` —
   без реализации, тела нет, только `...` — у каждого типа предмета
   свой срок выдачи, поэтому базовый класс не может решить сам.
 - Обычный метод (БЕЗ `@abstractmethod`) `def borrow(self) -> None`,
@@ -255,12 +287,19 @@ print(Level.HIGH > Level.LOW)
 - `def __repr__(self) -> str`, например:
   `return f"{type(self).__name__}({self.title!r}, {self.status})"`.
 
+Итого в теле `LibraryItem` к концу Шага 3 должно быть: `title`
+(геттер + сеттер), `__init__`, `borrow_period_days` (абстрактный),
+`borrow`, `__repr__` — пять элементов в одном классе.
+
 **Шаг 4. Два наследника**
 
-- `class Book(LibraryItem)` — реализует `borrow_period_days(self) -> int`,
-  возвращает, например, `21`.
-- `class DVD(LibraryItem)` — реализует `borrow_period_days(self) -> int`,
-  возвращает, например, `7`.
+- `class Book(LibraryItem):` — в теле ТОЛЬКО один метод:
+  `def borrow_period_days(self) -> int:` (обычный `def`, БЕЗ
+  декоратора `@abstractmethod` — здесь ты даёшь реализацию, а не
+  объявляешь абстракцию заново), тело — `return 21`. Это и есть
+  переопределение абстрактного метода из Шага 3.
+- `class DVD(LibraryItem):` — аналогично, в теле только
+  `def borrow_period_days(self) -> int:`, тело — `return 7`.
 
 Обрати внимание: ни `Book`, ни `DVD` НЕ пишут свой `__init__` — им
 подходит `__init__` родителя (`LibraryItem`) без изменений, наследуют
@@ -300,10 +339,16 @@ def borrow(self, item: LibraryItem) -> None:
 3. Циклом `for item in member.borrowed_items:` напечатай
    `print(item, item.borrow_period_days())` для каждого — это и есть
    полиморфизм: цикл не знает заранее, `Book` перед ним или `DVD`.
-4. `try: LibraryItem("x")` — поймай `TypeError` (нельзя создать
-   экземпляр абстрактного класса), напечатай ошибку.
-5. `try: Book("")` — поймай `ValueError` (пустой `title`), напечатай
-   ошибку.
+4. Оберни в `try/except`:
+   `try:` на отдельной строке `LibraryItem("x")`,
+   `except TypeError as e:` на отдельной строке `print(e)`.
+   Сработает `TypeError`, потому что `LibraryItem` — абстрактный
+   класс (Шаг 3), его нельзя создать напрямую.
+5. Аналогично оберни в `try/except`:
+   `try:` на отдельной строке `Book("")`,
+   `except ValueError as e:` на отдельной строке `print(e)`.
+   Сработает `ValueError` из сеттера `title` (Шаг 2), потому что
+   передана пустая строка.
 
 **Требования:**
 
@@ -323,6 +368,8 @@ def borrow(self, item: LibraryItem) -> None:
 **Твой код:**
 
 ```python
+from abc import ABC, abstractmethod
+from dataclasses import dataclass, field
 from enum import Enum
 
 # YOUR CODE HERE
@@ -330,6 +377,69 @@ from enum import Enum
 class ItemStatus(Enum):
     AVAILABLE = "available"
     BORROWED = "borrowed"
+
+class LibraryItem(ABC):
+    def __init__(self, title: str) -> None:
+        self.title = title
+        self.status = ItemStatus.AVAILABLE
+
+    @property
+    def title(self) -> str:
+        return self._title
+
+    @title.setter
+    def title(self, value: str) -> None:
+        if not value:
+            raise ValueError("Заголовок не может быть пустым")
+        self._title = value
+
+    @abstractmethod
+    def borrow_period_days(self) -> int:
+        ...
+
+    def borrow(self) -> None:
+        self.status = ItemStatus.BORROWED
+
+    def __repr__(self) -> str:
+        return f"{type(self).__name__}({self.title!r}, {self.status})"
+
+class Book(LibraryItem):
+    def borrow_period_days(self) -> int:
+        return 21
+
+class DVD(LibraryItem):
+    def borrow_period_days(self) -> int:
+        return 7
+
+@dataclass
+class Member:
+    name: str
+    borrowed_items: list[LibraryItem] = field(default_factory=list[LibraryItem])
+
+    def borrow(self, item: LibraryItem) -> None:
+        item.borrow()
+        self.borrowed_items.append(item)
+
+book = Book("Дюна")
+dvd = DVD("Двойной удар")
+member = Member("Антон")
+
+member.borrow(book)
+member.borrow(dvd)
+
+for item in member.borrowed_items:
+    print(item, item.borrow_period_days())
+
+try:
+    lib_item = LibraryItem("x") # намеренно: # type: ignore[reportAbstractUsage]
+except TypeError as e:
+    print(e)
+
+try:
+    empty = Book("")
+except ValueError as e:
+    print(e)
+
 
 ```
 
@@ -353,9 +463,10 @@ class ItemStatus(Enum):
 ### ФИНАЛЬНЫЙ РЕЗУЛЬТАТ
 
 ```
-Микровопросы: X/8 (Y%) × 50% вклад
-Практика:     X/7 (Y%) × 50% вклад
-Проход: ≥80%
+Микровопросы: 8/8 (100%) × 50% вклад = 50%
+Практика:     7/7 (100%) × 50% вклад = 50%
+Итог: 100%
+Проход: ≥80% — ПРОЙДЕНО
 ```
 
 ---
