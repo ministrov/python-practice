@@ -431,7 +431,7 @@ for item in member.borrowed_items:
     print(item, item.borrow_period_days())
 
 try:
-    lib_item = LibraryItem("x")
+    lib_item = LibraryItem("x") # type: ignore[reportAbstractUsage]
 except TypeError as e:
     print(e)
 
