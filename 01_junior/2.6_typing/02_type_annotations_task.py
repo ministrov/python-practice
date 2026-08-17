@@ -38,6 +38,14 @@ print("""
 # ТВОЙ КОД ЗДЕСЬ:
 
 
+def merge_counts(a: dict[str, int], b: dict[str, int]) -> dict[str, int]:
+    result = dict(a)
+
+    for key, value in b.items():
+        result[key] = result.get(key, 0) + value
+    return result
+
+
 print(merge_counts({"a": 1, "b": 2}, {"b": 3, "c": 4}))
 
 print("\n" + "=" * 60)
