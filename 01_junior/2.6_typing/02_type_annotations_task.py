@@ -154,6 +154,12 @@ print("""
 # ТВОЙ КОД ЗДЕСЬ:
 
 
+def greet(name: str | None = None) -> str:
+    if name is None:
+        return "Привет, Гость!"
+    return f"Привет, {name}!"
+
+
 print(greet("Антон"))
 print(greet())
 
