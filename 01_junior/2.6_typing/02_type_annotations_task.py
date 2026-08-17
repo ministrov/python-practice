@@ -18,6 +18,10 @@ print("""
 # ТВОЙ КОД ЗДЕСЬ:
 
 
+def average(numbers: list[float]) -> float:
+    return sum(numbers) / len(numbers)
+
+
 print(average([2.0, 4.0, 6.0]))
 
 print("\n" + "=" * 60)
