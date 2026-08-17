@@ -55,6 +55,12 @@ def find_price(prices: dict[str, float], name: str) -> float | None:
 # ТВОЙ КОД ЗДЕСЬ: parse_quantity
 
 
+def parse_quantity(raw: str) -> int | float:
+    if "." in raw:
+        return float(raw)
+    else:
+        return int(raw)
+
 # ТВОЙ КОД ЗДЕСЬ: restock_pairs
 
 
@@ -69,8 +75,8 @@ if __name__ == "__main__":
     print(find_price(prices, "bolts"))
     print(find_price(prices, "nails"))
 
-    # print(parse_quantity("120"))
-    # print(parse_quantity("12.5"))
+    print(parse_quantity("120"))
+    print(parse_quantity("12.5"))
 
     # print(restock_pairs(["screws", "bolts"], [100, 50]))
 
