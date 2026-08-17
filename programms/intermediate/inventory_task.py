@@ -34,11 +34,6 @@
 
     6. Проверь на примере ниже (раскомментируй и запусти).
 """
-#   1. Напиши total_stock_value(prices: dict[str, float],
-#                                  quantities: dict[str, int]) -> float
-#        Возвращает суммарную стоимость склада: сумма price * quantity
-#        по каждому товару (ключ — название товара, общий для обоих
-#        словарей).
 
 # ТВОЙ КОД ЗДЕСЬ: total_stock_value
 
@@ -54,6 +49,9 @@ def total_stock_value(prices: dict[str, float], quantities: dict[str, int]) -> f
 # ТВОЙ КОД ЗДЕСЬ: find_price
 
 
+def find_price(prices: dict[str, float], name: str) -> float | None:
+    return prices[name] if name in prices else None
+
 # ТВОЙ КОД ЗДЕСЬ: parse_quantity
 
 
@@ -68,8 +66,8 @@ if __name__ == "__main__":
     quantities = {"screws": 500, "bolts": 200, "hinges": 30}
 
     print(total_stock_value(prices, quantities))
-    # print(find_price(prices, "bolts"))
-    # print(find_price(prices, "nails"))
+    print(find_price(prices, "bolts"))
+    print(find_price(prices, "nails"))
 
     # print(parse_quantity("120"))
     # print(parse_quantity("12.5"))
