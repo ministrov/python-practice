@@ -63,11 +63,6 @@ def parse_quantity(raw: str) -> int | float:
 
 # ТВОЙ КОД ЗДЕСЬ: restock_pairs
 
-#   4. Напиши restock_pairs(names: list[str], amounts: list[int]
-#                              ) -> list[tuple[str, int]]
-#        Собирает список пар (название, количество) из двух параллельных
-#        списков одинаковой длины.
-
 
 def restock_pairs(names: list[str], amounts: list[int]) -> list[tuple[str, int]]:
     results: list[tuple[str, int]] = []
@@ -77,6 +72,20 @@ def restock_pairs(names: list[str], amounts: list[int]) -> list[tuple[str, int]]
     return results
 
 # ТВОЙ КОД ЗДЕСЬ: group_by_supplier
+#  5. Напиши group_by_supplier(
+#            items: list[tuple[str, str]],
+#        ) -> dict[str, list[str]]
+#        items — список пар (поставщик, товар). Сгруппируй товары по
+#        поставщику: {поставщик: [товар, товар, ...]}.
+
+
+def group_by_supplier(items: list[tuple[str, str]]) -> dict[str, list[str]]:
+    grouped: dict[str, list[str]] = {}
+
+    for supplier, good in items:
+        grouped.setdefault(supplier, []).append(good)
+
+    return grouped
 
 
 if __name__ == "__main__":
@@ -92,6 +101,6 @@ if __name__ == "__main__":
 
     print(restock_pairs(["screws", "bolts"], [100, 50]))
 
-    # print(group_by_supplier(
-    #     [("AcmeCorp", "screws"), ("AcmeCorp", "bolts"), ("Best", "hinges")]
-    # ))
+    print(group_by_supplier(
+        [("AcmeCorp", "screws"), ("AcmeCorp", "bolts"), ("Best", "hinges")]
+    ))
