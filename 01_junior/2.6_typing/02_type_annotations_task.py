@@ -180,4 +180,15 @@ print("""
 # ТВОЙ КОД ЗДЕСЬ:
 
 
+def split_by_status(items: list[tuple[str, bool]]) -> dict[str, list[str]]:
+    grouped: dict[str, list[str]] = {}
+
+    for name, flag in items:
+        if not flag:
+            grouped.setdefault("not_ready", []).append(name)
+        else:
+            grouped.setdefault("ready", []).append(name)
+    return grouped
+
+
 print(split_by_status([("Alice", True), ("Bob", False), ("Cara", True)]))
