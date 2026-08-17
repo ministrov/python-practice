@@ -72,11 +72,6 @@ def restock_pairs(names: list[str], amounts: list[int]) -> list[tuple[str, int]]
     return results
 
 # ТВОЙ КОД ЗДЕСЬ: group_by_supplier
-#  5. Напиши group_by_supplier(
-#            items: list[tuple[str, str]],
-#        ) -> dict[str, list[str]]
-#        items — список пар (поставщик, товар). Сгруппируй товары по
-#        поставщику: {поставщик: [товар, товар, ...]}.
 
 
 def group_by_supplier(items: list[tuple[str, str]]) -> dict[str, list[str]]:
