@@ -108,6 +108,13 @@ print("""
 # ТВОЙ КОД ЗДЕСЬ:
 
 
+def to_number(raw: str) -> int | float:
+    try:
+        return int(raw)
+    except ValueError:
+        return float(raw)
+
+
 print(to_number("10"), type(to_number("10")))
 print(to_number("2.5"), type(to_number("2.5")))
 
