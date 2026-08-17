@@ -18,6 +18,10 @@ print("""
 # ТВОЙ КОД ЗДЕСЬ:
 
 
+def average(numbers: list[float]) -> float:
+    return sum(numbers) / len(numbers)
+
+
 print(average([2.0, 4.0, 6.0]))
 
 print("\n" + "=" * 60)
@@ -34,6 +38,14 @@ print("""
 # ТВОЙ КОД ЗДЕСЬ:
 
 
+def merge_counts(a: dict[str, int], b: dict[str, int]) -> dict[str, int]:
+    result = dict(a)
+
+    for key, value in b.items():
+        result[key] = result.get(key, 0) + value
+    return result
+
+
 print(merge_counts({"a": 1, "b": 2}, {"b": 3, "c": 4}))
 
 print("\n" + "=" * 60)
@@ -46,6 +58,12 @@ print("""
 """)
 
 # ТВОЙ КОД ЗДЕСЬ:
+
+
+def swap(pair: tuple[int, int]) -> tuple[int, int]:
+    num_1, num_2 = pair
+
+    return (num_2, num_1)
 
 
 print(swap((1, 2)))
@@ -65,6 +83,15 @@ print("""
 
 
 users = {"Ann": 25, "Bob": 30}
+
+
+def find_age(users: dict[str, int], name: str) -> int | None:
+    if name not in users:
+        return None
+
+    return users[name]
+
+
 print(find_age(users, "Ann"))
 print(find_age(users, "Nobody"))
 
@@ -79,6 +106,13 @@ print("""
 """)
 
 # ТВОЙ КОД ЗДЕСЬ:
+
+
+def to_number(raw: str) -> int | float:
+    try:
+        return int(raw)
+    except ValueError:
+        return float(raw)
 
 
 print(to_number("10"), type(to_number("10")))
@@ -97,6 +131,14 @@ print("""
 # ТВОЙ КОД ЗДЕСЬ:
 
 
+def words_by_length(words: list[str]) -> dict[int, list[str]]:
+    grouped: dict[int, list[str]] = {}
+
+    for word in words:
+        grouped.setdefault(len(word), []).append(word)
+    return grouped
+
+
 print(words_by_length(["a", "bb", "cc", "ddd"]))
 
 print("\n" + "=" * 60)
@@ -110,6 +152,12 @@ print("""
 """)
 
 # ТВОЙ КОД ЗДЕСЬ:
+
+
+def greet(name: str | None = None) -> str:
+    if name is None:
+        return "Привет, Гость!"
+    return f"Привет, {name}!"
 
 
 print(greet("Антон"))
@@ -130,6 +178,17 @@ print("""
 """)
 
 # ТВОЙ КОД ЗДЕСЬ:
+
+
+def split_by_status(items: list[tuple[str, bool]]) -> dict[str, list[str]]:
+    grouped: dict[str, list[str]] = {}
+
+    for name, flag in items:
+        if not flag:
+            grouped.setdefault("not_ready", []).append(name)
+        else:
+            grouped.setdefault("ready", []).append(name)
+    return grouped
 
 
 print(split_by_status([("Alice", True), ("Bob", False), ("Cara", True)]))
