@@ -61,9 +61,9 @@ print("""
 
 
 def swap(pair: tuple[int, int]) -> tuple[int, int]:
-    one, two = pair
+    num_1, num_2 = pair
 
-    return (two, one)
+    return (num_2, num_1)
 
 
 print(swap((1, 2)))
@@ -83,6 +83,15 @@ print("""
 
 
 users = {"Ann": 25, "Bob": 30}
+
+
+def find_age(users: dict[str, int], name: str) -> int | None:
+    if name not in users:
+        return None
+
+    return users[name]
+
+
 print(find_age(users, "Ann"))
 print(find_age(users, "Nobody"))
 
