@@ -131,6 +131,14 @@ print("""
 # ТВОЙ КОД ЗДЕСЬ:
 
 
+def words_by_length(words: list[str]) -> dict[int, list[str]]:
+    grouped: dict[int, list[str]] = {}
+
+    for word in words:
+        grouped.setdefault(len(word), []).append(word)
+    return grouped
+
+
 print(words_by_length(["a", "bb", "cc", "ddd"]))
 
 print("\n" + "=" * 60)
