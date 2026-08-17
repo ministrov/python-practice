@@ -63,6 +63,18 @@ def parse_quantity(raw: str) -> int | float:
 
 # ТВОЙ КОД ЗДЕСЬ: restock_pairs
 
+#   4. Напиши restock_pairs(names: list[str], amounts: list[int]
+#                              ) -> list[tuple[str, int]]
+#        Собирает список пар (название, количество) из двух параллельных
+#        списков одинаковой длины.
+
+
+def restock_pairs(names: list[str], amounts: list[int]) -> list[tuple[str, int]]:
+    results: list[tuple[str, int]] = []
+
+    for key, value in zip(names, amounts):
+        results.append((key, value))
+    return results
 
 # ТВОЙ КОД ЗДЕСЬ: group_by_supplier
 
@@ -78,7 +90,7 @@ if __name__ == "__main__":
     print(parse_quantity("120"))
     print(parse_quantity("12.5"))
 
-    # print(restock_pairs(["screws", "bolts"], [100, 50]))
+    print(restock_pairs(["screws", "bolts"], [100, 50]))
 
     # print(group_by_supplier(
     #     [("AcmeCorp", "screws"), ("AcmeCorp", "bolts"), ("Best", "hinges")]
