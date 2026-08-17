@@ -60,6 +60,12 @@ print("""
 # ТВОЙ КОД ЗДЕСЬ:
 
 
+def swap(pair: tuple[int, int]) -> tuple[int, int]:
+    one, two = pair
+
+    return (two, one)
+
+
 print(swap((1, 2)))
 
 print("\n" + "=" * 60)
