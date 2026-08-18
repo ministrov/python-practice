@@ -157,7 +157,8 @@
 
 - [x] Аннотации типов: `list[int]`, `dict[str, int]`, `Optional`/`| None`, `Union`/`|` ✅ (2026-08-17)
   - Файлы: `01_type_annotations_demo.py` ✅, `02_type_annotations_task.py` ✅ (8/8 заданий)
-- [ ] `typing`: `Any`, `Callable`, `Iterable`, `Sequence`, `TypedDict`
+- [x] `typing`: `Any`, `Callable`, `Iterable`, `Sequence`, `TypedDict` ✅ (2026-08-18)
+  - Файлы: `03_typing_module_demo.py` ✅, `04_typing_module_task.py` ✅ (8/8 заданий)
 - [ ] Проверка типов: `mypy` или `pyright` — настройка и запуск
 - [ ] PEP 8, форматирование: `ruff` / `black`, линтинг `ruff`
 - [ ] Виртуальные окружения: `venv`, управление зависимостями (`pip`, `requirements.txt`, или `uv`/`poetry`)
