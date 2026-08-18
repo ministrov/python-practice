@@ -85,7 +85,7 @@ print("=" * 55)
 
 for i in range(10):
     if i == 3:
-        print(f"Нашли 3, выходим!")
+        print("Нашли 3, выходим!")
         break  # Выход из цикла
     print(i)
 
@@ -98,7 +98,7 @@ print("=" * 55)
 
 for i in range(5):
     if i == 2:
-        print(f"Пропускаем 2")
+        print("Пропускаем 2")
         continue  # Перейти к следующей итерации
     print(f"Число {i}")
 
@@ -141,7 +141,7 @@ print("=" * 55)
 # Таблица умножения 3x3
 for i in range(1, 4):
     for j in range(1, 4):
-        print(f"{i}*{j}={i*j}", end="  ")
+        print(f"{i}*{j}={i * j}", end="  ")
     print()  # Новая строка
 
 print("\n" + "=" * 55)

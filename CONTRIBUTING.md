@@ -54,11 +54,12 @@ git checkout -b fix/опечатка-в-readme
 def calculate_circle_area(radius):
     """Вычисляет площадь круга."""
     PI = 3.14159
-    return PI * radius ** 2
+    return PI * radius**2
+
 
 # ❌ Плохо
 def calc(r):
-    return 3.14159 * r ** 2
+    return 3.14159 * r**2
 ```
 
 **Для документации:**

@@ -22,8 +22,9 @@ def greet(name: str) -> str:
     return f"Hello, {name}!"
 
 
-print(greet("Alice"))   # Hello, Alice!
-print(greet("Bob"))     # Hello, Bob!
+print(greet("Alice"))  # Hello, Alice!
+print(greet("Bob"))  # Hello, Bob!
+
 
 # Функция без return возвращает None
 def say_hi() -> None:
@@ -33,7 +34,7 @@ def say_hi() -> None:
 
 say_hi()
 result: None = say_hi()
-print(f"Возвращает: {result}")   # None
+print(f"Возвращает: {result}")  # None
 
 print()
 
@@ -63,12 +64,12 @@ print("=== ЗНАЧЕНИЯ ПО УМОЛЧАНИЮ ===\n")
 
 def power(base: int, exp: int = 2) -> int:
     """Возводит base в степень exp (по умолчанию — квадрат)."""
-    return base ** exp
+    return base**exp
 
 
-print(power(3))       # 9  (exp=2 по умолчанию)
-print(power(3, 3))    # 27 (exp=3)
-print(power(2, 10))   # 1024
+print(power(3))  # 9  (exp=2 по умолчанию)
+print(power(3, 3))  # 27 (exp=3)
+print(power(2, 10))  # 1024
 
 
 # Параметры с дефолтом — после параметров без дефолта
@@ -77,9 +78,9 @@ def greet_user(name: str, greeting: str = "Hello", punct: str = "!") -> str:
     return f"{greeting}, {name}{punct}"
 
 
-print(greet_user("Alice"))                    # Hello, Alice!
-print(greet_user("Bob", "Hi"))               # Hi, Bob!
-print(greet_user("Charlie", punct="..."))    # Hello, Charlie...
+print(greet_user("Alice"))  # Hello, Alice!
+print(greet_user("Bob", "Hi"))  # Hi, Bob!
+print(greet_user("Charlie", punct="..."))  # Hello, Charlie...
 
 print()
 
@@ -94,7 +95,7 @@ def add_item_bad(item: str, storage: list[str] = []) -> list[str]:
     return storage
 
 
-print(add_item_bad("apple"))   # ['apple']
+print(add_item_bad("apple"))  # ['apple']
 print(add_item_bad("banana"))  # ['apple', 'banana'] -- БАГ! ожидали ['banana']
 print(add_item_bad("cherry"))  # ['apple', 'banana', 'cherry'] -- снова БАГ
 
@@ -108,7 +109,7 @@ def add_item_good(item: str, storage: list[str] | None = None) -> list[str]:
     return storage
 
 
-print(add_item_good("apple"))   # ['apple']
+print(add_item_good("apple"))  # ['apple']
 print(add_item_good("banana"))  # ['banana']  -- правильно!
 
 print()
@@ -123,11 +124,11 @@ def min_max(numbers: list[int]) -> tuple[int, int]:
 
 
 lo, hi = min_max([3, 1, 4, 1, 5, 9, 2, 6])
-print(f"min={lo}, max={hi}")   # min=1, max=9
+print(f"min={lo}, max={hi}")  # min=1, max=9
 
 # Без распаковки — это tuple
 result_tuple: tuple[int, int] = min_max([10, 20, 30])
-print(f"Как tuple: {result_tuple}")   # (10, 30)
+print(f"Как tuple: {result_tuple}")  # (10, 30)
 
 print()
 
@@ -146,11 +147,11 @@ def calculate_bmi(weight_kg: float, height_m: float) -> float:
     Returns:
         BMI = вес / рост^2
     """
-    return round(weight_kg / height_m ** 2, 1)
+    return round(weight_kg / height_m**2, 1)
 
 
 bmi: float = calculate_bmi(70, 1.75)
-print(f"BMI: {bmi}")              # 22.9
+print(f"BMI: {bmi}")  # 22.9
 print(f"Docstring: {calculate_bmi.__doc__!r}"[:60] + "...")
 
 print()
@@ -163,12 +164,12 @@ def divide(a: float, b: float) -> float | None:
     """Делит a на b; возвращает None при делении на 0."""
     if b == 0:
         print("Ошибка: деление на ноль")
-        return None        # ранний выход
+        return None  # ранний выход
     return a / b
 
 
-print(divide(10, 2))    # 5.0
-print(divide(10, 0))    # Ошибка: деление на ноль / None
+print(divide(10, 2))  # 5.0
+print(divide(10, 0))  # Ошибка: деление на ноль / None
 
 print()
 
@@ -177,7 +178,7 @@ print("=== ФУНКЦИИ — ЭТО ОБЪЕКТЫ ===\n")
 
 # Функцию можно присвоить переменной
 alias = greet
-print(alias("Diana"))   # Hello, Diana!
+print(alias("Diana"))  # Hello, Diana!
 
 # Передать в другую функцию
 names: list[str] = ["Charlie", "Alice", "Bob"]

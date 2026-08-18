@@ -1,21 +1,27 @@
-""" Цель задачи — вычислить общее количество проданных товаров и общую сумму заказов за день, используя данные, хранящиеся в словарях.
-"""
+"""Цель задачи — вычислить общее количество проданных товаров и общую сумму заказов за день, используя данные, хранящиеся в словарях."""
+
 from functools import reduce
 from typing import Any
 
 
 orders = [
-    {"id": 1, "user": "Anton", "items": [
-        {"name": "Laptop", "price": 1000},
-        {"name": "Mouse", "price": 50}
-    ]},
-    {"id": 2, "user": "Kate", "items": [
-        {"name": "Phone", "price": 700}
-    ]},
-    {"id": 3, "user": "Oleg", "items": [
-        {"name": "Monitor", "price": 300},
-        {"name": "Keyboard", "price": 100}
-    ]}
+    {
+        "id": 1,
+        "user": "Anton",
+        "items": [
+            {"name": "Laptop", "price": 1000},
+            {"name": "Mouse", "price": 50},
+        ],
+    },
+    {"id": 2, "user": "Kate", "items": [{"name": "Phone", "price": 700}]},
+    {
+        "id": 3,
+        "user": "Oleg",
+        "items": [
+            {"name": "Monitor", "price": 300},
+            {"name": "Keyboard", "price": 100},
+        ],
+    },
 ]
 
 
@@ -26,7 +32,7 @@ def aggregate(acc: dict[str, Any], order: dict[str, Any]) -> dict[str, Any]:
     print(order_count)
     return {
         "total_price": acc["total_price"] + order_sum,
-        "total_items": acc["total_items"] + order_count
+        "total_items": acc["total_items"] + order_count,
     }
 
 

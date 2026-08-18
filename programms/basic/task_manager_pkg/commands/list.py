@@ -1,4 +1,4 @@
-""" Модуль вывода задач"""
+"""Модуль вывода задач"""
 
 from task_manager_pkg.tasks.tasks import Task
 from task_manager_pkg.helpers.args import parse_list
@@ -15,7 +15,7 @@ def list_command(tasks: list[Task], args: list[str]):
         subset = sorted(subset, key=lambda t: order.get(t["priority"], 1))
 
     if by == "due":
-        subset = sorted(subset, key=lambda t: (t['due'] is None, t["due"]))
+        subset = sorted(subset, key=lambda t: (t["due"] is None, t["due"]))
 
     if not subset:
         print("Список задач пуст")

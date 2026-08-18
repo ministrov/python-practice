@@ -18,6 +18,7 @@ from abc import ABC, abstractmethod
 # 1. Проблема без abc: базовый класс можно создать напрямую по ошибке
 # ════════════════════════════════════════════════════════════════════════
 
+
 class ShapePlain:
     def area(self) -> float:
         raise NotImplementedError("наследник должен переопределить area()")
@@ -36,10 +37,10 @@ except NotImplementedError as e:
 # 2. abc.ABC + @abstractmethod — запрет на уровне создания объекта
 # ════════════════════════════════════════════════════════════════════════
 
+
 class Shape(ABC):
     @abstractmethod
-    def area(self) -> float:
-        ...
+    def area(self) -> float: ...
 
 
 try:
@@ -54,21 +55,23 @@ except TypeError as e:
 # 3. Наследник обязан реализовать ВСЕ абстрактные методы
 # ════════════════════════════════════════════════════════════════════════
 
+
 class Circle(Shape):
     def __init__(self, radius: float) -> None:
         self.radius = radius
 
     def area(self) -> float:
-        return 3.14159 * self.radius ** 2
+        return 3.14159 * self.radius**2
 
 
 circle = Circle(2)
-print(circle.area())   # 12.56636 — теперь можно создать и посчитать
+print(circle.area())  # 12.56636 — теперь можно создать и посчитать
 
 
 class Square(Shape):
     def __init__(self, side: float) -> None:
         self.side = side
+
     # area() не переопределён — Square по факту остаётся абстрактным
 
 
@@ -85,10 +88,10 @@ except TypeError as e:
 # 4. Абстрактный метод + обычный метод (шаблон) в одном базовом классе
 # ════════════════════════════════════════════════════════════════════════
 
+
 class PaymentMethod(ABC):
     @abstractmethod
-    def pay(self, amount: float) -> None:
-        ...
+    def pay(self, amount: float) -> None: ...
 
     def checkout(self, amount: float) -> None:
         # обычный метод — готовая реализация доступна ВСЕМ наследникам
@@ -111,11 +114,11 @@ CardPayment().checkout(500)
 # 5. @property + @abstractmethod — абстрактное свойство
 # ════════════════════════════════════════════════════════════════════════
 
+
 class Vehicle(ABC):
     @property
     @abstractmethod
-    def wheels(self) -> int:
-        ...
+    def wheels(self) -> int: ...
 
 
 class Car(Vehicle):
@@ -130,8 +133,8 @@ class Motorcycle(Vehicle):
         return 2
 
 
-print(Car().wheels)          # 4
-print(Motorcycle().wheels)   # 2
+print(Car().wheels)  # 4
+print(Motorcycle().wheels)  # 2
 # Car/Motorcycle обязаны реализовать wheels именно как @property — ABC
 # проверяет только ИМЯ метода, но не то, обёрнут ли он в @property
 
@@ -142,7 +145,7 @@ print(Motorcycle().wheels)   # 2
 
 shapes: list[Shape] = [Circle(1), Circle(2)]
 total_area = sum(shape.area() for shape in shapes)
-print(total_area)   # 3.14159 + 12.56636 = 15.70795
+print(total_area)  # 3.14159 + 12.56636 = 15.70795
 # Код, который считает total_area, ВООБЩЕ не знает, что такое Circle —
 # он знает только, что у любого Shape есть area(). ABC гарантирует,
 # что это верно для любого наследника Shape.

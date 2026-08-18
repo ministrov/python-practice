@@ -1,20 +1,20 @@
-""" Демо модуль по базовому объектно-ориентированному программированию"""
-
+"""Демо модуль по базовому объектно-ориентированному программированию"""
 
 from datetime import date
 
 
 class Task:
-    """ Задача """
+    """Задача"""
+
     done: bool = False
     title: str
 
     def set_info(self, text: str):
-        """ Установка title """
+        """Установка title"""
         self.title = text
 
     def get_info(self):
-        """ Получение данных задачи """
+        """Получение данных задачи"""
         print("Задача")
 
 
@@ -30,11 +30,11 @@ class Auth:
     is_auth = False
 
     def login(self):
-        """ Вход """
+        """Вход"""
         self.is_auth = True
 
     def logout(self):
-        """ Выход """
+        """Выход"""
         self.is_auth = False
 
 
@@ -55,7 +55,7 @@ print(note)
 
 
 class Book:
-    """ Книга """
+    """Книга"""
 
     def __init__(self, title: str, year: int):
         self.title = title
@@ -63,7 +63,7 @@ class Book:
 
     @staticmethod
     def years_since(year: int):
-        """ Метод получения возраста книги """
+        """Метод получения возраста книги"""
         return date.today().year - year
 
 

@@ -1,4 +1,4 @@
-"""  Модуль для редактирования тегов """
+"""Модуль для редактирования тегов"""
 
 from task_manager_pkg.tasks.tasks import Task, find_task
 

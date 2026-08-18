@@ -242,7 +242,12 @@ class Account:
 
 
 class SavingsAccount(Account):
-    def __init__(self, owner: str, balance: float, interest_rate: float,):
+    def __init__(
+        self,
+        owner: str,
+        balance: float,
+        interest_rate: float,
+    ):
         super().__init__(owner, balance)
         self.interest_rate = interest_rate
 

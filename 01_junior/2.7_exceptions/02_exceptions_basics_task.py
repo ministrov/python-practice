@@ -54,7 +54,8 @@ def parse_int(value: Any) -> int | None:
         return None
     except TypeError:
         print(
-            f"Ошибка: передан не подходящий тип {type(value).__name__} вместо строки/числа (TypeError)")
+            f"Ошибка: передан не подходящий тип {type(value).__name__} вместо строки/числа (TypeError)"
+        )
         return None
 
 

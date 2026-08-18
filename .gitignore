@@ -68,3 +68,10 @@ programms/basic/task.json
 sample_data/
 playground/
 data.txt
+
+# Generated demo/practice output (I/O and files exercises, Block 2.1)
+demo_output.txt
+grades.txt
+log.txt
+shopping.txt
+students.txt

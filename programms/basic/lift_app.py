@@ -1,10 +1,10 @@
-""" Программа на подобии лифта которая принимает от
-                        пользователя число -1 до 10 и выводит что это за этаж 
+"""Программа на подобии лифта которая принимает от
+пользователя число -1 до 10 и выводит что это за этаж
 """
 
 
 def define_floor(num: int) -> None:
-    """ Определяет какой этаж."""
+    """Определяет какой этаж."""
     # sequences: list[int] = [2, 3, 4, 5, 6, 7, 8, 9]
     # odds: list[int] = [n for n in sequences if n % 2 == 1]
     # evens: list[int] = [n for n in sequences if n % 2 == 0]
@@ -25,7 +25,7 @@ def define_floor(num: int) -> None:
 
 
 def main() -> None:
-    """ Точка входа. """
+    """Точка входа."""
     user_input = int(input("Введите число от -1 до 10: "))
     define_floor(user_input)
 

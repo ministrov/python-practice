@@ -12,7 +12,7 @@ PI = 3.14159
 
 def circle_area(radius: float) -> float:
     """Возвращает площадь круга по радиусу."""
-    return PI * radius ** 2
+    return PI * radius**2
 
 
 def circle_circumference(radius: float) -> float:

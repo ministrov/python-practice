@@ -87,7 +87,8 @@ print("""
 class PaymentMethod:
     def pay(self, amount: float) -> str:
         raise NotImplementedError(
-            'это "интерфейс", сам по себе не используется')
+            'это "интерфейс", сам по себе не используется'
+        )
 
 
 class CardPayment(PaymentMethod):
@@ -176,8 +177,7 @@ class Invoice:
         return f"{self.customer.name}: {self.items.total()}"
 
 
-invoice_a = Invoice(Customer("Аня", "a@mail.com"), LineItems([100,
-                                                              200, 50]))
+invoice_a = Invoice(Customer("Аня", "a@mail.com"), LineItems([100, 200, 50]))
 print(invoice_a.summary())
 
 
@@ -214,6 +214,7 @@ class EmailNotification(Notification):
 
 class SmsNotification(Notification):
     pass
+
 
 # Потому что ответ на вопрос EmailNotification ЕСТЬ Notification? Да.
 # Так как EmailNotification, является частным случаем Notification

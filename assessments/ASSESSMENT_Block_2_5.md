@@ -178,8 +178,7 @@ from abc import ABC, abstractmethod
 class Sensor(ABC):
     @property
     @abstractmethod
-    def unit(self) -> str:
-        ...
+    def unit(self) -> str: ...
 
 
 class Thermometer(Sensor):
@@ -374,9 +373,11 @@ from enum import Enum
 
 # YOUR CODE HERE
 
+
 class ItemStatus(Enum):
     AVAILABLE = "available"
     BORROWED = "borrowed"
+
 
 class LibraryItem(ABC):
     def __init__(self, title: str) -> None:
@@ -394,8 +395,7 @@ class LibraryItem(ABC):
         self._title = value
 
     @abstractmethod
-    def borrow_period_days(self) -> int:
-        ...
+    def borrow_period_days(self) -> int: ...
 
     def borrow(self) -> None:
         self.status = ItemStatus.BORROWED
@@ -403,22 +403,28 @@ class LibraryItem(ABC):
     def __repr__(self) -> str:
         return f"{type(self).__name__}({self.title!r}, {self.status})"
 
+
 class Book(LibraryItem):
     def borrow_period_days(self) -> int:
         return 21
+
 
 class DVD(LibraryItem):
     def borrow_period_days(self) -> int:
         return 7
 
+
 @dataclass
 class Member:
     name: str
-    borrowed_items: list[LibraryItem] = field(default_factory=list[LibraryItem])
+    borrowed_items: list[LibraryItem] = field(
+        default_factory=list[LibraryItem]
+    )
 
     def borrow(self, item: LibraryItem) -> None:
         item.borrow()
         self.borrowed_items.append(item)
+
 
 book = Book("Дюна")
 dvd = DVD("Двойной удар")
@@ -431,7 +437,9 @@ for item in member.borrowed_items:
     print(item, item.borrow_period_days())
 
 try:
-    lib_item = LibraryItem("x") # намеренно: # type: ignore[reportAbstractUsage]
+    lib_item = LibraryItem(
+        "x"
+    )  # намеренно: # type: ignore[reportAbstractUsage]
 except TypeError as e:
     print(e)
 
@@ -439,8 +447,6 @@ try:
     empty = Book("")
 except ValueError as e:
     print(e)
-
-
 ```
 
 ---

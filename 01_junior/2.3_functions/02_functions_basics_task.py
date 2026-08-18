@@ -25,7 +25,7 @@ print("""
 
 
 def square(n: int) -> int:
-    return n ** 2
+    return n**2
 
 
 print(square(4))
@@ -236,7 +236,7 @@ print("""
 def celsius_to_fahrenheit(c: float) -> float:
     """Функция переводит Цельсий → Фаренгейт"""
 
-    return c * 9/5 + 32
+    return c * 9 / 5 + 32
 
 
 print(celsius_to_fahrenheit(0))
@@ -281,18 +281,25 @@ print("""
 # ТВОЙ КОД ЗДЕСЬ:
 
 
-def summarize_grades(grades: dict[str, int], passing: int = 60) -> dict[str, int | float | str]:
+def summarize_grades(
+    grades: dict[str, int], passing: int = 60
+) -> dict[str, int | float | str]:
     return {
         "total": len(grades),
-        "passed": len([value for value in grades.values() if value >= passing]),
+        "passed": len(
+            [value for value in grades.values() if value >= passing]
+        ),
         "failed": len([value for value in grades.values() if value < passing]),
         "average": round(sum(grades.values()) / len(grades), 1),
-        "best": max(grades, key=lambda name: grades[name])
+        "best": max(grades, key=lambda name: grades[name]),
     }
 
 
-print(summarize_grades({"Alice": 85, "Bob": 42,
-      "Charlie": 91, "Diana": 67, "Eve": 55}))
+print(
+    summarize_grades(
+        {"Alice": 85, "Bob": 42, "Charlie": 91, "Diana": 67, "Eve": 55}
+    )
+)
 
 print("\n" + "=" * 60)
 print("КОНЕЦ ЗАДАНИЙ, ПРОВЕРЬ ЧТО ВСЕ ЗАДАНИЯ РАБОТАЮТ!")

@@ -26,10 +26,10 @@
 # становится доступно через geometry.<имя>.
 
 import geometry  # эта строка печатает "[geometry] модуль загружается..."
-                  # — это выполнился print() из geometry.py, а не отсюда
+# — это выполнился print() из geometry.py, а не отсюда
 
-print(geometry.PI)               # 3.14159
-print(geometry.circle_area(2))   # 12.56636
+print(geometry.PI)  # 3.14159
+print(geometry.circle_area(2))  # 12.56636
 
 
 # ════════════════════════════════════════════════════════════════════════
@@ -41,8 +41,8 @@ print(geometry.circle_area(2))   # 12.56636
 
 from geometry import circle_circumference, rectangle_area
 
-print(circle_circumference(2))   # 12.56636
-print(rectangle_area(3, 4))      # 12
+print(circle_circumference(2))  # 12.56636
+print(rectangle_area(3, 4))  # 12
 
 
 # ════════════════════════════════════════════════════════════════════════
@@ -54,8 +54,8 @@ print(rectangle_area(3, 4))      # 12
 
 import geometry as geo
 
-print(geo.circle_area(1))   # 3.14159
-print(geo is geometry)      # True — это ОДИН и тот же объект модуля
+print(geo.circle_area(1))  # 3.14159
+print(geo is geometry)  # True — это ОДИН и тот же объект модуля
 
 
 # ════════════════════════════════════════════════════════════════════════
@@ -67,7 +67,7 @@ print(geo is geometry)      # True — это ОДИН и тот же объек
 
 import sys
 
-print("geometry" in sys.modules)   # True
+print("geometry" in sys.modules)  # True
 
 # Намеренный повторный import (демонстрация кэширования, не ошибка):
 import geometry  # pyright: ignore[reportDuplicateImport]
@@ -81,8 +81,8 @@ import geometry  # pyright: ignore[reportDuplicateImport]
 # (python geometry.py) — __name__ == "__main__". Если файл ИМПОРТИРОВАН
 # из другого файла — __name__ равен имени модуля ("geometry").
 
-print(__name__)            # "__main__" — этот файл запущен напрямую
-print(geometry.__name__)   # "geometry" — geometry импортирован сюда
+print(__name__)  # "__main__" — этот файл запущен напрямую
+print(geometry.__name__)  # "geometry" — geometry импортирован сюда
 
 
 # ════════════════════════════════════════════════════════════════════════
@@ -114,7 +114,7 @@ from shapes_pkg import describe_circle
 # печатает "[shapes_pkg] пакет инициализируется..." — это __init__.py
 # выполнился при первом обращении к пакету
 
-print(describe_circle(5))   # "Круг радиусом 5"
+print(describe_circle(5))  # "Круг радиусом 5"
 
 
 # ════════════════════════════════════════════════════════════════════════
@@ -125,7 +125,7 @@ print(describe_circle(5))   # "Круг радиусом 5"
 # (поэтому import geometry сработал без настройки: geometry.py лежит
 # рядом с этим demo-файлом). Дальше идут stdlib и установленные пакеты.
 
-print(sys.path[0])   # путь к папке, где лежит этот demo-файл
+print(sys.path[0])  # путь к папке, где лежит этот demo-файл
 
 # Абсолютные импорты (import geometry, from shapes_pkg import ...) ищут
 # модуль от корня, который Python видит в sys.path. Относительные

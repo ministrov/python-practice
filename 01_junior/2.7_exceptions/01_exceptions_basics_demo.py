@@ -48,6 +48,7 @@ except ZeroDivisionError:
 # общих — иначе общий "перехватит" их первым, и до частного дело не
 # дойдёт (недостижимый код, некоторые линтеры это подсвечивают).
 
+
 def parse_and_divide(a: str, b: str) -> float | None:
     """Парсит две строки в числа и делит первое на второе."""
     try:
@@ -60,8 +61,8 @@ def parse_and_divide(a: str, b: str) -> float | None:
         return None
 
 
-print(parse_and_divide("10", "2"))   # 5.0
-print(parse_and_divide("10", "0"))   # None, "Нельзя делить на ноль"
+print(parse_and_divide("10", "2"))  # 5.0
+print(parse_and_divide("10", "0"))  # None, "Нельзя делить на ноль"
 print(parse_and_divide("abc", "2"))  # None, "'abc' или '2' — не число"
 
 
@@ -73,6 +74,7 @@ print(parse_and_divide("abc", "2"))  # None, "'abc' или '2' — не числ
 # `as e` даёт доступ к самому объекту исключения — у него есть текстовое
 # сообщение через str(e) (или f"{e}").
 
+
 def get_element(items: list[int], index: int | str) -> int | None:
     """Возвращает items[index] или None, если это невозможно."""
     try:
@@ -82,9 +84,9 @@ def get_element(items: list[int], index: int | str) -> int | None:
         return None
 
 
-print(get_element([1, 2, 3], 1))     # 2
-print(get_element([1, 2, 3], 99))    # None, IndexError: list index out of range
-print(get_element([1, 2, 3], "1"))   # None, TypeError: ...
+print(get_element([1, 2, 3], 1))  # 2
+print(get_element([1, 2, 3], 99))  # None, IndexError: list index out of range
+print(get_element([1, 2, 3], "1"))  # None, TypeError: ...
 
 
 # ════════════════════════════════════════════════════════════════════════
@@ -95,11 +97,12 @@ print(get_element([1, 2, 3], "1"))   # None, TypeError: ...
 # просто ПОСЛЕ блока, они выполнятся даже после того, как except поймал
 # ошибку. else — явный сигнал "это только для успешного случая".
 
+
 def safe_sqrt(n: float) -> float | None:
     try:
         if n < 0:
             raise ValueError("нельзя извлечь корень из отрицательного числа")
-        value = n ** 0.5
+        value = n**0.5
     except ValueError as e:
         print(f"Ошибка: {e}")
         return None
@@ -108,8 +111,8 @@ def safe_sqrt(n: float) -> float | None:
         return value
 
 
-safe_sqrt(16)   # "Корень успешно вычислен: 4.0"
-safe_sqrt(-4)   # "Ошибка: нельзя извлечь корень из отрицательного числа"
+safe_sqrt(16)  # "Корень успешно вычислен: 4.0"
+safe_sqrt(-4)  # "Ошибка: нельзя извлечь корень из отрицательного числа"
 
 
 # ════════════════════════════════════════════════════════════════════════
@@ -118,6 +121,7 @@ safe_sqrt(-4)   # "Ошибка: нельзя извлечь корень из �
 # finally срабатывает и при успехе, и при ошибке, и даже если внутри
 # try/except был return. Типичное применение — освобождение ресурсов
 # (закрыть файл, соединение), которое должно случиться в любом случае.
+
 
 def divide_with_log(a: float, b: float) -> float | None:
     try:
@@ -130,7 +134,9 @@ def divide_with_log(a: float, b: float) -> float | None:
 
 
 divide_with_log(10, 2)  # 5.0, затем "Попытка деления 10 / 2 завершена"
-divide_with_log(10, 0)  # "Ошибка деления", затем "Попытка деления 10 / 0 завершена"
+divide_with_log(
+    10, 0
+)  # "Ошибка деления", затем "Попытка деления 10 / 0 завершена"
 
 
 # ════════════════════════════════════════════════════════════════════════
@@ -169,6 +175,7 @@ except Exception as e:
 # месте, где программа её обнаружила, а не там, где она "случайно"
 # вылезет сама. Это идиоматичнее, чем возвращать None/-1 молча.
 
+
 def set_age(age: int) -> int:
     if age < 0:
         raise ValueError(f"Возраст не может быть отрицательным: {age}")
@@ -182,6 +189,7 @@ except ValueError as e:
 
 # raise без аргументов ВНУТРИ except — "передать ошибку дальше" (re-raise)
 # после того как, например, залогировали её здесь же.
+
 
 def risky_call() -> None:
     try:
@@ -205,6 +213,7 @@ except ValueError as e:
 # Даёт вызывающему коду ловить именно ЭТУ ошибку отдельно от прочих,
 # и позволяет хранить дополнительные данные об ошибке (не только текст).
 
+
 class InsufficientFundsError(Exception):
     """Поднимается, когда на счёте недостаточно средств для списания."""
 
@@ -212,8 +221,7 @@ class InsufficientFundsError(Exception):
         self.balance = balance
         self.amount = amount
         super().__init__(
-            f"Недостаточно средств: баланс {balance}, "
-            f"запрошено {amount}"
+            f"Недостаточно средств: баланс {balance}, запрошено {amount}"
         )
 
 

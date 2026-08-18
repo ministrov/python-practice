@@ -72,6 +72,7 @@ def make_counter():
         nonlocal count
         count += 1
         return count
+
     return increment
 
 
@@ -85,6 +86,7 @@ print(counter_1())
 def make_multiplier(factor: int):
     def multiply(value: int):
         return value * factor
+
     return multiply
 
 
@@ -175,6 +177,7 @@ def make_accumulator():
         nonlocal total
         total += value
         return total
+
     return add
 
 
@@ -188,6 +191,7 @@ print(acc(7))
 def make_greeter(greeting: str):
     def greet(name: str):
         return f"{greeting}, {name}!"
+
     return greet
 
 

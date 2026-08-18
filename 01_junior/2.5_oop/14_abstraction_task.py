@@ -24,8 +24,7 @@ print("""
 
 class Animal(ABC):
     @abstractmethod
-    def sound(self) -> str:
-        ...
+    def sound(self) -> str: ...
 
 
 try:
@@ -95,8 +94,7 @@ print("""
 
 class Notifier(ABC):
     @abstractmethod
-    def send(self, message: str) -> None:
-        ...
+    def send(self, message: str) -> None: ...
 
     def notify_all(self, messages: list[str]) -> None:
         for message in messages:
@@ -129,17 +127,16 @@ print("""
 
 class Employee(ABC):
     @abstractmethod
-    def monthly_salary(self) -> float:
-        ...
+    def monthly_salary(self) -> float: ...
 
     @abstractmethod
-    def role(self) -> str:
-        ...
+    def role(self) -> str: ...
 
 
 class Manager(Employee):
     def monthly_salary(self) -> float:
         return 5000.0
+
     # role() намеренно не реализован
 
 
@@ -167,8 +164,7 @@ print("""
 class Vehicle(ABC):
     @property
     @abstractmethod
-    def wheels(self) -> int:
-        ...
+    def wheels(self) -> int: ...
 
 
 class Motorcycle(Vehicle):
@@ -224,8 +220,7 @@ print("""
 
 class PaymentMethod(ABC):
     @abstractmethod
-    def pay(self, amount: float) -> None:
-        ...
+    def pay(self, amount: float) -> None: ...
 
     def checkout(self, amount: float) -> None:
         print(f"Оформление заказа на {amount}")

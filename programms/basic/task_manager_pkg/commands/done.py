@@ -1,4 +1,4 @@
-""" Модуль для отметки задачи сделанной """
+"""Модуль для отметки задачи сделанной"""
 
 from task_manager_pkg.helpers.table import stringify_table
 from task_manager_pkg.tasks.tasks import Task, find_task

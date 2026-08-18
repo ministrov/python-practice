@@ -110,8 +110,7 @@ print("""
 
 class Shape(ABC):
     @abstractmethod
-    def area(self) -> float:
-        ...
+    def area(self) -> float: ...
 
 
 class Circle(Shape):
@@ -119,7 +118,7 @@ class Circle(Shape):
         self.radius = radius
 
     def area(self) -> float:
-        return 3.14159 * self.radius ** 2
+        return 3.14159 * self.radius**2
 
 
 try:
@@ -178,7 +177,7 @@ class Square(Shape):
         self.side = side
 
     def area(self) -> float:
-        return self.side ** 2
+        return self.side**2
 
 
 shapes: list[Shape] = [Circle(3), Square(2.3)]

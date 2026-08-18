@@ -66,8 +66,13 @@ print(count_colors)
 #
 # Подсказка: та же идея что в упр.2, но вместо +1 прибавляй сумму
 
-sales = [("Alice", 100), ("Bob", 200),
-         ("Alice", 50), ("Bob", 75), ("Alice", 25)]
+sales = [
+    ("Alice", 100),
+    ("Bob", 200),
+    ("Alice", 50),
+    ("Bob", 75),
+    ("Alice", 25),
+]
 sum_values: dict[str, int] = {}
 
 # ТВОЙ КОД:
@@ -123,11 +128,7 @@ print(result_key_values)
 
 person = {
     "name": "Ivan",
-    "address": {
-        "city": "Moscow",
-        "street": "Lenina",
-        "zip": "101000"
-    }
+    "address": {"city": "Moscow", "street": "Lenina", "zip": "101000"},
 }
 
 # ТВОЙ КОД:
@@ -137,7 +138,9 @@ person = {
 address = cast(dict[str, str], person["address"])
 print(address["city"])
 print(address["street"])
-address["street"] = "Tverskaya"  # меняет тот же объект, на который ссылается person["address"]
+address["street"] = (
+    "Tverskaya"  # меняет тот же объект, на который ссылается person["address"]
+)
 address["country"] = "Russia"
 print(person)
 

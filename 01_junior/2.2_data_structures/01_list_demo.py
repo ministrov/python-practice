@@ -50,10 +50,12 @@ print(f"Исходный список: {numbers}")
 
 # list[start:stop] — от start до stop-1 (stop исключительно)
 print(f"numbers[2:5] = {numbers[2:5]}")  # [2, 3, 4]
-print(f"numbers[:3] = {numbers[:3]}")    # [0, 1, 2] (с начала)
-print(f"numbers[5:] = {numbers[5:]}")    # [5, 6, 7, 8, 9] (до конца)
+print(f"numbers[:3] = {numbers[:3]}")  # [0, 1, 2] (с начала)
+print(f"numbers[5:] = {numbers[5:]}")  # [5, 6, 7, 8, 9] (до конца)
 print(f"numbers[::2] = {numbers[::2]}")  # [0, 2, 4, 6, 8] (каждый второй)
-print(f"numbers[::-1] = {numbers[::-1]}")  # [9, 8, 7, 6, 5, 4, 3, 2, 1, 0] (развернуть)
+print(
+    f"numbers[::-1] = {numbers[::-1]}"
+)  # [9, 8, 7, 6, 5, 4, 3, 2, 1, 0] (развернуть)
 
 print()
 
@@ -67,7 +69,9 @@ print(f"После append('cherry'): {fruits}")  # ['apple', 'banana', 'cherry']
 
 # insert(index, element) — вставить на позицию
 fruits.insert(1, "orange")
-print(f"После insert(1, 'orange'): {fruits}")  # ['apple', 'orange', 'banana', 'cherry']
+print(
+    f"После insert(1, 'orange'): {fruits}"
+)  # ['apple', 'orange', 'banana', 'cherry']
 
 # remove(element) — удалить первый элемент со значением
 fruits.remove("orange")
@@ -75,7 +79,9 @@ print(f"После remove('orange'): {fruits}")  # ['apple', 'banana', 'cherry']
 
 # pop(index) — удалить элемент по индексу и вернуть его
 last: str = fruits.pop()  # удалит последний
-print(f"pop() удалил: {last}, остаток: {fruits}")  # cherry, ['apple', 'banana']
+print(
+    f"pop() удалил: {last}, остаток: {fruits}"
+)  # cherry, ['apple', 'banana']
 
 # pop(1) — удалить элемент по индексу
 fruits.pop(0)  # удалит первый
@@ -153,7 +159,7 @@ list1: list[int] = [1, 2, 3]
 list2: list[int] = list1  # Ссылка на тот же список, не копия!
 
 list1.append(4)
-print(f"Добавили 4 в list1")
+print("Добавили 4 в list1")
 print(f"list1 = {list1}")  # [1, 2, 3, 4]
 print(f"list2 = {list2}")  # [1, 2, 3, 4] — изменилась тоже!
 

@@ -28,8 +28,8 @@ def square(x: int) -> int:
     return x * x
 
 
-my_func = square       # НЕ square() — без скобок, это ссылка на сам объект
-print(my_func(5))      # 25
+my_func = square  # НЕ square() — без скобок, это ссылка на сам объект
+print(my_func(5))  # 25
 print(my_func is square)  # True — это один и тот же объект
 
 
@@ -38,6 +38,7 @@ print(my_func is square)  # True — это один и тот же объект
 # ════════════════════════════════════════════════════════════════════════
 # Функция, которая принимает другую функцию как аргумент (или возвращает
 # функцию), называется функцией высшего порядка (higher-order function).
+
 
 def apply_twice(func: Callable[[int], int], value: int) -> int:
     """Применяет func к value дважды подряд."""
@@ -48,7 +49,7 @@ def increment(x: int) -> int:
     return x + 1
 
 
-print(apply_twice(square, 3))     # square(square(3)) = square(9) = 81
+print(apply_twice(square, 3))  # square(square(3)) = square(9) = 81
 print(apply_twice(increment, 3))  # increment(increment(3)) = 5
 
 
@@ -57,6 +58,7 @@ print(apply_twice(increment, 3))  # increment(increment(3)) = 5
 # ════════════════════════════════════════════════════════════════════════
 # В отличие от фабрик из темы 3 (LEGB), здесь функция просто выбирает
 # и возвращает уже существующую функцию — не создаёт новую с состоянием.
+
 
 def double(x: int) -> int:
     return x * 2
@@ -102,7 +104,7 @@ for op_name, func in operations.items():
 # ════════════════════════════════════════════════════════════════════════
 
 print(square.__name__)  # "square"
-print(square.__doc__)   # "Возвращает квадрат числа."
+print(square.__doc__)  # "Возвращает квадрат числа."
 
 
 # ════════════════════════════════════════════════════════════════════════
@@ -143,7 +145,8 @@ temps_day = [22, 15, 30, 8, 27]
 temps_night = [18, 20, 25, 13, 19]
 
 temps_result = list(
-    map(lambda a, b: a if a >= b else b, temps_day, temps_night))
+    map(lambda a, b: a if a >= b else b, temps_day, temps_night)
+)
 print(temps_result)
 
 # filter(func, iterable) — оставляет только элементы, где func(x) истинно

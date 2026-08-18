@@ -9,20 +9,23 @@
   4. Распаковка при вызове: f(*list), f(**dict)
   5. Практические паттерны
 """
+
 from typing import Callable
 
 # ════════════════════════════════════════════════════════════════════════
 # 1. *args — переменное число позиционных аргументов
 # ════════════════════════════════════════════════════════════════════════
 
+
 def total(*args: int) -> int:
     """Суммирует любое количество чисел."""
     return sum(args)
 
 
-print(total(1, 2, 3))           # 6
-print(total(10, 20))            # 30
-print(total())                  # 0  — args будет пустым кортежем ()
+print(total(1, 2, 3))  # 6
+print(total(10, 20))  # 30
+print(total())  # 0  — args будет пустым кортежем ()
+
 
 # Внутри функции args — это КОРТЕЖ, не список
 def show_args(*args: int) -> None:
@@ -36,6 +39,7 @@ show_args(1, 2, 3)  # <class 'tuple'> (1, 2, 3)
 # 2. **kwargs — переменное число именованных аргументов
 # ════════════════════════════════════════════════════════════════════════
 
+
 def show_profile(**kwargs: str) -> None:
     """Выводит пары ключ=значение."""
     for key, value in kwargs.items():
@@ -46,6 +50,7 @@ show_profile(name="Alice", role="developer", lang="Python")
 # name: Alice
 # role: developer
 # lang: Python
+
 
 # Внутри функции kwargs — это СЛОВАРЬ
 def show_kwargs(**kwargs: str) -> None:
@@ -63,6 +68,7 @@ show_kwargs(a="1", b="2")  # <class 'dict'> {'a': '1', 'b': '2'}
 #
 # Правило: *args "поглощает" все лишние позиционные аргументы.
 # Всё что после * — можно передать ТОЛЬКО по имени (keyword-only).
+
 
 def log(level: str, *messages: str, sep: str = " | ") -> str:
     """Собирает сообщения через разделитель."""
@@ -83,6 +89,7 @@ print(log("ERROR", "DB timeout", "Retry 1", sep=" -> "))
 # 4. Совместное использование *args и **kwargs
 # ════════════════════════════════════════════════════════════════════════
 
+
 def describe(*args: int, **kwargs: str) -> None:
     print("args:", args)
     print("kwargs:", kwargs)
@@ -97,15 +104,16 @@ describe(1, 2, 3, name="Bob", city="Moscow")
 # 5. Распаковка при ВЫЗОВЕ: * и ** для передачи коллекций
 # ════════════════════════════════════════════════════════════════════════
 
+
 def add(a: int, b: int, c: int) -> int:
     return a + b + c
 
 
 numbers = [1, 2, 3]
-print(add(*numbers))   # распаковываем список → add(1, 2, 3) → 6
+print(add(*numbers))  # распаковываем список → add(1, 2, 3) → 6
 
 params = {"a": 10, "b": 20, "c": 30}
-print(add(**params))   # распаковываем словарь → add(a=10, b=20, c=30) → 60
+print(add(**params))  # распаковываем словарь → add(a=10, b=20, c=30) → 60
 
 # Важно: * распаковывает любой итерируемый объект (list, tuple, set, str...)
 # ** распаковывает только словарь
@@ -117,7 +125,10 @@ print(add(**params))   # распаковываем словарь → add(a=10,
 # *args/**kwargs позволяют «пробросить» аргументы в другую функцию,
 # не зная заранее их состав. Это основа декораторов (изучим в теме 5).
 
-def debug_call(func: Callable[..., object], *args: object, **kwargs: object) -> object:
+
+def debug_call(
+    func: Callable[..., object], *args: object, **kwargs: object
+) -> object:
     """Вызывает func, печатая аргументы до и результат после."""
     print(f"Вызов: {getattr(func, '__name__', func)}({args}, {kwargs})")
     result = func(*args, **kwargs)

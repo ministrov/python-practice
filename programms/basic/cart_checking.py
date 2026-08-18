@@ -1,28 +1,32 @@
-""" Цель - Реализовать функцию checkout, которая обрабатывает заказы в корзине. Обрабатывать возможные ошибки: пустая корзина,      отсутствие товара на складе и невалидный купон.
-    # выбрасывает EmptyCartError, если карзина пуста
-    # выбрасывает OutOfStockError, если товара нет
-    # выбрасывает InvalidCouponError, если купон не "SALES20"
-    # возвращает итоговую сумму заказа
+"""Цель - Реализовать функцию checkout, которая обрабатывает заказы в корзине. Обрабатывать возможные ошибки: пустая корзина,      отсутствие товара на складе и невалидный купон.
+# выбрасывает EmptyCartError, если карзина пуста
+# выбрасывает OutOfStockError, если товара нет
+# выбрасывает InvalidCouponError, если купон не "SALES20"
+# возвращает итоговую сумму заказа
 """
 
 
 class ShopError(Exception):
-    """ Базовый класс ошибки магазина """
+    """Базовый класс ошибки магазина"""
+
     pass
 
 
 class OutOfStockError(ShopError):
     """ """
+
     pass
 
 
 class EmptyCartError(ShopError):
     """"""
+
     pass
 
 
 class InvalidCouponError(ShopError):
     """ """
+
     pass
 
 
@@ -43,7 +47,7 @@ def checkout(
     total = 0
     for product in cart:
         if not product.get("in_stock", True):
-            raise OutOfStockError(f"{product["item"]} нет в наличии")
+            raise OutOfStockError(f"{product['item']} нет в наличии")
         price = product["price"]
         if not isinstance(price, int):
             raise ShopError(f"Некорректная цена товара: {price!r}")

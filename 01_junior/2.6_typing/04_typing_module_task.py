@@ -21,6 +21,16 @@ print("""
 # ТВОЙ КОД ЗДЕСЬ:
 
 
+def apply_to_all(func: Callable[[int], int], numbers: list[int]) -> list[int]:
+    results: list[int] = []
+
+    for num in numbers:
+        doubled = func(num)
+        results.append(doubled)
+
+    return results
+
+
 print(apply_to_all(lambda x: x * 2, [1, 2, 3]))
 
 print("\n" + "=" * 60)
@@ -33,6 +43,13 @@ print("""
 """)
 
 # ТВОЙ КОД ЗДЕСЬ:
+
+
+def make_multiplier(factor: int) -> Callable[[int], int]:
+    def multiplier(x: int):
+        return x * factor
+
+    return multiplier
 
 
 triple = make_multiplier(3)
@@ -53,6 +70,16 @@ print("""
 # ТВОЙ КОД ЗДЕСЬ:
 
 
+def count_positive(numbers: Iterable[int]) -> int:
+    count: int = 0
+
+    for num in numbers:
+        if num > 0:
+            count += 1
+
+    return count
+
+
 print(count_positive([1, -2, 3, -4, 5]))
 print(count_positive(x for x in [1, -2, 3]))
 
@@ -68,6 +95,12 @@ print("""
 """)
 
 # ТВОЙ КОД ЗДЕСЬ:
+
+
+def middle_element(items: Sequence[str]) -> str:
+    """Возвращает средний элемент (для нечётной длины)."""
+
+    return items[len(items) // 2]
 
 
 print(middle_element(["a", "b", "c"]))
@@ -88,6 +121,19 @@ print("""
 # ТВОЙ КОД ЗДЕСЬ:
 
 
+class Product(TypedDict):
+    name: str
+    price: float
+    in_stock: bool
+
+
+def format_product(product: Product) -> str:
+    if not product["in_stock"]:
+        return f"{product['name']}: {product['price']} (нет в наличии)"
+
+    return f"{product['name']}: {product['price']} (в наличии)"
+
+
 laptop: Product = {"name": "Ноутбук", "price": 999.99, "in_stock": True}
 print(format_product(laptop))
 
@@ -106,7 +152,18 @@ print("""
 # ТВОЙ КОД ЗДЕСЬ:
 
 
-print(extract_names([{"name": "Ann", "age": 25}, {"name": "Bob", "score": 4.5}]))
+def extract_names(records: list[dict[str, Any]]) -> list[str]:
+    results: list[str] = []
+
+    for record in records:
+        results.append(record["name"])
+
+    return results
+
+
+print(
+    extract_names([{"name": "Ann", "age": 25}, {"name": "Bob", "score": 4.5}])
+)
 
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 7: Callable[..., Any] — универсальный колбэк")
@@ -119,6 +176,12 @@ print("""
 """)
 
 # ТВОЙ КОД ЗДЕСЬ:
+
+
+def call_and_double_time(func: Callable[..., int]) -> int:
+    result = func()
+
+    return result * 2
 
 
 print(call_and_double_time(lambda: 21))
@@ -138,6 +201,21 @@ print("""
 """)
 
 # ТВОЙ КОД ЗДЕСЬ:
+
+
+class Task(TypedDict):
+    title: str
+    done: bool
+
+
+def count_done(tasks: Sequence[Task]) -> int:
+    count_task: int = 0
+
+    for task in tasks:
+        if task["done"]:
+            count_task += 1
+
+    return count_task
 
 
 tasks: list[Task] = [

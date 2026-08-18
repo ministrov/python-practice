@@ -24,7 +24,7 @@ print("""
 """)
 
 # ТВОЙ КОД ЗДЕСЬ:
-cubed = [x ** 3 for x in range(1, 6)]
+cubed = [x**3 for x in range(1, 6)]
 print(cubed)
 
 words = ["python", "java", "go", "rust"]
@@ -83,7 +83,7 @@ print("""
 """)
 
 # ТВОЙ КОД ЗДЕСЬ:
-squares = [x ** 2 for x in range(1, 11) if x % 2 == 0]
+squares = [x**2 for x in range(1, 11) if x % 2 == 0]
 print(squares)
 
 words = ["hello", "world", "hi", "python", "ok"]
@@ -110,13 +110,18 @@ print("""
 """)
 
 # ТВОЙ КОД ЗДЕСЬ:
-dict_squares = {x: x ** 2 for x in range(1, 6)}
+dict_squares = {x: x**2 for x in range(1, 6)}
 print(dict_squares)
 
-some_dict: dict[str, int] = {"Alice": 55,
-                             "Bob": 80, "Charlie": 45, "Diana": 90}
-new_dict: dict[str, int] = {name: score for name,
-                            score in some_dict.items() if score >= 60}
+some_dict: dict[str, int] = {
+    "Alice": 55,
+    "Bob": 80,
+    "Charlie": 45,
+    "Diana": 90,
+}
+new_dict: dict[str, int] = {
+    name: score for name, score in some_dict.items() if score >= 60
+}
 print(new_dict)
 
 any_words = ["cat", "dog", "python"]
@@ -140,7 +145,7 @@ print("""
 """)
 
 # ТВОЙ КОД ЗДЕСЬ:
-set_of_squares = {x ** 2 for x in range(1, 6)}
+set_of_squares = {x**2 for x in range(1, 6)}
 print(set_of_squares)
 
 any_words_2 = ["Hello", "WORLD", "Python", "hello", "world"]
@@ -231,7 +236,7 @@ print("""
 
 # ТВОЙ КОД ЗДЕСЬ:
 celsius = [0, 20, 37, 100, -10, 15]
-fahrenheit = [round(c * 9/5 + 32, 1) for c in celsius]
+fahrenheit = [round(c * 9 / 5 + 32, 1) for c in celsius]
 print(fahrenheit)
 
 words = ["banana", "apple", "cherry", "date", "elderberry"]

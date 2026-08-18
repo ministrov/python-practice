@@ -37,8 +37,8 @@ print()
 print("=== tuple: ФИКСИРОВАННЫЕ ДАННЫЕ ===\n")
 
 # Координаты, цвета, строки таблицы — не должны меняться
-point: tuple[float, float] = (55.7558, 37.6173)   # Москва (lat, lon)
-color: tuple[int, int, int] = (255, 128, 0)        # RGB оранжевый
+point: tuple[float, float] = (55.7558, 37.6173)  # Москва (lat, lon)
+color: tuple[int, int, int] = (255, 128, 0)  # RGB оранжевый
 user_row: tuple[int, str, str] = (1, "Alice", "alice@example.com")
 
 print(f"Точка: {point}")
@@ -114,7 +114,7 @@ tags_bad: list[str] = ["python", "backend", "python", "api"]
 
 # Хорошо: set для тегов (уникальность + быстрая проверка)
 tags: set[str] = {"python", "backend", "api"}
-tags.add("python")   # дубль игнорируется
+tags.add("python")  # дубль игнорируется
 print(f"Теги: {tags}")
 print(f"Есть 'python': {'python' in tags}")
 
@@ -125,7 +125,9 @@ article: dict[str, object] = {
     "tags": tags,
     "views": 1200,
 }
-print(f"Статья: {article['title']} by {article['author']}, просмотров: {article['views']}")
+print(
+    f"Статья: {article['title']} by {article['author']}, просмотров: {article['views']}"
+)
 
 print()
 print("=== ИТОГО: ПРАВИЛО ВЫБОРА ===")

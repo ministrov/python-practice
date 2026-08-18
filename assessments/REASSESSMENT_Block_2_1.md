@@ -108,7 +108,7 @@
 try:
     with open("students.txt", "r") as file:
         lines = file.readlines()  # читает все строки в список
-        name = lines[0].strip()   # первая строка - имя
+        name = lines[0].strip()  # первая строка - имя
         grades = [int(lines[i].strip()) for i in range(1, 6)]  # 5 оценок
 except FileNotFoundError:
     print("Ошибка: файл не найден")

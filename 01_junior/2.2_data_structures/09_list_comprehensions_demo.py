@@ -17,11 +17,11 @@ print("=== LIST COMPREHENSION: БАЗОВЫЙ СИНТАКСИС ===\n")
 # Без comprehension:
 squares_loop: list[int] = []
 for x in range(1, 6):
-    squares_loop.append(x ** 2)
+    squares_loop.append(x**2)
 print(f"Через цикл:         {squares_loop}")
 
 # С comprehension — то же самое, одной строкой:
-squares: list[int] = [x ** 2 for x in range(1, 6)]
+squares: list[int] = [x**2 for x in range(1, 6)]
 print(f"Через comprehension: {squares}")
 # [1, 4, 9, 16, 25]
 
@@ -31,7 +31,9 @@ print()
 doubled: list[int] = [x * 2 for x in range(1, 6)]
 print(f"Удвоенные: {doubled}")  # [2, 4, 6, 8, 10]
 
-upper_words: list[str] = [word.upper() for word in ["hello", "world", "python"]]
+upper_words: list[str] = [
+    word.upper() for word in ["hello", "world", "python"]
+]
 print(f"Заглавные: {upper_words}")  # ['HELLO', 'WORLD', 'PYTHON']
 
 lengths: list[int] = [len(word) for word in ["cat", "elephant", "fox"]]
@@ -66,7 +68,7 @@ print()
 print("=== ВЫРАЖЕНИЕ И УСЛОВИЕ ВМЕСТЕ ===\n")
 
 # Квадраты только чётных
-even_squares: list[int] = [x ** 2 for x in range(1, 11) if x % 2 == 0]
+even_squares: list[int] = [x**2 for x in range(1, 11) if x % 2 == 0]
 print(f"Квадраты чётных: {even_squares}")  # [4, 16, 36, 64, 100]
 
 # Верхний регистр только длинных слов
@@ -79,7 +81,9 @@ print()
 print("=== ВЛОЖЕННЫЕ COMPREHENSIONS ===\n")
 
 # Таблица умножения 3x3 — список кортежей
-pairs: list[tuple[int, int]] = [(x, y) for x in range(1, 4) for y in range(1, 4)]
+pairs: list[tuple[int, int]] = [
+    (x, y) for x in range(1, 4) for y in range(1, 4)
+]
 print(f"Все пары (1-3) x (1-3): {pairs}")
 
 # Эквивалент двойного цикла:
@@ -112,7 +116,7 @@ print()
 print("=== DICT COMPREHENSION ===\n")
 
 # Базовый синтаксис: {ключ: значение for элемент in итерируемое}
-squares_dict: dict[int, int] = {x: x ** 2 for x in range(1, 6)}
+squares_dict: dict[int, int] = {x: x**2 for x in range(1, 6)}
 print(f"Квадраты (dict): {squares_dict}")
 # {1: 1, 2: 4, 3: 9, 4: 16, 5: 25}
 
@@ -130,7 +134,9 @@ print(f"Инвертированный: {inverted}")  # {1: 'a', 2: 'b', 3: 'c'}
 
 # Отфильтровать словарь
 scores: dict[str, int] = {"Alice": 85, "Bob": 42, "Charlie": 91, "Diana": 67}
-passing: dict[str, int] = {name: score for name, score in scores.items() if score >= 70}
+passing: dict[str, int] = {
+    name: score for name, score in scores.items() if score >= 70
+}
 print(f"Сдавшие (>=70): {passing}")
 # {'Alice': 85, 'Charlie': 91}
 
@@ -146,7 +152,9 @@ print(f"Чётные (set): {even_set}")  # {2, 4, 6, 8, 10}
 # Уникальные длины слов
 word_list: list[str] = ["cat", "dog", "elephant", "fox", "bee", "ant"]
 unique_lengths: set[int] = {len(w) for w in word_list}
-print(f"Уникальные длины: {unique_lengths}")  # {3, 8} (порядок не гарантирован)
+print(
+    f"Уникальные длины: {unique_lengths}"
+)  # {3, 8} (порядок не гарантирован)
 
 # Уникальные первые буквы
 first_letters: set[str] = {w[0] for w in word_list}
@@ -159,11 +167,11 @@ print("=== GENERATOR EXPRESSION ===\n")
 
 # Похож на list comprehension, но в круглых скобках.
 # НЕ создаёт весь список в памяти — вычисляет элементы по одному (лениво).
-gen = (x ** 2 for x in range(1, 6))
+gen = (x**2 for x in range(1, 6))
 print(f"Тип: {type(gen)}")  # <class 'generator'>
 
 # Использовать в sum/max/min напрямую — экономия памяти
-total: int = sum(x ** 2 for x in range(1, 101))
+total: int = sum(x**2 for x in range(1, 101))
 print(f"Сумма квадратов 1-100: {total}")  # 338350
 
 # Когда нужен список — list comprehension.

@@ -37,13 +37,14 @@ show_city()  # Moscow
 # 2. Локальная переменная затеняет (shadow) глобальную
 # ════════════════════════════════════════════════════════════════════════
 
+
 def local_city() -> None:
     city = "London"  # это НОВАЯ локальная переменная, а не изменение global
     print(city)
 
 
-local_city()   # London
-print(city)    # Moscow — глобальная переменная не изменилась
+local_city()  # London
+print(city)  # Moscow — глобальная переменная не изменилась
 
 
 # ════════════════════════════════════════════════════════════════════════
@@ -54,7 +55,7 @@ counter = 0
 
 
 def increment() -> None:
-    global counter          # без этой строки будет UnboundLocalError
+    global counter  # без этой строки будет UnboundLocalError
     counter += 1
 
 
@@ -76,7 +77,7 @@ total = 100
 
 def broken() -> None:
     print(total)  # type: ignore[reportUnboundVariable]  # намеренно: демонстрация UnboundLocalError
-    total = 1       # именно эта строка делает total локальной для ВСЕЙ функции
+    total = 1  # именно эта строка делает total локальной для ВСЕЙ функции
 
 
 try:
@@ -89,7 +90,7 @@ except UnboundLocalError as error:
 
 def fixed() -> None:
     global total
-    print(total)   # теперь работает: 100
+    print(total)  # теперь работает: 100
     total = 1
 
 
@@ -102,9 +103,11 @@ fixed()
 # Вложенная функция "помнит" переменные внешней функции даже после
 # того, как внешняя функция завершилась. Это и есть замыкание.
 
+
 def make_greeter(greeting: str):
     def greet(name: str) -> str:
         return f"{greeting}, {name}!"  # greeting берётся из Enclosing scope
+
     return greet
 
 
@@ -112,7 +115,7 @@ hello = make_greeter("Привет")
 hi = make_greeter("Hi")
 
 print(hello("Аня"))  # Привет, Аня!
-print(hi("Anna"))    # Hi, Anna!
+print(hi("Anna"))  # Hi, Anna!
 # hello и hi — независимые замыкания, каждое со своим greeting
 
 
@@ -122,11 +125,12 @@ print(hi("Anna"))    # Hi, Anna!
 # Без nonlocal присваивание внутри вложенной функции создаст НОВУЮ
 # локальную переменную — точно так же, как без global на уровне модуля.
 
+
 def make_counter():
     count = 0
 
     def increment() -> int:
-        nonlocal count   # без этой строки — UnboundLocalError при count += 1
+        nonlocal count  # без этой строки — UnboundLocalError при count += 1
         count += 1
         return count
 
@@ -146,6 +150,7 @@ print(counter_b())  # 1 — свой собственный count, не связ
 # 7. Практический паттерн: накопитель (accumulator) через замыкание
 # ════════════════════════════════════════════════════════════════════════
 
+
 def make_accumulator():
     total = 0
 
@@ -159,7 +164,7 @@ def make_accumulator():
 
 acc = make_accumulator()
 print(acc(10))  # 10
-print(acc(5))   # 15
+print(acc(5))  # 15
 print(acc(20))  # 35
 # Замыкания часто используются вместо классов для простого хранения
 # состояния между вызовами — это основа для декораторов (тема 5).

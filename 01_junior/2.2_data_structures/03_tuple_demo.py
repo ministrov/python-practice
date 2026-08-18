@@ -10,6 +10,7 @@
 
 # ===== СОЗДАНИЕ КОРТЕЖЕЙ =====
 from typing import Any, NamedTuple
+
 print("=== СОЗДАНИЕ КОРТЕЖЕЙ ===\n")
 
 # Пустой кортеж
@@ -29,7 +30,7 @@ single: tuple[int] = (42,)
 print(f"Кортеж из одного элемента: {single}")  # (42,)
 
 # БЕЗ запятой это просто скобки, не кортеж
-not_tuple: int = (42)
+not_tuple: int = 42
 # 42, <class 'int'>
 print(f"Без запятой (это просто число): {not_tuple}, тип: {type(not_tuple)}")
 
@@ -46,7 +47,13 @@ print()
 # ===== ИНДЕКСИРОВАНИЕ И СРЕЗЫ =====
 print("=== ИНДЕКСИРОВАНИЕ И СРЕЗЫ ===\n")
 
-students: tuple[str, str, str, str, str] = ("Alice", "Bob", "Charlie", "Diana", "Eve")
+students: tuple[str, str, str, str, str] = (
+    "Alice",
+    "Bob",
+    "Charlie",
+    "Diana",
+    "Eve",
+)
 print(f"Список студентов: {students}")
 
 # Индекс начинается с 0
@@ -148,7 +155,7 @@ print("=== КОРТЕЖ КАК КЛЮЧ СЛОВАРЯ ===\n")
 locations = {
     (40.7128, 74.0060): "New York",
     (51.5074, 0.1278): "London",
-    (48.8566, 2.3522): "Paris"
+    (48.8566, 2.3522): "Paris",
 }
 
 print(f"Координаты: {locations}")

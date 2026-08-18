@@ -1,5 +1,4 @@
-""" Модуль для тренировки третьего принципа LSP (Liskov Substitution Principle)"""
-
+"""Модуль для тренировки третьего принципа LSP (Liskov Substitution Principle)"""
 
 from dataclasses import dataclass
 

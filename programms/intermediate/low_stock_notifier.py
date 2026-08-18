@@ -1,4 +1,4 @@
-""" Модуль для тренировки принципа DIP (Dependency Inversion Principle)"""
+"""Модуль для тренировки принципа DIP (Dependency Inversion Principle)"""
 
 # Модули верхних уровней не должны зависеть от модулей нижних уровней
 

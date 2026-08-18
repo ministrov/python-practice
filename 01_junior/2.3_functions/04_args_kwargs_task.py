@@ -194,9 +194,9 @@ def clamp(value: int, *bounds: int) -> int:
     return value
 
 
-print(clamp(5, 0, 10))    # 5
-print(clamp(-3, 0, 10))   # 0
-print(clamp(15, 0, 10))   # 10
+print(clamp(5, 0, 10))  # 5
+print(clamp(-3, 0, 10))  # 0
+print(clamp(15, 0, 10))  # 10
 print(clamp(7))
 
 
@@ -204,7 +204,7 @@ def join_strings(*strings: str, separator: str = " "):
     return separator.join(strings)
 
 
-print(join_strings("Hello", "World"))              # Hello World
+print(join_strings("Hello", "World"))  # Hello World
 print(join_strings("a", "b", "c", separator="-"))
 
 print("\n" + "=" * 60)
@@ -325,7 +325,7 @@ def statistics(
         "min": min(numbers),
         "max": max(numbers),
         "mean": round(sum(numbers) / len(numbers), precision),
-        "range": max(numbers) - min(numbers)
+        "range": max(numbers) - min(numbers),
     }
 
 

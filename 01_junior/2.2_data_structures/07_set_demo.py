@@ -6,6 +6,7 @@
 Множество — это НЕУПОРЯДОЧЕННАЯ, ИЗМЕНЯЕМАЯ коллекция УНИКАЛЬНЫХ элементов.
 Нет дублей, нет индексов, можно использовать для удаления дубликатов.
 """
+
 from typing import Any
 
 # ===== СОЗДАНИЕ МНОЖЕСТВ =====
@@ -24,7 +25,7 @@ colors = {"red", "green", "blue", "yellow"}
 print(f"Цвета: {colors}")
 
 # Множество с дублями (дубли удаляются автоматически)
-with_duplicates = {1, 2, 2, 3, 3, 3, 4}
+with_duplicates = {1, 2, 3, 4}
 print(f"С дублями (они удалены): {with_duplicates}")  # {1, 2, 3, 4}
 
 # Создание из списка (удаляет дубли)
@@ -210,4 +211,6 @@ only_dev1 = dev1_skills - dev2_skills
 print(f"Только у разработчика 1: {only_dev1}")  # {'JavaScript', 'Docker'}
 
 all_skills = dev1_skills | dev2_skills
-print(f"Все навыки: {all_skills}")  # {'Python', 'JavaScript', 'SQL', 'Docker', 'Go', 'Kubernetes'}
+print(
+    f"Все навыки: {all_skills}"
+)  # {'Python', 'JavaScript', 'SQL', 'Docker', 'Go', 'Kubernetes'}

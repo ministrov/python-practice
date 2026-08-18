@@ -20,6 +20,7 @@
 # 1. Обычный метод — уже знаком по теме 1, self обязателен
 # ════════════════════════════════════════════════════════════════════════
 
+
 class Rectangle:
     """Прямоугольник со сторонами width и height."""
 
@@ -33,12 +34,13 @@ class Rectangle:
 
 
 rect = Rectangle(3, 4)
-print(rect.area())            # 12
+print(rect.area())  # 12
 
 
 # ════════════════════════════════════════════════════════════════════════
 # 2. @staticmethod — функция внутри класса, но БЕЗ доступа к self/cls
 # ════════════════════════════════════════════════════════════════════════
+
 
 class MathUtils:
     """Набор независимых от состояния утилит — логически про математику."""
@@ -54,12 +56,12 @@ class MathUtils:
 
 
 # staticmethod можно вызвать и через класс, и через экземпляр — одинаково
-print(MathUtils.is_even(4))       # True
-print(MathUtils.is_even(7))       # False
+print(MathUtils.is_even(4))  # True
+print(MathUtils.is_even(7))  # False
 print(MathUtils.clamp(15, 0, 10))  # 10
 
 utils = MathUtils()
-print(utils.is_even(2))           # True — через экземпляр тоже работает
+print(utils.is_even(2))  # True — через экземпляр тоже работает
 
 # Когда использовать: логика не зависит ни от self, ни от cls, но
 # тематически принадлежит классу (иначе была бы просто функцией снаружи)
@@ -68,6 +70,7 @@ print(utils.is_even(2))           # True — через экземпляр то�
 # ════════════════════════════════════════════════════════════════════════
 # 3. @classmethod — первый параметр cls (класс, а не экземпляр)
 # ════════════════════════════════════════════════════════════════════════
+
 
 class Pizza:
     def __init__(self, toppings: list[str]) -> None:
@@ -90,13 +93,14 @@ class Pizza:
 # по-другому, без явного перечисления всех параметров каждый раз
 pizza_one = Pizza.margherita()
 pizza_two = Pizza.pepperoni()
-print(pizza_one.describe())   # Пицца с: сыр, томаты, базилик
-print(pizza_two.describe())   # Пицца с: сыр, пепперони
+print(pizza_one.describe())  # Пицца с: сыр, томаты, базилик
+print(pizza_two.describe())  # Пицца с: сыр, пепперони
 
 
 # ════════════════════════════════════════════════════════════════════════
 # 4. @property — метод, который выглядит как атрибут (без скобок)
 # ════════════════════════════════════════════════════════════════════════
+
 
 class Circle:
     def __init__(self, radius: float) -> None:
@@ -109,27 +113,28 @@ class Circle:
 
     @property
     def area(self) -> float:
-        return 3.14159 * self.radius ** 2
+        return 3.14159 * self.radius**2
 
 
 circle = Circle(5)
-print(circle.diameter)        # 10 — без скобок! как обычный атрибут
-print(circle.area)            # 78.53975
+print(circle.diameter)  # 10 — без скобок! как обычный атрибут
+print(circle.area)  # 78.53975
 
 # Если радиус меняется — diameter и area пересчитываются автоматически,
 # не нужно вручную синхронизировать несколько атрибутов
 circle.radius = 10
-print(circle.diameter)        # 20
+print(circle.diameter)  # 20
 
 
 # ════════════════════════════════════════════════════════════════════════
 # 5. @x.setter — присваивание в property С ПРОВЕРКОЙ значения
 # ════════════════════════════════════════════════════════════════════════
 
+
 class BankAccount:
     def __init__(self, owner: str, balance: float = 0.0) -> None:
         self.owner = owner
-        self._balance = balance   # "_balance" — приватное имя по конвенции
+        self._balance = balance  # "_balance" — приватное имя по конвенции
 
     @property
     def balance(self) -> float:
@@ -145,17 +150,17 @@ class BankAccount:
 
 
 account = BankAccount("Anton", 100)
-print(account.balance)        # 100
+print(account.balance)  # 100
 
-account.balance = 250         # вызывает setter, проверка проходит
-print(account.balance)        # 250
+account.balance = 250  # вызывает setter, проверка проходит
+print(account.balance)  # 250
 
 try:
-    account.balance = -50     # setter бросает ValueError
+    account.balance = -50  # setter бросает ValueError
 except ValueError as e:
-    print(f"Ошибка: {e}")     # Ошибка: Баланс не может быть отрицательным
+    print(f"Ошибка: {e}")  # Ошибка: Баланс не может быть отрицательным
 
-print(account.balance)        # 250 — значение не изменилось после ошибки
+print(account.balance)  # 250 — значение не изменилось после ошибки
 
 # Без property пришлось бы либо разрешать account.balance = -50 напрямую
 # (без проверки), либо переименовывать в метод set_balance(value) — тогда
@@ -165,6 +170,7 @@ print(account.balance)        # 250 — значение не изменилос
 # ════════════════════════════════════════════════════════════════════════
 # 6. property БЕЗ setter — доступно только для чтения
 # ════════════════════════════════════════════════════════════════════════
+
 
 class Employee:
     def __init__(self, first_name: str, last_name: str) -> None:
@@ -178,7 +184,7 @@ class Employee:
 
 
 employee = Employee("Ivan", "Petrov")
-print(employee.full_name)     # Ivan Petrov
+print(employee.full_name)  # Ivan Petrov
 
 try:
     employee.full_name = "Ivan Sidorov"  # type: ignore[misc] # намеренно
