@@ -151,6 +151,15 @@ print("""
 # ТВОЙ КОД ЗДЕСЬ:
 
 
+def extract_names(records: list[dict[str, Any]]) -> list[str]:
+    results: list[str] = []
+
+    for record in records:
+        results.append(record["name"])
+
+    return results
+
+
 print(extract_names(
     [{"name": "Ann", "age": 25}, {"name": "Bob", "score": 4.5}]))
 
