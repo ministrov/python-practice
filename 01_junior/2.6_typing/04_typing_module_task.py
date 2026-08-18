@@ -120,6 +120,19 @@ print("""
 # ТВОЙ КОД ЗДЕСЬ:
 
 
+class Product(TypedDict):
+    name: str
+    price: float
+    in_stock: bool
+
+
+def format_product(product: Product) -> str:
+    if not product["in_stock"]:
+        return f"{product["name"]}: {product["price"]} (нет в наличии)"
+
+    return f"{product["name"]}: {product["price"]} (в наличии)"
+
+
 laptop: Product = {"name": "Ноутбук", "price": 999.99, "in_stock": True}
 print(format_product(laptop))
 
