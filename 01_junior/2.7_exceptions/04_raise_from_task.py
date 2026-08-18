@@ -6,6 +6,9 @@
 Совет: посмотри 03_raise_from_demo.py если застрял.
 """
 
+import json
+
+
 print("=" * 60)
 print("ЗАДАНИЕ 1: Неявная цепочка")
 print("=" * 60)
@@ -22,6 +25,25 @@ print("""
 
 # ТВОЙ КОД ЗДЕСЬ:
 
+
+class ConfigError(Exception):
+    """Ошибка уровня приложения — понятна вызывающему коду."""
+
+
+def load_config(raw: str) -> dict[str, str]:
+    try:
+        config = json.loads(raw)
+    except json.JSONDecodeError:
+        raise ConfigError("невалидный конфиг")  # noqa: B904 — намеренно, демонстрация неявной цепочки
+
+    return config
+
+
+try:
+    load_config("не json")
+except ConfigError as e:
+    print(str(e))
+    print(f"__context__: {e.__context__!r}")
 
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 2: Явная цепочка (from e)")
