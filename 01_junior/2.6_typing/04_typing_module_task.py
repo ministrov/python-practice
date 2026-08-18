@@ -69,6 +69,16 @@ print("""
 # ТВОЙ КОД ЗДЕСЬ:
 
 
+def count_positive(numbers: Iterable[int]) -> int:
+    count: int = 0
+
+    for num in numbers:
+        if num > 0:
+            count += 1
+
+    return count
+
+
 print(count_positive([1, -2, 3, -4, 5]))
 print(count_positive(x for x in [1, -2, 3]))
 
