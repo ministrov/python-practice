@@ -61,6 +61,24 @@ print("""
 # ТВОЙ КОД ЗДЕСЬ:
 
 
+class CalculationError(Exception):
+    pass
+
+
+def divide_safe(a: float, b: float) -> float:
+    try:
+        return a / b
+    except ZeroDivisionError as e:
+        raise CalculationError("деление на ноль") from e
+
+
+try:
+    divide_safe(10, 0)
+except CalculationError as e:
+    print(str(e))
+    print(f"__cause__: {e.__cause__!r}")
+    print(f"__context__: {e.__context__!r}")
+
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 3: Подавление цепочки (from None)")
 print("=" * 60)
