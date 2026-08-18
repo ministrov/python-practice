@@ -21,6 +21,16 @@ print("""
 # ТВОЙ КОД ЗДЕСЬ:
 
 
+def apply_to_all(func: Callable[[int], int], numbers: list[int]) -> list[int]:
+    results: list[int] = []
+
+    for num in numbers:
+        doubled = func(num)
+        results.append(doubled)
+
+    return results
+
+
 print(apply_to_all(lambda x: x * 2, [1, 2, 3]))
 
 print("\n" + "=" * 60)
@@ -106,7 +116,8 @@ print("""
 # ТВОЙ КОД ЗДЕСЬ:
 
 
-print(extract_names([{"name": "Ann", "age": 25}, {"name": "Bob", "score": 4.5}]))
+print(extract_names(
+    [{"name": "Ann", "age": 25}, {"name": "Bob", "score": 4.5}]))
 
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 7: Callable[..., Any] — универсальный колбэк")
