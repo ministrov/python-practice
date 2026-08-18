@@ -25,6 +25,7 @@ from typing import Any, Callable, Iterable, Sequence, TypedDict
 # (например, `json.loads()` возвращает Any, потому что заранее не
 # известно, что за JSON пришёл).
 
+
 def parse_json_like(raw: dict[str, Any]) -> str:
     """raw может содержать значения любых типов — JSON так и работает."""
     return str(raw.get("name", "unknown"))
@@ -45,6 +46,7 @@ print(parse_json_like({"name": "Ann", "age": 25, "active": True}))
 # Callable[[типы параметров], тип_результата] — используется, когда
 # параметр или возвращаемое значение — это САМА функция (например,
 # для колбэков, стратегий, декораторов).
+
 
 def apply_twice(func: Callable[[int], int], value: int) -> int:
     """Применяет func к value два раза подряд."""
@@ -84,13 +86,14 @@ run_and_log(lambda: 42)
 #                 list, tuple, str — всё это Sequence.
 #   list[X]     — Sequence + ещё и ИЗМЕНЯЕМЫЙ (append, remove, [i] = ...)
 
+
 def sum_all(numbers: Iterable[float]) -> float:
     """Принимает ЛЮБОЙ перебираемый объект: list, tuple, генератор..."""
     return sum(numbers)
 
 
-print(sum_all([1.0, 2.0, 3.0]))       # list — тоже Iterable
-print(sum_all((1.0, 2.0, 3.0)))       # tuple — тоже Iterable
+print(sum_all([1.0, 2.0, 3.0]))  # list — тоже Iterable
+print(sum_all((1.0, 2.0, 3.0)))  # tuple — тоже Iterable
 print(sum_all(x * 1.0 for x in range(4)))  # генератор — тоже Iterable
 
 
@@ -113,6 +116,7 @@ print(first_and_last(("x", "y")))  # tuple тоже подходит — это 
 # Но часто нужен словарь-запись с фиксированными ключами и РАЗНЫМИ
 # типами значений на каждый ключ (как строка в таблице БД или JSON
 # со известной схемой). Для этого — TypedDict.
+
 
 class UserRecord(TypedDict):
     name: str

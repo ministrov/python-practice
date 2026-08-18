@@ -19,6 +19,7 @@ from dataclasses import dataclass, field
 # 1. Обычный класс-данные — сколько boilerplate нужно писать руками
 # ════════════════════════════════════════════════════════════════════════
 
+
 class PointPlain:
     def __init__(self, x: float, y: float) -> None:
         self.x = x
@@ -35,8 +36,8 @@ class PointPlain:
 
 p1 = PointPlain(1, 2)
 p2 = PointPlain(1, 2)
-print(p1)             # PointPlain(x=1, y=2)
-print(p1 == p2)        # True — но только потому что __eq__ написан руками
+print(p1)  # PointPlain(x=1, y=2)
+print(p1 == p2)  # True — но только потому что __eq__ написан руками
 
 
 # То же самое через @dataclass — __init__, __repr__ и __eq__ генерируются
@@ -49,23 +50,24 @@ class Point:
 
 q1 = Point(1, 2)
 q2 = Point(1, 2)
-print(q1)              # Point(x=1, y=2)
-print(q1 == q2)         # True — сравнение по значениям полей, не по id()
-print(q1 is q2)         # False — это разные объекты в памяти
+print(q1)  # Point(x=1, y=2)
+print(q1 == q2)  # True — сравнение по значениям полей, не по id()
+print(q1 is q2)  # False — это разные объекты в памяти
 
 
 # ════════════════════════════════════════════════════════════════════════
 # 2. Значения по умолчанию и ловушка изменяемых дефолтов
 # ════════════════════════════════════════════════════════════════════════
 
+
 @dataclass
 class User:
     name: str
-    is_active: bool = True   # обычный дефолт для неизменяемого типа — ок
+    is_active: bool = True  # обычный дефолт для неизменяемого типа — ок
 
 
 user_a = User("Аня")
-print(user_a)           # User(name='Аня', is_active=True)
+print(user_a)  # User(name='Аня', is_active=True)
 
 
 # С изменяемыми типами (list/dict/set) в поле по умолчанию так писать
@@ -80,6 +82,7 @@ print(user_a)           # User(name='Аня', is_active=True)
 # field(default_factory=...), которая создаёт НОВЫЙ list на каждый
 # экземпляр:
 
+
 @dataclass
 class Cart:
     items: list[str] = field(default_factory=list[str])
@@ -88,13 +91,14 @@ class Cart:
 cart_a = Cart()
 cart_b = Cart()
 cart_a.items.append("книга")
-print(cart_a.items)     # ['книга']
-print(cart_b.items)     # [] — независимый список, не расшарен с cart_a
+print(cart_a.items)  # ['книга']
+print(cart_b.items)  # [] — независимый список, не расшарен с cart_a
 
 
 # ════════════════════════════════════════════════════════════════════════
 # 3. frozen=True — неизменяемые объекты (как tuple, но с именами полей)
 # ════════════════════════════════════════════════════════════════════════
+
 
 @dataclass(frozen=True)
 class Coordinates:
@@ -103,10 +107,10 @@ class Coordinates:
 
 
 moscow = Coordinates(55.75, 37.62)
-print(moscow)            # Coordinates(lat=55.75, lon=37.62)
+print(moscow)  # Coordinates(lat=55.75, lon=37.62)
 
 try:
-    moscow.lat = 0        # type: ignore[misc]
+    moscow.lat = 0  # type: ignore[misc]
 except Exception as e:
     print(f"Ошибка: {type(e).__name__}: {e}")
     # Ошибка: FrozenInstanceError: cannot assign to field 'lat'
@@ -121,6 +125,7 @@ except Exception as e:
 # 4. order=True — автоматическое сравнение (<, <=, >, >=) и сортировка
 # ════════════════════════════════════════════════════════════════════════
 
+
 @dataclass(order=True)
 class Version:
     major: int
@@ -130,8 +135,8 @@ class Version:
 
 v1 = Version(1, 2, 0)
 v2 = Version(1, 10, 0)
-print(v1 < v2)           # True — сравнение идёт по кортежу полей
-                          # (1, 2, 0) < (1, 10, 0), по порядку объявления
+print(v1 < v2)  # True — сравнение идёт по кортежу полей
+# (1, 2, 0) < (1, 10, 0), по порядку объявления
 
 versions = [Version(2, 0, 0), Version(1, 0, 0), Version(1, 5, 0)]
 print(sorted(versions))
@@ -143,29 +148,31 @@ print(sorted(versions))
 # 5. field(repr=..., compare=...) — тонкая настройка отдельных полей
 # ════════════════════════════════════════════════════════════════════════
 
+
 @dataclass
 class Account:
     username: str
-    password: str = field(repr=False)     # не попадает в __repr__
-    login_count: int = field(default=0, compare=False)   # не участвует в __eq__
+    password: str = field(repr=False)  # не попадает в __repr__
+    login_count: int = field(default=0, compare=False)  # не участвует в __eq__
 
 
 acc1 = Account("admin", "secret123")
 acc2 = Account("admin", "secret123", login_count=5)
-print(acc1)               # Account(username='admin') — пароль скрыт
-print(acc1 == acc2)        # True — login_count разный, но не участвует
-                            # в сравнении благодаря compare=False
+print(acc1)  # Account(username='admin') — пароль скрыт
+print(acc1 == acc2)  # True — login_count разный, но не участвует
+# в сравнении благодаря compare=False
 
 
 # ════════════════════════════════════════════════════════════════════════
 # 6. __post_init__ — вычисляемые поля и валидация после генерации __init__
 # ════════════════════════════════════════════════════════════════════════
 
+
 @dataclass
 class Rectangle:
     width: float
     height: float
-    area: float = field(init=False)   # не принимается в __init__ снаружи
+    area: float = field(init=False)  # не принимается в __init__ снаружи
 
     def __post_init__(self) -> None:
         if self.width <= 0 or self.height <= 0:
@@ -174,7 +181,7 @@ class Rectangle:
 
 
 rect = Rectangle(3, 4)
-print(rect)               # Rectangle(width=3, height=4, area=12)
+print(rect)  # Rectangle(width=3, height=4, area=12)
 
 try:
     Rectangle(-1, 5)

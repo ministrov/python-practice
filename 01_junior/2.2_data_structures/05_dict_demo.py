@@ -7,6 +7,7 @@
 ИЗМЕНЯЕМАЯ коллекция пар ключ-значение.
 Доступ по ключу (не по индексу).
 """
+
 from typing import Any
 
 # ===== СОЗДАНИЕ СЛОВАРЕЙ =====
@@ -23,7 +24,11 @@ print(f"Словарь: {person}")
 
 # Словарь с разными типами значений
 mixed: dict[str, str | int | float | list[int]] = {
-    "string": "hello", "number": 42, "float": 3.14, "list": [1, 2, 3]}
+    "string": "hello",
+    "number": 42,
+    "float": 3.14,
+    "list": [1, 2, 3],
+}
 print(f"Смешанные значения: {mixed}")
 
 # Создание словаря через dict()
@@ -82,8 +87,11 @@ print()
 # ===== УДАЛЕНИЕ ЭЛЕМЕНТОВ =====
 print("=== УДАЛЕНИЕ ЭЛЕМЕНТОВ ===\n")
 
-colors: dict[str, str] = {"red": "#FF0000",
-                          "green": "#00FF00", "blue": "#0000FF"}
+colors: dict[str, str] = {
+    "red": "#FF0000",
+    "green": "#00FF00",
+    "blue": "#0000FF",
+}
 print(f"Исходный: {colors}")
 
 # del — удалить по ключу
@@ -109,7 +117,10 @@ print()
 print("=== ПРОВЕРКА КЛЮЧЕЙ ===\n")
 
 country: dict[str, str | int] = {
-    "name": "France", "capital": "Paris", "population": 67000000}
+    "name": "France",
+    "capital": "Paris",
+    "population": 67000000,
+}
 
 # in — проверить наличие ключа
 print(f"'name' in {country} = {'name' in country}")  # True
@@ -155,11 +166,11 @@ print("=== ВЛОЖЕННЫЕ СЛОВАРИ ===\n")
 
 employees_dict: dict[str, dict[str, str | int]] = {
     "alice": {"position": "Manager", "salary": 50000},
-    "bob": {"position": "Developer", "salary": 40000}
+    "bob": {"position": "Developer", "salary": 40000},
 }
 company: dict[str, str | dict[str, dict[str, str | int]]] = {
     "name": "TechCorp",
-    "employees": employees_dict
+    "employees": employees_dict,
 }
 
 print(f"Компания: {company['name']}")

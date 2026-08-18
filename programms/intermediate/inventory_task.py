@@ -1,44 +1,46 @@
-""" Практика: закрепление темы 1 блока 2.6 (аннотации типов) на примере
-    учёта товаров на складе.
+"""Практика: закрепление темы 1 блока 2.6 (аннотации типов) на примере
+учёта товаров на складе.
 
-    Используем только то, что уже пройдено: параметризованные
-    generic-коллекции (list[X], dict[K, V], tuple), X | None, X | Y,
-    вложенные generics. НЕ используем Any/Callable/Iterable/Sequence/
-    TypedDict — это следующая тема, ещё не пройдена.
+Используем только то, что уже пройдено: параметризованные
+generic-коллекции (list[X], dict[K, V], tuple), X | None, X | Y,
+вложенные generics. НЕ используем Any/Callable/Iterable/Sequence/
+TypedDict — это следующая тема, ещё не пройдена.
 
-    Задача:
-    1. Напиши total_stock_value(prices: dict[str, float],
-                                 quantities: dict[str, int]) -> float
-       Возвращает суммарную стоимость склада: сумма price * quantity
-       по каждому товару (ключ — название товара, общий для обоих
-       словарей).
+Задача:
+1. Напиши total_stock_value(prices: dict[str, float],
+                             quantities: dict[str, int]) -> float
+   Возвращает суммарную стоимость склада: сумма price * quantity
+   по каждому товару (ключ — название товара, общий для обоих
+   словарей).
 
-    2. Напиши find_price(prices: dict[str, float], name: str) -> float | None
-       Возвращает цену товара по названию, или None, если товара нет.
+2. Напиши find_price(prices: dict[str, float], name: str) -> float | None
+   Возвращает цену товара по названию, или None, если товара нет.
 
-    3. Напиши parse_quantity(raw: str) -> int | float
-       Если строка похожа на целое число — верни int, иначе float
-       (например, остаток на складе может быть дробным для весовых
-       товаров).
+3. Напиши parse_quantity(raw: str) -> int | float
+   Если строка похожа на целое число — верни int, иначе float
+   (например, остаток на складе может быть дробным для весовых
+   товаров).
 
-    4. Напиши restock_pairs(names: list[str], amounts: list[int]
-                             ) -> list[tuple[str, int]]
-       Собирает список пар (название, количество) из двух параллельных
-       списков одинаковой длины.
+4. Напиши restock_pairs(names: list[str], amounts: list[int]
+                         ) -> list[tuple[str, int]]
+   Собирает список пар (название, количество) из двух параллельных
+   списков одинаковой длины.
 
-    5. Напиши group_by_supplier(
-           items: list[tuple[str, str]],
-       ) -> dict[str, list[str]]
-       items — список пар (поставщик, товар). Сгруппируй товары по
-       поставщику: {поставщик: [товар, товар, ...]}.
+5. Напиши group_by_supplier(
+       items: list[tuple[str, str]],
+   ) -> dict[str, list[str]]
+   items — список пар (поставщик, товар). Сгруппируй товары по
+   поставщику: {поставщик: [товар, товар, ...]}.
 
-    6. Проверь на примере ниже (раскомментируй и запусти).
+6. Проверь на примере ниже (раскомментируй и запусти).
 """
 
 # ТВОЙ КОД ЗДЕСЬ: total_stock_value
 
 
-def total_stock_value(prices: dict[str, float], quantities: dict[str, int]) -> float:
+def total_stock_value(
+    prices: dict[str, float], quantities: dict[str, int]
+) -> float:
     total: float = 0.0
 
     for item in prices:
@@ -46,11 +48,13 @@ def total_stock_value(prices: dict[str, float], quantities: dict[str, int]) -> f
 
     return total
 
+
 # ТВОЙ КОД ЗДЕСЬ: find_price
 
 
 def find_price(prices: dict[str, float], name: str) -> float | None:
     return prices[name] if name in prices else None
+
 
 # ТВОЙ КОД ЗДЕСЬ: parse_quantity
 
@@ -61,15 +65,19 @@ def parse_quantity(raw: str) -> int | float:
     else:
         return int(raw)
 
+
 # ТВОЙ КОД ЗДЕСЬ: restock_pairs
 
 
-def restock_pairs(names: list[str], amounts: list[int]) -> list[tuple[str, int]]:
+def restock_pairs(
+    names: list[str], amounts: list[int]
+) -> list[tuple[str, int]]:
     results: list[tuple[str, int]] = []
 
     for key, value in zip(names, amounts):
         results.append((key, value))
     return results
+
 
 # ТВОЙ КОД ЗДЕСЬ: group_by_supplier
 
@@ -96,6 +104,8 @@ if __name__ == "__main__":
 
     print(restock_pairs(["screws", "bolts"], [100, 50]))
 
-    print(group_by_supplier(
-        [("AcmeCorp", "screws"), ("AcmeCorp", "bolts"), ("Best", "hinges")]
-    ))
+    print(
+        group_by_supplier(
+            [("AcmeCorp", "screws"), ("AcmeCorp", "bolts"), ("Best", "hinges")]
+        )
+    )

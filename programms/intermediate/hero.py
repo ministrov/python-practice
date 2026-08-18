@@ -1,8 +1,8 @@
-""" Модуль для создания героя игры """
+"""Модуль для создания героя игры"""
 
 
 class Hero:
-    """ Герой игры """
+    """Герой игры"""
 
     def __init__(self, name: str):
         self.name = name
@@ -11,7 +11,7 @@ class Hero:
         self.is_alive = True
 
     def take_damage(self, amount: int):
-        """ Получение урона """
+        """Получение урона"""
         if not self.is_alive:
             print(f"{self.name} уже повержен")
             return
@@ -24,23 +24,26 @@ class Hero:
             print(f"{self.name} получил {amount} урона")
 
     def heal(self, amount: int):
-        """ Восстановление здоровья """
+        """Восстановление здоровья"""
         if not self.is_alive:
             print(f"{self.name} уже повержен")
             return
         self.hit_point = min(self.hit_point + amount, 100)
-        print(f"{self.name} восстановил {amount} HP. Текущие HP {self.hit_point}")
+        print(
+            f"{self.name} восстановил {amount} HP. Текущие HP {self.hit_point}"
+        )
 
     def add_item(self, item: str):
-        """ Добавление предмета в inventory"""
+        """Добавление предмета в inventory"""
         self.inventory.append(item)
         print(f"{self.name} получил предмет {item}")
 
     def show_status(self):
-        """ Показ статуса """
+        """Показ статуса"""
         status = "Жив" if self.is_alive else "Повержен"
         print(
-            f"{self.name} - HP: {self.hit_point} - Инвентарь: {self.inventory} [{status}]")
+            f"{self.name} - HP: {self.hit_point} - Инвентарь: {self.inventory} [{status}]"
+        )
 
 
 hero = Hero("Вася")

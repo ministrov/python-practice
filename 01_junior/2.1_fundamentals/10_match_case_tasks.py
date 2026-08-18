@@ -34,9 +34,9 @@ def get_season(month: int) -> str:
             return "Неизвестный месяц"
 
 
-print(get_season(1))    # Зима
-print(get_season(7))    # Лето
-print(get_season(13))   # Неизвестный месяц
+print(get_season(1))  # Зима
+print(get_season(7))  # Лето
+print(get_season(13))  # Неизвестный месяц
 
 
 print("\n" + "=" * 55)
@@ -64,10 +64,10 @@ def describe_number(n: int) -> str:
             return f"Положительное нечётное: {x}"
 
 
-print(describe_number(-5))   # Отрицательное
-print(describe_number(0))    # Ноль
-print(describe_number(4))    # Положительное чётное: 4
-print(describe_number(7))    # Положительное нечётное: 7
+print(describe_number(-5))  # Отрицательное
+print(describe_number(0))  # Ноль
+print(describe_number(4))  # Положительное чётное: 4
+print(describe_number(7))  # Положительное нечётное: 7
 
 
 print("\n" + "=" * 55)
@@ -103,12 +103,12 @@ def grade_letter(score: int) -> None:
             print("Неверная оценка")
 
 
-print(grade_letter(95))      # A
-print(grade_letter(85))      # B
-print(grade_letter(75))      # C
-print(grade_letter(65))      # D
-print(grade_letter(45))      # F
-print(grade_letter(150))     # Неверная оценка
+print(grade_letter(95))  # A
+print(grade_letter(85))  # B
+print(grade_letter(75))  # C
+print(grade_letter(65))  # D
+print(grade_letter(45))  # F
+print(grade_letter(150))  # Неверная оценка
 
 
 print("\n" + "=" * 55)
@@ -144,10 +144,10 @@ def execute_command(cmd: str) -> None:
             print("Неизвестная команда")
 
 
-print(execute_command("ls"))     # Список файлов
-print(execute_command("cd"))     # Смена директории
-print(execute_command("del"))    # Удаление файла
-print(execute_command("git"))    # Неизвестная команда
+print(execute_command("ls"))  # Список файлов
+print(execute_command("cd"))  # Смена директории
+print(execute_command("del"))  # Удаление файла
+print(execute_command("git"))  # Неизвестная команда
 
 
 print("\n" + "=" * 55)
@@ -180,11 +180,11 @@ def find_quadrant(x: int, y: int) -> None:
             print("На оси координат")
 
 
-print(find_quadrant(3, 4))       # Первая четверть (I)
-print(find_quadrant(-2, 5))      # Вторая четверть (II)
-print(find_quadrant(-3, -1))     # Третья четверть (III)
-print(find_quadrant(5, -2))      # Четвёртая четверть (IV)
-print(find_quadrant(0, 5))       # На оси координат
+print(find_quadrant(3, 4))  # Первая четверть (I)
+print(find_quadrant(-2, 5))  # Вторая четверть (II)
+print(find_quadrant(-3, -1))  # Третья четверть (III)
+print(find_quadrant(5, -2))  # Четвёртая четверть (IV)
+print(find_quadrant(0, 5))  # На оси координат
 
 
 print("\n" + "=" * 55)
@@ -220,12 +220,12 @@ def get_file_type(filename: str) -> None:
             print("Неизвестный тип")
 
 
-print(get_file_type("document.txt"))     # Текстовый файл
-print(get_file_type("photo.PNG"))        # Изображение
-print(get_file_type("script.py"))        # Исходный код
-print(get_file_type("movie.mp4"))        # Видео
-print(get_file_type("backup.zip"))       # Архив
-print(get_file_type("file.xyz"))         # Неизвестный тип
+print(get_file_type("document.txt"))  # Текстовый файл
+print(get_file_type("photo.PNG"))  # Изображение
+print(get_file_type("script.py"))  # Исходный код
+print(get_file_type("movie.mp4"))  # Видео
+print(get_file_type("backup.zip"))  # Архив
+print(get_file_type("file.xyz"))  # Неизвестный тип
 
 
 print("\n" + "=" * 55)
@@ -263,12 +263,12 @@ def analyze_game_result(score: int, time: int) -> None:
             pass  # недостижимо: guard-условия выше покрывают весь диапазон int
 
 
-print(analyze_game_result(150, 45))      # Отличный результат!
-print(analyze_game_result(120, 90))      # Хороший результат
-print(analyze_game_result(75, 120))      # Средний результат
-print(analyze_game_result(25, 180))      # Слабый результат
-print(analyze_game_result(0, 300))       # Ты проиграл
-print(analyze_game_result(-10, 100))     # Ошибка: отрицательный счёт
+print(analyze_game_result(150, 45))  # Отличный результат!
+print(analyze_game_result(120, 90))  # Хороший результат
+print(analyze_game_result(75, 120))  # Средний результат
+print(analyze_game_result(25, 180))  # Слабый результат
+print(analyze_game_result(0, 300))  # Ты проиграл
+print(analyze_game_result(-10, 100))  # Ошибка: отрицательный счёт
 
 
 print("\n" + "=" * 55)
@@ -298,10 +298,10 @@ def get_access_level(role: str) -> None:
             print("Доступ запрещён")
 
 
-print(get_access_level("admin"))         # Полный доступ
-print(get_access_level("moderator"))     # Ограниченный доступ
-print(get_access_level("user"))          # Базовый доступ
-print(get_access_level("hacker"))        # Доступ запрещён
+print(get_access_level("admin"))  # Полный доступ
+print(get_access_level("moderator"))  # Ограниченный доступ
+print(get_access_level("user"))  # Базовый доступ
+print(get_access_level("hacker"))  # Доступ запрещён
 
 
 print("\n" + "=" * 55)
@@ -328,7 +328,7 @@ def calculate_ticket_price(age: int, is_student: bool):
             return 100
         case _ if (age >= 12 and age <= 65) and is_student:
             return 150
-        case _ if (age >= 12 and age <= 65):
+        case _ if age >= 12 and age <= 65:
             return 250
         case _ if age >= 65:
             return 200
@@ -336,11 +336,11 @@ def calculate_ticket_price(age: int, is_student: bool):
             raise ValueError(f"Некорректный возраст: {age}")
 
 
-print(calculate_ticket_price(2, False))      # 0
-print(calculate_ticket_price(8, False))      # 100
-print(calculate_ticket_price(25, True))      # 150
-print(calculate_ticket_price(30, False))     # 250
-print(calculate_ticket_price(70, False))     # 200
+print(calculate_ticket_price(2, False))  # 0
+print(calculate_ticket_price(8, False))  # 100
+print(calculate_ticket_price(25, True))  # 150
+print(calculate_ticket_price(30, False))  # 250
+print(calculate_ticket_price(70, False))  # 200
 
 
 print("\n" + "=" * 55)
@@ -376,9 +376,9 @@ def describe_weather(temp: int, is_raining: bool):
             return "Жарко"
 
 
-print(describe_weather(-15, False))      # Очень холодно
-print(describe_weather(-5, False))       # Холодно и ясно
-print(describe_weather(-5, True))        # Холодно и идёт дождь
-print(describe_weather(10, False))       # Прохладно
-print(describe_weather(20, False))       # Комфортно
-print(describe_weather(30, True))        # Жарко
+print(describe_weather(-15, False))  # Очень холодно
+print(describe_weather(-5, False))  # Холодно и ясно
+print(describe_weather(-5, True))  # Холодно и идёт дождь
+print(describe_weather(10, False))  # Прохладно
+print(describe_weather(20, False))  # Комфортно
+print(describe_weather(30, True))  # Жарко

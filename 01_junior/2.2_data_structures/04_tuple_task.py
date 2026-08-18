@@ -22,9 +22,16 @@ print("""
     Напечатай его и тип данных
 """)
 
-# ТВ ТВОЙ КОД ЗДЕСЬ:
+# ТВОЙ КОД ЗДЕСЬ:
 from typing import Any
-animals_tuple: tuple[str, str, str, str, str] = ("лось", "медведь", "заяц", "волк", "олень")
+
+animals_tuple: tuple[str, str, str, str, str] = (
+    "лось",
+    "медведь",
+    "заяц",
+    "волк",
+    "олень",
+)
 print(animals_tuple[0])
 print(animals_tuple[-1])
 empty_tuple: tuple[Any, ...] = ()
@@ -50,8 +57,19 @@ print("""
 2.5 Разверни весь кортеж
 """)
 
-# ТВ ТВОЙ КОД ЗДЕСЬ:
-tuple_of_num: tuple[int, int, int, int, int, int, int, int, int, int] = (0, 1, 2, 3, 4, 5, 6, 7, 8, 9)
+# ТВОЙ КОД ЗДЕСЬ:
+tuple_of_num: tuple[int, int, int, int, int, int, int, int, int, int] = (
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+)
 sliced_of_num_tuple: tuple[int, ...] = tuple_of_num[2:4]
 print(sliced_of_num_tuple)
 print(tuple_of_num[:4])
@@ -72,10 +90,19 @@ print("""
 3.3 Из того же кортежа найди индекс первого вхождения числа 3 (index)
 """)
 
-# ТВ ТВОЙ КОД ЗДЕСЬ:
+# ТВОЙ КОД ЗДЕСЬ:
 another_tuple: tuple[int, int, int, int, int] = (10, 20, 30, 40, 50)
 print(len(another_tuple))
-duplicates_tuple: tuple[int, int, int, int, int, int, int, int] = (1, 2, 2, 3, 2, 4, 2, 5)
+duplicates_tuple: tuple[int, int, int, int, int, int, int, int] = (
+    1,
+    2,
+    2,
+    3,
+    2,
+    4,
+    2,
+    5,
+)
 print(duplicates_tuple.count(2))
 print(duplicates_tuple.index(3))
 
@@ -97,7 +124,7 @@ print("""
     Выведи результат
 """)
 
-# ТВ ТВОЙ КОД ЗДЕСЬ:
+# ТВОЙ КОД ЗДЕСЬ:
 fruits_tuple: tuple[str, str, str] = ("apple", "banana", "cherry")
 for query in ["orange", "banana"]:  # query выводится как str
     print(query in fruits_tuple)  # False, затем True
@@ -125,7 +152,7 @@ print("""
     Напечатай новые значения
 """)
 
-# ТВ ТВОЙ КОД ЗДЕСЬ:
+# ТВОЙ КОД ЗДЕСЬ:
 values_tuple: tuple[int, int] = (100, 200)
 x, y = values_tuple
 print(f"unpacking values of {x}, {y} of the {values_tuple}")
@@ -154,7 +181,7 @@ print("""
 Вывод: что произошло?
 """)
 
-# ТВ ТВОЙ КОД ЗДЕСЬ:
+# ТВОЙ КОД ЗДЕСЬ:
 tuple4: tuple[int, int, int] = (1, 2, 3)
 try:
     tuple4[0] = 10  # type: ignore
@@ -189,11 +216,11 @@ print("""
 Вывод: почему кортежи можно использовать как ключи, а списки нельзя?
 """)
 
-# ТВ ТВОЙ КОД ЗДЕСЬ:
+# ТВОЙ КОД ЗДЕСЬ:
 coordinates: dict[tuple[int, int], str] = {
     (0, 0): "origin",
     (1, 1): "diagonal",
-    (10, 20): "point A"
+    (10, 20): "point A",
 }
 
 print(coordinates[(0, 0)])
@@ -201,7 +228,7 @@ print(coordinates[(10, 20)])
 
 try:
     lista: list[int] = [1, 2]
-    d = {: "value"}  # type: ignore
+    d = {lista: "value"}  # type: ignore
 except TypeError as e:
     print(f"Ошибка при использовании списка как ключ: {e}")
     print("Списки изменяемы (mutable) и не могут быть ключами словаря.")
@@ -222,7 +249,7 @@ print("""
     Напечатай список и его тип
 """)
 
-# ТВ ТВОЙ КОД ЗДЕСЬ:
+# ТВОЙ КОД ЗДЕСЬ:
 tuple5: tuple[int, int, int] = (1, 2, 3)
 for i in tuple5:
     print(f"element: {i}")

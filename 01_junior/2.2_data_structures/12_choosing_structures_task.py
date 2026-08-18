@@ -20,7 +20,8 @@ print("""
 
 # ТВОЙ КОД ЗДЕСЬ:
 unique_emails = set(
-    ["a@mail.ru", "b@mail.ru", "a@mail.ru", "c@mail.ru", "b@mail.ru"])
+    ["a@mail.ru", "b@mail.ru", "a@mail.ru", "c@mail.ru", "b@mail.ru"]
+)
 for address in unique_emails:
     print(address)
 print(len(unique_emails))
@@ -143,10 +144,15 @@ print("""
 """)
 
 # ТВОЙ КОД ЗДЕСЬ:
-tasks = ["купить хлеб", "помыть посуду",
-         "написать код", "позвонить маме", "сделать зарядку"]
+tasks = [
+    "купить хлеб",
+    "помыть посуду",
+    "написать код",
+    "позвонить маме",
+    "сделать зарядку",
+]
 tasks.append("прочитать книгу")
-print(tasks[0])   # первая — купить хлеб
+print(tasks[0])  # первая — купить хлеб
 print(tasks[-1])  # последняя — прочитать книгу
 
 sorted_tasks = sorted(tasks)
@@ -205,8 +211,16 @@ print("""
 """)
 
 # ТВОЙ КОД ЗДЕСЬ:
-shopping = ["молоко", "хлеб", "молоко",
-            "яйца", "хлеб", "масло", "яйца", "яйца"]
+shopping = [
+    "молоко",
+    "хлеб",
+    "молоко",
+    "яйца",
+    "хлеб",
+    "масло",
+    "яйца",
+    "яйца",
+]
 
 counts: dict[str, int] = {}
 for item in shopping:

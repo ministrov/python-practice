@@ -1,9 +1,9 @@
-""" Модуль декоратора ограницивающий лимит вызова метода класса 
+"""Модуль декоратора ограницивающий лимит вызова метода класса
 
-    Задачи:
-        1. Создать декоратор limit_calls, который ограничивает количество вызовов метода.
-        2. При превышении лимита вызовов вызывать исключение RuntimeError.
-        3. Правильно передавать все данные, используя wrap.
+Задачи:
+    1. Создать декоратор limit_calls, который ограничивает количество вызовов метода.
+    2. При превышении лимита вызовов вызывать исключение RuntimeError.
+    3. Правильно передавать все данные, используя wrap.
 """
 
 from functools import wraps
@@ -31,18 +31,21 @@ def limit_calls(
                 raise RuntimeError("Call limit exceeded")
             setattr(self, count_attr, current + 1)
             print(
-                f"[LOG] {func.__qualname__} called {current + 1} / {max_calls}")
+                f"[LOG] {func.__qualname__} called {current + 1} / {max_calls}"
+            )
             return func(self, *args, **kwargs)
+
         return wrapper
+
     return decorator
 
 
 class Engine:
-    """ Двигатель """
+    """Двигатель"""
 
     @limit_calls(max_calls=3)
     def start(self):
-        """ Запуск двигателя """
+        """Запуск двигателя"""
         print("Двигатель запущен!")
 
 

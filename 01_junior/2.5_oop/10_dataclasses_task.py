@@ -173,8 +173,7 @@ class Account:
 
 
 acc1 = Account("admin", "secret123")
-acc2 = Account(
-    "admin", "secret123", login_count=5)
+acc2 = Account("admin", "secret123", login_count=5)
 print(acc1)
 print(acc1 == acc2)
 

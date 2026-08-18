@@ -1,7 +1,9 @@
-""" Написать функцию calculate, которая принимает два числа и операцию +, -, *, / """
+"""Написать функцию calculate, которая принимает два числа и операцию +, -, *, /"""
 
 
-def calculate(num_1: float, num_2: float, operation: str) -> float | None | str:
+def calculate(
+    num_1: float, num_2: float, operation: str
+) -> float | None | str:
     match operation:
         case "+":
             return num_1 + num_2

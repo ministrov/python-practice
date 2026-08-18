@@ -23,6 +23,7 @@
 # кроме простых int/str/bool, и КАК это помогает находить баги ДО
 # запуска программы.
 
+
 def greet(name: str) -> str:
     """Простая аннотация: name — обязательно str, результат — str."""
     return f"Привет, {name}!"
@@ -38,6 +39,7 @@ print(greet("Антон"))
 # но не говорит, ЧЕГО. Под pyright --strict голый list без параметра —
 # ошибка (`reportMissingTypeArgument`). Нужно указывать содержимое
 # в квадратных скобках — это и называется generic-параметризация.
+
 
 def total_price(prices: list[float]) -> float:
     """prices — список ИМЕННО float, не любых объектов."""
@@ -60,8 +62,8 @@ print(count_by_word(["a", "b", "a", "c", "b", "a"]))
 #   tuple[int, str, bool] — кортеж РОВНО из 3 элементов, типы по позиции
 #   set[str]             — множество строк
 
-point: tuple[int, int] = (3, 5)          # кортеж ровно из 2 int
-scores: tuple[int, ...] = (10, 20, 30)   # кортеж любой длины из int
+point: tuple[int, int] = (3, 5)  # кортеж ровно из 2 int
+scores: tuple[int, ...] = (10, 20, 30)  # кортеж любой длины из int
 unique_names: set[str] = {"Ann", "Bob"}
 
 print(point, scores, unique_names)
@@ -99,6 +101,7 @@ print(wrong, type(wrong))
 #                                              # ничего импортировать не надо
 # В этом репозитории (Python 3.12+) — используем `X | None`.
 
+
 def find_first_even(numbers: list[int]) -> int | None:
     """Возвращает первое чётное число или None, если такого нет."""
     for number in numbers:
@@ -126,6 +129,7 @@ print(find_first_even([1, 3, 5]))
 #   def parse(raw: str) -> Union[int, float]: ...   # старый стиль
 #   def parse(raw: str) -> int | float: ...           # современный
 
+
 def parse_number(raw: str) -> int | float:
     """Возвращает int, если строка целая, иначе float."""
     if "." in raw:
@@ -142,6 +146,7 @@ print(parse_number("3.14"), type(parse_number("3.14")))
 # ════════════════════════════════════════════════════════════════════════
 # generic-параметры можно вкладывать друг в друга произвольно глубоко —
 # ровно так же, как вкладываются сами структуры данных.
+
 
 def group_scores_by_student(
     records: list[tuple[str, int]],

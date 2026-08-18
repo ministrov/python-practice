@@ -20,7 +20,7 @@ print("""
     Напечатай элемент с индексом 2
 """)
 
-# ТВ ТВОЙ КОД ЗДЕСЬ:
+# ТВОЙ КОД ЗДЕСЬ:
 
 fruits: list[str] = ["apple", "banana", "cherry", "pomegranate", "orange"]
 print(fruits[0])
@@ -44,7 +44,7 @@ print("""
 2.4 Разверни весь список (от конца к началу)
 """)
 
-# ТВ ТВОЙ КОД ЗДЕСЬ:
+# ТВОЙ КОД ЗДЕСЬ:
 integers: list[int] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 sliced_int: list[int] = integers[2:5]
 first_three_elements: list[int] = integers[:3]
@@ -65,7 +65,7 @@ print("""
 Выведи финальный список.
 """)
 
-# ТВ ТВОЙ КОД ЗДЕСЬ:
+# ТВОЙ КОД ЗДЕСЬ:
 
 colors: list[str] = ["red", "green"]
 colors.append("blue")
@@ -92,7 +92,7 @@ print("""
     Выведи пустой список
 """)
 
-# ТВ ТВОЙ КОД ЗДЕСЬ:
+# ТВОЙ КОД ЗДЕСЬ:
 letters: list[str] = ["A", "B", "C", "D"]
 last_element: str = letters.pop()
 print(last_element)
@@ -121,7 +121,7 @@ print("""
 5.3 Из того же списка найди индекс первого вхождения числа 2 (index)
 """)
 
-# ТВ ТВОЙ КОД ЗДЕСЬ:
+# ТВОЙ КОД ЗДЕСЬ:
 
 list_of_numbers: list[int] = [10, 20, 30, 40]
 print(len(list_of_numbers))
@@ -146,7 +146,7 @@ print("""
     Выведи оба списка
 """)
 
-# ТВ ТВОЙ КОД ЗДЕСЬ:
+# ТВОЙ КОД ЗДЕСЬ:
 int_numbers: list[int] = [5, 2, 9, 1, 7]
 sorted_list: None = int_numbers.sort()
 print(sorted_list)
@@ -166,7 +166,7 @@ print("""
 Выведи оба результата.
 """)
 
-# ТВ ТВОЙ КОД ЗДЕСЬ:
+# ТВОЙ КОД ЗДЕСЬ:
 names: list[str] = ["Alice", "Bob", "Charlie"]
 has_alice: bool = "Alice" in names
 print(has_alice)
@@ -198,7 +198,7 @@ print("""
     Вопрос: На этот раз list_d изменилась или нет? Почему?
 """)
 
-# ТВ ТВОЙ КОД ЗДЕСЬ:
+# ТВОЙ КОД ЗДЕСЬ:
 one_two_three_list: list[int] = [1, 2, 3]
 for i in one_two_three_list:
     print(f"Elements: {i}")

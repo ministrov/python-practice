@@ -7,6 +7,7 @@
 
 Совет: Если застрял — посмотри 05_dict_demo.py, но старайся решить сам.
 """
+
 from collections.abc import ValuesView
 
 print("=" * 60)
@@ -23,11 +24,11 @@ print("""
     Выведи значение по умолчанию
 """)
 
-# ТВ ТВОЙ КОД ЗДЕСЬ:
+# ТВОЙ КОД ЗДЕСЬ:
 film_info: dict[str, str | int | float] = {
     "name": "Agent 007",
     "year": 1967,
-    "rating": 4.7
+    "rating": 4.7,
 }
 
 print(film_info["name"])
@@ -51,9 +52,12 @@ print("""
     Напечатай словарь после update
 """)
 
-# ТВ ТВОЙ КОД ЗДЕСЬ:
+# ТВОЙ КОД ЗДЕСЬ:
 car_info: dict[str, str | int] = {
-    "brand": "Toyota", "model": "Camry", "year": 2020}
+    "brand": "Toyota",
+    "model": "Camry",
+    "year": 2020,
+}
 car_info["year"] = 2023
 car_info["color"] = "blue"
 print(car_info)
@@ -76,7 +80,7 @@ print("""
     Напечатай результат
 """)
 
-# ТВ ТВОЙ КОД ЗДЕСЬ:
+# ТВОЙ КОД ЗДЕСЬ:
 letter_dict: dict[str, int] = {"a": 1, "b": 2, "c": 3, "d": 4}
 del letter_dict["b"]
 print(letter_dict)
@@ -102,7 +106,7 @@ print("""
 4.4 Напечатай все ПАРЫ ключ-значение
 """)
 
-# ТВ ТВОЙ КОД ЗДЕСЬ:
+# ТВОЙ КОД ЗДЕСЬ:
 coordinate: dict[str, int] = {"x": 10, "y": 20, "z": 30}
 print("x" in coordinate)
 print("w" in coordinate)
@@ -128,7 +132,7 @@ print("""
 5.3 Найди среднюю оценку (используй values())
 """)
 
-# ТВ ТВОЙ КОД ЗДЕСЬ:
+# ТВОЙ КОД ЗДЕСЬ:
 grades: dict[str, float] = {"Alice": 95, "Bob": 87, "Charlie": 92}
 for key, value in grades.items():
     print(f"KEY: {key}, VALUE: {value}")
@@ -165,10 +169,10 @@ print("""
 6.4 Напечатай весь словарь
 """)
 
-# ТВ ТВОЙ КОД ЗДЕСЬ:
+# ТВОЙ КОД ЗДЕСЬ:
 students_info: dict[str, dict[str, int | str]] = {
     "alice": {"age": 20, "grade": "A"},
-    "bob": {"age": 21, "grade": "B"}
+    "bob": {"age": 21, "grade": "B"},
 }
 
 print(students_info["alice"]["age"])
@@ -196,7 +200,7 @@ print("""
 7.3 Найди количество элементов через len()
 """)
 
-# ТВ ТВОЙ КОД ЗДЕСЬ:
+# ТВОЙ КОД ЗДЕСЬ:
 some_dict: dict[str, int] = {"a": 1, "b": 2}
 new_some_dict = some_dict.copy()
 print(some_dict)
@@ -224,7 +228,7 @@ print("""
     Результат: {1: "a", 2: "b", 3: "c"}
 """)
 
-# ТВ ТВОЙ КОД ЗДЕСЬ:
+# ТВОЙ КОД ЗДЕСЬ:
 some_squares: dict[int, int] = {x: x**2 for x in range(1, 6)}
 print(some_squares)
 even_squares: dict[int, int] = {x: x**2 for x in range(1, 5) if x % 2 == 0}

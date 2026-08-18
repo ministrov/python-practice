@@ -65,9 +65,9 @@ if x == 2:
     y = x + 1
 
 # ❌ Incorrect
-x=1
-if x==2:
-    y=x+1
+x = 1
+if x == 2:
+    y = x + 1
 ```
 
 ### Inside Parentheses & Brackets
@@ -78,9 +78,9 @@ list_items = [1, 2, 3]
 dict_items = {"key": "value"}
 
 # ❌ Incorrect
-func( arg1 , arg2 )
-list_items = [ 1 , 2 , 3 ]
-dict_items = { "key" : "value" }
+func(arg1, arg2)
+list_items = [1, 2, 3]
+dict_items = {"key": "value"}
 ```
 
 ### Function Arguments
@@ -89,7 +89,7 @@ dict_items = { "key" : "value" }
 func(arg1, arg2, timeout=30)
 
 # ❌ Incorrect
-func(arg1, arg2, timeout = 30)
+func(arg1, arg2, timeout=30)
 ```
 
 ### Slicing
@@ -99,7 +99,7 @@ x[1:2]
 x[1:2:3]  # extended slice: spaces around colons
 
 # ❌ Incorrect
-x[ 1 : 2 ]
+x[1:2]
 ```
 
 ## Comments and Docstrings
@@ -228,9 +228,10 @@ except:
 Микро-задача: Variables and Types
 """
 
+
 def celsius_to_fahrenheit(celsius):
     """Convert temperature from Celsius to Fahrenheit."""
-    fahrenheit = celsius * 9/5 + 32
+    fahrenheit = celsius * 9 / 5 + 32
     return fahrenheit
 
 

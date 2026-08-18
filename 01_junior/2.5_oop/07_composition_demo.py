@@ -18,6 +18,7 @@
 # 1. Наследование — оправдано, когда связь ДЕЙСТВИТЕЛЬНО "is-a"
 # ════════════════════════════════════════════════════════════════════════
 
+
 class Course:
     def __init__(self, title: str, price: float) -> None:
         self.title = title
@@ -33,12 +34,13 @@ class AICourse(Course):
 
 
 ai_course = AICourse("Python + AI", 5000)
-print(ai_course.show_info())   # Python + AI: 5000
+print(ai_course.show_info())  # Python + AI: 5000
 
 
 # ════════════════════════════════════════════════════════════════════════
 # 2. Наследование — ломается, когда пытаемся выразить им "has" вместо "is"
 # ════════════════════════════════════════════════════════════════════════
+
 
 class Product:
     def __init__(self, name: str, price: float) -> None:
@@ -57,7 +59,7 @@ class DiscountedProduct(Product):
 
 
 sale_shirt = DiscountedProduct("Футболка", 1000, 20)
-print(sale_shirt.final_price())   # 800.0
+print(sale_shirt.final_price())  # 800.0
 
 # Проблема: если появится вторая скидка (промокод + чёрная пятница),
 # наследованием это не выразить без нового класса на КАЖДУЮ комбинацию:
@@ -67,6 +69,7 @@ print(sale_shirt.final_price())   # 800.0
 # ════════════════════════════════════════════════════════════════════════
 # 3. То же самое через композицию — Product ИМЕЕТ стратегию скидки
 # ════════════════════════════════════════════════════════════════════════
+
 
 class DiscountStrategy:
     """Базовый интерфейс скидки — сам по себе не используется."""
@@ -94,7 +97,7 @@ class SmartProduct:
     ) -> None:
         self.name = name
         self.price = price
-        self.discount = discount   # объект ХРАНИТСЯ внутри, не наследуется
+        self.discount = discount  # объект ХРАНИТСЯ внутри, не наследуется
 
     def final_price(self) -> float:
         # делегирование: расчёт скидки поручается ОБЪЕКТУ discount,
@@ -104,9 +107,9 @@ class SmartProduct:
 
 plain_shirt = SmartProduct("Футболка", 1000, NoDiscount())
 sale_shirt_v2 = SmartProduct("Футболка", 1000, PercentDiscount(20))
-print(plain_shirt.final_price())     # 1000 — NoDiscount возвращает
-                                      # price как есть, без float()
-print(sale_shirt_v2.final_price())   # 800.0
+print(plain_shirt.final_price())  # 1000 — NoDiscount возвращает
+# price как есть, без float()
+print(sale_shirt_v2.final_price())  # 800.0
 
 # Новую скидку добавляем НЕ трогая SmartProduct вообще — просто
 # пишем ещё один класс DiscountStrategy. Комбинации скидок собираются
@@ -117,6 +120,7 @@ print(sale_shirt_v2.final_price())   # 800.0
 # ════════════════════════════════════════════════════════════════════════
 # 4. Композиция из нескольких независимых частей — заказ в магазине
 # ════════════════════════════════════════════════════════════════════════
+
 
 class ShoppingCart:
     def __init__(self) -> None:
@@ -141,8 +145,8 @@ class Order:
     def __init__(
         self, cart: ShoppingCart, shipping: ShippingCalculator
     ) -> None:
-        self.cart = cart            # Order ИМЕЕТ корзину
-        self.shipping = shipping    # Order ИМЕЕТ калькулятор доставки
+        self.cart = cart  # Order ИМЕЕТ корзину
+        self.shipping = shipping  # Order ИМЕЕТ калькулятор доставки
 
     def total_with_shipping(self, weight_kg: float) -> float:
         return self.cart.total() + self.shipping.cost(weight_kg)

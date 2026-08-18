@@ -407,10 +407,10 @@ result: str | None = None
 message: str | None = "pending"
 
 if result is None:
-  print("No result yet")
+    print("No result yet")
 
 if message is None:  # type: ignore[reportUnnecessaryComparison]  # намеренно: message заведомо не None
-  print("No message")
+    print("No message")
 
 print("\n" + "=" * 70)
 print("ЗАДАНИЕ 16: Комбинированная практика")
@@ -450,7 +450,9 @@ student_info = f"""
 
 print(student_info)
 
-student_str = f"Student {student_name} (ID: {student_id}) studies {len(courses)} courses"
+student_str = (
+    f"Student {student_name} (ID: {student_id}) studies {len(courses)} courses"
+)
 
 print(student_str)
 
@@ -513,8 +515,12 @@ quantity = 4
 total = 0
 
 print(f"- Стоимость без налогов: {quantity * PRICE_PER_UNIT}")
-print(f"- Стоимость после скидки: {quantity * PRICE_PER_UNIT * (1 - DISCOUNT)}")
-print(f"- Итоговая сумма с налогом: {quantity * PRICE_PER_UNIT * (1 - DISCOUNT) * (1 + TAX_RATE)}")
+print(
+    f"- Стоимость после скидки: {quantity * PRICE_PER_UNIT * (1 - DISCOUNT)}"
+)
+print(
+    f"- Итоговая сумма с налогом: {quantity * PRICE_PER_UNIT * (1 - DISCOUNT) * (1 + TAX_RATE)}"
+)
 
 
 print("\n" + "=" * 70)

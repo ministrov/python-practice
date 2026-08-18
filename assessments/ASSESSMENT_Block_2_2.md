@@ -173,7 +173,9 @@ totals_by_customer: dict[str, float] = {}
 for order in orders:
     customer: str = cast(str, order["customer"])
     total: float = cast(float, order["total"])
-    totals_by_customer[customer] = totals_by_customer.get(customer, 0.0) + total
+    totals_by_customer[customer] = (
+        totals_by_customer.get(customer, 0.0) + total
+    )
 
 
 # 2. Множество всех уникальных товаров
@@ -189,9 +191,7 @@ big_spenders: list[str] = [
 
 # 4. Dict comprehension: покупатель -> количество заказов
 orders_count: dict[str, int] = {
-    customer: sum(
-        1 for o in orders if cast(str, o["customer"]) == customer
-    )
+    customer: sum(1 for o in orders if cast(str, o["customer"]) == customer)
     for customer in totals_by_customer
 }
 
@@ -209,7 +209,6 @@ print(", ".join(big_spenders))
 print("\n=== Количество заказов по покупателям ===")
 for customer, count in orders_count.items():
     print(f"{customer}: {count}")
-
 ```
 
 ---

@@ -23,10 +23,11 @@ from abc import ABC, abstractmethod
 #    property (тот же приём, что и в BankAccount из 03_methods_demo.py)
 # ════════════════════════════════════════════════════════════════════════
 
+
 class Account(ABC):
     def __init__(self, owner: str, balance: float = 0.0) -> None:
         self.owner = owner
-        self._balance = balance   # "_balance" — приватное имя по конвенции
+        self._balance = balance  # "_balance" — приватное имя по конвенции
 
     @property
     def balance(self) -> float:
@@ -45,8 +46,7 @@ class Account(ABC):
     # ════════════════════════════════════════════════════════════════════
 
     @abstractmethod
-    def interest_rate(self) -> float:
-        ...
+    def interest_rate(self) -> float: ...
 
 
 try:
@@ -64,6 +64,7 @@ except TypeError as e:
 #    05_inheritance_demo.py), а не дублируя self.owner/self._balance
 # ════════════════════════════════════════════════════════════════════════
 
+
 class SavingsAccount(Account):
     def __init__(self, owner: str, balance: float, rate: float) -> None:
         super().__init__(owner, balance)
@@ -75,14 +76,14 @@ class SavingsAccount(Account):
 
 class CheckingAccount(Account):
     def interest_rate(self) -> float:
-        return 0.0   # расчётный счёт процентов не начисляет
+        return 0.0  # расчётный счёт процентов не начисляет
 
 
 savings = SavingsAccount("Anton", 1000, rate=0.05)
 checking = CheckingAccount("Bella", 500)
 
-print(savings.balance)            # 1000 — property из шага 1, унаследовано
-print(savings.interest_rate())    # 0.05
+print(savings.balance)  # 1000 — property из шага 1, унаследовано
+print(savings.interest_rate())  # 0.05
 
 
 # ════════════════════════════════════════════════════════════════════════

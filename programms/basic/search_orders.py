@@ -1,4 +1,4 @@
-""" Заказы пользователей на курсы: id, сумма покупки, статус платежа """
+"""Заказы пользователей на курсы: id, сумма покупки, статус платежа"""
 
 from typing import TypedDict
 
@@ -25,8 +25,12 @@ orders: list[Order] = [
     {"user_id": 12, "name": "Sergey", "amount": 999, "status": "paid"},
 ]
 
-filtered_users = list(filter(
-    lambda order: order["status"] == "paid" and order["amount"] > 100, orders))
+filtered_users = list(
+    filter(
+        lambda order: order["status"] == "paid" and order["amount"] > 100,
+        orders,
+    )
+)
 
 print(filtered_users)
 print(len(orders))

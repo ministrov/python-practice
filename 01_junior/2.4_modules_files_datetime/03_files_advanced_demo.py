@@ -26,13 +26,13 @@ from pathlib import Path
 # соединяет части пути кроссплатформенно — на Windows и Linux работает
 # одинаково, сам Path подставит нужный разделитель.
 
-base_dir = Path(__file__).parent   # папка, где лежит ЭТОТ файл
+base_dir = Path(__file__).parent  # папка, где лежит ЭТОТ файл
 data_dir = base_dir / "sample_data"
 
 sample_file = data_dir / "note.txt"
-print(sample_file.name)      # note.txt
-print(sample_file.stem)      # note — имя без расширения
-print(sample_file.suffix)    # .txt
+print(sample_file.name)  # note.txt
+print(sample_file.stem)  # note — имя без расширения
+print(sample_file.suffix)  # .txt
 print(sample_file.parent == data_dir)  # True
 
 
@@ -42,11 +42,11 @@ print(sample_file.parent == data_dir)  # True
 # Короче, чем open(...) as f: f.write(...) — для простых случаев без
 # построчного контроля. encoding указываем так же явно, как в open().
 
-data_dir.mkdir(exist_ok=True)   # exist_ok=True — не упадёт, если уже есть
+data_dir.mkdir(exist_ok=True)  # exist_ok=True — не упадёт, если уже есть
 
 sample_file.write_text("Привет из pathlib!\n", encoding="utf-8")
-print(sample_file.exists())    # True
-print(sample_file.is_file())   # True
+print(sample_file.exists())  # True
+print(sample_file.is_file())  # True
 print(sample_file.read_text(encoding="utf-8"))  # Привет из pathlib!
 
 
@@ -122,12 +122,12 @@ with open(json_path, "w", encoding="utf-8") as f:
 with open(json_path, "r", encoding="utf-8") as f:
     loaded = json.load(f)
 
-print(loaded)             # {'debug': True, 'retries': 3, 'tags': [...]}
-print(loaded == config)   # True — json.load вернул эквивалентный dict
+print(loaded)  # {'debug': True, 'retries': 3, 'tags': [...]}
+print(loaded == config)  # True — json.load вернул эквивалентный dict
 
 # dumps/loads (с "s") — то же самое, но со строкой в памяти, без файла
 text = json.dumps(config, ensure_ascii=False)
-print(text)   # {"debug": true, "retries": 3, "tags": ["junior", "python"]}
+print(text)  # {"debug": true, "retries": 3, "tags": ["junior", "python"]}
 print(json.loads(text) == config)  # True
 
 
@@ -140,17 +140,17 @@ print(json.loads(text) == config)  # True
 
 binary_path = data_dir / "raw.bin"
 binary_path.write_bytes(b"\x00\x01\x02\xff")
-print(binary_path.read_bytes())   # b'\x00\x01\x02\xff'
+print(binary_path.read_bytes())  # b'\x00\x01\x02\xff'
 
 # encoding имеет значение и для текстовых файлов: если записали в одной
 # кодировке, а читаем в другой — получим мусор или UnicodeDecodeError.
 broken_path = data_dir / "broken.txt"
-broken_path.write_bytes("Привет".encode("cp1251"))   # запись в cp1251
+broken_path.write_bytes("Привет".encode("cp1251"))  # запись в cp1251
 
 try:
-    broken_path.read_text(encoding="utf-8")   # а читаем как utf-8
+    broken_path.read_text(encoding="utf-8")  # а читаем как utf-8
 except UnicodeDecodeError as e:
     print(f"UnicodeDecodeError: {e}")
 
 # Правильно: читать в ТОЙ ЖЕ кодировке, что писали
-print(broken_path.read_text(encoding="cp1251"))   # Привет
+print(broken_path.read_text(encoding="cp1251"))  # Привет

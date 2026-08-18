@@ -1,4 +1,4 @@
-""" Модуль разбора аргументов"""
+"""Модуль разбора аргументов"""
 
 from datetime import date, datetime
 
@@ -14,7 +14,8 @@ def parse_list(args: list[str]):
 def parse_add(args: list[str]):
     if not args:
         raise ValueError(
-            "Использование: add <title> [prio=low|med|high] [[due=YYYY-MM-DD] [tags=a,b,c]")
+            "Использование: add <title> [prio=low|med|high] [[due=YYYY-MM-DD] [tags=a,b,c]"
+        )
     title = args[0]
     prio, due, tags = "med", None, None
 
@@ -27,7 +28,8 @@ def parse_add(args: list[str]):
                 due = parse_date(due_string)
             except ValueError as e:
                 raise ValueError(
-                    f"Неверный формат даты: {due_string}. Ожидаем YYYY-MM-DD") from e
+                    f"Неверный формат даты: {due_string}. Ожидаем YYYY-MM-DD"
+                ) from e
         elif arg.startswith("tags="):
             tags_string = arg.split("=", 1)[1]
             tags = tags_string.split(",")
@@ -60,6 +62,7 @@ def parse_edit(args: list[str]) -> tuple[int, dict[str, str | date]]:
                 changes["due"] = parse_date(due_string)
             except ValueError as e:
                 raise ValueError(
-                    f"Неверный формат даты: {due_string}. Ожидаем YYYY-MM-DD") from e
+                    f"Неверный формат даты: {due_string}. Ожидаем YYYY-MM-DD"
+                ) from e
 
     return (task_id, changes)

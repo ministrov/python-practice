@@ -8,8 +8,10 @@ print("=== Задание 1: int ===")
 x = 100
 y = 100
 # Предсказание: x == y → True, x is y → True (интернирование маленьких чисел -5..256)
-print(f"x == y: {x == y}")    # True (значения одинаковы)
-print(f"x is y: {x is y}")    # True (объекты интернированы, один объект в памяти)
+print(f"x == y: {x == y}")  # True (значения одинаковы)
+print(
+    f"x is y: {x is y}"
+)  # True (объекты интернированы, один объект в памяти)
 
 
 print("\n=== Задание 2: float ===")
@@ -28,12 +30,12 @@ print(f"list_a is list_b: {list_a is list_b}")  # False (разные объек
 
 # Теперь создадим ссылку:
 list_c = list_a
-print(f"list_c = list_a")
+print("list_c = list_a")
 print(f"list_c is list_a: {list_c is list_a}")  # True (один объект!)
 
 # И вот ловушка:
 list_c[0] = 999
-print(f"После list_c[0] = 999:")
+print("После list_c[0] = 999:")
 print(f"list_a = {list_a}")  # [999, 2, 3] — изменился!
 print(f"list_c = {list_c}")
 
@@ -41,8 +43,8 @@ print(f"list_c = {list_c}")
 print("\n=== Задание 4: None ===")
 value = None
 # Предсказание: оба True (None — синглтон, всегда один объект в памяти)
-print(f"value is None: {value is None}")   # True (всегда используй `is None`)
-print(f"value == None: {value == None}")   # True (работает, но не идиоматично)
+print(f"value is None: {value is None}")  # True (всегда используй `is None`)
+print(f"value == None: {value == None}")  # True (работает, но не идиоматично)
 
 
 print("\n=== Задание 5: Тест понимания ===")
@@ -73,8 +75,10 @@ print("\n=== Задание 6: Почему это важно ===")
 
 print("\n=== Задание 6: Почему это важно ===")
 
-def process(items): # type: ignore
+
+def process(items):  # type: ignore
     items[0] = 0
+
 
 my_list = [1, 2, 3]
 print(f"ДО функции: my_list = {my_list}")

@@ -1,4 +1,4 @@
-""" Модуль для редактирования задачи """
+"""Модуль для редактирования задачи"""
 
 from task_manager_pkg.tasks.tasks import Task, update_task, find_task
 from task_manager_pkg.helpers.args import parse_edit

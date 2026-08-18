@@ -18,6 +18,7 @@ def append_to(value, target=[]):
     target.append(value)
     return target
 
+
 a = append_to(1)
 b = append_to(2)
 print(a)
@@ -42,6 +43,7 @@ def report(*args, **kwargs):
     print(len(args))
     print(kwargs.get("status", "нет статуса"))
 
+
 report(1, 2, 3, status="ok", user="Anna")
 ```
 
@@ -59,9 +61,11 @@ ok
 ```python
 counter = 0
 
+
 def increment():
     counter += 1
     return counter
+
 
 increment()
 ```
@@ -87,6 +91,7 @@ def make_counter():
 
     return inc
 
+
 c1 = make_counter()
 c2 = make_counter()
 
@@ -106,7 +111,8 @@ print(c2())
 
 ```python
 def cube(x):
-    return x ** 3
+    return x**3
+
 
 my_cube = cube
 print(my_cube(3))
@@ -128,8 +134,10 @@ operations = {
     "sub": lambda a, b: a - b,
 }
 
+
 def calculate(op, a, b):
     return operations[op](a, b)
+
 
 print(calculate("add", 5, 3))
 print(calculate("sub", 5, 3))
@@ -146,6 +154,7 @@ print(calculate("sub", 5, 3))
 ```python
 def add_tax(price, rate):
     return price * (1 + rate)
+
 
 prices = [100, 200]
 
@@ -217,6 +226,7 @@ print(result)
 
 from typing import Callable, Optional, Union
 
+
 def make_logger() -> Callable[[str], list[str]]:
     messages: list[str] = []
 
@@ -228,7 +238,9 @@ def make_logger() -> Callable[[str], list[str]]:
     return log
 
 
-def stats(*numbers: float, **options: int) -> dict[str, Optional[Union[int, float]]]:
+def stats(
+    *numbers: float, **options: int
+) -> dict[str, Optional[Union[int, float]]]:
     if len(numbers) == 0:
         return {"count": 0, "sum": 0, "min": None, "max": None}
 
@@ -265,7 +277,6 @@ if __name__ == "__main__":
 
     print(run_operation("add", 5, 3))
     print(run_operation("mul", 5, 3))
-
 ```
 
 ---

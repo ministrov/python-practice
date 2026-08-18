@@ -1,4 +1,4 @@
-""" Модуль хранилище данных """
+"""Модуль хранилище данных"""
 
 import json
 from typing import Any
@@ -16,7 +16,7 @@ def save_task(path: str, tasks: list[Task]):
                 "priority": t["priority"],
                 "status": t["status"],
                 "tags": t["tags"],
-                "due": format_date(t["due"]) if t["due"] else None
+                "due": format_date(t["due"]) if t["due"] else None,
             }
             for t in tasks
         ],
@@ -45,7 +45,7 @@ def load_tasks(path: str) -> tuple[list[Task], int]:
                 "priority": item["priority"],
                 "tags": list(item.get("tags") or []),
                 "status": item["status"],
-                "due": parse_date(item["due"]) if item["due"] else None
+                "due": parse_date(item["due"]) if item["due"] else None,
             }
             tasks.append(task)
             max_id = max(max_id, int(item["id"]))

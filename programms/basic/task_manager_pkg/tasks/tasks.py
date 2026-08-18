@@ -1,4 +1,4 @@
-""" Модуль, который создает функцию, которая создает задачи с различными параметрами """
+"""Модуль, который создает функцию, которая создает задачи с различными параметрами"""
 
 from typing import TypedDict, Optional
 from datetime import date
@@ -15,7 +15,13 @@ class Task(TypedDict):
     due: Optional[date]
 
 
-def create_task(id_: int, title: str, due: Optional[date] = None, priority: str = "med", tags: list[str] | None = None) -> Task:
+def create_task(
+    id_: int,
+    title: str,
+    due: Optional[date] = None,
+    priority: str = "med",
+    tags: list[str] | None = None,
+) -> Task:
     if tags is None:
         tags = []
 

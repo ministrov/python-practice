@@ -48,6 +48,7 @@ print("""
 def make_multiplier(factor: int) -> Callable[[int], int]:
     def multiplier(x: int):
         return x * factor
+
     return multiplier
 
 
@@ -128,9 +129,9 @@ class Product(TypedDict):
 
 def format_product(product: Product) -> str:
     if not product["in_stock"]:
-        return f"{product["name"]}: {product["price"]} (нет в наличии)"
+        return f"{product['name']}: {product['price']} (нет в наличии)"
 
-    return f"{product["name"]}: {product["price"]} (в наличии)"
+    return f"{product['name']}: {product['price']} (в наличии)"
 
 
 laptop: Product = {"name": "Ноутбук", "price": 999.99, "in_stock": True}
@@ -160,8 +161,9 @@ def extract_names(records: list[dict[str, Any]]) -> list[str]:
     return results
 
 
-print(extract_names(
-    [{"name": "Ann", "age": 25}, {"name": "Bob", "score": 4.5}]))
+print(
+    extract_names([{"name": "Ann", "age": 25}, {"name": "Bob", "score": 4.5}])
+)
 
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 7: Callable[..., Any] — универсальный колбэк")

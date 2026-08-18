@@ -289,8 +289,8 @@ class Order:
 order1 = Order("яблоко", 3, 50.0)
 order2 = Order.single("хлеб", 80.0)
 
-print(order1.total())        # 150.0
-print(order1.description)    # 3 x яблоко = 150.0
+print(order1.total())  # 150.0
+print(order1.description)  # 3 x яблоко = 150.0
 
-print(order2.total())        # 80.0
-print(order2.description)    # 1 x хлеб = 80.0
+print(order2.total())  # 80.0
+print(order2.description)  # 1 x хлеб = 80.0

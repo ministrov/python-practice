@@ -1,6 +1,6 @@
-""" Модуль для Декоратора retry.
+"""Модуль для Декоратора retry.
 
-    Описание задачи: должен обрабатывать ошибки и повторять выполнение функции заданное количество раз
+Описание задачи: должен обрабатывать ошибки и повторять выполнение функции заданное количество раз
 """
 
 import functools
@@ -24,13 +24,15 @@ def retry(times: int) -> Callable[[Callable[P, T]], Callable[P, T]]:
                         print("Все попытки завершены")
                         raise
             raise RuntimeError("retry: times must be >= 1")
+
         return wrapper
+
     return decorator
 
 
 @retry(times=3)
 def unstable() -> None:
-    """ Иногда падает с ошибкой """
+    """Иногда падает с ошибкой"""
 
     if random.random() < 0.7:
         raise ValueError("Ошибка соединения")

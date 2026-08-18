@@ -1,7 +1,6 @@
-""" Модуль для отработки принципа открытости и закрытости (Open/Close Principle) """
+"""Модуль для отработки принципа открытости и закрытости (Open/Close Principle)"""
 
 # Классы должны быть открыты для расширения, но закрыты для модификации
-
 
 from abc import ABC, abstractmethod
 from dataclasses import dataclass

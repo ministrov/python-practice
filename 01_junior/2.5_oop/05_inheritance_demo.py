@@ -18,6 +18,7 @@
 # 1. Простое наследование — Dog получает всё от Animal
 # ════════════════════════════════════════════════════════════════════════
 
+
 class Animal:
     def __init__(self, name: str) -> None:
         self.name = name
@@ -32,9 +33,9 @@ class Dog(Animal):
 
 
 rex = Dog("Рекс")
-print(rex.name)          # Рекс — атрибут пришёл от Animal
-print(rex.speak())       # Рекс издаёт звук — метод пришёл от Animal
-print(isinstance(rex, Dog))     # type: ignore[reportUnnecessaryIsInstance]
+print(rex.name)  # Рекс — атрибут пришёл от Animal
+print(rex.speak())  # Рекс издаёт звук — метод пришёл от Animal
+print(isinstance(rex, Dog))  # type: ignore[reportUnnecessaryIsInstance]
 print(isinstance(rex, Animal))  # type: ignore[reportUnnecessaryIsInstance]
 # Оба True — Dog ЯВЛЯЕТСЯ Animal тоже (проверки намеренно очевидны для
 # демонстрации; pyright statically знает результат заранее)
@@ -44,6 +45,7 @@ print(isinstance(rex, Animal))  # type: ignore[reportUnnecessaryIsInstance]
 # 2. Переопределение метода (override)
 # ════════════════════════════════════════════════════════════════════════
 
+
 class Cat(Animal):
     def speak(self) -> str:
         # своя версия метода — полностью заменяет версию Animal
@@ -51,12 +53,13 @@ class Cat(Animal):
 
 
 whiskers = Cat("Усы")
-print(whiskers.speak())   # Усы говорит: Мяу! — своя версия, не от Animal
+print(whiskers.speak())  # Усы говорит: Мяу! — своя версия, не от Animal
 
 
 # ════════════════════════════════════════════════════════════════════════
 # 3. super() — вызвать версию РОДИТЕЛЯ изнутри переопределённого метода
 # ════════════════════════════════════════════════════════════════════════
+
 
 class Cow(Animal):
     def speak(self) -> str:
@@ -67,12 +70,13 @@ class Cow(Animal):
 
 
 bessie = Cow("Бурёнка")
-print(bessie.speak())     # Бурёнка издаёт звук (а именно: Му!)
+print(bessie.speak())  # Бурёнка издаёт звук (а именно: Му!)
 
 
 # ════════════════════════════════════════════════════════════════════════
 # 4. super().__init__() — самый частый паттерн: дополнить конструктор
 # ════════════════════════════════════════════════════════════════════════
+
 
 class Employee:
     def __init__(self, name: str, salary: float) -> None:
@@ -95,7 +99,7 @@ class Manager(Employee):
 
 
 boss = Manager("Ирина", 150000, 5)
-print(boss.describe())    # Ирина: зарплата 150000, команда из 5 человек
+print(boss.describe())  # Ирина: зарплата 150000, команда из 5 человек
 
 # Без super().__init__() пришлось бы вручную повторять
 # self.name = name; self.salary = salary — дублирование кода родителя
@@ -106,8 +110,8 @@ print(boss.describe())    # Ирина: зарплата 150000, команда 
 # ════════════════════════════════════════════════════════════════════════
 
 print(issubclass(Manager, Employee))  # type: ignore[reportUnnecessaryIsInstance]
-print(issubclass(Employee, Manager))   # False — обратное неверно
-print(issubclass(Dog, Animal))        # type: ignore[reportUnnecessaryIsInstance]
+print(issubclass(Employee, Manager))  # False — обратное неверно
+print(issubclass(Dog, Animal))  # type: ignore[reportUnnecessaryIsInstance]
 # True, False, True — первая и третья строки намеренно очевидны для
 # демонстрации; pyright statically знает результат заранее
 
@@ -115,6 +119,7 @@ print(issubclass(Dog, Animal))        # type: ignore[reportUnnecessaryIsInstance
 # ════════════════════════════════════════════════════════════════════════
 # 6. MRO — порядок поиска метода при МНОЖЕСТВЕННОМ наследовании
 # ════════════════════════════════════════════════════════════════════════
+
 
 class Flyer:
     def move(self) -> str:
@@ -133,7 +138,7 @@ class Duck(Flyer, Swimmer):
 
 
 donald = Duck()
-print(donald.move())   # летит — Flyer стоит первым в Duck(Flyer, Swimmer)
+print(donald.move())  # летит — Flyer стоит первым в Duck(Flyer, Swimmer)
 
 # __mro__ — сам порядок поиска, по которому Python обходит классы
 print([cls.__name__ for cls in Duck.__mro__])

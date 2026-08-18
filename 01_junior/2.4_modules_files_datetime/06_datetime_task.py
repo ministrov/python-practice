@@ -5,6 +5,7 @@
 8 ЗАДАНИЙ для самостоятельного решения.
 Совет: посмотри 05_datetime_demo.py, если застрял с форматом.
 """
+
 import datetime
 
 print("=" * 60)
@@ -165,7 +166,9 @@ print("""
 
 def format_deadline(start: datetime.date, days_left: int) -> str:
     deadline = start + datetime.timedelta(days=days_left)
-    return f"Дедлайн: {deadline.strftime('%d.%m.%Y')} ({deadline.strftime('%A')})"
+    return (
+        f"Дедлайн: {deadline.strftime('%d.%m.%Y')} ({deadline.strftime('%A')})"
+    )
 
 
 print(format_deadline(datetime.date.today(), 30))

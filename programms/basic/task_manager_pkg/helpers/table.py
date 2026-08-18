@@ -1,4 +1,4 @@
-""" Модуль для формирования таблицы """
+"""Модуль для формирования таблицы"""
 
 from datetime import date
 from task_manager_pkg.tasks.tasks import Task
@@ -14,14 +14,16 @@ def stringify_table(tasks: list[Task]) -> str:
 
     for task in tasks:
         tags = ",".join(sorted(task["tags"])) if task["tags"] else "-"
-        rows.append([
-            str(task["id"]),
-            task["title"],
-            task["status"],
-            task["priority"],
-            tags,
-            format_date(task["due"]) if task["due"] else "-"
-        ])
+        rows.append(
+            [
+                str(task["id"]),
+                task["title"],
+                task["status"],
+                task["priority"],
+                tags,
+                format_date(task["due"]) if task["due"] else "-",
+            ]
+        )
 
     col_widths = [len(h) for h in headers]
     for row in rows:
@@ -29,7 +31,9 @@ def stringify_table(tasks: list[Task]) -> str:
             col_widths[i] = max(col_widths[i], len(str(col)))
 
     def format_row(row: list[str]) -> str:
-        return " | ".join(f"{col:<{col_widths[i]}}" for i, col in enumerate(row))
+        return " | ".join(
+            f"{col:<{col_widths[i]}}" for i, col in enumerate(row)
+        )
 
     output: list[str] = []
     output.append(format_row(headers))

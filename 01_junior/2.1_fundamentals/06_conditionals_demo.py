@@ -98,12 +98,12 @@ print("\n=== 8. Сравнение значений ===")
 x = 10
 
 # Операторы сравнения:
-print(f"x > 5: {x > 5}")      # True
-print(f"x < 5: {x < 5}")      # False
+print(f"x > 5: {x > 5}")  # True
+print(f"x < 5: {x < 5}")  # False
 print(f"x >= 10: {x >= 10}")  # True
 print(f"x <= 10: {x <= 10}")  # True
 print(f"x == 10: {x == 10}")  # True
-print(f"x != 5: {x != 5}")    # type: ignore # True
+print(f"x != 5: {x != 5}")  # type: ignore # True
 
 
 print("\n=== 9. Проверка на None ===")

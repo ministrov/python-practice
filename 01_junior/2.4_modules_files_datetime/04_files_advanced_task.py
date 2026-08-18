@@ -26,10 +26,10 @@ print("""
 
 # ТВОЙ КОД ЗДЕСЬ:
 path = Path("reports/2026/summary.txt")
-print("name:  ", path.name)     # summary.txt
-print("stem:  ", path.stem)     # summary
-print("suffix:", path.suffix)   # .txt
-print("parent:", path.parent)   # reports/2026
+print("name:  ", path.name)  # summary.txt
+print("stem:  ", path.stem)  # summary
+print("suffix:", path.suffix)  # .txt
+print("parent:", path.parent)  # reports/2026
 
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 2: write_text / read_text")
@@ -63,10 +63,10 @@ print("""
 (PLAYGROUND / "data.csv").write_text("", encoding="utf-8")
 
 for item in sorted(PLAYGROUND.iterdir()):
-    print(" -", item.name)   # data.csv, notes.txt, quote.txt
+    print(" -", item.name)  # data.csv, notes.txt, quote.txt
 
 for item in sorted(PLAYGROUND.glob("*.txt")):
-    print(" -", item.name)   # notes.txt, quote.txt
+    print(" -", item.name)  # notes.txt, quote.txt
 
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 4: CSV — запись и чтение")

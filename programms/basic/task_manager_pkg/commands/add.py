@@ -1,4 +1,5 @@
-""" Модуль для добавления задачи """
+"""Модуль для добавления задачи"""
+
 from task_manager_pkg.tasks.tasks import create_task, Task
 from task_manager_pkg.helpers.args import parse_add
 from task_manager_pkg.helpers.table import stringify_table

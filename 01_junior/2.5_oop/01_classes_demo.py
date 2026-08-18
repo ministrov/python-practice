@@ -17,6 +17,7 @@
 # 1. class — простейший пример
 # ════════════════════════════════════════════════════════════════════════
 
+
 class Dog:
     """Собака с именем и возрастом."""
 
@@ -33,14 +34,14 @@ class Dog:
 rex = Dog("Рекс", 3)
 buddy = Dog("Бадди", 5)
 
-print(rex.name, rex.age)      # Рекс 3
+print(rex.name, rex.age)  # Рекс 3
 print(buddy.name, buddy.age)  # Бадди 5
-print(rex.bark())             # Рекс говорит: Гав!
-print(buddy.bark())           # Бадди говорит: Гав!
+print(rex.bark())  # Рекс говорит: Гав!
+print(buddy.bark())  # Бадди говорит: Гав!
 
 # У каждого экземпляра — свои атрибуты, изменение одного не трогает другой
 rex.age = 4
-print(rex.age, buddy.age)     # 4 5
+print(rex.age, buddy.age)  # 4 5
 
 
 # ════════════════════════════════════════════════════════════════════════
@@ -48,7 +49,7 @@ print(rex.age, buddy.age)     # 4 5
 # ════════════════════════════════════════════════════════════════════════
 
 # rex.bark() — это то же самое, что Dog.bark(rex):
-print(Dog.bark(rex))          # Рекс говорит: Гав!
+print(Dog.bark(rex))  # Рекс говорит: Гав!
 
 # Python сам подставляет экземпляр как self при вызове через точку —
 # rex.bark() короче, но под капотом происходит именно это
@@ -58,11 +59,12 @@ print(Dog.bark(rex))          # Рекс говорит: Гав!
 # 3. Атрибуты класса — общие для ВСЕХ экземпляров
 # ════════════════════════════════════════════════════════════════════════
 
+
 class Cat:
     species = "Felis catus"  # атрибут КЛАССА — один на всех котов
 
     def __init__(self, name: str) -> None:
-        self.name = name      # атрибут ЭКЗЕМПЛЯРА — свой у каждого
+        self.name = name  # атрибут ЭКЗЕМПЛЯРА — свой у каждого
 
     def describe(self) -> str:
         return f"{self.name} — {self.species}"
@@ -71,27 +73,28 @@ class Cat:
 whiskers = Cat("Усы")
 tom = Cat("Том")
 
-print(whiskers.describe())    # Усы — Felis catus
-print(tom.describe())         # Том — Felis catus
+print(whiskers.describe())  # Усы — Felis catus
+print(tom.describe())  # Том — Felis catus
 
 # Изменение через ИМЯ КЛАССА меняет значение для всех экземпляров сразу
 Cat.species = "домашняя кошка"
-print(whiskers.describe())    # Усы — домашняя кошка
-print(tom.describe())         # Том — домашняя кошка
+print(whiskers.describe())  # Усы — домашняя кошка
+print(tom.describe())  # Том — домашняя кошка
 
 # А вот присваивание через ЭКЗЕМПЛЯР создаёт НОВЫЙ атрибут экземпляра,
 # который просто "перекрывает" атрибут класса — только для этого объекта
 whiskers.species = "особый случай"
-print(whiskers.species)       # особый случай (свой, только у whiskers)
-print(tom.species)            # домашняя кошка (у Тома — общий, не тронут)
+print(whiskers.species)  # особый случай (свой, только у whiskers)
+print(tom.species)  # домашняя кошка (у Тома — общий, не тронут)
 
 
 # ════════════════════════════════════════════════════════════════════════
 # 4. Ловушка: изменяемый атрибут класса (список/словарь как значение)
 # ════════════════════════════════════════════════════════════════════════
 
+
 class BrokenCart:
-    items: list[str] = []   # ОПАСНО: список создан ОДИН раз, на весь класс
+    items: list[str] = []  # ОПАСНО: список создан ОДИН раз, на весь класс
 
     def add(self, item: str) -> None:
         self.items.append(item)  # append мутирует ОБЩИЙ список
@@ -100,8 +103,8 @@ class BrokenCart:
 cart_a = BrokenCart()
 cart_b = BrokenCart()
 cart_a.add("яблоко")
-print(cart_a.items)   # ['яблоко']
-print(cart_b.items)   # ['яблоко'] — тот же список! баг, не отдельная корзина
+print(cart_a.items)  # ['яблоко']
+print(cart_b.items)  # ['яблоко'] — тот же список! баг, не отдельная корзина
 
 
 class FixedCart:
@@ -115,5 +118,5 @@ class FixedCart:
 cart_c = FixedCart()
 cart_d = FixedCart()
 cart_c.add("яблоко")
-print(cart_c.items)   # ['яблоко']
-print(cart_d.items)   # [] — свой пустой список, всё верно
+print(cart_c.items)  # ['яблоко']
+print(cart_d.items)  # [] — свой пустой список, всё верно

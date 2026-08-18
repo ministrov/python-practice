@@ -79,7 +79,10 @@ class Fraction:
     def __eq__(self, other: object):
         if not isinstance(other, Fraction):
             return NotImplemented
-        return self.numerator == other.numerator and self.denominator == other.denominator
+        return (
+            self.numerator == other.numerator
+            and self.denominator == other.denominator
+        )
 
 
 f1 = Fraction(1, 2)
@@ -132,7 +135,10 @@ class HashableFraction:
     def __eq__(self, other: object):
         if not isinstance(other, HashableFraction):
             return NotImplemented
-        return self.numerator == other.numerator and self.denominator == other.denominator
+        return (
+            self.numerator == other.numerator
+            and self.denominator == other.denominator
+        )
 
     def __hash__(self) -> int:
         return hash((self.numerator, self.denominator))
@@ -249,7 +255,7 @@ class Card:
 card_one = Card("A", "Spades")
 card_two = Card("A", "Spades")
 
-print(card_one)              # str
-print(repr(card_one))        # repr
+print(card_one)  # str
+print(repr(card_one))  # repr
 print(card_one == card_two)  # True
 print(len({card_one, card_two}))  # 1
