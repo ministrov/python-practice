@@ -96,6 +96,12 @@ print("""
 # ТВОЙ КОД ЗДЕСЬ:
 
 
+def middle_element(items: Sequence[str]) -> str:
+    """Возвращает средний элемент (для нечётной длины)."""
+
+    return items[len(items) // 2]
+
+
 print(middle_element(["a", "b", "c"]))
 print(middle_element(("x", "y", "z", "w", "v")))
 
