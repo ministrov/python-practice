@@ -176,6 +176,12 @@ print("""
 # ТВОЙ КОД ЗДЕСЬ:
 
 
+def call_and_double_time(func: Callable[..., int]) -> int:
+    result = func()
+
+    return result * 2
+
+
 print(call_and_double_time(lambda: 21))
 
 print("\n" + "=" * 60)
