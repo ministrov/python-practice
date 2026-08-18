@@ -45,6 +45,12 @@ print("""
 # ТВОЙ КОД ЗДЕСЬ:
 
 
+def make_multiplier(factor: int) -> Callable[[int], int]:
+    def multiplier(x: int):
+        return x * factor
+    return multiplier
+
+
 triple = make_multiplier(3)
 print(triple(5))
 
