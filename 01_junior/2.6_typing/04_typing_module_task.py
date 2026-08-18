@@ -201,6 +201,21 @@ print("""
 # ТВОЙ КОД ЗДЕСЬ:
 
 
+class Task(TypedDict):
+    title: str
+    done: bool
+
+
+def count_done(tasks: Sequence[Task]) -> int:
+    count_task: int = 0
+
+    for task in tasks:
+        if task["done"]:
+            count_task += 1
+
+    return count_task
+
+
 tasks: list[Task] = [
     {"title": "A", "done": True},
     {"title": "B", "done": False},
