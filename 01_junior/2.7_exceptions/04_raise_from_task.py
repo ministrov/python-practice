@@ -247,3 +247,31 @@ print("""
 """)
 
 # ТВОЙ КОД ЗДЕСЬ:
+
+
+class RecordError(Exception):
+    pass
+
+
+def process_records(records: list[str]) -> None:
+    errors: list[Exception] = []
+
+    for record in records:
+        try:
+            int(record)
+        except ValueError as e:
+            try:
+                raise RecordError(f"невалидная запись: {record!r}") from e
+            except RecordError as re:
+                errors.append(re)
+
+    if errors:
+        raise ExceptionGroup("ошибки записей", errors)
+
+
+try:
+    process_records(["1", "два", "3", "четыре"])
+except* RecordError as eg:
+    for err in eg.exceptions:
+        print(str(err))
+        print(f"__cause__: {err.__cause__!r}")
