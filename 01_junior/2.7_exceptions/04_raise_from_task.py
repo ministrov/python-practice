@@ -173,6 +173,30 @@ print("""
 # ТВОЙ КОД ЗДЕСЬ:
 
 
+def check_password(password: str) -> None:
+    """Собирает ВСЕ ошибки валидации сразу, а не только первую."""
+    errors: list[Exception] = []
+
+    if len(password) < 8:
+        errors.append(ValueError("слишком короткий"))
+
+    if not any(ch.isdigit() for ch in password):
+        errors.append(ValueError("нет цифры"))
+
+    if not any(ch.isupper() for ch in password):
+        errors.append(ValueError("нет заглавной буквы"))
+
+    if errors:
+        raise ExceptionGroup("ошибки пароля", errors)
+
+
+try:
+    check_password("abc")
+except* ValueError as eg:
+    for err in eg.exceptions:
+        print(f"- {err}")
+
+
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 6: except* — разбор группы по типам")
 print("=" * 60)
