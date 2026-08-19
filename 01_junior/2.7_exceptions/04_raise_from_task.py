@@ -213,6 +213,23 @@ print("""
 # ТВОЙ КОД ЗДЕСЬ:
 
 
+def run_checks() -> None:
+    errors: list[Exception] = [ValueError("v1"), TypeError("t1"),
+                               ValueError("v2")]
+
+    if errors:
+        raise ExceptionGroup("проверки", errors)
+
+
+try:
+    run_checks()
+except* ValueError as eg:
+    for err in eg.exceptions:
+        print(f"- {err}")
+except* TypeError as eg:
+    for err in eg.exceptions:
+        print(f"- {err}")
+
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 7: Комплексное — цепочка + ExceptionGroup вместе")
 print("=" * 60)
