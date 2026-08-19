@@ -96,6 +96,24 @@ print("""
 # ТВОЙ КОД ЗДЕСЬ:
 
 
+class EnvVarError(Exception):
+    pass
+
+
+def get_env_int(raw: str) -> int:
+    try:
+        return int(raw)
+    except ValueError:
+        raise EnvVarError("переменная окружения должна быть числом") from None
+
+
+try:
+    get_env_int("сорок")
+except EnvVarError as e:
+    print(f"\n__cause__: {e.__cause__!r}")
+    print(f"__context__: {e.__context__!r}")
+    print(f"__suppress_context__: {e.__suppress_context__!r}")
+
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 4: Сравнение всех трёх на одном примере")
 print("=" * 60)
@@ -108,7 +126,32 @@ print("""
 """)
 
 # ТВОЙ ОТВЕТ ЗДЕСЬ (в комментарии):
+# `from e` используем, когда причина исключения — важная диагностическая
+# информация, полезная для отладки или логирования. Мы просто оборачиваем
+# низкоуровневую ошибку в более понятную для вызывающего кода, но не хотим
+# терять исходный трейсбек — например, при работе с БД или внешним API,
+# где важно видеть, что именно пошло не так "под капотом".
+#
+# Пример: функция fetch_user(user_id) делает запрос к БД через ORM.
+# Если ORM поднимает ConnectionError, мы оборачиваем его в своё
+# RepositoryError("не удалось получить пользователя") from e —
+# в логах увидим и наше сообщение, и оригинальный ConnectionError
+# с деталями (какой хост, таймаут и т.д.) — это нужно для дебага.
 
+# `from None` используем, когда причина исключения — деталь реализации,
+# которая ничего не даёт вызывающему коду и только засоряет трейсбек.
+# Обычно это ситуации, где мы валидируем пользовательский ввод и хотим
+# показать чистую, понятную ошибку без "мусора" из внутренностей.
+#
+# Пример: функция parse_phone(raw: str) пытается распарсить номер
+# телефона через регулярку/int(). Если это падает с ValueError, нам
+# не важно видеть внутренний ValueError в трейсбеке — важно только
+# сообщение "невалидный формат номера телефона". Поэтому поднимаем
+# PhoneFormatError(...) from None — чище для логов и конечного
+# пользователя API (например, в ответе 400 Bad Request).
+
+# Короче: from e — когда причина полезна (баги, инфраструктура, дебаг).
+# from None — когда причина не нужна и только шумит (валидация ввода).
 
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 5: ExceptionGroup — собери все ошибки сразу")
@@ -130,6 +173,30 @@ print("""
 # ТВОЙ КОД ЗДЕСЬ:
 
 
+def check_password(password: str) -> None:
+    """Собирает ВСЕ ошибки валидации сразу, а не только первую."""
+    errors: list[Exception] = []
+
+    if len(password) < 8:
+        errors.append(ValueError("слишком короткий"))
+
+    if not any(ch.isdigit() for ch in password):
+        errors.append(ValueError("нет цифры"))
+
+    if not any(ch.isupper() for ch in password):
+        errors.append(ValueError("нет заглавной буквы"))
+
+    if errors:
+        raise ExceptionGroup("ошибки пароля", errors)
+
+
+try:
+    check_password("abc")
+except* ValueError as eg:
+    for err in eg.exceptions:
+        print(f"- {err}")
+
+
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 6: except* — разбор группы по типам")
 print("=" * 60)
@@ -145,6 +212,23 @@ print("""
 
 # ТВОЙ КОД ЗДЕСЬ:
 
+
+def run_checks() -> None:
+    errors: list[Exception] = [ValueError("v1"), TypeError("t1"),
+                               ValueError("v2")]
+
+    if errors:
+        raise ExceptionGroup("проверки", errors)
+
+
+try:
+    run_checks()
+except* ValueError as eg:
+    for err in eg.exceptions:
+        print(f"- {err}")
+except* TypeError as eg:
+    for err in eg.exceptions:
+        print(f"- {err}")
 
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 7: Комплексное — цепочка + ExceptionGroup вместе")
@@ -163,3 +247,31 @@ print("""
 """)
 
 # ТВОЙ КОД ЗДЕСЬ:
+
+
+class RecordError(Exception):
+    pass
+
+
+def process_records(records: list[str]) -> None:
+    errors: list[Exception] = []
+
+    for record in records:
+        try:
+            int(record)
+        except ValueError as e:
+            try:
+                raise RecordError(f"невалидная запись: {record!r}") from e
+            except RecordError as re:
+                errors.append(re)
+
+    if errors:
+        raise ExceptionGroup("ошибки записей", errors)
+
+
+try:
+    process_records(["1", "два", "3", "четыре"])
+except* RecordError as eg:
+    for err in eg.exceptions:
+        print(str(err))
+        print(f"__cause__: {err.__cause__!r}")
