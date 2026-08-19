@@ -96,6 +96,24 @@ print("""
 # ТВОЙ КОД ЗДЕСЬ:
 
 
+class EnvVarError(Exception):
+    pass
+
+
+def get_env_int(raw: str) -> int:
+    try:
+        return int(raw)
+    except ValueError:
+        raise EnvVarError("переменная окружения должна быть числом") from None
+
+
+try:
+    get_env_int("сорок")
+except EnvVarError as e:
+    print(f"\n__cause__: {e.__cause__!r}")
+    print(f"__context__: {e.__context__!r}")
+    print(f"__suppress_context__: {e.__suppress_context__!r}")
+
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 4: Сравнение всех трёх на одном примере")
 print("=" * 60)
