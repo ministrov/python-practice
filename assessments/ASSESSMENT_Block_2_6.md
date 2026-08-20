@@ -276,7 +276,35 @@ def apply_discount(products: list[Product], discount_func: Callable[[float], flo
     return result
 
 
+catalog: list[Product] = [
+    {"name": "Laptop", "price": 999.99, "in_stock": True},
+    {"name": "Mouse", "price": 25.50, "in_stock": True},
+    {"name": "Keyboard", "price": 45.00, "in_stock": False},
+    {"name": "Monitor", "price": 199.99, "in_stock": False},
+]
 
+# 2. total_price
+print("Общая стоимость:", total_price(catalog))
+
+# 3. find_product — существующий и несуществующий товар
+found = find_product(catalog, "Mouse")
+if found is not None:
+    print("Найден товар:", found["name"], found["price"])
+else:
+    print("Товар не найден")
+
+not_found = find_product(catalog, "Tablet")
+if not_found is not None:
+    print("Найден товар:", not_found["name"], not_found["price"])
+else:
+    print("Товар не найден")
+
+# 4. apply_10_percent_off + apply_discount
+def apply_10_percent_off(price: float) -> float:
+    return price * 0.9
+
+discounted_catalog = apply_discount(catalog, apply_10_percent_off)
+print("Каталог со скидкой:", discounted_catalog)
 ```
 
 ---
