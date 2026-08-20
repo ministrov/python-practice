@@ -87,6 +87,8 @@ print("""
 
 # ТВОЙ КОД ЗДЕСЬ:
 
+cursor.execute("SELECT name, price FROM products WHERE price > 1500")
+print(cursor.fetchall())
 
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 3: ORDER BY + LIMIT")
