@@ -266,6 +266,16 @@ def find_product(products: Sequence[Product], name: str) -> Product | None:
             return product
     return None
 
+def apply_discount(products: list[Product], discount_func: Callable[[float], float]) -> list[Product]:
+    result: list[Product] = []
+
+    for product in products:
+        new_product: Product = {**product, "price": discount_func(product["price"])}
+        result.append(new_product)
+
+    return result
+
+
 
 ```
 
