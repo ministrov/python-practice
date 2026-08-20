@@ -48,12 +48,32 @@ cursor.execute("""
         id INTEGER PRIMARY KEY,
         name TEXT NOT NULL,
         price REAL NOT NULL,
-        category_id INTEGER
+        category_id INTEGER,
+        FOREIGN KEY (category_id) REFERENCES categories(id)
     )
 """)
 
-print(repr(connection))
-print(repr(cursor))
+cursor.executemany(
+    "INSERT INTO categories (id, name) VALUES (?, ?)",
+    [
+        (1, "Электроника"),
+        (2, "Книги"),
+        (3, "Спорттовары")
+    ]
+)
+
+cursor.executemany(
+    "INSERT INTO products (id, name, price, category_id) VALUES (?, ?, ?, ?)",
+    [
+        (1, "Ноутбук", 79990.0, 1),
+        (2, "Смартфон", 45990.0, 1),
+        (3, "Python для начинающих", 1290.0, 2),
+        (4, "Чистый код", 990.0, 2),
+        (5, "Мышь беспроводная", 990.0, None),
+    ],
+)
+
+connection.commit()
 
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 2: SELECT + WHERE")
