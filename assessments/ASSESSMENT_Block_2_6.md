@@ -245,6 +245,22 @@ class Product(TypedDict):
 from typing import Callable, Iterable, Sequence, TypedDict
 
 # ТВОЙ КОД ЗДЕСЬ
+
+class Product(TypedDict):
+    name: str
+    price: float
+    in_stock: bool
+
+def total_price(products: Iterable[Product]) -> float:
+    total_price: float = 0
+
+    for product in products:
+        if product["in_stock"]:
+            total_price += product["price"]
+
+    return total_price
+
+
 ```
 
 ---
