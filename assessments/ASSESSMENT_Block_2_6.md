@@ -260,6 +260,12 @@ def total_price(products: Iterable[Product]) -> float:
 
     return total_price
 
+def find_product(products: Sequence[Product], name: str) -> Product | None:
+    for product in products:
+        if name == product["name"]:
+            return product
+    return None
+
 
 ```
 
