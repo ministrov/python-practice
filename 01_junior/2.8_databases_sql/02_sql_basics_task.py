@@ -33,7 +33,27 @@ print("""
 """)
 
 # ТВОЙ КОД ЗДЕСЬ:
+connection = sqlite3.connect(":memory:")
+cursor = connection.cursor()
 
+cursor.execute("""
+    CREATE TABLE categories (
+        id INTEGER PRIMARY KEY,
+        name TEXT NOT NULL
+    )
+""")
+
+cursor.execute("""
+    CREATE TABLE products (
+        id INTEGER PRIMARY KEY,
+        name TEXT NOT NULL,
+        price REAL NOT NULL,
+        category_id INTEGER
+    )
+""")
+
+print(repr(connection))
+print(repr(cursor))
 
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 2: SELECT + WHERE")
