@@ -245,6 +245,66 @@ class Product(TypedDict):
 from typing import Callable, Iterable, Sequence, TypedDict
 
 # ТВОЙ КОД ЗДЕСЬ
+
+class Product(TypedDict):
+    name: str
+    price: float
+    in_stock: bool
+
+def total_price(products: Iterable[Product]) -> float:
+    total_price: float = 0
+
+    for product in products:
+        if product["in_stock"]:
+            total_price += product["price"]
+
+    return total_price
+
+def find_product(products: Sequence[Product], name: str) -> Product | None:
+    for product in products:
+        if name == product["name"]:
+            return product
+    return None
+
+def apply_discount(products: list[Product], discount_func: Callable[[float], float]) -> list[Product]:
+    result: list[Product] = []
+
+    for product in products:
+        new_product: Product = {**product, "price": discount_func(product["price"])}
+        result.append(new_product)
+
+    return result
+
+
+catalog: list[Product] = [
+    {"name": "Laptop", "price": 999.99, "in_stock": True},
+    {"name": "Mouse", "price": 25.50, "in_stock": True},
+    {"name": "Keyboard", "price": 45.00, "in_stock": False},
+    {"name": "Monitor", "price": 199.99, "in_stock": False},
+]
+
+# 2. total_price
+print("Общая стоимость:", total_price(catalog))
+
+# 3. find_product — существующий и несуществующий товар
+found = find_product(catalog, "Mouse")
+if found is not None:
+    print("Найден товар:", found["name"], found["price"])
+else:
+    print("Товар не найден")
+
+not_found = find_product(catalog, "Tablet")
+if not_found is not None:
+    print("Найден товар:", not_found["name"], not_found["price"])
+else:
+    print("Товар не найден")
+
+# 4. apply_10_percent_off + apply_discount
+def apply_10_percent_off(price: float) -> float:
+    return price * 0.9
+
+discounted_catalog = apply_discount(catalog, apply_10_percent_off)
+print("Каталог со скидкой:", discounted_catalog)
 ```
 
 ---
@@ -266,11 +326,14 @@ from typing import Callable, Iterable, Sequence, TypedDict
   0 errors):** 1 балл
 - **Проходной балл:** 6+ баллов из 7
 
-### ФИНАЛЬНЫЙ РЕЗУЛЬТАТ (заполняется после проверки)
+### ФИНАЛЬНЫЙ РЕЗУЛЬТАТ (2026-08-20)
 
 ```
-Микровопросы: ?/8 × 50% вклад = ?
-Практика:     ?/7 × 50% вклад = ?
-Итог: ?
-Проход: ≥80%?
+Микровопросы: 8/8  (100%) × 50% вклад = 50%
+Практика:     7/7  (100%) × 50% вклад = 50%
+Итог: 100%
+Проход: ДА (≥80%)
 ```
+
+Блок 2.6 (типизация) — полностью закрыт, включая финальную оценку.
+Долг из PROGRESS.md погашен.
