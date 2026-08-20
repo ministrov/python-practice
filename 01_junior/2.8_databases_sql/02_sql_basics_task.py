@@ -100,7 +100,8 @@ print("""
 """)
 
 # ТВОЙ КОД ЗДЕСЬ:
-
+cursor.execute("SELECT name, price FROM products ORDER BY price DESC LIMIT 3")
+print(cursor.fetchall())
 
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 4: INNER JOIN")
