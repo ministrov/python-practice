@@ -1,7 +1,7 @@
 # Python Backend Developer Journey
 
 > Практический курс: от нуля до Python backend разработчика
-> Старт: 2026-06-06 | Уровень: Junior | Блок 2.7 — ошибки и исключения — ЗАВЕРШЁН (все 5 тем, 2026-08-19); далее Блок 2.8 (БД и SQL)
+> Старт: 2026-06-06 | Уровень: Junior | Блок 2.8 (БД и SQL) — темы 1-3 (SQL basics, INSERT/UPDATE/DELETE+транзакции, PostgreSQL/psql) завершены (2026-08-24); далее psycopg/SQLAlchemy
 
 ## Цель проекта
 
@@ -22,7 +22,7 @@
 | 2.5 | ООП и модель данных | ЗАВЕРШЕН (финальная оценка пройдена 2026-08-14, 100%) |
 | 2.6 | Типизация и качество кода | ЗАВЕРШЕН (все 5 тем, 2026-08-18) |
 | 2.7 | Ошибки и исключения | ЗАВЕРШЕН (тема 1: 8/8, тема 2: 7/7, темы 3-5 ознакомительно, 2026-08-19) |
-| 2.8 | Базы данных и SQL | В РАБОТЕ (тема 1: sqlite3-демо готово, практика — 8 заданий, старт 2026-08-20) |
+| 2.8 | Базы данных и SQL | В РАБОТЕ (темы 1-3 ЗАВЕРШЕНЫ 2026-08-24: SQL basics 8/8 ✅, DML+транзакции 6/6 ✅, PostgreSQL/psql ознакомительно ✅; далее psycopg/SQLAlchemy) |
 | 2.9–2.10 | FastAPI, Git | Запланировано |
 
 ---
@@ -87,10 +87,14 @@
 │   ├── 05_context_managers_demo.py          # ознакомительно
 │   ├── 06_stdlib_demo.py                    # ознакомительно
 │   └── 07_logging_demo.py                   # ознакомительно
-├── 2.8_databases_sql/           # В РАБОТЕ (старт 2026-08-20, полная практика)
+├── 2.8_databases_sql/           # В РАБОТЕ (темы 1-3 завершены 2026-08-24, далее psycopg)
 │   ├── 01_sql_basics_demo.py    # реляционная модель, SELECT/WHERE/JOIN/
 │   │                             # GROUP BY/ORDER BY/LIMIT (sqlite3)
-│   └── 02_sql_basics_task.py    # 8 заданий, шаблон пуст, не решены
+│   ├── 02_sql_basics_task.py    # 8 заданий (8/8) ✅
+│   ├── 03_dml_transactions_demo.py  # INSERT/UPDATE/DELETE, COMMIT/ROLLBACK
+│   ├── 04_dml_transactions_task.py  # 6 заданий (6/6) ✅
+│   ├── 05_postgres_basics_demo.py   # psql, типы данных (Docker: pg-learning)
+│   └── SQL_CHEATSHEET.md        # шпаргалка-мнемоника по всем командам темы
 ├── 2.9_fastapi/                # Запланировано
 │
 02_middle/    # Запланировано: async, БД, FastAPI, тестирование
@@ -145,5 +149,5 @@ python 01_junior/2.3_functions/02_functions_basics_task.py
 
 ---
 
-**Последнее обновление:** 2026-08-20 (долг закрыт: финальная оценка блока 2.6 пройдена 100%; блок 2.8 стартовал — полная практика, sqlite3 → PostgreSQL; тема 1 (SQL basics) — демо готово, практика в процессе)
+**Последнее обновление:** 2026-08-24 (блок 2.8, темы 1-3 завершены: SQL basics 8/8, INSERT/UPDATE/DELETE+транзакции 6/6, PostgreSQL/psql ознакомительно — Docker-контейнер pg-learning, типы SERIAL/VARCHAR/NUMERIC/BOOLEAN/TIMESTAMP; добавлена шпаргалка SQL_CHEATSHEET.md; далее psycopg/SQLAlchemy)
 **Python:** 3.12+

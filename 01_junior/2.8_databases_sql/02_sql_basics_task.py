@@ -116,7 +116,18 @@ print("""
 """)
 
 # ТВОЙ КОД ЗДЕСЬ:
+cursor.execute("""
+    SELECT products.name, categories.name
+    FROM products
+    INNER JOIN categories ON products.category_id = categories.id
+""")
 
+result = cursor.fetchall()
+print(result)
+print(f"Строк с категорией: {len(result)}")
+cursor.execute("SELECT COUNT(*) FROM products")
+total = cursor.fetchone()[0]
+print(f"Всего товаров: {total}")
 
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 5: LEFT JOIN")
@@ -131,6 +142,22 @@ print("""
 
 # ТВОЙ КОД ЗДЕСЬ:
 
+cursor.execute("""
+    SELECT categories.name, products.name
+    FROM categories
+    LEFT JOIN products ON products.category_id = categories.id
+""")
+
+result = cursor.fetchall()
+for row in result:
+    print(row)
+
+# отдельно найдём строку(и), где товара нет
+print("\nКатегории без товаров:")
+for row in result:
+    category_name, product_name = row
+    if product_name is None:
+        print(f"  {category_name} — товаров нет")
 
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 6: GROUP BY + агрегаты")
@@ -143,7 +170,19 @@ print("""
 """)
 
 # ТВОЙ КОД ЗДЕСЬ:
+cursor.execute("""
+    SELECT categories.name,
+           AVG(products.price) AS avg_price,
+           COUNT(products.id) AS product_count
+    FROM products
+    JOIN categories ON products.category_id = categories.id
+    GROUP BY categories.name
+""")
 
+result = cursor.fetchall()
+for row in result:
+    category_name, avg_price, product_count = row
+    print(f"{category_name}: средняя цена = {avg_price:.2f}, товаров = {product_count}")
 
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 7: Комплексный запрос")
@@ -157,7 +196,21 @@ print("""
 """)
 
 # ТВОЙ КОД ЗДЕСЬ:
+price_threshold = 1000
 
+cursor.execute("""
+    SELECT products.name, categories.name, products.price
+    FROM products
+    JOIN categories ON products.category_id = categories.id
+    WHERE products.price > ?
+    ORDER BY products.price DESC
+    LIMIT 2
+""", (price_threshold,))
+
+result = cursor.fetchall()
+for row in result:
+    product_name, category_name, price = row
+    print(f"{product_name} ({category_name}): {price}")
 
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 8: Нормализация (без кода, письменный ответ)")
@@ -171,3 +224,8 @@ print("""
 """)
 
 # ТВОЙ ОТВЕТ ЗДЕСЬ (в комментарии):
+# Это нарушает 3НФ, так как category_name транзитивно зависит от
+# category (а не от products.id напрямую) и дублируется в каждой строке.
+# При переименовании категории пришлось бы обновлять все строки
+# products с этим именем — иначе часть строк останется со старым
+# названием (аномалия обновления).
