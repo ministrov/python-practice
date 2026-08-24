@@ -170,7 +170,19 @@ print("""
 """)
 
 # ТВОЙ КОД ЗДЕСЬ:
+cursor.execute("""
+    SELECT categories.name,
+           AVG(products.price) AS avg_price,
+           COUNT(products.id) AS product_count
+    FROM products
+    JOIN categories ON products.category_id = categories.id
+    GROUP BY categories.name
+""")
 
+result = cursor.fetchall()
+for row in result:
+    category_name, avg_price, product_count = row
+    print(f"{category_name}: средняя цена = {avg_price:.2f}, товаров = {product_count}")
 
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 7: Комплексный запрос")
