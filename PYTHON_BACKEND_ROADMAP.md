@@ -185,7 +185,8 @@
 - [x] SQL: `SELECT`, `WHERE`, `JOIN` (inner/left), `GROUP BY`, `ORDER BY`, `LIMIT` ✅ ЗАВЕРШЕНО (2026-08-24)
   - Файлы: `01_sql_basics_demo.py` ✅, `02_sql_basics_task.py` (8/8) ✅
   - Справка: `SQL_CHEATSHEET.md` (мнемоники по каждой команде через аналогию с Python)
-- [ ] `INSERT`/`UPDATE`/`DELETE`, транзакции, `COMMIT`/`ROLLBACK` базово
+- [x] `INSERT`/`UPDATE`/`DELETE`, транзакции, `COMMIT`/`ROLLBACK` базово ✅ ЗАВЕРШЕНО (2026-08-24)
+  - Файлы: `03_dml_transactions_demo.py` ✅, `04_dml_transactions_task.py` (6/6) ✅
 - [ ] PostgreSQL: установка, `psql`, основные типы данных
 - [ ] Python + БД: `psycopg`, затем ORM — SQLAlchemy 2.0 (core + ORM, declarative)
 - [ ] Миграции: Alembic — autogenerate, upgrade/downgrade

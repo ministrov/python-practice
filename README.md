@@ -1,7 +1,7 @@
 # Python Backend Developer Journey
 
 > Практический курс: от нуля до Python backend разработчика
-> Старт: 2026-06-06 | Уровень: Junior | Блок 2.8 (БД и SQL) — тема 1 (SQL basics) завершена (2026-08-24); далее PostgreSQL/psycopg/SQLAlchemy
+> Старт: 2026-06-06 | Уровень: Junior | Блок 2.8 (БД и SQL) — темы 1-2 (SQL basics, INSERT/UPDATE/DELETE+транзакции) завершены (2026-08-24); далее PostgreSQL/psycopg/SQLAlchemy
 
 ## Цель проекта
 
@@ -22,7 +22,7 @@
 | 2.5 | ООП и модель данных | ЗАВЕРШЕН (финальная оценка пройдена 2026-08-14, 100%) |
 | 2.6 | Типизация и качество кода | ЗАВЕРШЕН (все 5 тем, 2026-08-18) |
 | 2.7 | Ошибки и исключения | ЗАВЕРШЕН (тема 1: 8/8, тема 2: 7/7, темы 3-5 ознакомительно, 2026-08-19) |
-| 2.8 | Базы данных и SQL | В РАБОТЕ (тема 1: SQL basics — демо + практика 8/8, ЗАВЕРШЕНА 2026-08-24; далее INSERT/UPDATE/DELETE+транзакции, PostgreSQL) |
+| 2.8 | Базы данных и SQL | В РАБОТЕ (тема 1: SQL basics 8/8 ✅, тема 2: INSERT/UPDATE/DELETE+транзакции 6/6 ✅, обе ЗАВЕРШЕНЫ 2026-08-24; далее PostgreSQL) |
 | 2.9–2.10 | FastAPI, Git | Запланировано |
 
 ---
@@ -87,10 +87,12 @@
 │   ├── 05_context_managers_demo.py          # ознакомительно
 │   ├── 06_stdlib_demo.py                    # ознакомительно
 │   └── 07_logging_demo.py                   # ознакомительно
-├── 2.8_databases_sql/           # В РАБОТЕ (тема 1 завершена 2026-08-24, далее PostgreSQL)
+├── 2.8_databases_sql/           # В РАБОТЕ (темы 1-2 завершены 2026-08-24, далее PostgreSQL)
 │   ├── 01_sql_basics_demo.py    # реляционная модель, SELECT/WHERE/JOIN/
 │   │                             # GROUP BY/ORDER BY/LIMIT (sqlite3)
 │   ├── 02_sql_basics_task.py    # 8 заданий (8/8) ✅
+│   ├── 03_dml_transactions_demo.py  # INSERT/UPDATE/DELETE, COMMIT/ROLLBACK
+│   ├── 04_dml_transactions_task.py  # 6 заданий (6/6) ✅
 │   └── SQL_CHEATSHEET.md        # шпаргалка-мнемоника по всем командам темы
 ├── 2.9_fastapi/                # Запланировано
 │
@@ -146,5 +148,5 @@ python 01_junior/2.3_functions/02_functions_basics_task.py
 
 ---
 
-**Последнее обновление:** 2026-08-24 (блок 2.8, тема 1 (SQL basics) завершена: демо + практика 8/8 — SELECT/WHERE/JOIN/LEFT JOIN/GROUP BY/ORDER BY/LIMIT/нормализация; добавлена шпаргалка SQL_CHEATSHEET.md; далее INSERT/UPDATE/DELETE+транзакции, затем PostgreSQL)
+**Последнее обновление:** 2026-08-24 (блок 2.8, темы 1-2 завершены: SQL basics 8/8 — SELECT/WHERE/JOIN/LEFT JOIN/GROUP BY/ORDER BY/LIMIT/нормализация; INSERT/UPDATE/DELETE+транзакции 6/6 — commit/rollback, transfer() с атомарностью; добавлена шпаргалка SQL_CHEATSHEET.md; далее PostgreSQL/psycopg/SQLAlchemy)
 **Python:** 3.12+
