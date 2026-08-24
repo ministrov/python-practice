@@ -142,6 +142,22 @@ print("""
 
 # ТВОЙ КОД ЗДЕСЬ:
 
+cursor.execute("""
+    SELECT categories.name, products.name
+    FROM categories
+    LEFT JOIN products ON products.category_id = categories.id
+""")
+
+result = cursor.fetchall()
+for row in result:
+    print(row)
+
+# отдельно найдём строку(и), где товара нет
+print("\nКатегории без товаров:")
+for row in result:
+    category_name, product_name = row
+    if product_name is None:
+        print(f"  {category_name} — товаров нет")
 
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 6: GROUP BY + агрегаты")
