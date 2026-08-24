@@ -187,7 +187,9 @@
   - Справка: `SQL_CHEATSHEET.md` (мнемоники по каждой команде через аналогию с Python)
 - [x] `INSERT`/`UPDATE`/`DELETE`, транзакции, `COMMIT`/`ROLLBACK` базово ✅ ЗАВЕРШЕНО (2026-08-24)
   - Файлы: `03_dml_transactions_demo.py` ✅, `04_dml_transactions_task.py` (6/6) ✅
-- [ ] PostgreSQL: установка, `psql`, основные типы данных
+- [x] PostgreSQL: установка, `psql`, основные типы данных ✅ ЗАВЕРШЕНО (2026-08-24, ознакомительно — без task-файла, как mypy/ruff)
+  - Установка: Docker-контейнер `pg-learning` (postgres:16), не системный пакет
+  - Файл: `05_postgres_basics_demo.py` ✅ (SERIAL/VARCHAR/NUMERIC/BOOLEAN/TIMESTAMP)
 - [ ] Python + БД: `psycopg`, затем ORM — SQLAlchemy 2.0 (core + ORM, declarative)
 - [ ] Миграции: Alembic — autogenerate, upgrade/downgrade
 
