@@ -95,3 +95,13 @@ cursor.executemany(
 connection.commit()
 cursor.execute("SELECT * FROM posts")
 print(cursor.fetchall())
+
+cursor.execute("""
+    SELECT posts.title, authors.name 
+    FROM authors
+    INNER JOIN posts ON posts.author_id = authors.id
+    WHERE posts.published 
+""")
+
+result = cursor.fetchall()
+print(result)
