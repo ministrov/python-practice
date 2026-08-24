@@ -65,7 +65,15 @@ print("""
 """)
 
 # ТВОЙ КОД ЗДЕСЬ:
+cursor.execute(
+    "INSERT INTO accounts (owner, balance) VALUES (?, ?)",
+    ("Kate", 2000.9)
+)
 
+connection.commit()
+
+cursor.execute("SELECT * FROM accounts")
+print(cursor.fetchall())
 
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 3: UPDATE")
