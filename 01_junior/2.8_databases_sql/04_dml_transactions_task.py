@@ -85,7 +85,13 @@ print("""
 """)
 
 # ТВОЙ КОД ЗДЕСЬ:
+cursor.execute("""
+    UPDATE accounts SET balance = balance + 150 WHERE id = 1
+""")
 
+connection.commit()
+cursor.execute("SELECT balance FROM accounts WHERE id = 1")
+print(cursor.fetchall())
 
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 4: DELETE")
