@@ -196,7 +196,21 @@ print("""
 """)
 
 # ТВОЙ КОД ЗДЕСЬ:
+price_threshold = 1000
 
+cursor.execute("""
+    SELECT products.name, categories.name, products.price
+    FROM products
+    JOIN categories ON products.category_id = categories.id
+    WHERE products.price > ?
+    ORDER BY products.price DESC
+    LIMIT 2
+""", (price_threshold,))
+
+result = cursor.fetchall()
+for row in result:
+    product_name, category_name, price = row
+    print(f"{product_name} ({category_name}): {price}")
 
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 8: Нормализация (без кода, письменный ответ)")
