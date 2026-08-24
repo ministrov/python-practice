@@ -29,7 +29,31 @@ print("""
 """)
 
 # ТВОЙ КОД ЗДЕСЬ:
+connection = sqlite3.connect(":memory:")
+cursor = connection.cursor()
 
+cursor.execute("""
+    CREATE TABLE accounts (
+        id INTEGER PRIMARY KEY,
+        owner TEXT NOT NULL,
+        balance REAL NOT NULL
+    )
+""")
+
+accounts_data = [
+    ("Alice", 1000.0),
+    ("Bob", 50.0),
+    ("Charlie", 5000.0),
+]
+
+cursor.executemany(
+    "INSERT INTO accounts (owner, balance) VALUES (?, ?)",
+    accounts_data
+)
+
+connection.commit()
+cursor.execute("SELECT * FROM accounts")
+print(cursor.fetchall())
 
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 2: INSERT")
