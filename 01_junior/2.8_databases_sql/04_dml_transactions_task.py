@@ -104,6 +104,10 @@ print("""
 
 # ТВОЙ КОД ЗДЕСЬ:
 
+cursor.execute("DELETE FROM accounts WHERE id = 4")
+connection.commit()
+cursor.execute("SELECT * FROM accounts")
+print(cursor.fetchall())
 
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 5: Транзакция — перевод между счетами")
