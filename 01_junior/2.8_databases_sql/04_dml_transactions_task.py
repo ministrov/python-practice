@@ -133,6 +133,41 @@ print("""
 # ТВОЙ КОД ЗДЕСЬ:
 
 
+def transfer(cur: sqlite3.Cursor, conn: sqlite3.Connection, from_id: int, to_id: int, amount: int):
+    cur.execute("SELECT balance FROM accounts WHERE id = ?", (from_id,))
+    balance = cur.fetchone()[0]
+
+    try:
+        if balance < amount:
+            raise ValueError("insufficient funds")
+        cur.execute(
+            "UPDATE accounts SET balance = balance - ? WHERE id = ?",
+            (amount, from_id)
+        )
+        cur.execute(
+            "UPDATE accounts SET balance = balance + ? WHERE id = ?",
+            (amount, to_id)
+        )
+        conn.commit()
+    except ValueError:
+        conn.rollback()
+        raise
+
+
+try:
+    transfer(cursor, connection, from_id=2, to_id=3, amount=500)
+except ValueError as exc:
+    print(f"Перевод отменён: {exc}")
+
+cursor.execute("SELECT id, balance FROM accounts WHERE id IN (2, 3)")
+print(cursor.fetchall())
+
+transfer(cursor, connection, from_id=2, to_id=3, amount=20)
+
+cursor.execute("SELECT id, balance FROM accounts WHERE id IN (2, 3)")
+print(cursor.fetchall())
+
+
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 6: Атомарность (без кода, письменный ответ)")
 print("=" * 60)
