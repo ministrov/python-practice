@@ -182,8 +182,9 @@
 ### Блок 2.8. Базы данных и SQL — основы (3 недели) 🔄 В РАБОТЕ (старт 2026-08-20)
 
 - [x] Реляционная модель: таблицы, строки, ключи (PK/FK), нормализация (1NF–3NF на пальцах) ✅ (демо, 2026-08-20)
-- [~] SQL: `SELECT`, `WHERE`, `JOIN` (inner/left), `GROUP BY`, `ORDER BY`, `LIMIT` — демо готово (2026-08-20), практика (8 заданий) не решена
-  - Файлы: `01_sql_basics_demo.py` ✅, `02_sql_basics_task.py` (шаблон, 0/8)
+- [x] SQL: `SELECT`, `WHERE`, `JOIN` (inner/left), `GROUP BY`, `ORDER BY`, `LIMIT` ✅ ЗАВЕРШЕНО (2026-08-24)
+  - Файлы: `01_sql_basics_demo.py` ✅, `02_sql_basics_task.py` (8/8) ✅
+  - Справка: `SQL_CHEATSHEET.md` (мнемоники по каждой команде через аналогию с Python)
 - [ ] `INSERT`/`UPDATE`/`DELETE`, транзакции, `COMMIT`/`ROLLBACK` базово
 - [ ] PostgreSQL: установка, `psql`, основные типы данных
 - [ ] Python + БД: `psycopg`, затем ORM — SQLAlchemy 2.0 (core + ORM, declarative)
