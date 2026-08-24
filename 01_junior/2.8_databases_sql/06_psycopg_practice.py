@@ -37,3 +37,61 @@ cursor = connection.cursor()
 cursor.execute("SELECT version();")
 result = cursor.fetchone()
 print(result)
+
+cursor.execute("DROP TABLE IF EXISTS posts, authors CASCADE")
+
+cursor.execute("""
+    CREATE TABLE authors (
+        id SERIAL PRIMARY KEY,
+        name TEXT NOT NULL
+    )
+""")
+
+cursor.execute("""
+    CREATE TABLE posts (
+        id SERIAL PRIMARY KEY,
+        title TEXT NOT NULL,
+        author_id INTEGER REFERENCES authors(id),
+        published BOOLEAN NOT NULL DEFAULT false
+    )
+""")
+
+authors_data = [
+    ("Иван Петров",),
+    ("Мария Сидорова",),
+    ("Алексей Смирнов",),
+    ("Ольга Кузнецова",),
+    ("Дмитрий Волков",),
+    ("Екатерина Новикова",),
+]
+
+cursor.executemany(
+    "INSERT INTO authors (name) VALUES (%s)",
+    authors_data
+)
+
+posts_data = [
+    ("Введение в SQL", 1, True),
+    ("Основы JOIN", 1, False),
+    ("Нормализация баз данных", 2, True),
+    ("Транзакции и ACID", 2, False),
+    ("Индексы и производительность", 3, True),
+    ("Что такое ORM", 3, True),
+    ("SQLite vs PostgreSQL", 3, False),
+    ("Работа с JSONB в Postgres", 4, True),
+    ("Оконные функции на практике", 4, False),
+    ("Проектирование схемы БД", 5, True),
+    ("Миграции и Alembic", 5, False),
+    ("Репликация в PostgreSQL", 6, True),
+    ("Бэкапы: pg_dump и восстановление", 6, True),
+    ("EXPLAIN ANALYZE для новичков", 6, False),
+]
+
+cursor.executemany(
+    "INSERT INTO posts (title, author_id, published) VALUES (%s, %s, %s)",
+    posts_data
+)
+
+connection.commit()
+cursor.execute("SELECT * FROM posts")
+print(cursor.fetchall())
