@@ -116,7 +116,18 @@ print("""
 """)
 
 # ТВОЙ КОД ЗДЕСЬ:
+cursor.execute("""
+    SELECT products.name, categories.name
+    FROM products
+    INNER JOIN categories ON products.category_id = categories.id
+""")
 
+result = cursor.fetchall()
+print(result)
+print(f"Строк с категорией: {len(result)}")
+cursor.execute("SELECT COUNT(*) FROM products")
+total = cursor.fetchone()[0]
+print(f"Всего товаров: {total}")
 
 print("\n" + "=" * 60)
 print("ЗАДАНИЕ 5: LEFT JOIN")
