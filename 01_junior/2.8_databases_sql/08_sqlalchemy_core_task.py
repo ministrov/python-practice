@@ -85,6 +85,8 @@ orders = Table(
 #
 # YOUR CODE HERE:
 
+metadata.drop_all(engine)
+metadata.create_all(engine)
 
 # ════════════════════════════════════════════════════════════════════════
 # Задание 3: наполни таблицы данными
