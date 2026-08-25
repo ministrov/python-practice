@@ -138,6 +138,10 @@ with engine.begin() as conn:
 #
 # YOUR CODE HERE:
 
+with engine.connect() as conn:
+    query = select(customers).where(customers.c.name == "Борис")
+    result = conn.execute(query)
+    print(result.fetchall())
 
 # ════════════════════════════════════════════════════════════════════════
 # Задание 5: JOIN + WHERE
