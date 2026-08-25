@@ -105,6 +105,29 @@ metadata.create_all(engine)
 #
 # YOUR CODE HERE:
 
+with engine.begin() as conn:
+    conn.execute(
+        insert(customers),
+        [
+            {"name": "Анна"},
+            {"name": "Борис"},
+            {"name": "Виктор"},
+            {"name": "Галина"},
+        ],
+    )
+    conn.execute(
+        insert(orders),
+        [
+            {"customer_id": 1, "amount": 1500, "status": "paid"},
+            {"customer_id": 1, "amount": 800, "status": "pending"},
+            {"customer_id": 2, "amount": 3200, "status": "paid"},
+            {"customer_id": 2, "amount": 450, "status": "pending"},
+            {"customer_id": 3, "amount": 2100, "status": "paid"},
+            {"customer_id": 3, "amount": 600, "status": "paid"},
+            {"customer_id": 4, "amount": 990, "status": "pending"},
+            {"customer_id": 4, "amount": 1750, "status": "paid"},
+        ],
+    )
 
 # ════════════════════════════════════════════════════════════════════════
 # Задание 4: select() с фильтром
