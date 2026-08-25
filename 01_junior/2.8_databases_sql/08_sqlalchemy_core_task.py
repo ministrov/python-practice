@@ -192,3 +192,18 @@ with engine.connect() as conn:
 # количество заказов.
 #
 # YOUR CODE HERE:
+
+order_count = func.count(orders.c.id)
+
+query = (
+    select(customers.c.name, order_count)
+    .select_from(customers.join(orders))
+    .group_by(customers.c.name)
+    .order_by(order_count.desc())
+    .limit(1)
+)
+
+with engine.connect() as conn:
+    result = conn.execute(query)
+    for row in result:
+        print(row)
