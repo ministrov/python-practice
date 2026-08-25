@@ -151,7 +151,16 @@ with engine.connect() as conn:
 # .join(). Выведи результат.
 #
 # YOUR CODE HERE:
+query = (
+    select(customers.c.name, orders.c.amount)
+    .select_from(customers.join(orders))
+    .where(orders.c.status == "paid")
+)
 
+with engine.connect() as conn:
+    result = conn.execute(query)
+    for row in result:
+        print(row)
 
 # ════════════════════════════════════════════════════════════════════════
 # Задание 6: GROUP BY + агрегат (SUM)
