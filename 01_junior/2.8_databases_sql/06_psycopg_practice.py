@@ -107,13 +107,16 @@ result = cursor.fetchall()
 print(result)
 
 # ════════════════════════════════════════════════════════════════════════
-# ПАУЗА (2026-08-24) — продолжить отсюда
+# GROUP BY + агрегат: количество постов у каждого автора (без WHERE —
+# считаем все посты, не только опубликованные).
 # ════════════════════════════════════════════════════════════════════════
-# Сделано: подключение (psycopg.connect), схема authors/posts с
-# DROP TABLE IF EXISTS ... CASCADE для повторных запусков, JOIN + WHERE
-# (опубликованные посты с именем автора).
-#
-# СЛЕДУЮЩИЙ ШАГ — GROUP BY + агрегат:
-# Посчитай, сколько ВСЕГО постов (COUNT) у каждого автора — неважно,
-# опубликован пост или нет (без WHERE на этот раз). JOIN authors и
-# posts, GROUP BY authors.name. Выведи имя автора и количество постов.
+
+cursor.execute("""
+    SELECT authors.name, COUNT(posts.id) AS post_count
+    FROM authors
+    JOIN posts ON posts.author_id = authors.id
+    GROUP BY authors.name
+""")
+
+result = cursor.fetchall()
+print(result)
