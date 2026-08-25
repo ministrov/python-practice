@@ -193,7 +193,7 @@
 - [~] Python + БД: `psycopg`, затем ORM — SQLAlchemy 2.0 (core + ORM, declarative)
   - 🔄 В работе: свободная практика (не формальные задания), файл
     `06_psycopg_practice.py` — подключение, схема authors/posts,
-    JOIN+WHERE сделаны; дальше GROUP BY, затем SQLAlchemy
+    JOIN+WHERE, GROUP BY+COUNT сделаны; дальше SQLAlchemy 2.0
 - [ ] Миграции: Alembic — autogenerate, upgrade/downgrade
 
 ### Блок 2.9. Введение во фреймворк — FastAPI (3–4 недели)
