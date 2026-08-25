@@ -172,6 +172,16 @@ with engine.connect() as conn:
 #
 # YOUR CODE HERE:
 
+query = (
+    select(customers.c.name, func.sum(orders.c.amount))
+    .select_from(customers.join(orders))
+    .group_by(customers.c.name)
+)
+
+with engine.connect() as conn:
+    result = conn.execute(query)
+    for row in result:
+        print(row)
 
 # ════════════════════════════════════════════════════════════════════════
 # Задание 7 (бонус): GROUP BY + ORDER BY + LIMIT
