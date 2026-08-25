@@ -60,6 +60,21 @@ metadata = MetaData()
 #
 # YOUR CODE HERE:
 
+customers = Table(
+    "customers",
+    metadata,
+    Column("id", Integer, primary_key=True),
+    Column("name", String, nullable=False),
+)
+
+orders = Table(
+    "orders",
+    metadata,
+    Column("id", Integer, primary_key=True),
+    Column("customer_id", Integer, ForeignKey("customers.id")),
+    Column("amount", Numeric(), nullable=False),
+    Column("status", String, nullable=False)
+)
 
 # ════════════════════════════════════════════════════════════════════════
 # Задание 2: создай таблицы в БД
