@@ -27,6 +27,8 @@ from sqlalchemy.orm import (
     relationship,
 )
 
+print(List, func, select, Session)
+
 
 class Base(DeclarativeBase):
     pass
@@ -54,6 +56,25 @@ engine = create_engine(
 # Оба класса наследуются от Base.
 #
 # YOUR CODE HERE:
+
+
+class Customer(Base):
+    __tablename__ = "customers"
+
+    id: Mapped[int] = mapped_column(primary_key=True)
+    name: Mapped[str]
+
+    orders: Mapped[list["Order"]] = relationship(back_populates="customer")
+
+
+class Order(Base):
+    __tablename__ = "orders"
+
+    id: Mapped[int] = mapped_column(primary_key=True)
+    customer_id: Mapped[int] = mapped_column(ForeignKey("customers.id"))
+    amount: Mapped[int]
+    status: Mapped[str]
+    customer: Mapped["Customer"] = relationship(back_populates="orders")
 
 
 # ════════════════════════════════════════════════════════════════════════
