@@ -1,0 +1,209 @@
+# -*- coding: utf-8 -*-
+"""
+Блок 2.8, тема 4a: SQLAlchemy 2.0 Core — практика
+════════════════════════════════════════════════════════════════════════
+Домен: интернет-магазин — customers (покупатели) / orders (заказы).
+Домен намеренно другой, не authors/posts из демо-файла — чтобы решать
+задания через понимание Core, а не копированием кода из демо.
+
+БД — тот же контейнер pg-learning (см. 05_postgres_basics_demo.py):
+    host=localhost, port=5432, db=learning,
+    user=learning, password=learning
+
+Справка по API — 07_sqlalchemy_core_demo.py (Engine, Table/MetaData,
+insert/select/join/group_by, engine.begin() vs engine.connect()).
+"""
+
+from sqlalchemy import (
+    MetaData,
+    Table,
+    Column,
+    Integer,
+    String,
+    Numeric,
+    ForeignKey,
+    create_engine,
+    insert,
+    select,
+    func,
+)
+
+print(Column)
+print(Integer)
+print(Table)
+print(String)
+print(Numeric)
+print(ForeignKey)
+print(insert)
+print(select)
+print(func)
+
+engine = create_engine(
+    "postgresql+psycopg://learning:learning@localhost:5432/learning"
+)
+metadata = MetaData()
+
+# ════════════════════════════════════════════════════════════════════════
+# Задание 1: опиши схему через Table
+# ════════════════════════════════════════════════════════════════════════
+# Создай два объекта Table в этом MetaData:
+#
+# customers:
+#   - id: Integer, primary_key=True
+#   - name: String, nullable=False
+#
+# orders:
+#   - id: Integer, primary_key=True
+#   - customer_id: Integer, ForeignKey("customers.id")
+#   - amount: Numeric, nullable=False   (сумма заказа)
+#   - status: String, nullable=False    (значения: "paid" или "pending")
+#
+# YOUR CODE HERE:
+
+customers = Table(
+    "customers",
+    metadata,
+    Column("id", Integer, primary_key=True),
+    Column("name", String, nullable=False),
+)
+
+orders = Table(
+    "orders",
+    metadata,
+    Column("id", Integer, primary_key=True),
+    Column("customer_id", Integer, ForeignKey("customers.id")),
+    Column("amount", Numeric(), nullable=False),
+    Column("status", String, nullable=False)
+)
+
+# ════════════════════════════════════════════════════════════════════════
+# Задание 2: создай таблицы в БД
+# ════════════════════════════════════════════════════════════════════════
+# Сначала metadata.drop_all(engine) — чтобы демо было безопасно
+# перезапускать (та же причина, что DROP TABLE IF EXISTS в психкопг-
+# практике). Потом metadata.create_all(engine).
+#
+# YOUR CODE HERE:
+
+metadata.drop_all(engine)
+metadata.create_all(engine)
+
+# ════════════════════════════════════════════════════════════════════════
+# Задание 3: наполни таблицы данными
+# ════════════════════════════════════════════════════════════════════════
+# Через engine.begin() как контекстный менеджер (один блок с двумя
+# insert() — сначала customers, потом orders, ведь orders ссылается на
+# customers через customer_id):
+#
+# customers (4 покупателя, имена — свои):
+#   например: "Анна", "Борис", "Виктор", "Галина"
+#
+# orders (8 заказов, распредели произвольно между покупателями, у
+# каждого покупателя должен быть хотя бы один заказ):
+#   customer_id, amount (любые числа), status ("paid" или "pending")
+#   — сделай так, чтобы были заказы ОБОИХ статусов у разных покупателей.
+#
+# YOUR CODE HERE:
+
+with engine.begin() as conn:
+    conn.execute(
+        insert(customers),
+        [
+            {"name": "Анна"},
+            {"name": "Борис"},
+            {"name": "Виктор"},
+            {"name": "Галина"},
+        ],
+    )
+    conn.execute(
+        insert(orders),
+        [
+            {"customer_id": 1, "amount": 1500, "status": "paid"},
+            {"customer_id": 1, "amount": 800, "status": "pending"},
+            {"customer_id": 2, "amount": 3200, "status": "paid"},
+            {"customer_id": 2, "amount": 450, "status": "pending"},
+            {"customer_id": 3, "amount": 2100, "status": "paid"},
+            {"customer_id": 3, "amount": 600, "status": "paid"},
+            {"customer_id": 4, "amount": 990, "status": "pending"},
+            {"customer_id": 4, "amount": 1750, "status": "paid"},
+        ],
+    )
+
+# ════════════════════════════════════════════════════════════════════════
+# Задание 4: select() с фильтром
+# ════════════════════════════════════════════════════════════════════════
+# Через engine.connect(): выбери всех customers с именем, которое ты
+# использовал в задании 3 (любое одно конкретное имя, не переменная).
+# Выведи результат через print(result.fetchall()).
+#
+# YOUR CODE HERE:
+
+with engine.connect() as conn:
+    query = select(customers).where(customers.c.name == "Борис")
+    result = conn.execute(query)
+    print(result.fetchall())
+
+# ════════════════════════════════════════════════════════════════════════
+# Задание 5: JOIN + WHERE
+# ════════════════════════════════════════════════════════════════════════
+# Выбери customers.name и orders.amount для заказов со статусом "paid"
+# (используй orders.c.status == "paid"). JOIN customers и orders через
+# .join(). Выведи результат.
+#
+# YOUR CODE HERE:
+query = (
+    select(customers.c.name, orders.c.amount)
+    .select_from(customers.join(orders))
+    .where(orders.c.status == "paid")
+)
+
+with engine.connect() as conn:
+    result = conn.execute(query)
+    for row in result:
+        print(row)
+
+# ════════════════════════════════════════════════════════════════════════
+# Задание 6: GROUP BY + агрегат (SUM)
+# ════════════════════════════════════════════════════════════════════════
+# Посчитай ОБЩУЮ сумму заказов (func.sum(orders.c.amount)) для каждого
+# покупателя — неважно, какой статус у заказа (без WHERE). JOIN
+# customers и orders, GROUP BY customers.name. Выведи имя покупателя и
+# сумму.
+#
+# YOUR CODE HERE:
+
+query = (
+    select(customers.c.name, func.sum(orders.c.amount))
+    .select_from(customers.join(orders))
+    .group_by(customers.c.name)
+)
+
+with engine.connect() as conn:
+    result = conn.execute(query)
+    for row in result:
+        print(row)
+
+# ════════════════════════════════════════════════════════════════════════
+# Задание 7 (бонус): GROUP BY + ORDER BY + LIMIT
+# ════════════════════════════════════════════════════════════════════════
+# Найди покупателя с НАИБОЛЬШИМ количеством заказов (func.count(orders.c.id)):
+# JOIN, GROUP BY customers.name, ORDER BY по количеству заказов по
+# убыванию (.order_by(...).desc()), LIMIT 1 (.limit(1)). Выведи имя и
+# количество заказов.
+#
+# YOUR CODE HERE:
+
+order_count = func.count(orders.c.id)
+
+query = (
+    select(customers.c.name, order_count)
+    .select_from(customers.join(orders))
+    .group_by(customers.c.name)
+    .order_by(order_count.desc())
+    .limit(1)
+)
+
+with engine.connect() as conn:
+    result = conn.execute(query)
+    for row in result:
+        print(row)

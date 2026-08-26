@@ -3,8 +3,8 @@
 ## От Junior до Senior Backend Developer
 
 > **Старт:** 2026-06-06
-> **Последний чекпойнт:** 2026-08-24
-> **Прогресс:** Junior Level, Блоки 2.1–2.7 полностью завершены, включая финальные оценки 2.2–2.6 (100% каждая; 2.6 темы 3-5 и 2.7 темы 3-5 ознакомительно). Долгов по финальным оценкам не осталось. Блок 2.8 (БД и SQL) — СТАРТОВАЛ 2026-08-20, полная практика (не ознакомительно). Темы 1-3 завершены 2026-08-24: SQL basics (`sqlite3`, 8/8), INSERT/UPDATE/DELETE+транзакции (6/6), PostgreSQL/`psql` (Docker-контейнер `pg-learning`, ознакомительно). Тема 4 (`psycopg`) — в работе, свободная практика (не формальные задания)
+> **Последний чекпойнт:** 2026-08-25
+> **Прогресс:** Junior Level, Блоки 2.1–2.7 полностью завершены, включая финальные оценки 2.2–2.6 (100% каждая; 2.6 темы 3-5 и 2.7 темы 3-5 ознакомительно). Долгов по финальным оценкам не осталось. Блок 2.8 (БД и SQL) — СТАРТОВАЛ 2026-08-20, полная практика (не ознакомительно). Темы 1-3 завершены 2026-08-24: SQL basics (`sqlite3`, 8/8), INSERT/UPDATE/DELETE+транзакции (6/6), PostgreSQL/`psql` (Docker-контейнер `pg-learning`, ознакомительно). psycopg-практика (свободная) и SQLAlchemy 2.0 Core (7/7 заданий) завершены 2026-08-25. SQLAlchemy 2.0 ORM — демо готово, задание в работе (не начато). Дальше — доделать ORM-задание, затем Alembic
 > **Длительность:** 18–24 месяца при 10–15 часах в неделю
 > **Формат:** комбинированный — уровни (Junior → Middle → Senior) × темы × сроки
 > **Стек-ориентир:** Python 3.12+, FastAPI/Django, PostgreSQL, SQLAlchemy, Redis, Docker, Kubernetes
@@ -191,9 +191,12 @@
   - Установка: Docker-контейнер `pg-learning` (postgres:16), не системный пакет
   - Файл: `05_postgres_basics_demo.py` ✅ (SERIAL/VARCHAR/NUMERIC/BOOLEAN/TIMESTAMP)
 - [~] Python + БД: `psycopg`, затем ORM — SQLAlchemy 2.0 (core + ORM, declarative)
-  - 🔄 В работе: свободная практика (не формальные задания), файл
-    `06_psycopg_practice.py` — подключение, схема authors/posts,
-    JOIN+WHERE сделаны; дальше GROUP BY, затем SQLAlchemy
+  - [x] `psycopg` (свободная практика) ✅ ЗАВЕРШЕНО (2026-08-25) — `06_psycopg_practice.py`
+  - [x] SQLAlchemy 2.0 Core ✅ ЗАВЕРШЕНО (2026-08-25) — `07_sqlalchemy_core_demo.py`,
+    `08_sqlalchemy_core_task.py` (7/7, включая бонус)
+  - [~] SQLAlchemy 2.0 ORM (declarative классы, Session) — 🔄 демо готово
+    (`09_sqlalchemy_orm_demo.py`), заготовка задания
+    `10_sqlalchemy_orm_task.py` (8 упражнений) написана, решение не начато
 - [ ] Миграции: Alembic — autogenerate, upgrade/downgrade
 
 ### Блок 2.9. Введение во фреймворк — FastAPI (3–4 недели)
