@@ -84,6 +84,9 @@ class Order(Base):
 #
 # YOUR CODE HERE:
 
+Base.metadata.drop_all(engine)
+Base.metadata.create_all(engine)
+
 
 # ════════════════════════════════════════════════════════════════════════
 # Задание 3: наполни таблицы данными через Session
