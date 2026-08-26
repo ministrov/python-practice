@@ -100,6 +100,27 @@ Base.metadata.create_all(engine)
 #
 # YOUR CODE HERE:
 
+with Session(engine) as session:
+    customers: List[Customer] = [Customer(name="Anton"), Customer(
+        name="Bill"), Customer(name="John")]
+    session.add_all(customers)
+    session.commit()
+    print(customers[0].id)
+    print(customers[0].name)
+
+    orders: List[Order] = [
+        Order(customer_id=customers[0].id, amount=100, status="paid"),
+        Order(customer_id=customers[0].id, amount=200, status="pending"),
+        Order(customer_id=customers[1].id, amount=150, status="paid"),
+        Order(customer_id=customers[1].id, amount=300, status="pending"),
+        Order(customer_id=customers[2].id, amount=250, status="paid"),
+        Order(customer_id=customers[2].id, amount=400, status="pending"),
+    ]
+    session.add_all(orders)
+    session.commit()
+    print(orders[0].id)
+    print(orders[0].status)
+    print(orders[0].amount)
 
 # ════════════════════════════════════════════════════════════════════════
 # Задание 4: select(Customer) с фильтром
