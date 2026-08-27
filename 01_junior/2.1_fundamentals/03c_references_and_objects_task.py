@@ -129,7 +129,24 @@ print("""
 """)
 
 # ТВОЙ КОД ЗДЕСЬ:
+x: list[int] = [1, 2, 3]
+y = x
+print(id(x))
+print(id(y))
+x.append(4)
+print(id(x))
+print(id(y))
+print(x)
+print(""" id не изменился """)
 
+x = [5, 6, 7]
+print(id(x))
+print(id(y))
+
+print(x)
+print(y)
+
+print(""" Произошло то, что x переприсвоил значение, а y остался мутированным x - ом """)
 
 print("\n" + "=" * 70)
 print("ЗАДАНИЕ 5: Изменяемые vs неизменяемые")
