@@ -177,7 +177,29 @@ print("""
 """)
 
 # ТВОЙ КОД ЗДЕСЬ:
+lst: list[int] = [1, 2, 3]
+print(id(lst))
+lst.append(4)
+print(id(lst))
 
+print(""" id не изменился """)
+
+s: str = "hello"
+print(id(s))
+s = s + " world"
+print(id(s))
+
+print(""" id изменился """)
+
+tpl = (1, 2, 3)
+print("  tpl = (1, 2, 3)")
+print(f"  id до: {id(tpl)}")
+try:
+    tpl[0] = 99  # type: ignore[reportIndexIssue]  # намеренно: демонстрация TypeError
+except TypeError as e:
+    print(f"  Попытка tpl[0] = 99 → ошибка: {e}")
+
+print(""" произойдёт ошибка при попытке изменить элемент кортежа """)
 
 print("\n" + "=" * 70)
 print("ЗАДАНИЕ 6: Интернирование")
