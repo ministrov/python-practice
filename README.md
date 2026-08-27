@@ -1,7 +1,7 @@
 # Python Backend Developer Journey
 
 > Практический курс: от нуля до Python backend разработчика
-> Старт: 2026-06-06 | Уровень: Junior | Блок 2.8 (БД и SQL) — темы 1-3 (SQL basics, INSERT/UPDATE/DELETE+транзакции, PostgreSQL/psql) завершены (2026-08-24); далее psycopg/SQLAlchemy
+> Старт: 2026-06-06 | Уровень: Junior | Блок 2.8 (БД и SQL) — SQL basics, DML+транзакции, PostgreSQL/psql, SQLAlchemy Core завершены; SQLAlchemy ORM — задания 1-4/8 решены (2026-08-26), задание 5 на паузе
 
 ## Цель проекта
 
@@ -15,14 +15,14 @@
 
 | Блок | Тема | Статус |
 |------|------|--------|
-| 2.1 | Фундамент языка | ЗАВЕРШЕН |
+| 2.1 | Фундамент языка | ЗАВЕРШЕН (пробел закрыт 2026-08-27: `03c_references_and_objects_task.py` был создан, но не решён с 15.06.2026) |
 | 2.2 | Структуры данных | ЗАВЕРШЕН (финальная оценка пройдена 2026-07-24, 100%) |
 | 2.3 | Функции | ЗАВЕРШЕН (финальная оценка пройдена 2026-07-24, 100%) |
 | 2.4 | Модули, файлы и дата/время | ЗАВЕРШЕН (все 3 темы + финальная оценка 100%, 2026-08-19) |
 | 2.5 | ООП и модель данных | ЗАВЕРШЕН (финальная оценка пройдена 2026-08-14, 100%) |
 | 2.6 | Типизация и качество кода | ЗАВЕРШЕН (все 5 тем, 2026-08-18) |
 | 2.7 | Ошибки и исключения | ЗАВЕРШЕН (тема 1: 8/8, тема 2: 7/7, темы 3-5 ознакомительно, 2026-08-19) |
-| 2.8 | Базы данных и SQL | В РАБОТЕ (темы 1-3 ЗАВЕРШЕНЫ 2026-08-24: SQL basics 8/8 ✅, DML+транзакции 6/6 ✅, PostgreSQL/psql ознакомительно ✅; далее psycopg/SQLAlchemy) |
+| 2.8 | Базы данных и SQL | В РАБОТЕ (SQL basics 8/8 ✅, DML+транзакции 6/6 ✅, PostgreSQL/psql ознакомительно ✅, SQLAlchemy Core 7/7 ✅ (2026-08-25); SQLAlchemy ORM: демо готово, задания 1-4/8 решены (2026-08-26), задание 5 на паузе; далее Alembic) |
 | 2.9–2.10 | FastAPI, Git | Запланировано |
 
 ---
@@ -87,13 +87,18 @@
 │   ├── 05_context_managers_demo.py          # ознакомительно
 │   ├── 06_stdlib_demo.py                    # ознакомительно
 │   └── 07_logging_demo.py                   # ознакомительно
-├── 2.8_databases_sql/           # В РАБОТЕ (темы 1-3 завершены 2026-08-24, далее psycopg)
+├── 2.8_databases_sql/           # В РАБОТЕ (SQL basics, DML, PostgreSQL, Core завершены; ORM 4/8, далее Alembic)
 │   ├── 01_sql_basics_demo.py    # реляционная модель, SELECT/WHERE/JOIN/
 │   │                             # GROUP BY/ORDER BY/LIMIT (sqlite3)
 │   ├── 02_sql_basics_task.py    # 8 заданий (8/8) ✅
 │   ├── 03_dml_transactions_demo.py  # INSERT/UPDATE/DELETE, COMMIT/ROLLBACK
 │   ├── 04_dml_transactions_task.py  # 6 заданий (6/6) ✅
 │   ├── 05_postgres_basics_demo.py   # psql, типы данных (Docker: pg-learning)
+│   ├── 06_psycopg_practice.py   # свободная практика: psycopg 3 + PostgreSQL
+│   ├── 07_sqlalchemy_core_demo.py   # Engine/Connection, Table/MetaData
+│   ├── 08_sqlalchemy_core_task.py   # 7 заданий с бонусом (7/7) ✅
+│   ├── 09_sqlalchemy_orm_demo.py    # DeclarativeBase, Mapped, relationship
+│   ├── 10_sqlalchemy_orm_task.py    # 8 заданий (4/8, задание 5 на паузе)
 │   └── SQL_CHEATSHEET.md        # шпаргалка-мнемоника по всем командам темы
 ├── 2.9_fastapi/                # Запланировано
 │
@@ -149,5 +154,9 @@ python 01_junior/2.3_functions/02_functions_basics_task.py
 
 ---
 
-**Последнее обновление:** 2026-08-24 (блок 2.8, темы 1-3 завершены: SQL basics 8/8, INSERT/UPDATE/DELETE+транзакции 6/6, PostgreSQL/psql ознакомительно — Docker-контейнер pg-learning, типы SERIAL/VARCHAR/NUMERIC/BOOLEAN/TIMESTAMP; добавлена шпаргалка SQL_CHEATSHEET.md; далее psycopg/SQLAlchemy)
+**Последнее обновление:** 2026-08-27 — внеплановая сессия: закрыт пробел
+блока 2.1 (`03c_references_and_objects_task.py` был создан 15.06.2026,
+но не решался; решён по заданию, 6/6). Плюс синхронизация статуса
+блока 2.8 с PROGRESS.md: SQLAlchemy Core завершён (7/7, 2026-08-25),
+SQLAlchemy ORM — задания 1-4/8 решены (2026-08-26), задание 5 на паузе.
 **Python:** 3.12+
