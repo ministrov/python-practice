@@ -122,20 +122,6 @@ with Session(engine) as session:
     print(orders[0].status)
     print(orders[0].amount)
 
-# 6. Запрос через select(Model) — результат: ОБЪЕКТЫ, не кортежи
-# ════════════════════════════════════════════════════════════════════════
-# select(Author) выглядит так же, как select(authors) в Core — но
-# .scalars() говорит "верни мне сами объекты Author, а не Row-кортежи
-# с одним элементом внутри". Без .scalars() получил бы [(<Author>,)] —
-# кортеж из одного объекта на строку, а не сам объект.
-
-# with Session(engine) as session:
-#     query = select(Author).where(Author.name == "Иван Петров")
-#     result = session.execute(query).scalars().all()
-#     for a in result:
-#         print(a.id, a.name, type(a))
-#     # 1 Иван Петров <class '__main__.Author'>
-
 # ════════════════════════════════════════════════════════════════════════
 # Задание 4: select(Customer) с фильтром
 # ════════════════════════════════════════════════════════════════════════
@@ -160,7 +146,14 @@ with Session(engine) as session:
 # order.status. Без единого select()/JOIN — только атрибут .orders.
 #
 # YOUR CODE HERE:
+with Session(engine) as session:
+    query = select(Customer).where(Customer.name == "Anton")
+    result = session.execute(query).scalars().one()
 
+    for order in result.orders:
+        print(f"{order.amount} {order.status}")
+
+    print(result.id, result.name)
 
 # ════════════════════════════════════════════════════════════════════════
 # Задание 6: JOIN + WHERE через классы
