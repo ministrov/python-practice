@@ -43,6 +43,12 @@ class Ticket:
 #   - создать и вернуть Ticket с created_at = datetime.now()
 # YOUR CODE HERE:
 
+def create_ticket(id: int, title: str, priority: str) -> Ticket:
+    if priority not in ALLOWED_PRIORITIES:
+        raise ValueError("Такого приоритета не существует")
+    else:
+        ticket = Ticket(id, title, priority, created_at=datetime.now())
+        return ticket
 
 # Шаг 3.
 # Напиши функцию safe_create_ticket(id: int, title: str, priority: str) -> Ticket | None
