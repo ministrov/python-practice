@@ -163,6 +163,12 @@ with Session(engine) as session:
 #
 # YOUR CODE HERE:
 
+with Session(engine) as session:
+    query = select(Customer.name, Order.amount).join(
+        Order).where(Order.status == "paid")
+    result = session.execute(query).all()
+
+    print(result)
 
 # ════════════════════════════════════════════════════════════════════════
 # Задание 7: GROUP BY + SUM через классы
