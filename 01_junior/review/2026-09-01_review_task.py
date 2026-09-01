@@ -120,3 +120,13 @@ def average_age_hours(tickets: list[Ticket]) -> float:
 #   - список high_priority_open (title каждого тикета)
 #   - среднее время жизни тикетов в часах, округлённое до 4 знаков
 # YOUR CODE HERE:
+
+
+print(f"Всего создано тикетов: {len(tickets)}")
+
+print("Высокоприоритетные открытые тикеты:")
+for ticket in high_priority_open:
+    print(f"  - {ticket.title}")
+
+avg_hours = average_age_hours(tickets)
+print(f"Среднее время жизни тикетов: {avg_hours:.4f} часов")
