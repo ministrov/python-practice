@@ -191,4 +191,12 @@ with Session(engine) as session:
 # Покупатель с наибольшим количеством заказов: func.count(Order.id),
 # .join(Order), .group_by(Customer.name), .order_by(...desc()), .limit(1).
 #
+
 # YOUR CODE HERE:
+
+with Session(engine) as session:
+    query = select(Customer.name, func.count(Order.id).label("order_count")).join(
+        Order).group_by(Customer.name).order_by(func.count(Order.id).desc()).limit(1)
+
+    result = session.execute(query).all()
+    print(result)
