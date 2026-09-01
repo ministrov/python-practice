@@ -178,6 +178,12 @@ with Session(engine) as session:
 #
 # YOUR CODE HERE:
 
+with Session(engine) as session:
+    query = select(Customer.name, func.sum(Order.amount)
+                   ).join(Order).group_by(Customer.name)
+    result = session.execute(query).all()
+
+    print(result)
 
 # ════════════════════════════════════════════════════════════════════════
 # Задание 8 (бонус): GROUP BY + ORDER BY + LIMIT через классы
