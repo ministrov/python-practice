@@ -58,6 +58,14 @@ def create_ticket(id: int, title: str, priority: str) -> Ticket:
 # YOUR CODE HERE:
 
 
+def safe_create_ticket(id: int, title: str, priority: str) -> Ticket | None:
+    try:
+        ticket = create_ticket(id, title, priority)
+        return ticket
+    except ValueError as e:
+        print(e)
+        return None
+
 # Шаг 4.
 # Создай список tickets: list[Ticket], добавив в него результаты
 # минимум 6 вызовов safe_create_ticket (учитывая, что safe_create_ticket
