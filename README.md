@@ -1,7 +1,7 @@
 # Python Backend Developer Journey
 
 > Практический курс: от нуля до Python backend разработчика
-> Старт: 2026-06-06 | Уровень: Junior | Блок 2.8 (БД и SQL) — SQL basics, DML+транзакции, PostgreSQL/psql, SQLAlchemy Core, SQLAlchemy ORM завершены; далее Alembic
+> Старт: 2026-06-06 | Уровень: Junior | Блок 2.8 (БД и SQL) — ЗАВЕРШЁН (SQL basics, DML+транзакции, PostgreSQL/psql, SQLAlchemy Core, SQLAlchemy ORM, Alembic); далее блок 2.9 (FastAPI)
 
 ## Цель проекта
 
@@ -22,7 +22,7 @@
 | 2.5 | ООП и модель данных | ЗАВЕРШЕН (финальная оценка пройдена 2026-08-14, 100%) |
 | 2.6 | Типизация и качество кода | ЗАВЕРШЕН (все 5 тем, 2026-08-18) |
 | 2.7 | Ошибки и исключения | ЗАВЕРШЕН (тема 1: 8/8, тема 2: 7/7, темы 3-5 ознакомительно, 2026-08-19) |
-| 2.8 | Базы данных и SQL | В РАБОТЕ (SQL basics 8/8 ✅, DML+транзакции 6/6 ✅, PostgreSQL/psql ознакомительно ✅, SQLAlchemy Core 7/7 ✅ (2026-08-25), SQLAlchemy ORM 8/8 ✅ (2026-09-01); далее Alembic) |
+| 2.8 | Базы данных и SQL | ЗАВЕРШЕН (SQL basics 8/8 ✅, DML+транзакции 6/6 ✅, PostgreSQL/psql ознакомительно ✅, SQLAlchemy Core 7/7 ✅ (2026-08-25), SQLAlchemy ORM 8/8 ✅ (2026-09-01), Alembic ознакомительно ✅ (2026-09-01)) |
 | 2.9–2.10 | FastAPI, Git | Запланировано |
 
 ---
@@ -87,7 +87,7 @@
 │   ├── 05_context_managers_demo.py          # ознакомительно
 │   ├── 06_stdlib_demo.py                    # ознакомительно
 │   └── 07_logging_demo.py                   # ознакомительно
-├── 2.8_databases_sql/           # В РАБОТЕ (SQL basics, DML, PostgreSQL, Core, ORM завершены; далее Alembic)
+├── 2.8_databases_sql/           # ЗАВЕРШЕН (SQL basics, DML, PostgreSQL, Core, ORM, Alembic)
 │   ├── 01_sql_basics_demo.py    # реляционная модель, SELECT/WHERE/JOIN/
 │   │                             # GROUP BY/ORDER BY/LIMIT (sqlite3)
 │   ├── 02_sql_basics_task.py    # 8 заданий (8/8) ✅
@@ -99,6 +99,8 @@
 │   ├── 08_sqlalchemy_core_task.py   # 7 заданий с бонусом (7/7) ✅
 │   ├── 09_sqlalchemy_orm_demo.py    # DeclarativeBase, Mapped, relationship
 │   ├── 10_sqlalchemy_orm_task.py    # 8 заданий с бонусом (8/8) ✅
+│   ├── 11_alembic_migrations_demo.py  # миграции: init/autogenerate/upgrade/
+│   │                                    # downgrade (ознакомительно)
 │   └── SQL_CHEATSHEET.md        # шпаргалка-мнемоника по всем командам темы
 ├── 2.9_fastapi/                # Запланировано
 │
@@ -148,15 +150,15 @@ python 01_junior/2.3_functions/02_functions_basics_task.py
 
 | Уровень | Блоков | Статус |
 |---------|--------|--------|
-| Junior  | 2.1-2.7 завершены (2.5 ООП: 9 тем + финальная оценка 100%; 2.6 типизация: все 5 тем; 2.7 ошибки/исключения: все 5 тем); далее 2.8 (БД и SQL) | В работе |
+| Junior  | 2.1-2.8 завершены (2.5 ООП: 9 тем + финальная оценка 100%; 2.6 типизация: все 5 тем; 2.7 ошибки/исключения: все 5 тем; 2.8 БД и SQL: все темы включая Alembic); далее 2.9 (FastAPI) | В работе |
 | Middle  | — | Запланировано |
 | Senior  | — | Запланировано |
 
 ---
 
-**Последнее обновление:** 2026-09-01 — SQLAlchemy 2.0 ORM-задание
-(`10_sqlalchemy_orm_task.py`) доделано полностью: задания 5-8 решены
-(продолжение с задания 5, на котором сессия 2026-08-26 была
-поставлена на паузу). Блок 2.8 SQLAlchemy ORM — ЗАВЕРШЁН. Далее —
-Alembic (миграции), последняя тема блока 2.8.
+**Последнее обновление:** 2026-09-01 — Alembic-демо
+(`11_alembic_migrations_demo.py`) добавлено, ознакомительно (init,
+autogenerate, upgrade/downgrade, реальный NOT NULL traceback +
+server_default фикс). **Блок 2.8 (БД и SQL) — ПОЛНОСТЬЮ ЗАВЕРШЁН.**
+Далее — блок 2.9 (FastAPI).
 **Python:** 3.12+

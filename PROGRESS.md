@@ -18,10 +18,30 @@
 поровну заказов по данным задания 3) — тот же урок про `ORDER BY` без
 вторичного ключа, теперь на ORM-синтаксисе. Все 8 заданий
 `10_sqlalchemy_orm_task.py` закрыты, pyright strict 0 ошибок на всех
-шагах. **SQLAlchemy 2.0 ORM — ПОЛНОСТЬЮ ЗАВЕРШЕНО.** Следующий шаг —
-Alembic (миграции), последняя тема блока 2.8.  
+шагах. **SQLAlchemy 2.0 ORM — ПОЛНОСТЬЮ ЗАВЕРШЕНО.**
+
+В той же сессии — повторение (spaced review, см. ниже) и последняя
+тема блока 2.8: **Alembic (миграции)**, по решению пользователя
+ознакомительно (только demo, без task-файла — как mypy/ruff/venv в
+блоке 2.6). Демо `11_alembic_migrations_demo.py` собрано на реальном
+проверенном выводе: установлен `alembic`, поднят scratch-проект
+(`alembic init`), настроен `env.py` (`target_metadata = Base.metadata`
+на модели Author/Post из ORM-демо), сгенерирована и применена первая
+миграция (создание authors/posts) в отдельной БД `alembic_learning`
+внутри контейнера pg-learning (чтобы не трогать данные прошлых тем).
+Добавлено поле `Post.views`, autogenerate сгенерировал вторую миграцию
+с `nullable=False` без `server_default` — при apply на непустой
+таблице поймана настоящая `NotNullViolation` (реальный traceback, не
+выдуманный) — показывает грабли: Python-side `default=0` в модели не
+подставляется для уже существующих строк. Исправлено вручную:
+`server_default='0'` при `add_column`, затем `alter_column(...,
+server_default=None)`. Показаны `downgrade`, `history`, `current` с
+параллелью на git (revision~commit, down_revision~parent commit).
+Scratch-БД `alembic_learning` удалена после генерации вывода — в
+контейнере остались только таблицы прошлых тем. **Блок 2.8 (БД и SQL)
+— ПОЛНОСТЬЮ ЗАВЕРШЁН.** Следующий шаг — блок 2.9 (FastAPI).  
 **Текущий уровень:** Junior  
-**Текущий блок:** 2.8 — базы данных и SQL. Тема 1 (SQL basics: SELECT/
+**Текущий блок:** 2.8 — базы данных и SQL, ЗАВЕРШЁН. Тема 1 (SQL basics: SELECT/
 WHERE/JOIN/LEFT JOIN/GROUP BY/ORDER BY/LIMIT + нормализация) —
 ПОЛНОСТЬЮ ЗАВЕРШЕНА 2026-08-24. Все 8 заданий `02_sql_basics_task.py`
 решены с первого раза без ошибок (задания 4-8: INNER JOIN, LEFT JOIN,
