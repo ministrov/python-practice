@@ -86,8 +86,6 @@ tickets: list[Ticket] = [
     ] if ticket is not None
 ]
 
-print(tickets)
-
 # Шаг 5.
 # С помощью list comprehension построй high_priority_open: list[Ticket] —
 # тикеты из tickets, у которых priority == "high" и resolved is False.
@@ -97,8 +95,6 @@ high_priority_open: list[Ticket] = [
     ticket for ticket in tickets if ticket.priority == "high" and not ticket.resolved
 ]
 
-print(high_priority_open)
-
 # Шаг 6.
 # Напиши функцию average_age_hours(tickets: list[Ticket]) -> float,
 # которая считает среднее время жизни тикетов в часах:
@@ -107,6 +103,17 @@ print(high_priority_open)
 # YOUR CODE HERE:
 
 
+def average_age_hours(tickets: list[Ticket]) -> float:
+    if not tickets:
+        return 0.0
+
+    total_hours = 0.0
+
+    for ticket in tickets:
+        age = datetime.now() - ticket.created_at
+        total_hours += age.total_seconds() / 3600
+
+    return total_hours / len(tickets)
 # Шаг 7.
 # Напечатай:
 #   - сколько всего тикетов создано успешно
