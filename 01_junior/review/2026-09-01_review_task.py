@@ -75,6 +75,17 @@ def safe_create_ticket(id: int, title: str, priority: str) -> Ticket | None:
 # YOUR CODE HERE:
 
 
+tickets: list[Ticket] = [
+    ticket for ticket in [
+        safe_create_ticket(1, "Не работает VPN", "high"),
+        safe_create_ticket(2, "Забыл пароль", "medium"),
+        safe_create_ticket(3, "Срочный баг", "urgent"),  # неверный приоритет
+        safe_create_ticket(4, "Обновить софт", "low"),
+        safe_create_ticket(5, "Не включается монитор", "high"),
+        safe_create_ticket(6, "Ошибка в отчёте", "medium"),
+    ] if ticket is not None
+]
+
 # Шаг 5.
 # С помощью list comprehension построй high_priority_open: list[Ticket] —
 # тикеты из tickets, у которых priority == "high" и resolved is False.
