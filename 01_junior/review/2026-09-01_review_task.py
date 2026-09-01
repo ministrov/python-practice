@@ -86,11 +86,18 @@ tickets: list[Ticket] = [
     ] if ticket is not None
 ]
 
+print(tickets)
+
 # Шаг 5.
 # С помощью list comprehension построй high_priority_open: list[Ticket] —
 # тикеты из tickets, у которых priority == "high" и resolved is False.
 # YOUR CODE HERE:
 
+high_priority_open: list[Ticket] = [
+    ticket for ticket in tickets if ticket.priority == "high" and not ticket.resolved
+]
+
+print(high_priority_open)
 
 # Шаг 6.
 # Напиши функцию average_age_hours(tickets: list[Ticket]) -> float,
