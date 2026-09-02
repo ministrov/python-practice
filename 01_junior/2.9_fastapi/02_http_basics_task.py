@@ -22,6 +22,8 @@ from http.server import BaseHTTPRequestHandler, HTTPServer
 books: dict[int, dict[str, str]] = {}
 next_id = 1
 
+print(http.client)
+
 
 class BooksHandler(BaseHTTPRequestHandler):
     """Обработчик HTTP-запросов для пути /books и /books/<id>."""
@@ -59,7 +61,14 @@ class BooksHandler(BaseHTTPRequestHandler):
     #     {"detail": "Not Found"}, статус 404
     def do_GET(self) -> None:
         # YOUR CODE HERE:
-        pass
+        if self.path == "/books":
+            self._send_json(200, books)
+            return
+        item_id = self._parse_book_id()
+        if item_id is not None and item_id in books:
+            self._send_json(200, books[item_id])
+            return
+        self._send_json(404, {"detail": "Not Found"})
 
     # Задание 2.
     # Реализуй do_POST:
