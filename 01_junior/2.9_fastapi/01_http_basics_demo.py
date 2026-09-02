@@ -117,6 +117,21 @@ from http.server import BaseHTTPRequestHandler, HTTPServer
 # ════════════════════════════════════════════════════════════════════════
 # "База данных" — обычный словарь в памяти процесса (никакого
 # SQLAlchemy — это чистый протокол, БД подключим в теме 6).
+#
+# Как это работает "под капотом" (stdlib-магия, на которой стоит
+# HTTPServer): ты даёшь HTTPServer класс-наследник BaseHTTPRequestHandler.
+# На КАЖДЫЙ входящий запрос сервер сам создаёт экземпляр этого класса и
+# сам вызывает метод с именем do_<HTTP-МЕТОД> — do_GET, do_POST и т.д.
+# Диспетчеризация "какой метод дернуть" уже сделана базовым классом по
+# имени HTTP-метода запроса — поэтому здесь нет ручного
+# `if method == "GET": ...`.
+#
+# Внутри каждого do_* метода `self` — это как раз этот экземпляр-на-один-
+# запрос, и у него уже готовы (заполнены базовым классом ДО вызова do_*):
+#   self.path    — путь запроса, например "/items/1"
+#   self.headers — заголовки запроса
+#   self.rfile   — поток ЧТЕНИЯ тела запроса (как открытый файл)
+#   self.wfile   — поток ЗАПИСИ тела ответа (как открытый файл)
 
 items: dict[int, dict[str, str]] = {}
 next_id = 1
@@ -124,6 +139,10 @@ next_id = 1
 
 class ItemsHandler(BaseHTTPRequestHandler):
     """Обработчик HTTP-запросов для пути /items и /items/<id>."""
+
+    # Три приватных метода ниже (префикс "_" = внутреннее, не часть
+    # API do_*) — вынесенное наружу дублирование, которое иначе
+    # повторялось бы в каждом do_GET/do_POST/... по отдельности.
 
     def _send_json(self, status: int, payload: object | None) -> None:
         body = b"" if payload is None else json.dumps(payload).encode("utf-8")
@@ -148,6 +167,8 @@ class ItemsHandler(BaseHTTPRequestHandler):
         except ValueError:
             return None
 
+    # do_GET вызывается сервером САМ, когда пришёл GET-запрос — см.
+    # объяснение диспетчеризации по do_<МЕТОД> в комментарии над классом.
     def do_GET(self) -> None:
         if self.path == "/items":
             self._send_json(200, items)
@@ -158,6 +179,9 @@ class ItemsHandler(BaseHTTPRequestHandler):
             return
         self._send_json(404, {"detail": "Not Found"})
 
+    # Ответ собран вручную (send_response/send_header/end_headers/
+    # wfile.write), а не через _send_json — потому что нужен ДОПОЛНИТЕЛЬНЫЙ
+    # заголовок Location, которого у _send_json нет.
     def do_POST(self) -> None:
         global next_id
         if self.path != "/items":
@@ -222,8 +246,15 @@ def request(method: str, path: str, port: int, body: dict[str, str] | None = Non
 
 
 if __name__ == "__main__":
+    # port=0 — просим ОС саму выдать свободный порт (чтобы не ловить
+    # "порт занят"); реальный порт потом читаем из server.server_port.
     server = HTTPServer(("localhost", 0), ItemsHandler)
     port = server.server_port
+    # server.serve_forever() — бесконечный цикл (как while True), он
+    # БЛОКИРУЕТ поток, в котором выполняется. Без отдельного потока
+    # код ниже (все request(...)) никогда бы не запустился — программа
+    # зависла бы на serve_forever(). daemon=True — поток умрёт вместе
+    # с основной программой сам, вручную останавливать не нужно.
     thread = threading.Thread(target=server.serve_forever, daemon=True)
     thread.start()
 
