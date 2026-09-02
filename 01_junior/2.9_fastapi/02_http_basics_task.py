@@ -69,21 +69,6 @@ class BooksHandler(BaseHTTPRequestHandler):
             self._send_json(200, books[book_id])
             return
         self._send_json(404, {"detail": "Not Found"})
-     # do_GET вызывается сервером САМ, когда пришёл GET-запрос — см.
-        # объяснение диспетчеризации по do_<МЕТОД> в комментарии над классом.
-        # def do_GET(self) -> None:
-        #     if self.path == "/items":
-        #         # Клиент попросил всю коллекцию целиком — отдаём словарь как есть.
-        #         self._send_json(200, items)
-        #         return
-        #     # Иначе пробуем достать id из пути вида "/items/<id>".
-        #     item_id = self._parse_item_id()
-        #     if item_id is not None and item_id in items:
-        #         # id распарсился И такая запись есть — отдаём именно её.
-        #         self._send_json(200, items[item_id])
-        #         return
-        #     # Либо id не распарсился, либо записи с таким id нет — оба случая 404.
-        #     self._send_json(404, {"detail": "Not Found"})
 
     # Задание 2.
     # Реализуй do_POST:
@@ -95,9 +80,22 @@ class BooksHandler(BaseHTTPRequestHandler):
     #     тело — сохранённая книга (send_response/send_header/
     #     end_headers/wfile.write вручную, как в do_POST демо —
     #     _send_json не подходит, потому что нужен доп. заголовок Location)
+
     def do_POST(self) -> None:
         # YOUR CODE HERE:
-        pass
+        global next_id
+        if self.path != "/books":
+            self._send_json(404, {"detail": "Not Found"})
+            return
+        data = self._read_json_body()
+        books[next_id] = data
+        self.send_response(201)
+        self.send_header("Content-Type", "application/json")
+        self.send_header("Location", f"/items/{next_id}")
+        body = json.dumps(data).encode("utf-8")
+        self.end_headers()
+        self.wfile.write(body)
+        next_id += 1
 
     # Задание 3.
     # Реализуй do_PUT — полная замена книги:
