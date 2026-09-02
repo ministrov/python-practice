@@ -59,8 +59,8 @@ class BooksHandler(BaseHTTPRequestHandler):
     #     с таким id есть в books — верни её, статус 200
     #   - если книги нет (или id не распарсился) — верни
     #     {"detail": "Not Found"}, статус 404
+
     def do_GET(self) -> None:
-        # YOUR CODE HERE:
         if self.path == "/books":
             self._send_json(200, books)
             return
@@ -69,6 +69,21 @@ class BooksHandler(BaseHTTPRequestHandler):
             self._send_json(200, books[book_id])
             return
         self._send_json(404, {"detail": "Not Found"})
+     # do_GET вызывается сервером САМ, когда пришёл GET-запрос — см.
+        # объяснение диспетчеризации по do_<МЕТОД> в комментарии над классом.
+        # def do_GET(self) -> None:
+        #     if self.path == "/items":
+        #         # Клиент попросил всю коллекцию целиком — отдаём словарь как есть.
+        #         self._send_json(200, items)
+        #         return
+        #     # Иначе пробуем достать id из пути вида "/items/<id>".
+        #     item_id = self._parse_item_id()
+        #     if item_id is not None and item_id in items:
+        #         # id распарсился И такая запись есть — отдаём именно её.
+        #         self._send_json(200, items[item_id])
+        #         return
+        #     # Либо id не распарсился, либо записи с таким id нет — оба случая 404.
+        #     self._send_json(404, {"detail": "Not Found"})
 
     # Задание 2.
     # Реализуй do_POST:
