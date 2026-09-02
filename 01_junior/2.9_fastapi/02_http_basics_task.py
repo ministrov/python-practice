@@ -22,6 +22,8 @@ from http.server import BaseHTTPRequestHandler, HTTPServer
 books: dict[int, dict[str, str]] = {}
 next_id = 1
 
+print(http.client)
+
 
 class BooksHandler(BaseHTTPRequestHandler):
     """Обработчик HTTP-запросов для пути /books и /books/<id>."""
@@ -57,9 +59,16 @@ class BooksHandler(BaseHTTPRequestHandler):
     #     с таким id есть в books — верни её, статус 200
     #   - если книги нет (или id не распарсился) — верни
     #     {"detail": "Not Found"}, статус 404
+
     def do_GET(self) -> None:
-        # YOUR CODE HERE:
-        pass
+        if self.path == "/books":
+            self._send_json(200, books)
+            return
+        book_id = self._parse_book_id()
+        if book_id is not None and book_id in books:
+            self._send_json(200, books[book_id])
+            return
+        self._send_json(404, {"detail": "Not Found"})
 
     # Задание 2.
     # Реализуй do_POST:
@@ -71,9 +80,23 @@ class BooksHandler(BaseHTTPRequestHandler):
     #     тело — сохранённая книга (send_response/send_header/
     #     end_headers/wfile.write вручную, как в do_POST демо —
     #     _send_json не подходит, потому что нужен доп. заголовок Location)
+
     def do_POST(self) -> None:
         # YOUR CODE HERE:
-        pass
+        global next_id
+        if self.path != "/books":
+            self._send_json(404, {"detail": "Not Found"})
+            return
+        data = self._read_json_body()
+        books[next_id] = data
+        self.send_response(201)
+        self.send_header("Content-Type", "application/json")
+        self.send_header("Location", f"/books/{next_id}")
+        body = json.dumps(data).encode("utf-8")
+        self.send_header("Content-Length", str(len(body)))
+        self.end_headers()
+        self.wfile.write(body)
+        next_id += 1
 
     # Задание 3.
     # Реализуй do_PUT — полная замена книги:
