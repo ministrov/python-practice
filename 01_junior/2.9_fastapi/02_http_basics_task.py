@@ -64,9 +64,9 @@ class BooksHandler(BaseHTTPRequestHandler):
         if self.path == "/books":
             self._send_json(200, books)
             return
-        item_id = self._parse_book_id()
-        if item_id is not None and item_id in books:
-            self._send_json(200, books[item_id])
+        book_id = self._parse_book_id()
+        if book_id is not None and book_id in books:
+            self._send_json(200, books[book_id])
             return
         self._send_json(404, {"detail": "Not Found"})
 
