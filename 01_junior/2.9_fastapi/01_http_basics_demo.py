@@ -249,81 +249,123 @@ class ItemsHandler(BaseHTTPRequestHandler):
     # повторялось бы в каждом do_GET/do_POST/... по отдельности.
 
     def _send_json(self, status: int, payload: object | None) -> None:
+        # None (напр. для 204) -> пустые байты; иначе dict -> JSON-текст -> bytes,
+        # т.к. по сети едут именно байты, а не Python-объекты.
         body = b"" if payload is None else json.dumps(payload).encode("utf-8")
+        # Пишет start line ответа: "HTTP/1.1 <status> <причина>" (раздел 0).
         self.send_response(status)
+        # Заголовок: говорит клиенту, как интерпретировать байты тела (раздел 4).
         self.send_header("Content-Type", "application/json")
+        # Заголовок: сколько байт тела ждать, чтобы клиент понял, где оно кончится.
         self.send_header("Content-Length", str(len(body)))
+        # Пишет обязательную пустую строку-разделитель между заголовками и телом.
         self.end_headers()
         if body:
+            # Само тело пишем отдельно и только если оно не пустое (204 без тела).
             self.wfile.write(body)
 
     def _read_json_body(self) -> dict[str, str]:
+        # Без длины неизвестно, сколько байт тела читать из потока (тело не
+        # заканчивается спецсимволом, границу задаёт именно этот заголовок).
         length = int(self.headers.get("Content-Length", 0))
+        # Читаем ровно `length` байт тела запроса из rfile (см. раздел 0).
         raw = self.rfile.read(length)
+        # bytes -> Python dict, обратная операция к json.dumps в _send_json.
         return json.loads(raw)
 
     def _parse_item_id(self) -> int | None:
+        # "/items/1" -> ["items", "1"]; strip("/") убирает крайние слэши,
+        # чтобы split не дал пустую строку первым элементом.
         parts = self.path.strip("/").split("/")
         if len(parts) != 2:
+            # Путь не формата "/items/<id>" — например просто "/items" или "/nope".
             return None
         try:
+            # Пробуем превратить текст после "/" в число — это и есть id.
             return int(parts[1])
         except ValueError:
+            # После "/items/" стоит не число (например "/items/abc") — невалидно.
             return None
 
     # do_GET вызывается сервером САМ, когда пришёл GET-запрос — см.
     # объяснение диспетчеризации по do_<МЕТОД> в комментарии над классом.
     def do_GET(self) -> None:
         if self.path == "/items":
+            # Клиент попросил всю коллекцию целиком — отдаём словарь как есть.
             self._send_json(200, items)
             return
+        # Иначе пробуем достать id из пути вида "/items/<id>".
         item_id = self._parse_item_id()
         if item_id is not None and item_id in items:
+            # id распарсился И такая запись есть — отдаём именно её.
             self._send_json(200, items[item_id])
             return
+        # Либо id не распарсился, либо записи с таким id нет — оба случая 404.
         self._send_json(404, {"detail": "Not Found"})
 
     # Ответ собран вручную (send_response/send_header/end_headers/
     # wfile.write), а не через _send_json — потому что нужен ДОПОЛНИТЕЛЬНЫЙ
     # заголовок Location, которого у _send_json нет.
     def do_POST(self) -> None:
+        # next_id объявлена вне класса (уровень модуля); без global строка
+        # "next_id += 1" ниже создала бы НОВУЮ локальную переменную вместо
+        # изменения глобальной (LEGB, блок 2.3).
         global next_id
         if self.path != "/items":
+            # POST разрешён только на саму коллекцию, не на "/items/<id>".
             self._send_json(404, {"detail": "Not Found"})
             return
+        # Тело запроса (JSON) -> Python dict с данными новой сущности.
         data = self._read_json_body()
+        # Сохраняем под следующим свободным id — вот что значит "создать".
         items[next_id] = data
+        # start line ответа: "HTTP/1.1 201 Created".
         self.send_response(201)
         self.send_header("Content-Type", "application/json")
+        # ДОПОЛНИТЕЛЬНЫЙ заголовок (см. коммент над методом) — где теперь
+        # искать созданную сущность по её новому адресу.
         self.send_header("Location", f"/items/{next_id}")
+        # Тело ответа — то же самое, что только что сохранили.
         body = json.dumps(data).encode("utf-8")
         self.send_header("Content-Length", str(len(body)))
         self.end_headers()
         self.wfile.write(body)
+        # Готовим id для СЛЕДУЮЩЕГО POST — иначе вторая книга затрёт первую.
         next_id += 1
 
     def do_PUT(self) -> None:
         item_id = self._parse_item_id()
         if item_id is None or item_id not in items:
+            # Нельзя заменить то, чего нет.
             self._send_json(404, {"detail": "Not Found"})
             return
+        # ПОЛНАЯ замена: старое значение по ключу отбрасывается целиком,
+        # поля, которых нет в новом теле, теряются (см. раздел 1).
         items[item_id] = self._read_json_body()
+        # Отдаём итоговое состояние сущности после замены.
         self._send_json(200, items[item_id])
 
     def do_PATCH(self) -> None:
         item_id = self._parse_item_id()
         if item_id is None or item_id not in items:
+            # Нельзя обновить то, чего нет.
             self._send_json(404, {"detail": "Not Found"})
             return
+        # ЧАСТИЧНОЕ обновление: dict.update() трогает только переданные
+        # ключи, остальные поля сущности остаются как были (см. раздел 1).
         items[item_id].update(self._read_json_body())
         self._send_json(200, items[item_id])
 
     def do_DELETE(self) -> None:
         item_id = self._parse_item_id()
         if item_id is None or item_id not in items:
+            # Нельзя удалить то, чего нет.
             self._send_json(404, {"detail": "Not Found"})
             return
+        # Удаляем запись из словаря — необратимо, в отличие от PUT/PATCH.
         del items[item_id]
+        # 204: успех, но тела намеренно нет — про удалённую сущность
+        # возвращать нечего (см. раздел 2, категория 2xx).
         self._send_json(204, None)
 
     def log_message(self, format: str, *args: object) -> None:
